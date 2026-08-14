@@ -1,5 +1,7 @@
 # Allmiibo Web Manager (Gestor Web Allmiibo)
 
+🌐 **Sitio Web en Vivo / Live Web App**: 👉 [**https://setorox.github.io/allmiibo-manager/**](https://setorox.github.io/allmiibo-manager/)
+
 [**Español**](#español) | [**English**](#english)
 
 ---
@@ -7,6 +9,8 @@
 # Español
 
 Un gestor web moderno, intuitivo y responsivo para administrar archivos Amiibo en dispositivos **Allmiibo** / **Pixl.js** a través de **Web Bluetooth (Web BLE)**. Permite la transferencia inalámbrica de archivos, organización jerárquica de carpetas, actualización de firmware por DFU y descarga automática de claves de cifrado directamente desde el navegador sin instalar aplicaciones adicionales.
+
+👉 **Enlace de acceso a la web**: [https://setorox.github.io/allmiibo-manager/](https://setorox.github.io/allmiibo-manager/)
 
 > [!IMPORTANT]
 > **Compatibilidad**: Web Bluetooth requiere un navegador basado en Chromium (Google Chrome, Microsoft Edge, Opera o Brave). Para dispositivos móviles iOS (iPhone/iPad), debes abrir la aplicación dentro de un navegador Web BLE dedicado como **Bluefy**.
@@ -32,7 +36,7 @@ Un gestor web moderno, intuitivo y responsivo para administrar archivos Amiibo e
 
 ## 🛠️ Guía de Uso
 
-1.  Abre la aplicación web en tu navegador compatible.
+1.  Abre la aplicación web en [https://setorox.github.io/allmiibo-manager/](https://setorox.github.io/allmiibo-manager/).
 2.  Haz clic en **Conectar Allmiibo** (asegúrate de tener el Bluetooth activado en tu dispositivo).
 3.  Selecciona tu Allmiibo en la ventana emergente de emparejamiento.
 4.  Si es tu primera vez:
@@ -45,6 +49,8 @@ Un gestor web moderno, intuitivo y responsivo para administrar archivos Amiibo e
 # English
 
 A modern, intuitive, and responsive web manager designed to administer Amiibo files on **Allmiibo** / **Pixl.js** devices via **Web Bluetooth (Web BLE)**. It allows seamless wireless file transfers, hierarchical folder organization, OTA DFU firmware updates, and automatic encryption key setup directly from your browser without installing any extra software.
+
+👉 **Direct Web App Link**: [https://setorox.github.io/allmiibo-manager/](https://setorox.github.io/allmiibo-manager/)
 
 > [!IMPORTANT]
 > **Compatibility**: Web Bluetooth requires a Chromium-based browser (Google Chrome, Microsoft Edge, Opera, or Brave). On iOS devices (iPhone/iPad), you must open the page inside a dedicated Web BLE browser like **Bluefy**.
@@ -70,7 +76,7 @@ A modern, intuitive, and responsive web manager designed to administer Amiibo fi
 
 ## 🛠️ How to Use
 
-1.  Open the web application in a supported browser.
+1.  Open the web application at [https://setorox.github.io/allmiibo-manager/](https://setorox.github.io/allmiibo-manager/).
 2.  Click **Conectar Allmiibo** (ensure Bluetooth is enabled on your device).
 3.  Select your Allmiibo device from the browser pairing popup.
 4.  If configuring for the first time:

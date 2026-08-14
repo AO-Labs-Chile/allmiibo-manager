@@ -169,7 +169,7 @@
                     <span class="material-symbols-rounded" style="color: #ff5e5b; font-size: 1.05rem;">favorite</span>
                     <span data-i18n="btn_donate_footer">Apoyar / Donar</span>
                 </a>
-                <span class="sidebar-version-badge">Allmiibo Manager v1.3.8</span>
+                <span class="sidebar-version-badge">Allmiibo Manager v1.3.10</span>
                 <div class="sidebar-legal-link" style="text-align: center; margin-top: 2px;">
                     <a href="javascript:void(0)" class="btn-open-legal-trigger" style="font-size: 0.72rem; color: var(--text-muted); text-decoration: underline; text-underline-offset: 2px;" data-i18n="legal_footer_link">⚖️ Aviso Legal y Fuentes</a>
                 </div>
@@ -179,6 +179,15 @@
         <!-- Main content panels -->
         <main class="content-panel">
             
+            <!-- Global Scanning Progress Banner -->
+            <div id="scanning-progress-banner" style="display: none; align-items: center; justify-content: space-between; background: rgba(59, 130, 246, 0.12); border: 1px solid rgba(59, 130, 246, 0.35); border-radius: 8px; padding: 10px 16px; margin-bottom: 14px; font-size: 0.85rem; color: var(--primary);">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <span class="material-symbols-rounded pulse" style="font-size: 1.2rem; animation: pulse 1.2s infinite; color: var(--primary);">sync</span>
+                    <span id="scanning-progress-text" style="font-weight: 500;">Sincronizando catálogo con el dispositivo...</span>
+                </div>
+                <button class="btn btn-secondary" id="btn-skip-scan" style="padding: 4px 12px; font-size: 0.75rem; border-color: rgba(59, 130, 246, 0.4); color: var(--primary); font-weight: 600;" data-i18n="btn_skip_scan">Omitir Escaneo</button>
+            </div>
+
             <!-- TAB 1: LOCAL FILES EXPLORER -->
             <div class="tab-content active" id="local-tab">
                 <div class="explorer-header">
@@ -257,7 +266,7 @@
                 </div>
 
                 <!-- Drag & Drop zone (below file list) -->
-                <div class="file-dropzone" id="file-dropzone" style="margin-top: 8px;">
+                <div class="file-dropzone" id="file-dropzone" style="margin-top: 20px;">
                     <span class="material-symbols-rounded" style="font-size: 2rem; color: var(--text-muted);">cloud_upload</span>
                     <div class="dropzone-title" style="font-size: 0.95rem;" data-i18n="dropzone_title">Arrastra archivos o carpetas de Amiibos aquí</div>
                     <div class="dropzone-sub" data-i18n="dropzone_sub">o haz clic para explorar en tu ordenador</div>
@@ -268,12 +277,17 @@
             <div class="tab-content" id="online-tab">
                 <div class="catalogue-header" style="width: 100%; display: flex; flex-direction: column; gap: 12px;">
                     <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 16px; flex-wrap: wrap;">
-                        <div class="search-bar" style="flex: 1; max-width: 400px;">
+                        <div class="search-bar" style="flex: 1; max-width: 360px;">
                             <input type="text" class="search-input" id="search-amiibo" placeholder="Buscar Amiibo..." data-i18n-placeholder="search_placeholder">
                         </div>
                         <div style="display: flex; gap: 8px; flex-wrap: wrap;">
                             <select class="category-filter" id="filter-category">
                                 <option value="all" data-i18n="cat_all">Todas las Series</option>
+                            </select>
+                            <select class="category-filter" id="filter-installed-status" style="border: 1px solid var(--border-color); border-radius: 8px; font-size: 0.85rem; padding: 6px 12px; font-weight: 600; color: var(--primary); background-color: var(--bg-card); cursor: pointer;">
+                                <option value="all" data-i18n="filter_status_all">Todos los Amiibos</option>
+                                <option value="not_installed" data-i18n="filter_status_not_installed">⭐ Solo No Instalados</option>
+                                <option value="installed" data-i18n="filter_status_installed">✓ Solo Instalados</option>
                             </select>
                         </div>
                     </div>

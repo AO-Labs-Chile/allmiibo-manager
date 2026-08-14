@@ -173,6 +173,11 @@ const TRANSLATIONS = {
         report_reason_network: "Error de red o servidor de Archive ocupado",
         report_reason_path: "Ruta excede el límite del Allmiibo (>58 bytes)",
         cat_no_results: "No se encontraron Amiibos con los filtros aplicados.",
+        filter_status_all: "Todos los Amiibos",
+        filter_status_not_installed: "⭐ Solo No Instalados",
+        filter_status_installed: "✓ Solo Instalados",
+        btn_skip_scan: "Omitir Escaneo",
+        scanning_banner_text: "🔍 Escaneando memoria del dispositivo para verificar Amiibos ya instalados...",
         
         modal_del_prog_title: "Eliminando Amiibos...",
         modal_del_prog_deleting: "Eliminando:",
@@ -382,6 +387,11 @@ const TRANSLATIONS = {
         report_reason_network: "Network error or Archive server busy",
         report_reason_path: "Path exceeds Allmiibo limit (>58 bytes)",
         cat_no_results: "No Amiibos found with the applied filters.",
+        filter_status_all: "All Amiibos",
+        filter_status_not_installed: "⭐ Not Installed Only",
+        filter_status_installed: "✓ Installed Only",
+        btn_skip_scan: "Skip Scan",
+        scanning_banner_text: "🔍 Scanning device storage to check already installed Amiibos...",
         
         modal_del_prog_title: "Deleting Amiibos...",
         modal_del_prog_deleting: "Deleting:",
@@ -814,18 +824,28 @@ function isAmiiboInstalled(amiibo, targetRemotePath = "") {
     return false;
 }
 
+let _abortScan = false;
 let _isScanningInstalled = false;
+
 async function scanInstalledAmiibos() {
     if (!state.isConnected || !state.client) {
         state.installedAmiiboSet.clear();
         state.installedPathsSet.clear();
         state.existingFoldersSet.clear();
         state.installedCatalogueMap.clear();
+        const banner = document.getElementById("scanning-progress-banner");
+        if (banner) banner.style.display = "none";
         renderOnlineCatalogue();
         return;
     }
     if (_isScanningInstalled) return;
     _isScanningInstalled = true;
+    _abortScan = false;
+    
+    const banner = document.getElementById("scanning-progress-banner");
+    const progressText = document.getElementById("scanning-progress-text");
+    if (banner) banner.style.display = "flex";
+    if (progressText) progressText.textContent = t("scanning_banner_text");
     
     try {
         logEvent("Escaneando archivos y carpetas del dispositivo...");
@@ -837,12 +857,17 @@ async function scanInstalledAmiibos() {
         const folderQueue = ["E:/", "E:/amiibo"];
         const visited = new Set();
         
-        while (folderQueue.length > 0) {
+        while (folderQueue.length > 0 && !_abortScan) {
             const dirPath = folderQueue.shift();
             const normDir = dirPath.toLowerCase().replace(/\/+$/, '');
             if (visited.has(normDir)) continue;
             visited.add(normDir);
             foundFolders.add(normDir);
+            
+            const folderDisplayName = dirPath.replace(/^E:\/?/i, '') || "Root";
+            if (progressText) {
+                progressText.textContent = `🔍 Escaneando: ${folderDisplayName} (${foundPaths.size} Amiibos detectados)...`;
+            }
             
             try {
                 const res = await state.client.readFolder(dirPath);
@@ -879,12 +904,23 @@ async function scanInstalledAmiibos() {
         state.existingFoldersSet = foundFolders;
         saveInstalledRegistry(state.installedRegistry);
         
-        logEvent(`Escaneo completado: ${foundPaths.size} archivos .bin, ${foundFolders.size} carpetas, ${state.installedCatalogueMap.size} Amiibos del catálogo asociados.`);
+        if (banner) banner.style.display = "none";
+        
+        if (_abortScan) {
+            logEvent("Escaneo omitido por el usuario.");
+            showToast("Escaneo omitido. Se guardaron los archivos detectados.");
+        } else {
+            logEvent(`Escaneo completado: ${foundPaths.size} archivos .bin, ${foundFolders.size} carpetas, ${state.installedCatalogueMap.size} Amiibos del catálogo asociados.`);
+            showToast(`✨ Sincronización completada: ${state.installedCatalogueMap.size} Amiibos reconocidos.`);
+        }
+        
         renderOnlineCatalogue();
     } catch (err) {
         console.warn("Scan installed amiibos error:", err);
+        if (banner) banner.style.display = "none";
     } finally {
         _isScanningInstalled = false;
+        _abortScan = false;
     }
 }
 
@@ -1675,8 +1711,8 @@ async function initDeviceAfterConnection(isMock) {
     try {
         await updateDeviceInfo();
         await updateStorageBar();
-        await scanInstalledAmiibos();
-        await refreshExplorer();
+        await refreshExplorer(); // Immediate file display in < 0.5s!
+        scanInstalledAmiibos();  // Background scan with visual banner
     } catch (err) {
         console.warn("Device init error:", err);
     }
@@ -3131,6 +3167,7 @@ function renderOnlineCatalogue() {
     
     const searchVal = el.searchAmiibo.value.toLowerCase();
     const filterVal = el.filterCategory.value;
+    const statusVal = document.getElementById("filter-installed-status")?.value || "all";
     
     let selectedCat = filterVal;
     let selectedSub = null;
@@ -3149,6 +3186,10 @@ function renderOnlineCatalogue() {
         list.forEach(amiibo => {
             if (selectedSub && amiibo.subPath !== selectedSub) return;
             if (searchVal && !amiibo.name.toLowerCase().includes(searchVal)) return;
+            
+            const isInstalled = isAmiiboInstalled(amiibo);
+            if (statusVal === "not_installed" && isInstalled) return;
+            if (statusVal === "installed" && !isInstalled) return;
             
             // Deduplicate based on category and clean name
             const uniqueKey = `${cat}_${amiibo.name.toLowerCase().trim()}`;
@@ -3227,7 +3268,6 @@ function renderOnlineCatalogue() {
             info.appendChild(nameEl);
             info.appendChild(seriesEl);
             
-            const isInstalled = isAmiiboInstalled(amiibo);
             if (isInstalled) {
                 card.classList.add("installed");
                 const badge = document.createElement("span");
@@ -4146,6 +4186,20 @@ el.btnInstallConfirm.addEventListener("click", async () => {
     runQueueUpload();
 });
 
+// Filter Installed Status Listener
+document.getElementById("filter-installed-status")?.addEventListener("change", () => {
+    renderOnlineCatalogue();
+});
+
+// Skip Scan Button Listener
+document.getElementById("btn-skip-scan")?.addEventListener("click", () => {
+    _abortScan = true;
+    const banner = document.getElementById("scanning-progress-banner");
+    if (banner) banner.style.display = "none";
+    showToast("Omitiendo escaneo de fondo...");
+});
+
 // Initialize Language and database
 setLanguage(state.lang);
 initOnlineCatalogue();
+

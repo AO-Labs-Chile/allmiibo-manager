@@ -89,19 +89,32 @@ header {
 
 .btn-connect-main {
     width: 100%;
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
-    padding: 12px 18px;
+    gap: 10px;
+    padding: 13px 18px;
     font-size: 0.98rem;
     font-weight: 700;
     border-radius: 10px;
-    margin-bottom: 4px;
-    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+    margin-bottom: 6px;
+    background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 50%, #3b82f6 100%);
+    border: 1px solid #60a5fa;
+    color: #ffffff;
+    box-shadow: 0 4px 16px rgba(37, 99, 235, 0.4);
+    cursor: pointer;
     transition: all 0.2s ease;
 }
 
 .btn-connect-main:hover {
+    background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 50%, #2563eb 100%);
     transform: translateY(-1px);
-    box-shadow: 0 6px 18px rgba(16, 185, 129, 0.45);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.55);
+}
+
+.btn-connect-main .material-symbols-rounded {
+    color: #93c5fd;
+    font-size: 1.35rem;
 }
 
 .sidebar-nav-buttons {
@@ -122,9 +135,9 @@ header {
     font-weight: 600;
     border-radius: 10px;
     text-align: left;
-    background-color: #1e293b;
+    background-color: rgba(30, 41, 59, 0.6);
     border: 1px solid var(--border-color);
-    color: var(--text-secondary);
+    color: #94a3b8;
     cursor: pointer;
     transition: all 0.2s ease;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
@@ -132,30 +145,33 @@ header {
 
 .sidebar-nav-btn .material-symbols-rounded {
     font-size: 1.3rem;
-    color: #94a3b8;
+    color: #64748b;
     transition: color 0.2s ease;
 }
 
 .sidebar-nav-btn:hover {
-    background-color: #334155;
-    border-color: rgba(255, 255, 255, 0.25);
-    color: var(--text-primary);
+    background-color: #1e293b;
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #f1f5f9;
     transform: translateY(-1px);
 }
 
 .sidebar-nav-btn:hover .material-symbols-rounded {
-    color: var(--text-primary);
+    color: #38bdf8;
 }
 
 .sidebar-nav-btn.active {
-    background: linear-gradient(135deg, #059669 0%, #10b981 100%);
-    border-color: #10b981;
+    background: linear-gradient(90deg, rgba(16, 185, 129, 0.18) 0%, rgba(30, 41, 59, 0.95) 100%);
+    border: 1px solid rgba(16, 185, 129, 0.55);
+    border-left: 4px solid #10b981;
     color: #ffffff;
-    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+    font-weight: 700;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
 }
 
 .sidebar-nav-btn.active .material-symbols-rounded {
-    color: #ffffff;
+    color: #34d399;
+    font-weight: 700;
 }
 
 .sidebar-lang-control {

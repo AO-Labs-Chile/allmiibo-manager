@@ -1649,12 +1649,29 @@ async function runQueueUpload() {
 
 async function initOnlineCatalogue() {
     try {
+        const response = await fetch("amiibo_db.json");
+        const localDb = await response.json();
+        
         const cachedDb = localStorage.getItem("cached_amiibo_db");
         if (cachedDb) {
-            state.categories = JSON.parse(cachedDb);
+            const parsedCache = JSON.parse(cachedDb);
+            // Mezclar elementos del archivo local con la caché para agregar novedades automáticamente
+            for (const [category, items] of Object.entries(localDb)) {
+                if (!parsedCache[category]) {
+                    parsedCache[category] = [];
+                }
+                const cacheCategoryItems = parsedCache[category];
+                items.forEach(localItem => {
+                    if (!cacheCategoryItems.some(cacheItem => cacheItem.path === localItem.path)) {
+                        cacheCategoryItems.push(localItem);
+                    }
+                });
+                cacheCategoryItems.sort((a, b) => a.name.localeCompare(b.name));
+            }
+            state.categories = parsedCache;
+            localStorage.setItem("cached_amiibo_db", JSON.stringify(parsedCache));
         } else {
-            const response = await fetch("amiibo_db.json");
-            state.categories = await response.json();
+            state.categories = localDb;
         }
         
         populateCategoryDropdown();

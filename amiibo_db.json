@@ -3864,8 +3864,8 @@
       "ext": "bin"
     },
     {
-      "name": "Callie (Alterna)",
-      "path": "Amiibo Bin/Splatoon Amiibo/Callie (Alterna).bin",
+      "name": "Big Man (Raiders)",
+      "path": "Amiibo Bin/Splatoon Amiibo/Big Man (Raiders).bin",
       "ext": "bin"
     },
     {
@@ -3874,13 +3874,28 @@
       "ext": "bin"
     },
     {
+      "name": "Callie (Alterna)",
+      "path": "Amiibo Bin/Splatoon Amiibo/Callie (Alterna).bin",
+      "ext": "bin"
+    },
+    {
       "name": "Frye",
       "path": "Amiibo Bin/Splatoon Amiibo/Frye.bin",
       "ext": "bin"
     },
     {
+      "name": "Frye (Raiders)",
+      "path": "Amiibo Bin/Splatoon Amiibo/Frye (Raiders).bin",
+      "ext": "bin"
+    },
+    {
       "name": "Inkling (Yellow)",
       "path": "Amiibo Bin/Splatoon Amiibo/Inkling (Yellow).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Inkling Boy",
+      "path": "Amiibo Bin/Splatoon Amiibo/Inkling Boy.bin",
       "ext": "bin"
     },
     {
@@ -3894,8 +3909,8 @@
       "ext": "bin"
     },
     {
-      "name": "Inkling Boy",
-      "path": "Amiibo Bin/Splatoon Amiibo/Inkling Boy.bin",
+      "name": "Inkling Girl",
+      "path": "Amiibo Bin/Splatoon Amiibo/Inkling Girl.bin",
       "ext": "bin"
     },
     {
@@ -3909,8 +3924,8 @@
       "ext": "bin"
     },
     {
-      "name": "Inkling Girl",
-      "path": "Amiibo Bin/Splatoon Amiibo/Inkling Girl.bin",
+      "name": "Inkling Squid",
+      "path": "Amiibo Bin/Splatoon Amiibo/Inkling Squid.bin",
       "ext": "bin"
     },
     {
@@ -3924,8 +3939,8 @@
       "ext": "bin"
     },
     {
-      "name": "Inkling Squid",
-      "path": "Amiibo Bin/Splatoon Amiibo/Inkling Squid.bin",
+      "name": "Marie",
+      "path": "Amiibo Bin/Splatoon Amiibo/Marie.bin",
       "ext": "bin"
     },
     {
@@ -3934,18 +3949,13 @@
       "ext": "bin"
     },
     {
-      "name": "Marie",
-      "path": "Amiibo Bin/Splatoon Amiibo/Marie.bin",
+      "name": "Marina",
+      "path": "Amiibo Bin/Splatoon Amiibo/Marina.bin",
       "ext": "bin"
     },
     {
       "name": "Marina (Side Order)",
       "path": "Amiibo Bin/Splatoon Amiibo/Marina (Side Order).bin",
-      "ext": "bin"
-    },
-    {
-      "name": "Marina",
-      "path": "Amiibo Bin/Splatoon Amiibo/Marina.bin",
       "ext": "bin"
     },
     {
@@ -3969,18 +3979,23 @@
       "ext": "bin"
     },
     {
-      "name": "Pearl (Side Order)",
-      "path": "Amiibo Bin/Splatoon Amiibo/Pearl (Side Order).bin",
-      "ext": "bin"
-    },
-    {
       "name": "Pearl",
       "path": "Amiibo Bin/Splatoon Amiibo/Pearl.bin",
       "ext": "bin"
     },
     {
+      "name": "Pearl (Side Order)",
+      "path": "Amiibo Bin/Splatoon Amiibo/Pearl (Side Order).bin",
+      "ext": "bin"
+    },
+    {
       "name": "Shiver",
       "path": "Amiibo Bin/Splatoon Amiibo/Shiver.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Shiver (Raiders)",
+      "path": "Amiibo Bin/Splatoon Amiibo/Shiver (Raiders).bin",
       "ext": "bin"
     },
     {

@@ -178,6 +178,10 @@
                     </a>
                 </div>
 
+                <div class="sidebar-legal-link" style="text-align: center; margin: 2px 0;">
+                    <a href="javascript:void(0)" id="btn-open-legal" style="font-size: 0.72rem; color: var(--text-muted); text-decoration: underline; text-underline-offset: 2px;" data-i18n="legal_footer_link">⚖️ Aviso Legal y Fuentes</a>
+                </div>
+
                 <span class="sidebar-version-badge">Allmiibo Manager v1.2.0</span>
             </div>
         </aside>
@@ -535,13 +539,34 @@
                         <span data-i18n="help_q1_desc">Puedes explorar la pestaña Catálogo Amiibos para instalar directamente cualquiera de los 1.070 Amiibos de la bóveda de Internet Archive a tu Allmiibo sin descargas manuales.</span>
                     </div>
                     <div>
-                        <strong style="color: var(--text-main); display: block; margin-bottom: 2px;" data-i18n="help_q2_title">¿Por qué hay tantos Amiibos de Animal Crossing y algunos sin nombre?</strong>
-                        <span data-i18n="help_q2_desc">Animal Crossing cuenta con 400 cartas estándar, las series de Sanrio, Amiibo Festival y las 91 cartas especiales de Happy Home Designer Items (muebles y diseños).</span>
-                    </div>
-                    <div>
                         <strong style="color: var(--text-main); display: block; margin-bottom: 2px;" data-i18n="help_q3_title">¿Cómo actualizo la clave key_retail.bin automáticamente?</strong>
                         <span data-i18n="help_q3_desc">Haz clic en el botón Auto-llave en la barra lateral. Se descargará el archivo oficial de 160 bytes directamente desde Internet Archive y se instalará en la raíz de tu Allmiibo.</span>
                     </div>
+                </div>
+
+                <!-- Legal & Open Source Disclaimer Section -->
+                <div class="help-legal-card" id="help-legal-section" style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(239, 68, 68, 0.25); border-radius: 10px; padding: 14px 16px; margin-top: 20px; font-size: 0.8rem; color: var(--text-muted); line-height: 1.5;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; flex-wrap: wrap; gap: 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 8px;">
+                        <span style="font-weight: 700; color: #f87171; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 6px;" data-i18n="legal_title">
+                            ⚖️ Aviso Legal, Descargo de Responsabilidad y Fuentes
+                        </span>
+                        <a href="https://github.com/AO-Labs-Chile/allmiibo-manager" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 6px; color: var(--text-primary); text-decoration: none; font-weight: 600; background: rgba(255,255,255,0.06); padding: 4px 10px; border-radius: 6px; border: 1px solid var(--border-color); font-size: 0.8rem;" title="Ver código fuente en GitHub">
+                            <svg height="16" width="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align: middle;"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+                            <span>GitHub Open Source</span>
+                        </a>
+                    </div>
+                    <p style="margin: 0 0 8px 0;" data-i18n="legal_p1">
+                        Allmiibo Web Manager es un software libre y de código abierto desarrollado exclusivamente con fines educativos, de interoperabilidad de hardware y gestión personal de copias de seguridad.
+                    </p>
+                    <p style="margin: 0 0 8px 0;" data-i18n="legal_p2">
+                        🛡️ <strong>Exención de Alojamiento y Distribución:</strong> Este sitio web y sus desarrolladores <strong>NO alojan, almacenan, distribuyen ni comercializan ningún archivo binario propietario (.bin), claves criptográficas ni imágenes con derechos de autor en sus propios servidores.</strong> La aplicación funciona 100% en el navegador del usuario (lado del cliente) como un gestor de comunicación Bluetooth, y cualquier consulta o descarga de metadatos o archivos se realiza bajo demanda y a solicitud directa del usuario desde repositorios públicos de terceros (<a href="https://www.amiiboapi.org/" target="_blank" rel="noopener noreferrer" style="color: var(--primary);">AmiiboAPI</a> y <a href="https://archive.org/" target="_blank" rel="noopener noreferrer" style="color: var(--primary);">Internet Archive</a>).
+                    </p>
+                    <p style="margin: 0 0 8px 0;" data-i18n="legal_p3">
+                        ⚠️ <strong>Responsabilidad del Usuario:</strong> El usuario asume la total y exclusiva responsabilidad por el uso de este software y el cumplimiento de las leyes de propiedad intelectual y derechos de autor vigentes en su jurisdicción.
+                    </p>
+                    <p style="margin: 0; font-size: 0.75rem; color: #94a3b8; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 8px;" data-i18n="legal_nintendo">
+                        Nintendo®, Amiibo®, Nintendo Switch®, Nintendo Switch 2®, Wii U®, 3DS® y todos los nombres, personajes, marcas y logotipos asociados son marcas registradas y propiedad intelectual exclusiva de Nintendo Co., Ltd. Este proyecto es una herramienta comunitaria independiente y NO está respaldado, patrocinado, asociado ni afiliado de ninguna manera con Nintendo Co., Ltd. ni sus filiales.
+                    </p>
                 </div>
             </div>
             <div class="modal-actions" style="margin-top: 16px; border-top: 1px solid var(--border-color); padding-top: 12px;">

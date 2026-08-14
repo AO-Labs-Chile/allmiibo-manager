@@ -246,6 +246,13 @@ const TRANSLATIONS = {
         help_q3_title: "¿Cómo actualizo la clave key_retail.bin automáticamente?",
         help_q3_desc: "Haz clic en el botón Auto-llave en la barra lateral. Se descargará el archivo oficial de 160 bytes directamente desde Internet Archive y se instalará en la raíz de tu Allmiibo.",
         
+        legal_footer_link: "⚖️ Aviso Legal y Fuentes",
+        legal_title: "⚖️ Aviso Legal, Descargo de Responsabilidad y Fuentes",
+        legal_p1: "Allmiibo Web Manager es un software libre y de código abierto desarrollado exclusivamente con fines educativos, de interoperabilidad de hardware y gestión personal de copias de seguridad.",
+        legal_p2: "🛡️ Exención de Alojamiento y Distribución: Este sitio web y sus desarrolladores NO alojan, almacenan, distribuyen ni comercializan ningún archivo binario propietario (.bin), claves criptográficas ni imágenes con derechos de autor en sus propios servidores. La aplicación funciona 100% en el navegador del usuario (lado del cliente) como un gestor de comunicación Bluetooth, y cualquier consulta o descarga de metadatos o archivos se realiza bajo demanda y a solicitud directa del usuario desde repositorios públicos de terceros (AmiiboAPI y Internet Archive).",
+        legal_p3: "⚠️ Responsabilidad del Usuario: El usuario asume la total y exclusiva responsabilidad por el uso de este software y el cumplimiento de las leyes de propiedad intelectual y derechos de autor vigentes en su jurisdicción.",
+        legal_nintendo: "Nintendo®, Amiibo®, Nintendo Switch®, Nintendo Switch 2®, Wii U®, 3DS® y todos los nombres, personajes, marcas y logotipos asociados son marcas registradas y propiedad intelectual exclusiva de Nintendo Co., Ltd. Este proyecto es una herramienta comunitaria independiente y NO está respaldado, patrocinado, asociado ni afiliado de ninguna manera con Nintendo Co., Ltd. ni sus filiales.",
+        
         toast_sync_starting: "Sincronizando catálogo con Internet Archive...",
         toast_sync_success: "¡Catálogo sincronizado! Se encontraron {count} Amiibos en Internet Archive.",
         toast_sync_error: "Error de sincronización: {error}",
@@ -427,6 +434,13 @@ const TRANSLATIONS = {
         help_q2_desc: "Animal Crossing features 400 standard cards, Sanrio series, Amiibo Festival, and 91 special Happy Home Designer Items (furniture and designs).",
         help_q3_title: "How do I auto-update key_retail.bin?",
         help_q3_desc: "Click the Auto-Key button in the sidebar. The official 160-byte decryption key will be downloaded from Internet Archive and installed to the root of your Allmiibo.",
+        
+        legal_footer_link: "⚖️ Legal Disclaimer & Sources",
+        legal_title: "⚖️ Legal Disclaimer, Fair Use & Sources",
+        legal_p1: "Allmiibo Web Manager is a free, open-source software tool developed solely for educational, hardware interoperability, and personal backup management purposes under Fair Use.",
+        legal_p2: "🛡️ No Hosting or Distribution Policy: This website and its developers DO NOT host, store, mirror, distribute, or sell any proprietary binary files (.bin), encryption keys, or copyrighted artwork on their own servers. The application operates 100% client-side inside the user's browser as a Web Bluetooth utility. Any metadata, files, or images are queried on-demand at the user's explicit request from public third-party sources (AmiiboAPI and Internet Archive).",
+        legal_p3: "⚠️ User Liability: The end-user assumes full and sole responsibility for compliance with applicable intellectual property and copyright laws in their respective jurisdiction.",
+        legal_nintendo: "Nintendo®, Amiibo®, Nintendo Switch®, Nintendo Switch 2®, Wii U®, 3DS®, and all related character names, marks, and logos are registered trademarks and property of Nintendo Co., Ltd. This project is strictly an independent community tool and is NOT affiliated with, authorized, maintained, sponsored, or endorsed by Nintendo Co., Ltd. or any of its subsidiaries.",
         
         toast_sync_starting: "Syncing catalog with Internet Archive...",
         toast_sync_success: "Catalog synced! Found {count} Amiibos in Internet Archive.",
@@ -3585,6 +3599,13 @@ el.btnHelp.addEventListener("click", () => {
 });
 el.btnHelpClose.addEventListener("click", () => {
     el.modalHelp.classList.remove("active");
+});
+document.getElementById("btn-open-legal")?.addEventListener("click", () => {
+    el.modalHelp.classList.add("active");
+    const legalSec = document.getElementById("help-legal-section");
+    if (legalSec) {
+        setTimeout(() => legalSec.scrollIntoView({ behavior: "smooth", block: "start" }), 100);
+    }
 });
 
 // Auto Key Modal Events

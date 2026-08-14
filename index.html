@@ -28,7 +28,7 @@
         <div class="brand">
             <div class="brand-icon">A</div>
             <span>Allmiibo Manager</span>
-            <span class="app-version-badge">v1.0.3</span>
+            <span class="app-version-badge">v1.0.4</span>
         </div>
         
         <!-- Navigation Tabs -->
@@ -397,15 +397,25 @@
 
     <!-- Modal: Instalar en Carpeta -->
     <div class="modal-overlay" id="modal-install">
-        <div class="modal">
+        <div class="modal" style="max-width: 480px;">
             <div class="modal-header" data-i18n="modal_install_title">Instalar Amiibos Seleccionados</div>
             <div class="modal-body">
-                <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 8px;">
-                    <span data-i18n="modal_install_text_1">Se instalarán</span> <strong id="install-count-text">0</strong> <span data-i18n="modal_install_text_2">Amiibos en la siguiente carpeta de tu Allmiibo:</span>
-                </p>
-                <label for="install-folder-input" style="font-size: 0.85rem; font-weight: 600; color: var(--text-secondary);" data-i18n="modal_install_folder_label">Carpeta de Destino:</label>
-                <input type="text" class="modal-input" id="install-folder-input" placeholder="p. ej. Smash" data-i18n-placeholder="modal_install_folder_placeholder">
-                <div id="install-folder-error" style="color: var(--danger); font-size: 0.8rem; display: none;"></div>
+                <div id="install-modal-single-view">
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 8px;">
+                        <span data-i18n="modal_install_text_1">Se instalarán</span> <strong id="install-count-text">0</strong> <span data-i18n="modal_install_text_2">Amiibos en la siguiente carpeta de tu Allmiibo:</span>
+                    </p>
+                    <label for="install-folder-input" style="font-size: 0.85rem; font-weight: 600; color: var(--text-secondary);" data-i18n="modal_install_folder_label">Carpeta de Destino:</label>
+                    <input type="text" class="modal-input" id="install-folder-input" placeholder="p. ej. Smash" data-i18n-placeholder="modal_install_folder_placeholder">
+                    <div id="install-folder-error" style="color: var(--danger); font-size: 0.8rem; display: none;"></div>
+                </div>
+                <div id="install-modal-multi-view" style="display: none;">
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 10px;">
+                        Se instalarán <strong id="install-multi-count-text">0</strong> Amiibos organizados automáticamente por juego/serie en tu Allmiibo:
+                    </p>
+                    <div id="install-folders-preview" style="max-height: 180px; overflow-y: auto; background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 10px; display: flex; flex-direction: column; gap: 6px; font-size: 0.85rem;">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
             </div>
             <div class="modal-actions">
                 <button class="btn btn-secondary" id="btn-install-cancel" data-i18n="btn_cancel">Cancelar</button>

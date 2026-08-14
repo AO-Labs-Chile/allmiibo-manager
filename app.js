@@ -1,5 +1,5 @@
 // === Configuration & Constants ===
-const APP_VERSION = "v1.0.3";
+const APP_VERSION = "v1.0.4";
 const NUS_SERVICE_UUID = "6e400001-b5a3-f393-e0a9-e50e24dcca9e";
 const NUS_CHAR_TX_UUID = "6e400002-b5a3-f393-e0a9-e50e24dcca9e";
 const NUS_CHAR_RX_UUID = "6e400003-b5a3-f393-e0a9-e50e24dcca9e";
@@ -2732,24 +2732,67 @@ function renderOnlineCatalogue() {
 }
 
 let _activeInstallList = [];
+let _activeFolderBreakdown = {};
+
 function openInstallFolderModal(amiibos) {
     _activeInstallList = amiibos;
-    el.installCountText.textContent = amiibos.length;
     
-    let suggestion = "Amiibos";
-    if (amiibos.length > 0) {
-        const firstCat = amiibos[0].category;
-        const firstSub = amiibos[0].amiibo?.subPath || "";
-        const allSameSub = amiibos.every(item => item.category === firstCat && (item.amiibo?.subPath || "") === firstSub);
-        if (allSameSub && firstSub) {
-            suggestion = getDestinationFolder(firstCat, firstSub);
+    // Group items into destination folders
+    _activeFolderBreakdown = {};
+    amiibos.forEach(item => {
+        let targetFolder;
+        if (item.amiibo?.subPath) {
+            const sub = cleanSubPath(item.amiibo.subPath);
+            const baseCat = getCleanCategoryFolder(item.category);
+            targetFolder = `${baseCat}_${sub}`;
         } else {
-            suggestion = getCleanCategoryFolder(firstCat);
+            targetFolder = getCleanCategoryFolder(item.category);
         }
+        _activeFolderBreakdown[targetFolder] = (_activeFolderBreakdown[targetFolder] || 0) + 1;
+    });
+    
+    const folderKeys = Object.keys(_activeFolderBreakdown);
+    const singleView = document.getElementById("install-modal-single-view");
+    const multiView = document.getElementById("install-modal-multi-view");
+    const foldersPreview = document.getElementById("install-folders-preview");
+    
+    if (folderKeys.length > 1) {
+        // Multi-folder batch preview
+        if (singleView) singleView.style.display = "none";
+        if (multiView) multiView.style.display = "block";
+        const multiCountEl = document.getElementById("install-multi-count-text");
+        if (multiCountEl) multiCountEl.textContent = amiibos.length;
+        
+        if (foldersPreview) {
+            foldersPreview.innerHTML = "";
+            folderKeys.sort().forEach(folder => {
+                const count = _activeFolderBreakdown[folder];
+                const row = document.createElement("div");
+                row.style.display = "flex";
+                row.style.alignItems = "center";
+                row.style.justifyContent = "space-between";
+                row.style.padding = "6px 10px";
+                row.style.background = "var(--bg-card)";
+                row.style.borderRadius = "6px";
+                row.innerHTML = `
+                    <span style="display: flex; align-items: center; gap: 6px; font-weight: 600; color: var(--text-primary);">
+                        <span class="material-symbols-rounded" style="font-size: 1.1rem; color: var(--primary);">folder</span>
+                        ${folder}
+                    </span>
+                    <span style="color: var(--text-muted); font-size: 0.8rem; font-weight: 500;">${count} Amiibo${count > 1 ? 's' : ''}</span>
+                `;
+                foldersPreview.appendChild(row);
+            });
+        }
+    } else {
+        // Single folder view
+        if (singleView) singleView.style.display = "block";
+        if (multiView) multiView.style.display = "none";
+        el.installCountText.textContent = amiibos.length;
+        el.installFolderInput.value = folderKeys[0] || "Amiibos";
+        el.installFolderError.style.display = "none";
     }
     
-    el.installFolderInput.value = suggestion;
-    el.installFolderError.style.display = "none";
     el.modalInstall.classList.add("active");
 }
 
@@ -3574,14 +3617,18 @@ el.btnInstallCancel.addEventListener("click", () => {
 
 // Install modal confirm and queue
 el.btnInstallConfirm.addEventListener("click", async () => {
-    const folderName = el.installFolderInput.value.trim();
-    if (!folderName) {
-        el.installFolderError.textContent = "El nombre de la carpeta no puede estar vacío.";
-        el.installFolderError.style.display = "block";
-        return;
+    const isMultiFolder = Object.keys(_activeFolderBreakdown).length > 1;
+    let customFolderName = "";
+    
+    if (!isMultiFolder) {
+        customFolderName = el.installFolderInput.value.trim();
+        if (!customFolderName) {
+            el.installFolderError.textContent = "El nombre de la carpeta no puede estar vacío.";
+            el.installFolderError.style.display = "block";
+            return;
+        }
     }
     
-    const sanitizedFolder = sanitizeName(folderName);
     const uniqueFolders = new Set();
     const fileItems = [];
     const addedRemotePaths = new Set();
@@ -3589,16 +3636,16 @@ el.btnInstallConfirm.addEventListener("click", async () => {
     // Determine target folder for each item (dynamically grouping subseries)
     _activeInstallList.forEach(item => {
         let targetFolder;
-        if (item.amiibo?.subPath) {
-            const sub = cleanSubPath(item.amiibo.subPath);
-            const baseCat = getCleanCategoryFolder(item.category);
-            if (folderName && folderName !== baseCat) {
-                targetFolder = `${sanitizedFolder}_${sub}`;
-            } else {
+        if (isMultiFolder) {
+            if (item.amiibo?.subPath) {
+                const sub = cleanSubPath(item.amiibo.subPath);
+                const baseCat = getCleanCategoryFolder(item.category);
                 targetFolder = `${baseCat}_${sub}`;
+            } else {
+                targetFolder = getCleanCategoryFolder(item.category);
             }
         } else {
-            targetFolder = sanitizedFolder;
+            targetFolder = sanitizeName(customFolderName);
         }
         
         const destinationFolder = joinPaths("E:/amiibo", targetFolder);

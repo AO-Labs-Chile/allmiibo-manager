@@ -163,27 +163,6 @@
                 </div>
             </div>
 
-            <!-- Sidebar Footer: AO Labs Credit, Donate & Version -->
-            <div class="sidebar-footer">
-                <a class="btn btn-secondary sidebar-donate-btn" href="https://ko-fi.com/aolabs" target="_blank" rel="noopener noreferrer" title="Apoyar el proyecto en Ko-fi">
-                    <span class="material-symbols-rounded" style="color: #ff5e5b; font-size: 1.05rem;">favorite</span>
-                    <span>Apoyar / Donar</span>
-                </a>
-
-                <div class="aolabs-credit">
-                    <span class="aolabs-text">Desarrollado con <span style="color: #ff5e5b;">♥</span> por</span>
-                    <a href="https://aolabs.cl/" target="_blank" rel="noopener noreferrer" class="aolabs-link" title="Visitar AO Labs Chile (aolabs.cl)">
-                        <img src="images/logo_aolabs.png" alt="AO Labs Chile" class="aolabs-logo" />
-                        <span class="aolabs-subtext">AO Labs Chile</span>
-                    </a>
-                </div>
-
-                <div class="sidebar-legal-link" style="text-align: center; margin: 2px 0;">
-                    <a href="javascript:void(0)" id="btn-open-legal" style="font-size: 0.72rem; color: var(--text-muted); text-decoration: underline; text-underline-offset: 2px;" data-i18n="legal_footer_link">⚖️ Aviso Legal y Fuentes</a>
-                </div>
-
-                <span class="sidebar-version-badge">Allmiibo Manager v1.2.0</span>
-            </div>
         </aside>
 
         <!-- Main content panels -->
@@ -329,6 +308,37 @@
 
         </main>
     </div>
+
+    <!-- Global Central Footer -->
+    <footer class="app-global-footer">
+        <div class="footer-container">
+            <!-- Left spacer for desktop symmetry -->
+            <div class="footer-left"></div>
+
+            <!-- Central Section: AO Labs Chile & Legal Disclaimer -->
+            <div class="footer-center">
+                <div class="aolabs-credit">
+                    <span class="aolabs-text">Desarrollado con <span style="color: #ff5e5b;">♥</span> por</span>
+                    <a href="https://aolabs.cl/" target="_blank" rel="noopener noreferrer" class="aolabs-link" title="Visitar AO Labs Chile (aolabs.cl)">
+                        <img src="images/logo_aolabs.png" alt="AO Labs Chile" class="aolabs-logo" />
+                        <span class="aolabs-subtext">AO Labs Chile</span>
+                    </a>
+                </div>
+                <div class="footer-legal-link">
+                    <a href="javascript:void(0)" id="btn-open-legal" data-i18n="legal_footer_link">⚖️ Aviso Legal y Fuentes</a>
+                </div>
+            </div>
+
+            <!-- Right Section: Donate & Version Badge -->
+            <div class="footer-right">
+                <a class="btn btn-secondary sidebar-donate-btn" href="https://ko-fi.com/aolabs" target="_blank" rel="noopener noreferrer" title="Apoyar el proyecto en Ko-fi">
+                    <span class="material-symbols-rounded" style="color: #ff5e5b; font-size: 1.05rem;">favorite</span>
+                    <span data-i18n="btn_donate_footer">Apoyar / Donar</span>
+                </a>
+                <span class="sidebar-version-badge">Allmiibo Manager v1.2.0</span>
+            </div>
+        </div>
+    </footer>
 
     <!-- Toast Notifications -->
     <div class="toast-container" id="toast-container"></div>
@@ -508,8 +518,8 @@
                 <!-- Virtual Simulator Card in Help Modal -->
                 <div style="background: rgba(59, 130, 246, 0.08); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 10px; padding: 12px 14px; margin-bottom: 18px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
                     <div style="font-size: 0.85rem; color: var(--text-secondary); flex: 1; min-width: 200px;">
-                        <strong style="color: var(--text-primary); display: block; margin-bottom: 2px;">🚀 ¿No tienes tu Allmiibo cerca?</strong>
-                        <span>Puedes iniciar el simulador virtual para probar la interfaz, explorar el catálogo y probar las funciones ahora mismo.</span>
+                        <strong style="color: var(--text-primary); display: block; margin-bottom: 2px;" data-i18n="help_sim_title">🚀 ¿No tienes tu Allmiibo cerca?</strong>
+                        <span data-i18n="help_sim_desc">Puedes iniciar el simulador virtual para probar la interfaz, explorar el catálogo y probar las funciones ahora mismo.</span>
                     </div>
                     <button class="btn btn-secondary" id="btn-connect-mock" style="padding: 8px 14px; font-size: 0.85rem; white-space: nowrap;">
                         <span class="material-symbols-rounded">rocket_launch</span>

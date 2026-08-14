@@ -232,20 +232,51 @@ header {
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }
 
-.sidebar-footer {
-    margin-top: auto;
-    padding-top: 18px;
+/* === Global Application Footer === */
+.app-global-footer {
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    background-color: var(--bg-card);
+    border-top: 1px solid var(--border-color);
+    padding: 16px 24px;
+    z-index: 10;
+}
+
+.footer-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 20px;
+}
+
+.footer-left {
+    flex: 1;
+    min-width: 160px;
+}
+
+.footer-center {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 14px;
+    justify-content: center;
+    gap: 8px;
     text-align: center;
-    width: 100%;
+    flex: 2;
+}
+
+.footer-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    flex: 1;
+    min-width: 160px;
+    flex-wrap: wrap;
 }
 
 .sidebar-donate-btn {
-    width: 100%;
-    max-width: 220px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -259,6 +290,7 @@ header {
     text-decoration: none;
     border-radius: 8px;
     transition: all 0.2s ease;
+    white-space: nowrap;
 }
 
 .sidebar-donate-btn:hover {
@@ -273,8 +305,7 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
-    width: 100%;
+    gap: 6px;
 }
 
 .aolabs-text {
@@ -288,19 +319,19 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
+    gap: 4px;
     text-decoration: none;
     transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
 .aolabs-link:hover {
-    transform: scale(1.04);
+    transform: scale(1.03);
 }
 
 .aolabs-logo {
-    height: 52px;
+    height: 48px;
     width: auto;
-    max-width: 200px;
+    max-width: 190px;
     object-fit: contain;
     display: block;
     filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
@@ -318,19 +349,32 @@ header {
     color: var(--primary);
 }
 
+.footer-legal-link a {
+    font-size: 0.74rem;
+    color: var(--text-muted);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.2s ease;
+}
+
+.footer-legal-link a:hover {
+    color: var(--primary);
+}
+
 .sidebar-version-badge {
     font-size: 0.72rem;
     font-weight: 600;
     color: var(--text-secondary);
     background-color: rgba(255, 255, 255, 0.03);
     border: 1px solid var(--border-color);
-    padding: 5px 14px;
+    padding: 6px 14px;
     border-radius: 20px;
     letter-spacing: 0.6px;
     line-height: 1;
     display: inline-flex;
     align-items: center;
     gap: 4px;
+    white-space: nowrap;
     transition: border-color 0.2s ease, color 0.2s ease;
 }
 
@@ -986,6 +1030,20 @@ table.file-table tr:hover {
         height: 52px;
         max-width: 200px;
     }
+    .footer-container {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
+    }
+    .footer-left {
+        display: none;
+    }
+    .footer-center, .footer-right {
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 @media (max-width: 768px) {
@@ -994,5 +1052,8 @@ table.file-table tr:hover {
     }
     .content-panel {
         padding: 14px;
+    }
+    .app-global-footer {
+        padding: 16px 14px;
     }
 }

@@ -227,6 +227,8 @@ const TRANSLATIONS = {
         help_step4_desc: "Entra a 'Catálogo Amiibos', explora tus figuras o cartas favoritas y pulsa 'Instalar' o 'Instalar Serie'. Se transferirán de forma inalámbrica y se ordenarán automáticamente en subcarpetas.",
         help_step5_title: "5️⃣ Emular en tu Consola:",
         help_step5_desc: "En tu Allmiibo entra al menú Amiibo emulator, elige el Amiibo deseado y acércalo al lector NFC de tu consola Nintendo Switch 1 y 2, Wii U o 3DS.",
+        help_sim_title: "🚀 ¿No tienes tu Allmiibo cerca?",
+        help_sim_desc: "Puedes iniciar el simulador virtual para probar la interfaz, explorar el catálogo y probar las funciones ahora mismo.",
         help_options_title: "Menú y Opciones del Dispositivo",
         help_opt1_title: "Emulador de Amiibo:",
         help_opt1_desc: "Permite seleccionar y emular un Amiibo individual guardado en el almacenamiento (archivo .bin o .nfc). El Allmiibo se comportará físicamente ante la consola como esa tarjeta.",
@@ -416,6 +418,8 @@ const TRANSLATIONS = {
         help_step4_desc: "Open 'Catálogo Amiibos', pick your favorite figures/cards, and click 'Install' or 'Install Series'. They will be wirelessly saved into clean subfolders.",
         help_step5_title: "5️⃣ Scan on your Console:",
         help_step5_desc: "On your Allmiibo open Amiibo emulator, select the file, and tap it onto your Nintendo Switch 1 & 2, Wii U, or 3DS NFC touchpoint.",
+        help_sim_title: "🚀 Don't have your Allmiibo nearby?",
+        help_sim_desc: "You can launch the virtual simulator to test the interface, browse the catalog, and try all features right now.",
         help_options_title: "Device Menu & Options",
         help_opt1_title: "Amiibo Emulator:",
         help_opt1_desc: "Select and emulate an individual Amiibo saved in storage (.bin or .nfc file). The Allmiibo physically acts like that card to the console.",
@@ -685,8 +689,9 @@ function joinPaths(parent, child) {
 function getBleUnsupportedMessage() {
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
     const isAndroid = /Android/i.test(navigator.userAgent);
+    const currentLang = state.lang || "es";
     
-    if (state.currentLang === "es") {
+    if (currentLang === "es") {
         if (isIOS) {
             return "📱 En iPhone/iPad, Apple no soporta Web Bluetooth en Safari ni Chrome. Para conectar tu Allmiibo, abre esta web en la app gratuita Bluefy (Web BLE Browser) de la App Store.";
         } else if (isAndroid) {

@@ -60,8 +60,75 @@ const textDecoder = new TextDecoder();
 
 // --- Path sanitization helpers ---
 
-function getCleanCategoryFolder(githubCategory) {
-    return CATEGORY_MAPPINGS[githubCategory] || githubCategory.replace(/[^a-zA-Z0-9]/g, '');
+const CATEGORY_SHORT = {
+    "Animal Crossing Amiibo": "AC",
+    "The Legend of Zelda Amiibo": "Zelda",
+    "Super Smash Bros Amiibo": "Smash",
+    "Mario Sports Superstars Amiibo": "MSports",
+    "Monster Hunter Amiibo": "MH",
+    "Kirby Amiibo": "Kirby",
+    "Street Fighter Amiibo": "SF",
+    "Super Mario Amiibo": "Mario",
+    "Splatoon Amiibo": "Splatoon",
+    "Fire Emblem Amiibo": "FE",
+    "Super Nintendo World Power-Up Bands": "SNW",
+    "Metroid Amiibo": "Metroid",
+    "Yu-Gi-Oh! Amiibo": "Yugioh",
+    "Power Pros Amiibo": "PowerPros",
+    "Jikkyou Powerful Pro Baseball Amiibo Cards": "Jikkyou",
+    "Yoshi’s Wooly World Amiibo": "Yoshi",
+    "Shovel Knight Amiibo": "Shovel",
+    "Skylanders Amiibo": "Skylanders",
+    "My Mario Amiibo": "MyMario",
+    "Resident Evil Amiibo": "RE",
+    "Xenoblade Chronicles Amiibo": "Xenoblade",
+    "Detective Pikachu Amiibo": "Pikachu",
+    "Dark Souls Amiibo": "DarkSouls",
+    "BoxBoy! Amiibo": "BoxBoy",
+    "Chibi-Robo! Amiibo": "Chibi",
+    "Diablo Amiibo": "Diablo",
+    "Donkey Kong Bananza Amiibo": "DK",
+    "Kellogs Amiibo": "Kellogs",
+    "Mega Man Amiibo": "MegaMan",
+    "Pikmin Amiibo": "Pikmin",
+    "Pokkén Tournament Amiibo": "Pokken",
+    "Pragmata Amiibo": "Pragmata"
+};
+
+function getCleanCategoryFolder(cat) {
+    return CATEGORY_SHORT[cat] || CATEGORY_MAPPINGS[cat] || cat.replace(/[^a-zA-Z0-9]/g, '').substring(0, 8);
+}
+
+function cleanSubPath(sub) {
+    if (!sub) return "";
+    return sub
+        .replace(/Amiibo Cards\/!Series (\d+)/i, 'Cards/S$1')
+        .replace(/Amiibo Cards\/!Sanrio Cards/i, 'Cards/Sanrio')
+        .replace(/Amiibo Cards\/!Amiibo Festival/i, 'Cards/Festival')
+        .replace(/Amiibo Cards\/!Welcome Amiibo/i, 'Cards/Welcome')
+        .replace(/Amiibo Cards\/!Special Edition/i, 'Cards/Special')
+        .replace(/Amiibo Figures/i, 'Figures')
+        .replace(/Happy Home Designer Items/i, 'HHD')
+        .replace(/Breath of the Wild/i, 'BotW')
+        .replace(/Tears of the Kingdom/i, 'TotK')
+        .replace(/Twilight Princess/i, 'TP')
+        .replace(/Skyward Sword HD/i, 'Skyward')
+        .replace(/Link’s Awakening/i, 'Awakening')
+        .replace(/Kirby Air Riders Amiibo/i, 'AirRiders')
+        .replace(/[^a-zA-Z0-9_\/]/g, '_')
+        .replace(/_+/g, '_');
+}
+
+function fitPathToHardwareLimit(remotePath) {
+    if (remotePath.length <= 58) return remotePath;
+    const parts = remotePath.split('/');
+    const file = parts.pop();
+    const ext = file.includes('.') ? file.substring(file.lastIndexOf('.')) : '';
+    const nameWithoutExt = file.substring(0, file.length - ext.length);
+    const parentDir = parts.join('/');
+    const maxNameLen = Math.max(8, 58 - parentDir.length - 1 - ext.length);
+    const shortName = nameWithoutExt.substring(0, maxNameLen) + ext;
+    return `${parentDir}/${shortName}`;
 }
 
 function removeAccents(str) {
@@ -70,13 +137,13 @@ function removeAccents(str) {
 }
 
 function sanitizeName(name) {
-    // 1. Remove bracket prefixes like [AC] 001 -
+    // 1. Remove bracket prefixes like [AC] 001 -, [Zel] 001 -
     let clean = name.replace(/^\[[^\]]+\]\s*\d*\s*-\s*/, '');
     
     // 2. Remove tildes/accents
     clean = removeAccents(clean);
     
-    // 3. Remove parentheses content and other symbols, keep only simple text
+    // 3. Remove parentheses content and other symbols
     clean = clean.replace(/\([^)]+\)/g, '')
                  .replace(/[^a-zA-Z0-9\s._-]/g, '')
                  .trim();
@@ -697,7 +764,8 @@ const state = {
     explorerSort: "name-asc", // Current sorting criteria for local explorer
     currentEntries: [], // Cached directory contents to allow instant sorting
     explorerTabMode: "folders", // "folders" or "gallery" view type
-    scannedAmiibos: [] // Recursively scanned Amiibos for the gallery view
+    scannedAmiibos: [], // Recursively scanned Amiibos for the gallery view
+    abortUpload: false // Flag to cancel running upload queue
 };
 
 // UI Elements mapping
@@ -729,6 +797,7 @@ const el = {
     queueList: document.getElementById("queue-list"),
     queueProgress: document.getElementById("queue-progress"),
     btnQueueStart: document.getElementById("btn-queue-start"),
+    btnQueueCancel: document.getElementById("btn-queue-cancel"),
     btnQueueClear: document.getElementById("btn-queue-clear"),
     
     // Online Catalogue Elements
@@ -1606,9 +1675,10 @@ function renderUploadQueue() {
         
         const spanStatus = document.createElement("span");
         spanStatus.className = `queue-item-status ${item.status}`;
-        spanStatus.textContent = item.status === "skipped" ? "Ignorado" : 
-                                 item.status === "pending" ? "Pendiente" : 
-                                 item.status === "uploading" ? "Subiendo..." : "Completado";
+        spanStatus.textContent = item.status === "error" ? "Error" : 
+                                 item.status === "uploading" ? "Subiendo..." : 
+                                 item.status === "skipped" ? "Ignorado" : 
+                                 item.status === "pending" ? "Pendiente" : "Completado";
         
         div.appendChild(spanName);
         div.appendChild(spanStatus);
@@ -1619,7 +1689,10 @@ function renderUploadQueue() {
 async function runQueueUpload() {
     if (state.uploadQueue.length === 0 || !state.isConnected) return;
     
-    el.btnQueueStart.disabled = true;
+    state.abortUpload = false;
+    el.btnQueueStart.style.display = "none";
+    el.btnQueueCancel.style.display = "flex";
+    el.btnQueueCancel.disabled = false;
     el.btnQueueClear.disabled = true;
     el.explorerActions.querySelectorAll("button").forEach(b => b.disabled = true);
     
@@ -1631,6 +1704,12 @@ async function runQueueUpload() {
     let completedCount = 0;
     
     for (let item of state.uploadQueue) {
+        if (state.abortUpload) {
+            logEvent("Subida detenida por el usuario.");
+            showToast("Subida cancelada por el usuario.", "error");
+            break;
+        }
+        
         if (item.status !== "pending") continue;
         
         item.status = "uploading";
@@ -1643,11 +1722,11 @@ async function runQueueUpload() {
             } else {
                 let fileObj = item.file;
                 if (item.githubUrl) {
-                    logEvent(`Descargando de GitHub: ${item.githubUrl}`);
+                    logEvent(`Descargando binario desde: ${item.githubUrl}`);
                     const response = await fetch(item.githubUrl);
-                    if (!response.ok) throw new Error("No se pudo descargar el archivo de GitHub.");
+                    if (!response.ok) throw new Error(`HTTP ${response.status} al descargar de Archive`);
                     fileObj = await response.blob();
-                    item.file = fileObj; // cache the blob
+                    item.file = fileObj;
                 }
                 
                 logEvent(`Subiendo archivo: ${item.remotePath} (${fileObj.size} bytes)`);
@@ -1658,7 +1737,6 @@ async function runQueueUpload() {
                         el.queueProgress.textContent = `${Math.round(((completedCount + (progress / total)) / totalCount) * 100)}%`;
                     });
                 } else {
-                    // Open write channel
                     const openRes = await state.client.openFile(item.remotePath, "w");
                     if (!openRes.ok) throw new Error(openRes.error);
                     
@@ -1669,6 +1747,8 @@ async function runQueueUpload() {
                         const chunkSize = state.client.maxChunkSize;
                         
                         while (offset < totalSize) {
+                            if (state.abortUpload) throw new Error("Cancelado por el usuario");
+                            
                             const end = Math.min(offset + chunkSize, totalSize);
                             const chunk = new Uint8Array(await item.file.slice(offset, end).arrayBuffer());
                             
@@ -1687,7 +1767,7 @@ async function runQueueUpload() {
             item.status = "done";
         } catch (err) {
             item.status = "error";
-            showToast(`Error al subir ${item.localPath}: ${err.message}`, "error");
+            showToast(`Error en ${item.localPath}: ${err.message}`, "error");
             logEvent(`Fallo de subida: ${err.message}`);
         }
         
@@ -1695,15 +1775,19 @@ async function runQueueUpload() {
         renderUploadQueue();
     }
     
-    el.queueProgress.textContent = "100%";
-    showToast("Cola de transferencia finalizada.");
-    
-    // Housekeeping
-    updateStorageBar();
-    refreshExplorer();
-    
+    el.btnQueueStart.style.display = "flex";
+    el.btnQueueCancel.style.display = "none";
     el.btnQueueClear.disabled = false;
     el.explorerActions.querySelectorAll("button").forEach(b => b.disabled = false);
+    
+    if (!state.abortUpload) {
+        el.queueProgress.textContent = "100%";
+        showToast("Cola de transferencia finalizada.");
+    }
+    
+    state.abortUpload = false;
+    updateStorageBar();
+    refreshExplorer();
 }
 
 // --- Online Database Logic ---
@@ -1845,9 +1929,10 @@ async function syncCatalogueFromArchive() {
             
             const name = filename.substring(0, filename.lastIndexOf('.'));
             
-            const downloadUrl = decoded.startsWith("//") 
-                ? "https:" + decoded 
-                : (decoded.startsWith("http") ? decoded : "https://archive.org/download/nintendo-amiibo-nfc-vault/Amiibo%20Bin.zip/" + encodeURIComponent(decoded));
+            // Raw encoded URL for fetch
+            const downloadUrl = href.startsWith("//") 
+                ? "https:" + href 
+                : (href.startsWith("http") ? href : "https://archive.org" + href);
             
             categories[categoryName].push({
                 name: name,
@@ -2841,6 +2926,11 @@ el.btnQueueStart.addEventListener("click", () => {
     runQueueUpload();
 });
 
+el.btnQueueCancel.addEventListener("click", () => {
+    state.abortUpload = true;
+    showToast("Deteniendo subida...");
+});
+
 // Toggle Local Explorer View mode
 el.btnToggleView.addEventListener("click", () => {
     state.explorerViewMode = state.explorerViewMode === "list" ? "grid" : "list";
@@ -3094,8 +3184,8 @@ el.btnInstallConfirm.addEventListener("click", async () => {
     const uniqueSubFolders = new Set();
     _activeInstallList.forEach(item => {
         if (item.amiibo.subPath) {
-            // Build each intermediate subfolder path
-            const subParts = item.amiibo.subPath.split("/").filter(Boolean);
+            const shortSub = cleanSubPath(item.amiibo.subPath);
+            const subParts = shortSub.split("/").filter(Boolean);
             let current = "";
             for (const part of subParts) {
                 current = current ? `${current}/${part}` : part;
@@ -3106,34 +3196,38 @@ el.btnInstallConfirm.addEventListener("click", async () => {
     // Sort subfolders by depth so parents are created first
     const sortedSubFolders = Array.from(uniqueSubFolders).sort((a, b) => a.split("/").length - b.split("/").length);
     for (const sub of sortedSubFolders) {
-        const cleanSub = sub.split("/").map(s => sanitizeName(s)).join("/");
         queueItems.push({
             kind: "folder",
-            localPath: cleanSub,
-            remotePath: joinPaths(destinationFolder, cleanSub),
+            localPath: sub,
+            remotePath: joinPaths(destinationFolder, sub),
             status: "pending"
         });
     }
     
-    // 3. Add each file download/flash item preserving subfolder structure
+    // 3. Add each file download/flash item with strict 58-byte path limit
     _activeInstallList.forEach(item => {
         const cleanFilename = sanitizeName(item.amiibo.name) + ".bin";
-        let remotePath;
+        let rawRemotePath;
         if (item.amiibo.subPath) {
-            const cleanSub = item.amiibo.subPath.split("/").map(s => sanitizeName(s)).join("/");
-            remotePath = joinPaths(destinationFolder, cleanSub, cleanFilename);
+            const shortSub = cleanSubPath(item.amiibo.subPath);
+            rawRemotePath = joinPaths(destinationFolder, shortSub, cleanFilename);
         } else {
-            remotePath = joinPaths(destinationFolder, cleanFilename);
+            rawRemotePath = joinPaths(destinationFolder, cleanFilename);
         }
         
-        const downloadUrl = baseDownloadUrl.endsWith('/') 
-            ? `${baseDownloadUrl}${item.amiibo.path}` 
-            : `${baseDownloadUrl}/${item.amiibo.path}`;
+        const finalRemotePath = fitPathToHardwareLimit(rawRemotePath);
+        
+        let downloadUrl = item.amiibo.path;
+        if (!downloadUrl.startsWith("http")) {
+            downloadUrl = baseDownloadUrl.endsWith('/') 
+                ? `${baseDownloadUrl}${item.amiibo.path}` 
+                : `${baseDownloadUrl}/${item.amiibo.path}`;
+        }
         
         queueItems.push({
             kind: "file",
             localPath: `${item.amiibo.name}`,
-            remotePath: remotePath,
+            remotePath: finalRemotePath,
             githubUrl: downloadUrl,
             status: "pending"
         });

@@ -1,5 +1,5 @@
 // === Configuration & Constants ===
-const APP_VERSION = "v1.1.5";
+const APP_VERSION = "v1.2.0";
 const NUS_SERVICE_UUID = "6e400001-b5a3-f393-e0a9-e50e24dcca9e";
 const NUS_CHAR_TX_UUID = "6e400002-b5a3-f393-e0a9-e50e24dcca9e";
 const NUS_CHAR_RX_UUID = "6e400003-b5a3-f393-e0a9-e50e24dcca9e";
@@ -75,13 +75,14 @@ const VFS_ERRORS = {
 // === Internationalization (i18n) Dictionary ===
 const TRANSLATIONS = {
     es: {
-        tab_local: "Explorador Local",
-        tab_online: "Catálogo Online",
+        sidebar_navigation: "Navegación",
+        tab_local: "Explorar Dispositivo",
+        tab_online: "Catálogo Amiibos",
         btn_donate: "Donar",
         btn_donate_title: "Apoyar el proyecto en Ko-fi",
-        btn_help: "Ayuda",
-        btn_help_title: "Ayuda e Información",
-        btn_simulator: "Simulador",
+        btn_help: "Ayuda y Tutorial",
+        btn_help_title: "Ayuda y Tutorial Allmiibo",
+        btn_simulator: "Simulador Virtual",
         btn_connect: "Conectar Allmiibo",
         btn_disconnect: "Desconectar",
         sidebar_device: "Dispositivo",
@@ -212,8 +213,21 @@ const TRANSLATIONS = {
         dfu_step3_instructions: "En esa página, pulsa Connect, selecciona tu dispositivo (saldrá como pixl dfu o DfuTarg), selecciona tu archivo .zip y pulsa Update.",
         dfu_mobile_hint: "📱 Si estás usando un móvil, puedes usar la app MTools BLE (iOS) o nRF Connect / nRF Device Firmware Update (Android) para realizar la carga de forma más estable.",
         
-        help_title: "Ayuda y Documentación Allmiibo",
-        help_options_title: "Opciones del Dispositivo",
+        help_title: "Ayuda y Tutorial Allmiibo",
+        help_device_intro_title: "Dispositivo Allmiibo / Pixl.js",
+        help_device_intro_desc: "Allmiibo es un emulador físico de figuras y tarjetas Amiibo de Nintendo con pantalla OLED/LCD y Bluetooth integrado para tu Switch, Wii U o 3DS.",
+        help_tutorial_title: "Tutorial de Uso Rápido",
+        help_step1_title: "1️⃣ Activar Bluetooth en tu Allmiibo:",
+        help_step1_desc: "En la pantalla del Allmiibo, entra a System settings ➔ BT transmission y selecciona ON.",
+        help_step2_title: "2️⃣ Conectar desde esta web:",
+        help_step2_desc: "Pulsa el botón 'Conectar Allmiibo' en el panel izquierdo. Usa Chrome/Edge en PC o Android, o la app gratuita Bluefy si estás en iPhone/iPad.",
+        help_step3_title: "3️⃣ Instalar Clave de Cifrado (Auto-llave):",
+        help_step3_desc: "Si tu Allmiibo es nuevo o no tiene la clave, pulsa 'Auto-llave' en el panel lateral para instalar key_retail.bin con un solo clic.",
+        help_step4_title: "4️⃣ Subir Amiibos desde el Catálogo:",
+        help_step4_desc: "Entra a 'Catálogo Amiibos', explora tus figuras o cartas favoritas y pulsa 'Instalar' o 'Instalar Serie'. Se transferirán de forma inalámbrica y se ordenarán automáticamente en subcarpetas.",
+        help_step5_title: "5️⃣ Emular en tu Consola:",
+        help_step5_desc: "En tu Allmiibo entra al menú Amiibo emulator, elige el Amiibo deseado y acércalo al lector NFC de tu consola Switch, Wii U o 3DS.",
+        help_options_title: "Menú y Opciones del Dispositivo",
         help_opt1_title: "Emulador de Amiibo:",
         help_opt1_desc: "Permite seleccionar y emular un Amiibo individual guardado en el almacenamiento (archivo .bin o .nfc). El Allmiibo se comportará físicamente ante la consola como esa tarjeta.",
         help_opt2_title: "Base de datos de Amiibo:",
@@ -226,7 +240,7 @@ const TRANSLATIONS = {
         help_opt5_desc: "Activa el Bluetooth para enlazar el dispositivo con este Gestor Web o con aplicaciones móviles para actualizar archivos y claves.",
         help_faq_title: "Preguntas Frecuentes (FAQ)",
         help_q1_title: "¿Cómo consigo los últimos Amiibos?",
-        help_q1_desc: "Puedes explorar la pestaña Catálogo Online para instalar directamente cualquiera de los 1.070 Amiibos de la bóveda de Internet Archive a tu Allmiibo sin descargas manuales.",
+        help_q1_desc: "Puedes explorar la pestaña Catálogo Amiibos para instalar directamente cualquiera de los 1.070 Amiibos de la bóveda de Internet Archive a tu Allmiibo sin descargas manuales.",
         help_q2_title: "¿Por qué hay tantos Amiibos de Animal Crossing y algunos sin nombre?",
         help_q2_desc: "Animal Crossing cuenta con 400 cartas estándar, las series de Sanrio, Amiibo Festival y las 91 cartas especiales de Happy Home Designer Items (muebles y diseños).",
         help_q3_title: "¿Cómo actualizo la clave key_retail.bin automáticamente?",
@@ -243,13 +257,14 @@ const TRANSLATIONS = {
         toast_delete_success: "¡Carpeta /amiibo borrada correctamente! Tu clave key_retail.bin se ha conservado."
     },
     en: {
-        tab_local: "Local Explorer",
-        tab_online: "Online Vault",
+        sidebar_navigation: "Navigation",
+        tab_local: "Explore Device",
+        tab_online: "Amiibo Catalogue",
         btn_donate: "Donate",
         btn_donate_title: "Support the project on Ko-fi",
-        btn_help: "Help",
-        btn_help_title: "Help & Documentation",
-        btn_simulator: "Simulator",
+        btn_help: "Help & Tutorial",
+        btn_help_title: "Allmiibo Help & Tutorial",
+        btn_simulator: "Virtual Simulator",
         btn_connect: "Connect Allmiibo",
         btn_disconnect: "Disconnect",
         sidebar_device: "Device",
@@ -380,8 +395,21 @@ const TRANSLATIONS = {
         dfu_step3_instructions: "On that page, click Connect, choose your device (listed as pixl dfu or DfuTarg), select your .zip file, and click Update.",
         dfu_mobile_hint: "📱 On mobile, you can use the MTools BLE app (iOS) or nRF Connect / nRF Device Firmware Update (Android) for a stable wireless flash.",
         
-        help_title: "Allmiibo Help & Documentation",
-        help_options_title: "Device Options",
+        help_title: "Allmiibo Help & Tutorial",
+        help_device_intro_title: "Allmiibo / Pixl.js Device",
+        help_device_intro_desc: "Allmiibo is a physical Nintendo Amiibo emulator with an OLED/LCD screen and built-in Bluetooth for your Switch, Wii U, or 3DS.",
+        help_tutorial_title: "Quick Start Tutorial",
+        help_step1_title: "1️⃣ Enable Bluetooth on your Allmiibo:",
+        help_step1_desc: "On your Allmiibo screen, go to System settings ➔ BT transmission and set it to ON.",
+        help_step2_title: "2️⃣ Connect from this web app:",
+        help_step2_desc: "Click 'Conectar Allmiibo' on the left sidebar. Use Chrome/Edge on PC/Android, or the free Bluefy app on iPhone/iPad.",
+        help_step3_title: "3️⃣ Install Encryption Key (Auto-Key):",
+        help_step3_desc: "If your device is new or missing keys, click 'Auto-llave' on the sidebar to install key_retail.bin with 1-click.",
+        help_step4_title: "4️⃣ Flash Amiibos from the Catalogue:",
+        help_step4_desc: "Open 'Catálogo Amiibos', pick your favorite figures/cards, and click 'Install' or 'Install Series'. They will be wirelessly saved into clean subfolders.",
+        help_step5_title: "5️⃣ Scan on your Console:",
+        help_step5_desc: "On your Allmiibo open Amiibo emulator, select the file, and tap it onto your Switch, Wii U, or 3DS NFC touchpoint.",
+        help_options_title: "Device Menu & Options",
         help_opt1_title: "Amiibo Emulator:",
         help_opt1_desc: "Select and emulate an individual Amiibo saved in storage (.bin or .nfc file). The Allmiibo physically acts like that card to the console.",
         help_opt2_title: "Amiibo Database:",
@@ -394,7 +422,7 @@ const TRANSLATIONS = {
         help_opt5_desc: "Enables Bluetooth to link the device with this Web Manager or mobile apps to transfer files and keys.",
         help_faq_title: "Frequently Asked Questions (FAQ)",
         help_q1_title: "How do I get the latest Amiibos?",
-        help_q1_desc: "Browse the Online Vault tab to directly install any of the 1,070 Amiibos from the Internet Archive vault to your Allmiibo without manual downloads.",
+        help_q1_desc: "Browse the Amiibo Catalogue tab to directly install any of the 1,070 Amiibos from the Internet Archive vault to your Allmiibo without manual downloads.",
         help_q2_title: "Why are there so many Animal Crossing Amiibos and some without names?",
         help_q2_desc: "Animal Crossing features 400 standard cards, Sanrio series, Amiibo Festival, and 91 special Happy Home Designer Items (furniture and designs).",
         help_q3_title: "How do I auto-update key_retail.bin?",
@@ -3251,28 +3279,14 @@ document.querySelectorAll(".tab-btn").forEach(btn => {
     });
 });
 
-// Mobile Hamburger Menu Toggle
-const btnMobileMenu = document.getElementById("btn-mobile-menu");
-const headerNavActions = document.getElementById("header-nav-actions");
-if (btnMobileMenu && headerNavActions) {
-    btnMobileMenu.addEventListener("click", () => {
-        headerNavActions.classList.toggle("active");
-        const icon = btnMobileMenu.querySelector(".material-symbols-rounded");
-        if (icon) {
-            icon.textContent = headerNavActions.classList.contains("active") ? "close" : "menu";
+// Close modals on clicking outside (overlay click)
+document.querySelectorAll(".modal-overlay").forEach(overlay => {
+    overlay.addEventListener("click", (evt) => {
+        if (evt.target === overlay) {
+            overlay.classList.remove("active");
         }
     });
-
-    document.querySelectorAll(".tab-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
-            if (window.innerWidth <= 1080) {
-                headerNavActions.classList.remove("active");
-                const icon = btnMobileMenu.querySelector(".material-symbols-rounded");
-                if (icon) icon.textContent = "menu";
-            }
-        });
-    });
-}
+});
 
 // Breadcrumb click navigation
 el.explorerBreadcrumb.addEventListener("click", (evt) => {

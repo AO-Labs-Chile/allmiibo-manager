@@ -27,66 +27,65 @@
 </head>
 <body>
 
-    <!-- Header / Topbar -->
+    <!-- Header / Topbar (Centered Brand Logo) -->
     <header>
-        <div class="header-main">
-            <div class="brand">
+        <div class="brand">
+            <a href="https://amiibo.aolabs.cl/" style="display: block; text-decoration: none;">
                 <img src="images/logo_white.png" alt="Allmiibo Manager" class="brand-logo" />
-            </div>
-
-            <!-- Mobile Hamburger Menu Button (3 lines) -->
-            <button class="mobile-menu-btn" id="btn-mobile-menu" aria-label="Menu" title="Menu">
-                <span class="material-symbols-rounded">menu</span>
-            </button>
-        </div>
-        
-        <!-- Navigation & Actions (Desktop row, Mobile collapsible drawer) -->
-        <div class="header-nav-actions" id="header-nav-actions">
-            <!-- Navigation Tabs -->
-            <div class="tabs-nav">
-                <button class="tab-btn active" data-tab="local-tab">
-                    <span class="material-symbols-rounded" style="vertical-align: middle; margin-right: 4px;">folder_open</span>
-                    <span data-i18n="tab_local">Explorador Local</span>
-                </button>
-                <button class="tab-btn" data-tab="online-tab">
-                    <span class="material-symbols-rounded" style="vertical-align: middle; margin-right: 4px;">storefront</span>
-                    <span data-i18n="tab_online">Catálogo Online</span>
-                </button>
-            </div>
-
-            <!-- Action Controls -->
-            <div class="header-actions">
-                <!-- Language Selector Segmented Control -->
-                <div class="lang-segmented-control" id="lang-control">
-                    <button type="button" class="lang-btn active" id="btn-lang-es" data-lang="es" title="Español">
-                        <svg width="15" height="11" viewBox="0 0 640 480" style="border-radius: 2px; vertical-align: middle; pointer-events: none;"><path fill="#c60b1e" d="M0 0h640v480H0z"/><path fill="#ffc400" d="M0 120h640v240H0z"/></svg>
-                        <span>ES</span>
-                    </button>
-                    <button type="button" class="lang-btn" id="btn-lang-en" data-lang="en" title="English">
-                        <svg width="15" height="11" viewBox="0 0 640 480" style="border-radius: 2px; vertical-align: middle; pointer-events: none;"><g fill="#bd3d44"><path d="M0 0h640v37H0zm0 74h640v37H0zm0 74h640v37H0zm0 74h640v37H0zm0 74h640v37H0zm0 74h640v37H0zm0 74h640v37H0z"/><path fill="#fff" d="M0 37h640v37H0zm0 74h640v37H0zm0 74h640v37H0zm0 74h640v37H0zm0 74h640v37H0zm0 74h640v37H0z"/></g><path fill="#192f5d" d="M0 0h280v258H0z"/></svg>
-                        <span>EN</span>
-                    </button>
-                </div>
-
-                <button class="btn btn-secondary" id="btn-help" title="Ayuda e Información" data-i18n-title="btn_help_title">
-                    <span class="material-symbols-rounded">help</span>
-                    <span data-i18n="btn_help">Ayuda</span>
-                </button>
-                <button class="btn btn-secondary" id="btn-connect-mock">
-                    <span class="material-symbols-rounded">rocket_launch</span>
-                    <span data-i18n="btn_simulator">Simulador</span>
-                </button>
-                <button class="btn btn-primary" id="btn-connect-ble">
-                    <span class="material-symbols-rounded">bluetooth</span>
-                    <span data-i18n="btn_connect">Conectar Allmiibo</span>
-                </button>
-            </div>
+            </a>
         </div>
     </header>
 
     <div class="main-container">
-        <!-- Sidebar: Device details and upload queue -->
+        <!-- Sidebar: Navigation, Device details, and upload queue -->
         <aside class="device-sidebar">
+            
+            <!-- Navigation & Actions Section -->
+            <div class="sidebar-nav-section">
+                <div class="sidebar-title" data-i18n="sidebar_navigation">Navegación</div>
+                
+                <div class="sidebar-nav-buttons">
+                    <button class="tab-btn active sidebar-nav-btn" data-tab="local-tab">
+                        <span class="material-symbols-rounded">folder_open</span>
+                        <span data-i18n="tab_local">Explorar Dispositivo</span>
+                    </button>
+                    <button class="tab-btn sidebar-nav-btn" data-tab="online-tab">
+                        <span class="material-symbols-rounded">storefront</span>
+                        <span data-i18n="tab_online">Catálogo Amiibos</span>
+                    </button>
+                    <button class="btn btn-secondary sidebar-nav-btn" id="btn-help" title="Ayuda y Tutorial" data-i18n-title="btn_help_title">
+                        <span class="material-symbols-rounded">help</span>
+                        <span data-i18n="btn_help">Ayuda y Tutorial</span>
+                    </button>
+                </div>
+
+                <!-- Language Selector Control in Sidebar -->
+                <div class="lang-segmented-control sidebar-lang-control" id="lang-control">
+                    <button type="button" class="lang-btn active" id="btn-lang-es" data-lang="es" title="Español">
+                        <svg width="15" height="11" viewBox="0 0 640 480" style="border-radius: 2px; vertical-align: middle; pointer-events: none;"><path fill="#c60b1e" d="M0 0h640v480H0z"/><path fill="#ffc400" d="M0 120h640v240H0z"/></svg>
+                        <span>Español</span>
+                    </button>
+                    <button type="button" class="lang-btn" id="btn-lang-en" data-lang="en" title="English">
+                        <svg width="15" height="11" viewBox="0 0 640 480" style="border-radius: 2px; vertical-align: middle; pointer-events: none;"><g fill="#bd3d44"><path d="M0 0h640v37H0zm0 74h640v37H0zm0 74h640v37H0zm0 74h640v37H0zm0 74h640v37H0zm0 74h640v37H0zm0 74h640v37H0z"/><path fill="#fff" d="M0 37h640v37H0zm0 74h640v37H0zm0 74h640v37H0zm0 74h640v37H0zm0 74h640v37H0zm0 74h640v37H0z"/></g><path fill="#192f5d" d="M0 0h280v258H0z"/></svg>
+                        <span>English</span>
+                    </button>
+                </div>
+
+                <!-- Connection Buttons -->
+                <div class="sidebar-connect-actions">
+                    <button class="btn btn-primary" id="btn-connect-ble" style="width: 100%; justify-content: center;">
+                        <span class="material-symbols-rounded">bluetooth</span>
+                        <span data-i18n="btn_connect">Conectar Allmiibo</span>
+                    </button>
+                    <button class="btn btn-secondary" id="btn-connect-mock" style="width: 100%; justify-content: center;">
+                        <span class="material-symbols-rounded">rocket_launch</span>
+                        <span data-i18n="btn_simulator">Simulador Virtual</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="sidebar-divider"></div>
+
             <div class="sidebar-title" data-i18n="sidebar_device">Dispositivo</div>
             
             <div class="connection-card">
@@ -184,7 +183,7 @@
                     </a>
                 </div>
 
-                <span class="sidebar-version-badge">Allmiibo Manager v1.1.5</span>
+                <span class="sidebar-version-badge">Allmiibo Manager v1.2.0</span>
             </div>
         </aside>
 
@@ -451,14 +450,65 @@
         </div>
     </div>
 
-    <!-- Modal: Ayuda y Opciones del Dispositivo -->
+    <!-- Modal: Ayuda y Documentación Allmiibo -->
     <div class="modal-overlay" id="modal-help">
-        <div class="modal" style="max-width: 600px; max-height: 85vh; display: flex; flex-direction: column;">
-            <div class="modal-header" data-i18n="help_title">Ayuda y Documentación Allmiibo</div>
+        <div class="modal" style="max-width: 680px; max-height: 85vh; display: flex; flex-direction: column;">
+            <div class="modal-header" style="display: flex; align-items: center; justify-content: space-between;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <span class="material-symbols-rounded" style="color: var(--primary);">help</span>
+                    <span data-i18n="help_title">Ayuda y Tutorial Allmiibo</span>
+                </div>
+            </div>
             <div class="modal-body" style="overflow-y: auto; flex: 1; padding-right: 8px;">
                 
+                <!-- Device Showcase Card -->
+                <div class="help-device-showcase" style="display: flex; gap: 16px; align-items: center; background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border-color); border-radius: 12px; padding: 14px; margin-bottom: 18px; flex-wrap: wrap;">
+                    <img src="images/allmiibo.webp" alt="Dispositivo Allmiibo" style="max-width: 160px; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.5); margin: 0 auto;" />
+                    <div style="flex: 1; min-width: 220px; font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4;">
+                        <h4 style="margin: 0 0 6px 0; color: var(--text-primary); font-size: 1rem;" data-i18n="help_device_intro_title">Dispositivo Allmiibo / Pixl.js</h4>
+                        <p style="margin: 0 0 8px 0;" data-i18n="help_device_intro_desc">
+                            Allmiibo es un emulador físico de figuras y tarjetas Amiibo de Nintendo con pantalla OLED/LCD y Bluetooth integrado para tu Switch, Wii U o 3DS.
+                        </p>
+                        <div style="display: flex; gap: 10px; flex-wrap: wrap; font-size: 0.8rem;">
+                            <a href="https://allmiibo.com" target="_blank" rel="noopener noreferrer" style="color: var(--primary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;">
+                                <span class="material-symbols-rounded" style="font-size: 0.95rem;">language</span> <span>allmiibo.com</span>
+                            </a>
+                            <span style="color: var(--text-muted);">•</span>
+                            <span style="color: #fbbf24; font-weight: 600;">🛒 Disponible en AliExpress</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tutorial Paso a Paso -->
                 <h3 style="font-size: 0.95rem; margin-top: 0; color: var(--primary); display: flex; align-items: center; gap: 6px;">
-                    <span class="material-symbols-rounded">settings</span> <span data-i18n="help_options_title">Opciones del Dispositivo</span>
+                    <span class="material-symbols-rounded">menu_book</span> <span data-i18n="help_tutorial_title">Tutorial de Uso Rápido</span>
+                </h3>
+                <div class="help-tutorial-steps" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 18px; font-size: 0.85rem; color: var(--text-secondary); line-height: 1.45;">
+                    <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 8px; padding: 10px 12px;">
+                        <strong style="color: var(--text-primary); display: block; margin-bottom: 3px;" data-i18n="help_step1_title">1️⃣ Activar Bluetooth en tu Allmiibo:</strong>
+                        <span data-i18n="help_step1_desc">En la pantalla del Allmiibo, entra a <code>System settings</code> ➔ <code>BT transmission</code> y selecciona <code>ON</code>.</span>
+                    </div>
+                    <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 8px; padding: 10px 12px;">
+                        <strong style="color: var(--text-primary); display: block; margin-bottom: 3px;" data-i18n="help_step2_title">2️⃣ Conectar desde esta web:</strong>
+                        <span data-i18n="help_step2_desc">Pulsa el botón <strong>"Conectar Allmiibo"</strong> en el panel izquierdo. Usa Chrome/Edge en PC o Android, o la app gratuita <strong>Bluefy</strong> si estás en iPhone/iPad.</span>
+                    </div>
+                    <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 8px; padding: 10px 12px;">
+                        <strong style="color: var(--text-primary); display: block; margin-bottom: 3px;" data-i18n="help_step3_title">3️⃣ Instalar Clave de Cifrado (Auto-llave):</strong>
+                        <span data-i18n="help_step3_desc">Si tu Allmiibo es nuevo o no tiene la clave, pulsa <strong>"Auto-llave"</strong> en el panel lateral para instalar <code>key_retail.bin</code> con un solo clic.</span>
+                    </div>
+                    <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 8px; padding: 10px 12px;">
+                        <strong style="color: var(--text-primary); display: block; margin-bottom: 3px;" data-i18n="help_step4_title">4️⃣ Subir Amiibos desde el Catálogo:</strong>
+                        <span data-i18n="help_step4_desc">Entra a <strong>"Catálogo Amiibos"</strong>, explora tus figuras o cartas favoritas y pulsa <strong>"Instalar"</strong> o <strong>"Instalar Serie"</strong>. Se transferirán de forma inalámbrica y se ordenarán automáticamente en subcarpetas.</span>
+                    </div>
+                    <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 8px; padding: 10px 12px;">
+                        <strong style="color: var(--text-primary); display: block; margin-bottom: 3px;" data-i18n="help_step5_title">5️⃣ Emular en tu Consola:</strong>
+                        <span data-i18n="help_step5_desc">En tu Allmiibo entra al menú <code>Amiibo emulator</code>, elige el Amiibo deseado y acércalo al lector NFC de tu consola Switch, Wii U o 3DS.</span>
+                    </div>
+                </div>
+
+                <!-- Opciones del Dispositivo -->
+                <h3 style="font-size: 0.95rem; color: var(--primary); display: flex; align-items: center; gap: 6px; border-top: 1px solid var(--border-color); padding-top: 14px;">
+                    <span class="material-symbols-rounded">settings</span> <span data-i18n="help_options_title">Menú y Opciones del Dispositivo</span>
                 </h3>
                 <ul style="font-size: 0.85rem; color: var(--text-secondary); padding-left: 20px; line-height: 1.5; margin-bottom: 16px; display: flex; flex-direction: column; gap: 8px;">
                     <li><strong data-i18n="help_opt1_title">Emulador de Amiibo:</strong> <span data-i18n="help_opt1_desc">Permite seleccionar y emular un Amiibo individual guardado en el almacenamiento (archivo .bin o .nfc). El Allmiibo se comportará físicamente ante la consola como esa tarjeta.</span></li>
@@ -468,13 +518,14 @@
                     <li><strong data-i18n="help_opt5_title">Bluetooth:</strong> <span data-i18n="help_opt5_desc">Activa el Bluetooth para enlazar el dispositivo con este Gestor Web o con aplicaciones móviles para actualizar archivos y claves.</span></li>
                 </ul>
 
-                <h3 style="font-size: 0.95rem; color: var(--primary); display: flex; align-items: center; gap: 6px; border-top: 1px solid var(--border-color); padding-top: 12px;">
+                <!-- FAQ -->
+                <h3 style="font-size: 0.95rem; color: var(--primary); display: flex; align-items: center; gap: 6px; border-top: 1px solid var(--border-color); padding-top: 14px;">
                     <span class="material-symbols-rounded">question_mark</span> <span data-i18n="help_faq_title">Preguntas Frecuentes (FAQ)</span>
                 </h3>
                 <div style="display: flex; flex-direction: column; gap: 12px; font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">
                     <div>
                         <strong style="color: var(--text-main); display: block; margin-bottom: 2px;" data-i18n="help_q1_title">¿Cómo consigo los últimos Amiibos?</strong>
-                        <span data-i18n="help_q1_desc">Puedes explorar la pestaña Catálogo Online para instalar directamente cualquiera de los 1.070 Amiibos de la bóveda de Internet Archive a tu Allmiibo sin descargas manuales.</span>
+                        <span data-i18n="help_q1_desc">Puedes explorar la pestaña Catálogo Amiibos para instalar directamente cualquiera de los 1.070 Amiibos de la bóveda de Internet Archive a tu Allmiibo sin descargas manuales.</span>
                     </div>
                     <div>
                         <strong style="color: var(--text-main); display: block; margin-bottom: 2px;" data-i18n="help_q2_title">¿Por qué hay tantos Amiibos de Animal Crossing y algunos sin nombre?</strong>

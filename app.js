@@ -1,4 +1,5 @@
 // === Configuration & Constants ===
+const APP_VERSION = "v1.0.0";
 const NUS_SERVICE_UUID = "6e400001-b5a3-f393-e0a9-e50e24dcca9e";
 const NUS_CHAR_TX_UUID = "6e400002-b5a3-f393-e0a9-e50e24dcca9e";
 const NUS_CHAR_RX_UUID = "6e400003-b5a3-f393-e0a9-e50e24dcca9e";
@@ -1634,17 +1635,6 @@ function renderExplorer(entries) {
 }
 
 function renderExplorerTable(entries) {
-    if (entries.length === 0) {
-        el.explorerTableBody.innerHTML = `
-            <tr>
-                <td colspan="4" style="text-align: center; color: var(--text-muted); padding: 32px;">
-                    Esta carpeta está vacía.
-                </td>
-            </tr>
-        `;
-        return;
-    }
-    
     el.explorerTableBody.innerHTML = "";
     
     if (state.currentPath !== "E:/") {
@@ -1663,6 +1653,33 @@ function renderExplorerTable(entries) {
             </td>
         `;
         el.explorerTableBody.appendChild(tr);
+    }
+    
+    if (entries.length === 0) {
+        const trEmpty = document.createElement("tr");
+        trEmpty.innerHTML = `
+            <td colspan="4">
+                <div class="table-empty-state">
+                    <span class="material-symbols-rounded" style="font-size: 2.5rem; color: var(--text-muted); margin-bottom: 8px;">folder_open</span>
+                    <p style="color: var(--text-muted); margin-bottom: 16px;">${t("table_empty_folder")}</p>
+                    <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                        <button type="button" class="btn btn-primary" id="btn-empty-upload-files">
+                            <span class="material-symbols-rounded">upload_file</span>
+                            <span>${t("btn_upload_files")}</span>
+                        </button>
+                        <button type="button" class="btn btn-secondary" id="btn-empty-upload-folder">
+                            <span class="material-symbols-rounded">drive_folder_upload</span>
+                            <span>${t("btn_upload_folder")}</span>
+                        </button>
+                    </div>
+                </div>
+            </td>
+        `;
+        el.explorerTableBody.appendChild(trEmpty);
+        
+        trEmpty.querySelector("#btn-empty-upload-files")?.addEventListener("click", () => el.inputFiles.click());
+        trEmpty.querySelector("#btn-empty-upload-folder")?.addEventListener("click", () => el.inputFolder.click());
+        return;
     }
     
     entries.forEach(e => {
@@ -2236,7 +2253,7 @@ async function runQueueUpload() {
 async function initOnlineCatalogue() {
     try {
         let loaded = false;
-        const cachedDb = localStorage.getItem("cached_amiibo_db_v2");
+        const cachedDb = localStorage.getItem("cached_amiibo_db_v3");
         if (cachedDb) {
             try {
                 const parsedCache = JSON.parse(cachedDb);
@@ -2394,7 +2411,7 @@ async function syncCatalogueFromArchive() {
         }
         
         state.categories = categories;
-        localStorage.setItem("cached_amiibo_db_v2", JSON.stringify(categories));
+        localStorage.setItem("cached_amiibo_db_v3", JSON.stringify(categories));
         
         populateCategoryDropdown();
         renderOnlineCatalogue();

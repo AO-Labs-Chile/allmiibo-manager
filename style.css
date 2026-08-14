@@ -105,6 +105,27 @@ header {
     color: var(--text-primary);
 }
 
+.app-version-badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--primary);
+    background-color: var(--primary-light);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    padding: 2px 7px;
+    border-radius: 6px;
+    letter-spacing: 0.5px;
+    line-height: 1;
+}
+
+.table-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 16px;
+    text-align: center;
+}
+
 .brand-icon {
     width: 24px;
     height: 24px;

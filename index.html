@@ -425,6 +425,62 @@
         </div>
     </div>
 
+    <!-- Modal: Actualización de Firmware (DFU) -->
+    <div class="modal-overlay" id="modal-dfu-update">
+        <div class="modal" style="max-width: 580px; max-height: 85vh; display: flex; flex-direction: column;">
+            <div class="modal-header" style="display: flex; align-items: center; gap: 8px;">
+                <span class="material-symbols-rounded" style="color: var(--primary);">system_update_alt</span>
+                Actualización de Firmware (Modo DFU)
+            </div>
+            <div class="modal-body" style="overflow-y: auto; flex: 1; padding-right: 8px;">
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4; margin-bottom: 12px;">
+                    El firmware se actualiza de forma inalámbrica a través del **Modo DFU (Device Firmware Update)**. Sigue estos sencillos pasos:
+                </p>
+                
+                <h4 style="font-size: 0.85rem; margin-bottom: 4px; color: var(--text-primary);">Paso 1: Entrar en Modo Actualización (en tu Allmiibo)</h4>
+                <ul style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 12px; padding-left: 20px; line-height: 1.4;">
+                    <li>En el menú de tu Allmiibo, entra a <strong>Settings (Ajustes)</strong> y selecciona <strong>Firmware Update</strong>.</li>
+                    <li>La pantalla del dispositivo cambiará a <em>"DFU Update Waiting..."</em>.</li>
+                    <li><em>(Si el dispositivo no enciende o está colgado: mantén pulsado el botón izquierdo/BTN1 al insertar la pila hasta que en la pantalla ponga DFU)</em>.</li>
+                </ul>
+
+                <h4 style="font-size: 0.85rem; margin-bottom: 4px; color: var(--text-primary);">Paso 2: Descargar el Firmware oficial</h4>
+                <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 8px; line-height: 1.4;">
+                    Ve al repositorio oficial de solosky en GitHub y descarga el archivo <code>.zip</code> adecuado según tu tipo de pantalla:
+                </p>
+                <a class="btn btn-secondary" href="https://github.com/solosky/pixl.js/releases" target="_blank" style="padding: 6px 12px; font-size: 0.8rem; margin-bottom: 12px; display: inline-flex; width: fit-content;">
+                    <span class="material-symbols-rounded" style="font-size: 1rem;">open_in_new</span>
+                    Descargar de solosky/pixl.js
+                </a>
+                <ul style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 12px; padding-left: 20px; line-height: 1.4;">
+                    <li>📟 Si tu Allmiibo tiene **Pantalla LCD** (fondo gris claro con texto negro), descarga el archivo: <br><code style="background: #f1f5f9; padding: 1px 4px; border-radius: 3px;">pixjs_ota_lcd_vX.X.X.zip</code></li>
+                    <li>📺 Si tu Allmiibo tiene **Pantalla OLED** (fondo negro con texto azul/amarillo/blanco), descarga el archivo: <br><code style="background: #f1f5f9; padding: 1px 4px; border-radius: 3px;">pixjs_ota_oled_vX.X.X.zip</code></li>
+                    <li style="color: var(--danger); font-weight: 600;">⚠️ ¡Advertencia!: Instalar la versión de pantalla incorrecta la dejará en negro (aunque el chip sigue vivo y puedes repetir el proceso de forma ciega para arreglarlo).</li>
+                </ul>
+
+                <h4 style="font-size: 0.85rem; margin-bottom: 4px; color: var(--text-primary);">Paso 3: Transferir el Firmware (Flashear)</h4>
+                <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 8px; line-height: 1.4;">
+                    Una vez que el Allmiibo esté en modo DFU y tengas el archivo <code>.zip</code> descargado en tu PC o móvil:
+                </p>
+                <div style="display: flex; gap: 8px; flex-direction: column;">
+                    <a class="btn btn-primary" href="https://thegecko.github.io/web-bluetooth-dfu/" target="_blank" style="padding: 8px 12px; font-size: 0.8rem; width: fit-content;">
+                        <span class="material-symbols-rounded" style="font-size: 1.1rem;">bolt</span>
+                        Abrir Instalador Web DFU (Navegador PC)
+                    </a>
+                    <p style="font-size: 0.75rem; color: var(--text-muted); line-height: 1.3;">
+                        En esa página, pulsa <strong>Connect</strong>, selecciona tu dispositivo (saldrá como <em>pixl dfu</em> o <em>DfuTarg</em>), selecciona tu archivo <code>.zip</code> y pulsa <strong>Update</strong>.
+                    </p>
+                    <p style="font-size: 0.75rem; color: var(--text-muted); line-height: 1.3; margin-top: 4px;">
+                        📱 Si estás usando un móvil, puedes usar la app **MTools BLE** (iOS) o **nRF Connect / nRF Device Firmware Update** (Android) para realizar la carga de forma más estable.
+                    </p>
+                </div>
+            </div>
+            <div class="modal-actions" style="margin-top: 16px; border-top: 1px solid var(--border-color); padding-top: 12px;">
+                <button class="btn btn-primary" id="btn-dfu-close">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Core Logic -->
     <script type="module" src="app.js"></script>
 </body>

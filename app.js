@@ -782,6 +782,11 @@ const el = {
     modalHelp: document.getElementById("modal-help"),
     btnHelpClose: document.getElementById("btn-help-close"),
     
+    // DFU Update Modal UI
+    btnDfuHelp: document.getElementById("btn-dfu-help"),
+    modalDfuUpdate: document.getElementById("modal-dfu-update"),
+    btnDfuClose: document.getElementById("btn-dfu-close"),
+    
     toastContainer: document.getElementById("toast-container")
 };
 
@@ -2718,6 +2723,18 @@ el.btnAutoKeyCancel.addEventListener("click", () => {
     el.modalAutoKey.classList.remove("active");
 });
 el.btnAutoKeyConfirm.addEventListener("click", downloadKeysFromGitHub);
+
+// DFU Update Modal Events
+el.btnDfuHelp.addEventListener("click", () => {
+    el.modalDfuUpdate.classList.add("active");
+});
+el.btnDfuClose.addEventListener("click", () => {
+    el.modalDfuUpdate.classList.remove("active");
+});
+el.updateWarningBadge.addEventListener("click", (e) => {
+    e.preventDefault();
+    el.modalDfuUpdate.classList.add("active");
+});
 
 // Install entire filtered series
 el.btnCatInstallSeries.addEventListener("click", () => {

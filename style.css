@@ -868,6 +868,35 @@ table.file-table tr:hover {
     background-color: var(--primary-light);
 }
 
+.amiibo-card.installed {
+    border-color: rgba(16, 185, 129, 0.4);
+    background: linear-gradient(180deg, rgba(16, 185, 129, 0.04) 0%, var(--bg-card) 100%);
+}
+
+.amiibo-card.installed:hover {
+    border-color: #10b981;
+    box-shadow: 0 4px 18px rgba(16, 185, 129, 0.15);
+}
+
+.amiibo-installed-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(16, 185, 129, 0.22);
+    color: #34d399;
+    border: 1px solid rgba(16, 185, 129, 0.45);
+    border-radius: 6px;
+    padding: 2px 7px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    z-index: 5;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
 .amiibo-card-checkbox {
     position: absolute;
     top: 12px;

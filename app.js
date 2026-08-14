@@ -157,6 +157,11 @@ const TRANSLATIONS = {
         btn_syncing: "Sincronizando...",
         btn_install_sel: "Instalar Seleccionados",
         btn_install_single: "Instalar",
+        btn_reinstall: "Reinstalar",
+        amiibo_installed_badge: "✓ Instalado",
+        install_skip_installed_label: "Omitir {count} Amiibos ya instalados (Recomendado)",
+        install_skip_all_installed_warn: "Todos los Amiibos seleccionados ya están instalados en el dispositivo.",
+        toast_install_skipped: "{added} añadidos a la cola ({skipped} omitidos por estar ya instalados).",
         cat_no_results: "No se encontraron Amiibos con los filtros aplicados.",
         
         modal_del_prog_title: "Eliminando Amiibos...",
@@ -351,6 +356,11 @@ const TRANSLATIONS = {
         btn_syncing: "Syncing...",
         btn_install_sel: "Install Selected",
         btn_install_single: "Install",
+        btn_reinstall: "Reinstall",
+        amiibo_installed_badge: "✓ Installed",
+        install_skip_installed_label: "Skip {count} already installed Amiibos (Recommended)",
+        install_skip_all_installed_warn: "All selected Amiibos are already installed on the device.",
+        toast_install_skipped: "{added} added to queue ({skipped} skipped as already installed).",
         cat_no_results: "No Amiibos found with the applied filters.",
         
         modal_del_prog_title: "Deleting Amiibos...",
@@ -670,6 +680,84 @@ function sanitizeName(name) {
     clean = clean.replace(/\s+/g, '_').replace(/_+/g, '_');
     
     return clean;
+}
+
+function normalizeAmiiboMatchKey(str) {
+    if (!str) return "";
+    return sanitizeName(str)
+        .toLowerCase()
+        .replace(/^(ac|zel|smash|splat|mario|mh|pkmn|fe|af)[\s_]*/i, '')
+        .replace(/^[\d_ -]+/, '')
+        .replace(/_+/g, '')
+        .trim();
+}
+
+function isAmiiboInstalled(amiibo) {
+    if (!state.isConnected || !state.installedAmiiboSet || state.installedAmiiboSet.size === 0 || !amiibo) {
+        return false;
+    }
+    const clean = sanitizeName(amiibo.name);
+    const key1 = normalizeAmiiboMatchKey(amiibo.name);
+    const key2 = normalizeAmiiboMatchKey(clean);
+    const key3 = (clean + ".bin").toLowerCase();
+    const key4 = clean.toLowerCase();
+    
+    return state.installedAmiiboSet.has(key1) || 
+           state.installedAmiiboSet.has(key2) || 
+           state.installedAmiiboSet.has(key3) ||
+           state.installedAmiiboSet.has(key4);
+}
+
+let _isScanningInstalled = false;
+async function scanInstalledAmiibos() {
+    if (!state.isConnected || !state.client) {
+        state.installedAmiiboSet.clear();
+        renderOnlineCatalogue();
+        return;
+    }
+    if (_isScanningInstalled) return;
+    _isScanningInstalled = true;
+    
+    try {
+        const found = new Set();
+        
+        async function traverse(dirPath, depth = 0) {
+            if (depth > 2) return;
+            const res = await state.client.readFolder(dirPath);
+            if (!res || !res.ok || !res.data) return;
+            
+            for (const item of res.data) {
+                if (item.type === "DIR") {
+                    const subDirPath = joinPaths(dirPath, item.name);
+                    await traverse(subDirPath, depth + 1);
+                } else if (item.name.toLowerCase().endsWith(".bin") || item.name.toLowerCase().endsWith(".nfc")) {
+                    const cleanItem = item.name.replace(/\.(bin|nfc)$/i, '');
+                    found.add(item.name.toLowerCase());
+                    found.add(cleanItem.toLowerCase());
+                    
+                    const norm1 = normalizeAmiiboMatchKey(item.name);
+                    if (norm1) found.add(norm1);
+                    
+                    const norm2 = normalizeAmiiboMatchKey(cleanItem);
+                    if (norm2) found.add(norm2);
+                    
+                    const noLeadNum = cleanItem.replace(/^[\d_ -]+/, '');
+                    if (noLeadNum) {
+                        found.add(normalizeAmiiboMatchKey(noLeadNum));
+                        found.add(noLeadNum.toLowerCase());
+                    }
+                }
+            }
+        }
+        
+        await traverse("E:/");
+        state.installedAmiiboSet = found;
+        renderOnlineCatalogue();
+    } catch (err) {
+        console.warn("Scan installed amiibos error:", err);
+    } finally {
+        _isScanningInstalled = false;
+    }
 }
 
 function utf8ByteLength(str) {
@@ -1307,6 +1395,7 @@ const state = {
     currentEntries: [], // Cached directory contents to allow instant sorting
     explorerTabMode: "folders", // "folders" or "gallery" view type
     scannedAmiibos: [], // Recursively scanned Amiibos for the gallery view
+    installedAmiiboSet: new Set(), // Set of normalized names/keys currently installed on device
     abortUpload: false, // Flag to cancel running upload queue
     lang: localStorage.getItem("allmiibo_lang") || "es" // Language: "es" or "en"
 };
@@ -1471,6 +1560,7 @@ function setConnectionState(connected, isMock = false) {
         updateDeviceInfo();
         updateStorageBar();
         refreshExplorer();
+        scanInstalledAmiibos();
     } else {
         el.btnConnectBle.style.display = "inline-flex";
         el.btnConnectMock.style.display = "inline-flex";
@@ -1492,6 +1582,8 @@ function setConnectionState(connected, isMock = false) {
             </tr>
         `;
         renderBreadcrumb();
+        state.installedAmiiboSet.clear();
+        renderOnlineCatalogue();
     }
 }
 
@@ -2400,6 +2492,7 @@ async function runQueueUpload() {
     state.abortUpload = false;
     updateStorageBar();
     refreshExplorer();
+    scanInstalledAmiibos();
 }
 
 // --- Online Database Logic ---
@@ -2860,12 +2953,29 @@ function renderOnlineCatalogue() {
             info.appendChild(nameEl);
             info.appendChild(seriesEl);
             
+            const isInstalled = isAmiiboInstalled(amiibo);
+            if (isInstalled) {
+                card.classList.add("installed");
+                const badge = document.createElement("span");
+                badge.className = "amiibo-installed-badge";
+                badge.innerHTML = `<span class="material-symbols-rounded" style="font-size: 0.85rem; vertical-align: middle;">check</span> <span>${t("amiibo_installed_badge")}</span>`;
+                card.appendChild(badge);
+            }
+            
             const btnFlash = document.createElement("button");
-            btnFlash.className = "btn btn-primary";
             btnFlash.style.width = "100%";
             btnFlash.style.marginTop = "8px";
-            btnFlash.innerHTML = `<span class="material-symbols-rounded" style="font-size: 1.1rem;">install_mobile</span> ${t("btn_install_single")}`;
             btnFlash.disabled = !state.isConnected;
+            
+            if (isInstalled) {
+                btnFlash.className = "btn btn-secondary";
+                btnFlash.style.borderColor = "rgba(16, 185, 129, 0.4)";
+                btnFlash.style.color = "#34d399";
+                btnFlash.innerHTML = `<span class="material-symbols-rounded" style="font-size: 1.1rem; color: #34d399;">check_circle</span> ${t("btn_reinstall")}`;
+            } else {
+                btnFlash.className = "btn btn-primary";
+                btnFlash.innerHTML = `<span class="material-symbols-rounded" style="font-size: 1.1rem;">install_mobile</span> ${t("btn_install_single")}`;
+            }
             
             btnFlash.addEventListener("click", (evt) => {
                 evt.stopPropagation();
@@ -2899,9 +3009,14 @@ let _activeFolderBreakdown = {};
 function openInstallFolderModal(amiibos) {
     _activeInstallList = amiibos;
     
-    // Group items into destination folders
+    // Group items into destination folders and count already installed
     _activeFolderBreakdown = {};
+    let alreadyInstalledCount = 0;
+    
     amiibos.forEach(item => {
+        if (isAmiiboInstalled(item.amiibo)) {
+            alreadyInstalledCount++;
+        }
         let targetFolder;
         if (item.amiibo?.subPath) {
             const sub = cleanSubPath(item.amiibo.subPath);
@@ -2917,6 +3032,17 @@ function openInstallFolderModal(amiibos) {
     const singleView = document.getElementById("install-modal-single-view");
     const multiView = document.getElementById("install-modal-multi-view");
     const foldersPreview = document.getElementById("install-folders-preview");
+    const skipContainer = document.getElementById("install-skip-container");
+    const skipText = document.getElementById("install-skip-text");
+    const chkSkip = document.getElementById("chk-skip-installed");
+    
+    if (alreadyInstalledCount > 0) {
+        if (skipContainer) skipContainer.style.display = "block";
+        if (chkSkip) chkSkip.checked = true;
+        if (skipText) skipText.textContent = t("install_skip_installed_label", { count: alreadyInstalledCount });
+    } else {
+        if (skipContainer) skipContainer.style.display = "none";
+    }
     
     if (folderKeys.length > 1) {
         // Multi-folder batch preview
@@ -3825,12 +3951,31 @@ el.btnInstallConfirm.addEventListener("click", async () => {
         }
     }
     
+    // Check if skipping already installed amiibos
+    const chkSkip = document.getElementById("chk-skip-installed");
+    let itemsToInstall = _activeInstallList;
+    let skippedCount = 0;
+    
+    if (chkSkip && chkSkip.checked) {
+        itemsToInstall = _activeInstallList.filter(item => {
+            const installed = isAmiiboInstalled(item.amiibo);
+            if (installed) skippedCount++;
+            return !installed;
+        });
+        
+        if (itemsToInstall.length === 0) {
+            el.modalInstall.classList.remove("active");
+            showToast(t("install_skip_all_installed_warn"), "error");
+            return;
+        }
+    }
+    
     const uniqueFolders = new Set();
     const fileItems = [];
     const addedRemotePaths = new Set();
     
     // Determine target folder for each item (dynamically grouping subseries)
-    _activeInstallList.forEach(item => {
+    itemsToInstall.forEach(item => {
         let targetFolder;
         if (isMultiFolder) {
             if (item.amiibo?.subPath) {

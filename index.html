@@ -443,6 +443,14 @@
                         <!-- Populated dynamically -->
                     </div>
                 </div>
+
+                <!-- Skip Already Installed Option -->
+                <div id="install-skip-container" style="margin-top: 12px; background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 8px; padding: 8px 12px; display: none;">
+                    <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: #34d399; cursor: pointer; margin: 0; font-weight: 500;">
+                        <input type="checkbox" id="chk-skip-installed" checked style="accent-color: var(--primary); width: 16px; height: 16px; cursor: pointer;" />
+                        <span id="install-skip-text" data-i18n="install_skip_installed_label">Omitir Amiibos que ya están instalados</span>
+                    </label>
+                </div>
             </div>
             <div class="modal-actions">
                 <button class="btn btn-secondary" id="btn-install-cancel" data-i18n="btn_cancel">Cancelar</button>

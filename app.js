@@ -162,6 +162,16 @@ const TRANSLATIONS = {
         install_skip_installed_label: "Omitir {count} Amiibos ya instalados (Recomendado)",
         install_skip_all_installed_warn: "Todos los Amiibos seleccionados ya están instalados en el dispositivo.",
         toast_install_skipped: "{added} añadidos a la cola ({skipped} omitidos por estar ya instalados).",
+        report_title: "Resumen de Transferencia",
+        report_success: "Subidos",
+        report_failed: "Fallidos",
+        report_skipped: "Omitidos",
+        report_issues_title: "Detalle de archivos no subidos y motivo:",
+        report_success_msg: "✨ ¡Todos los Amiibos se transfirieron correctamente a tu dispositivo!",
+        btn_retry_failed: "🔄 Reintentar Fallidos",
+        report_reason_404: "Archivo no encontrado en Archive.org",
+        report_reason_network: "Error de red o servidor de Archive ocupado",
+        report_reason_path: "Ruta excede el límite del Allmiibo (>58 bytes)",
         cat_no_results: "No se encontraron Amiibos con los filtros aplicados.",
         
         modal_del_prog_title: "Eliminando Amiibos...",
@@ -361,6 +371,16 @@ const TRANSLATIONS = {
         install_skip_installed_label: "Skip {count} already installed Amiibos (Recommended)",
         install_skip_all_installed_warn: "All selected Amiibos are already installed on the device.",
         toast_install_skipped: "{added} added to queue ({skipped} skipped as already installed).",
+        report_title: "Transfer Summary",
+        report_success: "Uploaded",
+        report_failed: "Failed",
+        report_skipped: "Skipped",
+        report_issues_title: "Details of unuploaded files & reasons:",
+        report_success_msg: "✨ All Amiibos were successfully transferred to your device!",
+        btn_retry_failed: "🔄 Retry Failed",
+        report_reason_404: "File not found on Archive.org",
+        report_reason_network: "Network error or Archive server busy",
+        report_reason_path: "Path exceeds Allmiibo limit (>58 bytes)",
         cat_no_results: "No Amiibos found with the applied filters.",
         
         modal_del_prog_title: "Deleting Amiibos...",
@@ -2396,12 +2416,37 @@ async function runQueueUpload() {
                         fileObj = new Blob([byteNums], { type: "application/octet-stream" });
                     } else {
                         logEvent(`Descargando binario desde: ${item.githubUrl}`);
+                        let fetchErrObj = null;
+                        
+                        // Attempt 1: Direct fetch
                         try {
                             const response = await fetch(item.githubUrl);
-                            if (!response.ok) throw new Error(`HTTP ${response.status}`);
-                            fileObj = await response.blob();
-                        } catch (fetchErr) {
-                            let fallbackFound = false;
+                            if (response.ok) {
+                                fileObj = await response.blob();
+                            } else {
+                                fetchErrObj = new Error(`HTTP ${response.status}`);
+                            }
+                        } catch (e1) {
+                            fetchErrObj = e1;
+                        }
+                        
+                        // Attempt 2: Properly encode special characters
+                        if (!fileObj) {
+                            try {
+                                const encodedUrl = encodeURI(decodeURI(item.githubUrl));
+                                const response = await fetch(encodedUrl);
+                                if (response.ok) {
+                                    fileObj = await response.blob();
+                                } else {
+                                    fetchErrObj = new Error(`HTTP ${response.status}`);
+                                }
+                            } catch (e2) {
+                                fetchErrObj = e2;
+                            }
+                        }
+                        
+                        // Attempt 3: Check fallback bins dictionary
+                        if (!fileObj) {
                             for (const [key, b64] of Object.entries(FALLBACK_BINS)) {
                                 if (item.localPath && (item.localPath.includes(key) || key.includes(item.localPath))) {
                                     const byteChars = atob(b64);
@@ -2410,14 +2455,17 @@ async function runQueueUpload() {
                                         byteNums[i] = byteChars.charCodeAt(i);
                                     }
                                     fileObj = new Blob([byteNums], { type: "application/octet-stream" });
-                                    fallbackFound = true;
                                     logEvent(`Usando binario de respaldo para: ${item.localPath}`);
                                     break;
                                 }
                             }
-                            if (!fallbackFound) {
-                                throw new Error(`HTTP ${fetchErr.message} al descargar de Archive`);
-                            }
+                        }
+                        
+                        if (!fileObj) {
+                            let errorMsg = fetchErrObj ? fetchErrObj.message : "Error al descargar";
+                            if (errorMsg.includes("404")) errorMsg = t("report_reason_404");
+                            else if (errorMsg.includes("503") || errorMsg.includes("Failed to fetch")) errorMsg = t("report_reason_network");
+                            throw new Error(errorMsg);
                         }
                     }
                     item.file = fileObj;
@@ -2471,6 +2519,7 @@ async function runQueueUpload() {
             item.status = "done";
         } catch (err) {
             item.status = "error";
+            item.errorReason = err.message || "Error al escribir en dispositivo";
             showToast(`Error en ${item.localPath}: ${err.message}`, "error");
             logEvent(`Fallo de subida: ${err.message}`);
         }
@@ -2487,6 +2536,7 @@ async function runQueueUpload() {
     if (!state.abortUpload) {
         el.queueProgress.textContent = "100%";
         showToast("Cola de transferencia finalizada.");
+        showUploadReportModal();
     }
     
     state.abortUpload = false;
@@ -2494,6 +2544,99 @@ async function runQueueUpload() {
     refreshExplorer();
     scanInstalledAmiibos();
 }
+
+function showUploadReportModal() {
+    const successItems = state.uploadQueue.filter(i => i.status === "done");
+    const errorItems = state.uploadQueue.filter(i => i.status === "error");
+    const skippedItems = state.uploadQueue.filter(i => i.status === "skipped");
+    
+    document.getElementById("report-success-count").textContent = successItems.length;
+    document.getElementById("report-error-count").textContent = errorItems.length;
+    document.getElementById("report-skipped-count").textContent = skippedItems.length;
+    
+    const errorSection = document.getElementById("report-error-section");
+    const errorList = document.getElementById("report-error-list");
+    const successMsg = document.getElementById("report-success-msg");
+    const btnRetry = document.getElementById("btn-report-retry");
+    
+    if (errorItems.length > 0 || skippedItems.length > 0) {
+        if (successMsg) successMsg.style.display = "none";
+        if (errorSection) errorSection.style.display = "block";
+        if (errorList) {
+            errorList.innerHTML = "";
+            
+            // Show failed items
+            errorItems.forEach(item => {
+                const row = document.createElement("div");
+                row.style.display = "flex";
+                row.style.flexDirection = "column";
+                row.style.padding = "6px 8px";
+                row.style.background = "rgba(239, 68, 68, 0.08)";
+                row.style.borderLeft = "3px solid #ef4444";
+                row.style.borderRadius = "4px";
+                row.style.gap = "2px";
+                
+                const reason = item.errorReason || "Error al escribir en dispositivo";
+                row.innerHTML = `
+                    <div style="font-weight: 600; color: var(--text-primary); display: flex; align-items: center; justify-content: space-between;">
+                        <span>${item.localPath}</span>
+                        <span style="font-size: 0.7rem; background: rgba(239, 68, 68, 0.2); color: #f87171; padding: 2px 6px; border-radius: 4px;">Fallido</span>
+                    </div>
+                    <div style="color: #fca5a5; font-size: 0.75rem;">Motivo: ${reason}</div>
+                `;
+                errorList.appendChild(row);
+            });
+            
+            // Show skipped items
+            skippedItems.forEach(item => {
+                const row = document.createElement("div");
+                row.style.display = "flex";
+                row.style.flexDirection = "column";
+                row.style.padding = "6px 8px";
+                row.style.background = "rgba(245, 158, 11, 0.08)";
+                row.style.borderLeft = "3px solid #f59e0b";
+                row.style.borderRadius = "4px";
+                row.style.gap = "2px";
+                
+                const reason = item.reason || "Omitido por exceder longitud de ruta";
+                row.innerHTML = `
+                    <div style="font-weight: 600; color: var(--text-primary); display: flex; align-items: center; justify-content: space-between;">
+                        <span>${item.localPath}</span>
+                        <span style="font-size: 0.7rem; background: rgba(245, 158, 11, 0.2); color: #fbbf24; padding: 2px 6px; border-radius: 4px;">Omitido</span>
+                    </div>
+                    <div style="color: #fde68a; font-size: 0.75rem;">Motivo: ${reason}</div>
+                `;
+                errorList.appendChild(row);
+            });
+        }
+        
+        if (btnRetry) {
+            btnRetry.style.display = errorItems.length > 0 ? "inline-flex" : "none";
+        }
+    } else {
+        if (errorSection) errorSection.style.display = "none";
+        if (successMsg) successMsg.style.display = "block";
+        if (btnRetry) btnRetry.style.display = "none";
+    }
+    
+    document.getElementById("modal-upload-report")?.classList.add("active");
+}
+
+document.getElementById("btn-report-retry")?.addEventListener("click", () => {
+    document.getElementById("modal-upload-report")?.classList.remove("active");
+    state.uploadQueue.forEach(item => {
+        if (item.status === "error") {
+            item.status = "pending";
+            delete item.errorReason;
+        }
+    });
+    renderUploadQueue();
+    runQueueUpload();
+});
+
+document.getElementById("btn-report-close")?.addEventListener("click", () => {
+    document.getElementById("modal-upload-report")?.classList.remove("active");
+});
 
 // --- Online Database Logic ---
 

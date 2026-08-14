@@ -169,7 +169,7 @@
                     <span class="material-symbols-rounded" style="color: #ff5e5b; font-size: 1.05rem;">favorite</span>
                     <span data-i18n="btn_donate_footer">Apoyar / Donar</span>
                 </a>
-                <span class="sidebar-version-badge">Allmiibo Manager v1.3.2</span>
+                <span class="sidebar-version-badge">Allmiibo Manager v1.3.3</span>
                 <div class="sidebar-legal-link" style="text-align: center; margin-top: 2px;">
                     <a href="javascript:void(0)" class="btn-open-legal-trigger" style="font-size: 0.72rem; color: var(--text-muted); text-decoration: underline; text-underline-offset: 2px;" data-i18n="legal_footer_link">⚖️ Aviso Legal y Fuentes</a>
                 </div>
@@ -455,6 +455,52 @@
             <div class="modal-actions">
                 <button class="btn btn-secondary" id="btn-install-cancel" data-i18n="btn_cancel">Cancelar</button>
                 <button class="btn btn-primary" id="btn-install-confirm" data-i18n="btn_install_confirm">Confirmar e Instalar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Reporte de Subida / Transferencia -->
+    <div class="modal-overlay" id="modal-upload-report">
+        <div class="modal" style="max-width: 520px; max-height: 85vh; display: flex; flex-direction: column;">
+            <div class="modal-header" style="display: flex; align-items: center; gap: 8px;">
+                <span class="material-symbols-rounded" id="report-modal-icon" style="color: var(--primary);">analytics</span>
+                <span id="report-modal-title" data-i18n="report_title">Resumen de Transferencia</span>
+            </div>
+            <div class="modal-body" style="overflow-y: auto; display: flex; flex-direction: column; gap: 14px;">
+                <!-- Summary cards -->
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; text-align: center;">
+                    <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 8px; padding: 10px 6px;">
+                        <div id="report-success-count" style="font-size: 1.3rem; font-weight: 800; color: #34d399;">0</div>
+                        <div style="font-size: 0.75rem; color: var(--text-muted);" data-i18n="report_success">Subidos</div>
+                    </div>
+                    <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 8px; padding: 10px 6px;">
+                        <div id="report-error-count" style="font-size: 1.3rem; font-weight: 800; color: #f87171;">0</div>
+                        <div style="font-size: 0.75rem; color: var(--text-muted);" data-i18n="report_failed">Fallidos</div>
+                    </div>
+                    <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 8px; padding: 10px 6px;">
+                        <div id="report-skipped-count" style="font-size: 1.3rem; font-weight: 800; color: #fbbf24;">0</div>
+                        <div style="font-size: 0.75rem; color: var(--text-muted);" data-i18n="report_skipped">Omitidos</div>
+                    </div>
+                </div>
+
+                <!-- Error list container -->
+                <div id="report-error-section" style="display: none;">
+                    <div style="font-size: 0.85rem; font-weight: 700; color: #f87171; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+                        <span class="material-symbols-rounded" style="font-size: 1rem;">error</span>
+                        <span data-i18n="report_issues_title">Detalle de archivos no subidos y motivo:</span>
+                    </div>
+                    <div id="report-error-list" style="max-height: 200px; overflow-y: auto; background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border-color); border-radius: 8px; padding: 8px; display: flex; flex-direction: column; gap: 6px; font-size: 0.82rem;">
+                        <!-- Dynamically populated -->
+                    </div>
+                </div>
+
+                <div id="report-success-msg" style="text-align: center; color: #34d399; font-size: 0.9rem; font-weight: 600; padding: 10px 0; display: none;" data-i18n="report_success_msg">
+                    ✨ ¡Todos los Amiibos se transfirieron correctamente a tu dispositivo!
+                </div>
+            </div>
+            <div class="modal-actions" style="display: flex; justify-content: flex-end; gap: 8px;">
+                <button class="btn btn-primary" id="btn-report-retry" style="display: none;" data-i18n="btn_retry_failed">🔄 Reintentar Fallidos</button>
+                <button class="btn btn-secondary" id="btn-report-close" data-i18n="btn_close">Cerrar</button>
             </div>
         </div>
     </div>

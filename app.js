@@ -1,5 +1,5 @@
 // === Configuration & Constants ===
-const APP_VERSION = "v1.0.7";
+const APP_VERSION = "v1.0.8";
 const NUS_SERVICE_UUID = "6e400001-b5a3-f393-e0a9-e50e24dcca9e";
 const NUS_CHAR_TX_UUID = "6e400002-b5a3-f393-e0a9-e50e24dcca9e";
 const NUS_CHAR_RX_UUID = "6e400003-b5a3-f393-e0a9-e50e24dcca9e";
@@ -16,6 +16,16 @@ const FORMAT_TIMEOUT_MS = 45000;
 const MAX_FILE_NAME_BYTES = 47;
 const MAX_FILE_PATH_BYTES = 63;
 const MAX_FOLDER_PATH_BYTES = 55;
+
+// Direct high-accuracy figurine artwork mapping for special / complex titles
+const DIRECT_AMIIBO_ARTWORK = {
+    "link link awakening": "https://raw.githubusercontent.com/8bitDream/AmiiboAPI/master/images/icon_01000000-03990902.png",
+    "link awakening": "https://raw.githubusercontent.com/8bitDream/AmiiboAPI/master/images/icon_01000000-03990902.png",
+    "zelda loftwing amiibo": "https://raw.githubusercontent.com/8bitDream/AmiiboAPI/master/images/icon_01010000-03a80902.png",
+    "zelda loftwing": "https://raw.githubusercontent.com/8bitDream/AmiiboAPI/master/images/icon_01010000-03a80902.png",
+    "wolf link": "https://raw.githubusercontent.com/8bitDream/AmiiboAPI/master/images/icon_01030000-024f0902.png",
+    "mod max level wolf link": "https://raw.githubusercontent.com/8bitDream/AmiiboAPI/master/images/icon_01030000-024f0902.png"
+};
 
 // Embedded binary fallback for known Archive.org on-the-fly zip extraction issues
 const FALLBACK_BINS = {
@@ -2585,6 +2595,19 @@ function findAmiiboInList(name, category) {
 
 async function fetchAmiiboImageAndDetails(name, category, cardElement) {
     const cacheKey = `${category}_${name}`;
+    
+    // 0. Direct verified high-accuracy artwork override
+    const normCleanName = normalizeString(cleanAmiiboNameForSearch(name));
+    if (DIRECT_AMIIBO_ARTWORK[normCleanName]) {
+        state.imagesCache[cacheKey] = {
+            image: DIRECT_AMIIBO_ARTWORK[normCleanName],
+            character: "Link",
+            amiiboSeries: "Legend Of Zelda"
+        };
+        applyImageToCard(cardElement, state.imagesCache[cacheKey]);
+        return;
+    }
+    
     if (state.imagesCache[cacheKey]) {
         applyImageToCard(cardElement, state.imagesCache[cacheKey]);
         return;

@@ -611,6 +611,11 @@ table.file-table {
 table.file-table th, table.file-table td {
     padding: 12px 16px;
     border-bottom: 1px solid var(--border-color);
+    vertical-align: middle;
+}
+
+table.file-table tbody tr:last-child td {
+    border-bottom: none;
 }
 
 table.file-table th {

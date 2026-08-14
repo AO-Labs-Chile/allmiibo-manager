@@ -1702,10 +1702,12 @@ function renderExplorerTable(entries) {
         });
         
         tr.innerHTML = `
-            <td></td>
-            <td class="file-row-name-container">
-                <span class="material-symbols-rounded file-icon" style="color: var(--primary);">arrow_back</span>
-                <span style="font-weight: 600;">.. (Subir nivel)</span>
+            <td style="text-align: center;"></td>
+            <td>
+                <div class="file-row-name-container">
+                    <span class="material-symbols-rounded file-icon" style="color: var(--primary);">arrow_back</span>
+                    <span style="font-weight: 600;">.. (Subir nivel)</span>
+                </div>
             </td>
             <td style="color: var(--text-muted); font-size: 0.85rem;">--</td>
             <td></td>
@@ -1747,6 +1749,7 @@ function renderExplorerTable(entries) {
         }
         
         const tdCheck = document.createElement("td");
+        tdCheck.style.textAlign = "center";
         const checkbox = document.createElement("input");
         checkbox.type = "checkbox";
         checkbox.checked = state.selectedItems.has(e.name);
@@ -1762,8 +1765,10 @@ function renderExplorerTable(entries) {
         tdCheck.appendChild(checkbox);
         
         const tdName = document.createElement("td");
-        tdName.className = "file-row-name-container";
         tdName.style.cursor = e.type === "DIR" ? "pointer" : "default";
+        
+        const nameContainer = document.createElement("div");
+        nameContainer.className = "file-row-name-container";
         
         const icon = document.createElement("span");
         icon.className = "material-symbols-rounded file-icon";
@@ -1773,8 +1778,9 @@ function renderExplorerTable(entries) {
         const label = document.createElement("span");
         label.textContent = e.name;
         
-        tdName.appendChild(icon);
-        tdName.appendChild(label);
+        nameContainer.appendChild(icon);
+        nameContainer.appendChild(label);
+        tdName.appendChild(nameContainer);
         
         if (e.type === "DIR") {
             tdName.addEventListener("click", () => {
@@ -1793,7 +1799,8 @@ function renderExplorerTable(entries) {
         }
         
         const tdActions = document.createElement("td");
-        tdActions.className = "file-actions";
+        const actionsContainer = document.createElement("div");
+        actionsContainer.className = "file-actions";
         
         const btnRename = document.createElement("button");
         btnRename.className = "action-icon-btn";
@@ -1813,8 +1820,9 @@ function renderExplorerTable(entries) {
             openDeleteModal(e.name);
         });
         
-        tdActions.appendChild(btnRename);
-        tdActions.appendChild(btnDelete);
+        actionsContainer.appendChild(btnRename);
+        actionsContainer.appendChild(btnDelete);
+        tdActions.appendChild(actionsContainer);
         
         tr.appendChild(tdCheck);
         tr.appendChild(tdName);

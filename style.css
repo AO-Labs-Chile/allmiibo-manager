@@ -46,7 +46,7 @@ body {
 header {
     background-color: var(--bg-card);
     border-bottom: 1px solid var(--border-color);
-    padding: 14px 24px;
+    padding: 16px 24px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -54,6 +54,8 @@ header {
     top: 0;
     z-index: 100;
     width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
 }
 
 .brand {

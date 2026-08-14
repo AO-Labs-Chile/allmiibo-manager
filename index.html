@@ -55,14 +55,17 @@
                     <div class="status-dot" id="status-dot"></div>
                     <span id="status-text">Desconectado</span>
                 </div>
-                <div id="device-info" style="font-size: 0.8rem; display: flex; flex-direction: column; gap: 4px; color: var(--text-secondary);" hidden>
+                <div id="device-info" style="font-size: 0.8rem; display: flex; flex-direction: column; gap: 6px; color: var(--text-secondary);" hidden>
                     <div style="font-size: 0.8rem; display: flex; align-items: center; justify-content: space-between; width: 100%;">
                         <span>Versión: <strong id="info-version">-</strong></span>
-                        <a id="update-warning-badge" href="#" style="display: none; font-size: 0.65rem; background-color: var(--danger-light); color: var(--danger); padding: 2px 6px; border-radius: 4px; font-weight: 700; text-decoration: none;">¡NUEVA v0.0.0!</a>
-                        <button class="btn btn-secondary" id="btn-dfu-help" style="padding: 2px 6px; font-size: 0.7rem; height: auto;">Actualizar</button>
+                        <span id="update-warning-badge" style="display: none; font-size: 0.7rem; background-color: var(--danger-light); color: var(--danger); padding: 2px 6px; border-radius: 4px; font-weight: 700; cursor: pointer;">¡NUEVA!</span>
                     </div>
-                    <div style="font-size: 0.8rem;">
-                        Dirección MAC: <strong id="info-mac">-</strong>
+                    <div style="font-size: 0.8rem; display: flex; align-items: center; justify-content: space-between; width: 100%;">
+                        <span>MAC: <strong id="info-mac">-</strong></span>
+                        <button class="btn btn-secondary" id="btn-dfu-help" style="padding: 2px 8px; font-size: 0.7rem; height: auto;">
+                            <span class="material-symbols-rounded" style="font-size: 0.85rem;">system_update_alt</span>
+                            Actualizar
+                        </button>
                     </div>
                 </div>
                 <button class="btn btn-danger" id="btn-disconnect" style="display: none;">
@@ -429,20 +432,16 @@
             </div>
             <div class="modal-body">
                 <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4; margin-bottom: 12px;">
-                    Se descargarán los archivos criptográficos desde un repositorio comunitario de GitHub, se unirán automáticamente en memoria para obtener el archivo <code>key_retail.bin</code> (160 bytes) y se subirán a tu Allmiibo.
+                    Se descargará el archivo criptográfico oficial <code>key_retail.bin</code> (160 bytes) desde tu bóveda en Internet Archive y se instalará automáticamente en la raíz de tu Allmiibo.
                 </p>
                 <div style="margin-bottom: 12px;">
-                    <label for="input-key-url-unfixed" style="font-size: 0.75rem; font-weight: 600; color: var(--text-secondary); display: block; margin-bottom: 4px;">URL unfixed-info.bin (Parte 1):</label>
-                    <input type="text" class="modal-input" id="input-key-url-unfixed" style="font-size: 0.75rem; padding: 6px;" value="https://raw.githubusercontent.com/Shvier/TagMoUnlockFiles/master/unfixed-info.bin">
-                </div>
-                <div style="margin-bottom: 16px;">
-                    <label for="input-key-url-locked" style="font-size: 0.75rem; font-weight: 600; color: var(--text-secondary); display: block; margin-bottom: 4px;">URL locked-secret.bin (Parte 2):</label>
-                    <input type="text" class="modal-input" id="input-key-url-locked" style="font-size: 0.75rem; padding: 6px;" value="https://raw.githubusercontent.com/Shvier/TagMoUnlockFiles/master/locked-secret.bin">
+                    <label for="input-key-url" style="font-size: 0.75rem; font-weight: 600; color: var(--text-secondary); display: block; margin-bottom: 4px;">URL key_retail.bin (Internet Archive):</label>
+                    <input type="text" class="modal-input" id="input-key-url" style="font-size: 0.75rem; padding: 6px;" value="https://archive.org/download/nintendo-amiibo-nfc-vault/%21Essential%20Files.zip/%21Essential%20Files%2Fkey_retail.bin">
                 </div>
                 <div id="auto-key-error" style="color: var(--danger); font-size: 0.8rem; display: none; margin-bottom: 12px;"></div>
                 <div id="auto-key-progress" style="color: var(--primary); font-size: 0.8rem; font-weight: 600; display: none; margin-bottom: 12px; align-items: center; gap: 8px;">
                     <span class="material-symbols-rounded pulse" style="font-size: 1rem; animation: pulse 1s infinite;">sync</span>
-                    Descargando e instalando llaves...
+                    Descargando e instalando llave en el dispositivo...
                 </div>
             </div>
             <div class="modal-actions">

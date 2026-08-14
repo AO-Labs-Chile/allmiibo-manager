@@ -790,8 +790,7 @@ const el = {
     
     // Auto Key Modal UI
     modalAutoKey: document.getElementById("modal-auto-key"),
-    inputKeyUrlUnfixed: document.getElementById("input-key-url-unfixed"),
-    inputKeyUrlLocked: document.getElementById("input-key-url-locked"),
+    inputKeyUrl: document.getElementById("input-key-url"),
     autoKeyError: document.getElementById("auto-key-error"),
     autoKeyProgress: document.getElementById("auto-key-progress"),
     btnAutoKeyCancel: document.getElementById("btn-auto-key-cancel"),
@@ -944,15 +943,23 @@ async function checkEncryptionKeyStatus() {
 async function checkForFirmwareUpdate(currentVersion) {
     if (!currentVersion) return;
     try {
-        const res = await fetch("https://api.github.com/repos/solosky/pixl.js/releases/latest");
-        if (!res.ok) return;
-        const data = await res.json();
-        const latestVersion = data.tag_name;
+        let latestVersion = "2.16.0";
+        try {
+            const res = await fetch("https://api.github.com/repos/solosky/pixl.js/releases/latest");
+            if (res.ok) {
+                const data = await res.json();
+                if (data.tag_name) {
+                    latestVersion = data.tag_name.replace(/^v/i, '');
+                }
+            }
+        } catch (fetchErr) {
+            console.warn("Could not reach GitHub releases API, using fallback latest version:", latestVersion);
+        }
         
         const cleanCurrent = currentVersion.replace(/[^\d.]/g, '');
         const cleanLatest = latestVersion.replace(/[^\d.]/g, '');
         
-        if (cleanCurrent && cleanLatest && cleanCurrent !== cleanLatest) {
+        if (cleanCurrent && cleanLatest) {
             const curParts = cleanCurrent.split(".").map(Number);
             const latParts = cleanLatest.split(".").map(Number);
             let isOlder = false;
@@ -967,10 +974,17 @@ async function checkForFirmwareUpdate(currentVersion) {
                 }
             }
             if (isOlder) {
-                el.updateWarningBadge.textContent = `¡NUEVA v${latestVersion}!`;
+                el.updateWarningBadge.textContent = `¡v${latestVersion} disponible!`;
+                el.updateWarningBadge.style.backgroundColor = "var(--danger-light)";
+                el.updateWarningBadge.style.color = "var(--danger)";
                 el.updateWarningBadge.style.display = "inline-block";
+                el.updateWarningBadge.title = `Tu versión: v${currentVersion} - Última versión disponible: v${latestVersion}. Haz clic para actualizar.`;
             } else {
-                el.updateWarningBadge.style.display = "none";
+                el.updateWarningBadge.textContent = `v${currentVersion} (Al día)`;
+                el.updateWarningBadge.style.backgroundColor = "var(--primary-light)";
+                el.updateWarningBadge.style.color = "var(--primary-hover)";
+                el.updateWarningBadge.style.display = "inline-block";
+                el.updateWarningBadge.title = `Tu dispositivo está actualizado a la versión más reciente.`;
             }
         } else {
             el.updateWarningBadge.style.display = "none";
@@ -2245,32 +2259,20 @@ async function downloadKeysFromGitHub() {
     el.btnAutoKeyConfirm.disabled = true;
     el.btnAutoKeyCancel.disabled = true;
     
-    const urlUnfixed = el.inputKeyUrlUnfixed.value.trim();
-    const urlLocked = el.inputKeyUrlLocked.value.trim();
+    const urlKey = el.inputKeyUrl ? el.inputKeyUrl.value.trim() : "https://archive.org/download/nintendo-amiibo-nfc-vault/%21Essential%20Files.zip/%21Essential%20Files%2Fkey_retail.bin";
     
     try {
-        logEvent(`Descargando parte 1 (unfixed) desde: ${urlUnfixed}`);
-        const resUnfixed = await fetch(urlUnfixed);
-        if (!resUnfixed.ok) throw new Error("No se pudo descargar unfixed-info.bin");
-        const bufUnfixed = await resUnfixed.arrayBuffer();
+        logEvent(`Descargando key_retail.bin desde: ${urlKey}`);
+        const res = await fetch(urlKey);
+        if (!res.ok) throw new Error(`No se pudo descargar key_retail.bin (HTTP ${res.status})`);
+        const buf = await res.arrayBuffer();
         
-        logEvent(`Descargando parte 2 (locked) desde: ${urlLocked}`);
-        const resLocked = await fetch(urlLocked);
-        if (!resLocked.ok) throw new Error("No se pudo descargar locked-secret.bin");
-        const bufLocked = await resLocked.arrayBuffer();
-        
-        if (bufUnfixed.byteLength !== 80 || bufLocked.byteLength !== 80) {
-            throw new Error(`Los archivos descargados tienen tamaños incorrectos (unfixed: ${bufUnfixed.byteLength} bytes, locked: ${bufLocked.byteLength} bytes). Ambos deben medir exactamente 80 bytes.`);
+        if (buf.byteLength !== 160) {
+            throw new Error(`El archivo descargado no mide 160 bytes (mide ${buf.byteLength} bytes). La clave key_retail.bin debe medir exactamente 160 bytes.`);
         }
         
-        const mergedKey = new Uint8Array(160);
-        mergedKey.set(new Uint8Array(bufUnfixed), 0);
-        mergedKey.set(new Uint8Array(bufLocked), 80);
-        
         logEvent("Cargando clave en el dispositivo...");
-        
-        // Use upload Queue to upload this key
-        const blob = new Blob([mergedKey], { type: "application/octet-stream" });
+        const blob = new Blob([buf], { type: "application/octet-stream" });
         
         state.uploadQueue = [{
             kind: "file",
@@ -2283,12 +2285,11 @@ async function downloadKeysFromGitHub() {
         renderUploadQueue();
         el.modalAutoKey.classList.remove("active");
         
-        // Trigger queue upload
         document.querySelector('[data-tab="local-tab"]').click();
         await runQueueUpload();
         
         checkEncryptionKeyStatus();
-        showToast("Clave key_retail.bin instalada con éxito.");
+        showToast("Clave key_retail.bin instalada con éxito desde Internet Archive.");
     } catch (err) {
         logEvent(`Error en descarga automática de clave: ${err.message}`);
         el.autoKeyError.textContent = `Error: ${err.message}`;

@@ -1803,14 +1803,12 @@ async function initOnlineCatalogue() {
                 Object.values(parsedCache).forEach(arr => count += arr.length);
                 if (count >= 500) {
                     state.categories = parsedCache;
-                    populateCategoryDropdown();
-                    renderOnlineCatalogue();
                     loaded = true;
                 }
             } catch(e) {}
         }
         
-        // Fetch full AmiiboAPI list once for fast matching
+        // Fetch full AmiiboAPI list FIRST for instantaneous image matching
         try {
             const apiRes = await fetch("https://www.amiiboapi.org/api/amiibo/");
             if (apiRes.ok) {
@@ -1823,8 +1821,10 @@ async function initOnlineCatalogue() {
             console.warn("AmiiboAPI offline:", apiErr.message);
         }
         
-        // If not loaded or outdated, sync automatically from Archive
-        if (!loaded) {
+        if (loaded) {
+            populateCategoryDropdown();
+            renderOnlineCatalogue();
+        } else {
             await syncCatalogueFromArchive();
         }
     } catch (err) {
@@ -1978,9 +1978,8 @@ function normalizeString(str) {
 }
 
 function cleanAmiiboNameForSearch(name) {
-    // Clean prefix like "[AC] AF1 - " or "[AC] 001 - "
-    let clean = name.replace(/^\[[^\]]+\]\s*[^-\n]*-\s*/, '');
-    // Replace parenthesis with spaces instead of stripping!
+    let clean = name.replace(/^\[[^\]]+\]\s*[^-\n]*-\s*/, '')
+                    .replace(/^\[[^\]]+\]\s*/, '');
     clean = clean.replace(/[()]/g, ' ').trim();
     return clean;
 }
@@ -1988,7 +1987,8 @@ function cleanAmiiboNameForSearch(name) {
 function findAmiiboInList(name, category) {
     if (!state.amiiboApiList) return null;
     
-    const normSearch = normalizeString(name);
+    const cleanedName = cleanAmiiboNameForSearch(name);
+    const normSearch = normalizeString(cleanedName);
     const normCategory = normalizeString(category);
     const searchTokens = normSearch.split(' ').filter(Boolean);
     
@@ -2011,34 +2011,34 @@ function findAmiiboInList(name, category) {
             score += 1000;
         } else if (normSearch.includes(normApi) || normApi.includes(normSearch)) {
             const lenDiff = Math.abs(normSearch.length - normApi.length);
-            score += Math.max(0, 500 - lenDiff * 10);
+            score += Math.max(0, 600 - lenDiff * 10);
         }
         
         // 2. Character overlap
         const hasCharOverlap = charTokens.some(t => searchTokens.includes(t));
         if (hasCharOverlap) {
-            score += 150;
+            score += 200;
         }
         
         // 3. Category/Series match
         if (normCategory === normSeries || normCategory === normGame) {
-            score += 200;
+            score += 300;
         } else if (normCategory.includes(normSeries) || normSeries.includes(normCategory) ||
                    normCategory.includes(normGame) || normGame.includes(normCategory)) {
-            score += 100;
+            score += 150;
         }
         
         // 4. Token overlap ratio
         let tokenMatches = 0;
         searchTokens.forEach(t => {
-            if (apiTokens.includes(t)) tokenMatches++;
+            if (apiTokens.includes(t) || charTokens.includes(t)) tokenMatches++;
         });
         
         if (tokenMatches > 0) {
             const matchRatio = tokenMatches / searchTokens.length;
-            score += matchRatio * 500;
+            score += matchRatio * 400;
             if (tokenMatches === searchTokens.length) {
-                score += 500; // all search tokens match bonus
+                score += 400;
             }
         }
         
@@ -2070,7 +2070,7 @@ async function fetchAmiiboImageAndDetails(name, category, cardElement) {
         return;
     }
     
-    // 2. Fallback to individual API call (using amiiboapi.org)
+    // 2. Fallback to individual API call
     const searchName = cleanAmiiboNameForSearch(name);
     try {
         const res = await fetch(`https://www.amiiboapi.org/api/amiibo/?name=${encodeURIComponent(searchName)}`);
@@ -2078,7 +2078,6 @@ async function fetchAmiiboImageAndDetails(name, category, cardElement) {
         
         const json = await res.json();
         if (json.amiibo && json.amiibo.length > 0) {
-            // Find the best match using our robust logic in the API returned list
             const matchInRes = findAmiiboInList(name, category) || json.amiibo[0];
             let item = matchInRes;
             
@@ -2091,7 +2090,7 @@ async function fetchAmiiboImageAndDetails(name, category, cardElement) {
             applyImageToCard(cardElement, state.imagesCache[cacheKey]);
         }
     } catch (err) {
-        // Fallback placeholder image
+        // Fallback placeholder without caching so retry is possible
         const fallbackInfo = {
             image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 24 24' fill='%23cbd5e1'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 12 12 12 12-4.48 12-12S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z'/></svg>",
             character: name,

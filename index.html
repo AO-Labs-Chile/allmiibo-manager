@@ -44,16 +44,23 @@
             <div class="sidebar-nav-section">
                 <div class="sidebar-title" data-i18n="sidebar_navigation">Navegación</div>
                 
+                <!-- Main Connection Button (Prominent Call to Action) -->
+                <button class="btn btn-primary btn-connect-main" id="btn-connect-ble">
+                    <span class="material-symbols-rounded">bluetooth</span>
+                    <span data-i18n="btn_connect">Conectar Allmiibo</span>
+                </button>
+
+                <!-- Navigation Tabs & Help -->
                 <div class="sidebar-nav-buttons">
-                    <button class="tab-btn active sidebar-nav-btn" data-tab="local-tab">
+                    <button class="sidebar-nav-btn tab-btn active" data-tab="local-tab">
                         <span class="material-symbols-rounded">folder_open</span>
                         <span data-i18n="tab_local">Explorar Dispositivo</span>
                     </button>
-                    <button class="tab-btn sidebar-nav-btn" data-tab="online-tab">
+                    <button class="sidebar-nav-btn tab-btn" data-tab="online-tab">
                         <span class="material-symbols-rounded">storefront</span>
                         <span data-i18n="tab_online">Catálogo Amiibos</span>
                     </button>
-                    <button class="btn btn-secondary sidebar-nav-btn" id="btn-help" title="Ayuda y Tutorial" data-i18n-title="btn_help_title">
+                    <button class="sidebar-nav-btn" id="btn-help" title="Ayuda y Tutorial" data-i18n-title="btn_help_title">
                         <span class="material-symbols-rounded">help</span>
                         <span data-i18n="btn_help">Ayuda y Tutorial</span>
                     </button>
@@ -68,18 +75,6 @@
                     <button type="button" class="lang-btn" id="btn-lang-en" data-lang="en" title="English">
                         <svg width="15" height="11" viewBox="0 0 640 480" style="border-radius: 2px; vertical-align: middle; pointer-events: none;"><g fill="#bd3d44"><path d="M0 0h640v37H0zm0 74h640v37H0zm0 74h640v37H0zm0 74h640v37H0zm0 74h640v37H0zm0 74h640v37H0zm0 74h640v37H0z"/><path fill="#fff" d="M0 37h640v37H0zm0 74h640v37H0zm0 74h640v37H0zm0 74h640v37H0zm0 74h640v37H0zm0 74h640v37H0z"/></g><path fill="#192f5d" d="M0 0h280v258H0z"/></svg>
                         <span>English</span>
-                    </button>
-                </div>
-
-                <!-- Connection Buttons -->
-                <div class="sidebar-connect-actions">
-                    <button class="btn btn-primary" id="btn-connect-ble" style="width: 100%; justify-content: center;">
-                        <span class="material-symbols-rounded">bluetooth</span>
-                        <span data-i18n="btn_connect">Conectar Allmiibo</span>
-                    </button>
-                    <button class="btn btn-secondary" id="btn-connect-mock" style="width: 100%; justify-content: center;">
-                        <span class="material-symbols-rounded">rocket_launch</span>
-                        <span data-i18n="btn_simulator">Simulador Virtual</span>
                     </button>
                 </div>
             </div>
@@ -504,6 +499,18 @@
                         <strong style="color: var(--text-primary); display: block; margin-bottom: 3px;" data-i18n="help_step5_title">5️⃣ Emular en tu Consola:</strong>
                         <span data-i18n="help_step5_desc">En tu Allmiibo entra al menú <code>Amiibo emulator</code>, elige el Amiibo deseado y acércalo al lector NFC de tu consola Nintendo Switch 1 y 2, Wii U o 3DS.</span>
                     </div>
+                </div>
+
+                <!-- Virtual Simulator Card in Help Modal -->
+                <div style="background: rgba(59, 130, 246, 0.08); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 10px; padding: 12px 14px; margin-bottom: 18px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
+                    <div style="font-size: 0.85rem; color: var(--text-secondary); flex: 1; min-width: 200px;">
+                        <strong style="color: var(--text-primary); display: block; margin-bottom: 2px;">🚀 ¿No tienes tu Allmiibo cerca?</strong>
+                        <span>Puedes iniciar el simulador virtual para probar la interfaz, explorar el catálogo y probar las funciones ahora mismo.</span>
+                    </div>
+                    <button class="btn btn-secondary" id="btn-connect-mock" style="padding: 8px 14px; font-size: 0.85rem; white-space: nowrap;">
+                        <span class="material-symbols-rounded">rocket_launch</span>
+                        <span data-i18n="btn_simulator">Iniciar Simulador</span>
+                    </button>
                 </div>
 
                 <!-- Opciones del Dispositivo -->

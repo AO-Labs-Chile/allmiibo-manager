@@ -3249,7 +3249,8 @@ el.btnConnectBle.addEventListener("click", async () => {
 });
 
 // Connect Simulator
-el.btnConnectMock.addEventListener("click", async () => {
+el.btnConnectMock?.addEventListener("click", async () => {
+    el.modalHelp?.classList.remove("active");
     state.client = new DevMockClient(logEvent);
     state.client.onDisconnect = () => {
         setConnectionState(false);
@@ -3258,6 +3259,7 @@ el.btnConnectMock.addEventListener("click", async () => {
     setConnectionState(true);
     // Refresh catalog buttons state
     renderOnlineCatalogue();
+    showToast("Simulador virtual conectado con éxito.");
 });
 
 // Disconnect

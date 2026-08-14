@@ -13,7 +13,7 @@ Un gestor web moderno, intuitivo y responsivo para administrar archivos Amiibo e
 
 ## 🚀 Características Principales
 
-*   **Catálogo Online Integrado**: Explora más de 900 Amiibos, filtra por series o busca personajes concretos. Las imágenes se cargan dinámicamente usando [AmiiboAPI](https://amiiboapi.com/).
+*   **Catálogo Online Integrado**: Explora más de 900 Amiibos, filtra por series o busca personajes concretos. Las imágenes se cargan dinámicamente usando [AmiiboAPI](https://www.amiiboapi.org/).
 *   **Flasheo Directo sin Descargas**: Instala los Amiibos directamente desde el catálogo online al Allmiibo en segundo plano (los descarga y envía directamente, sin llenar tu disco duro).
 *   **Galería Visual del Dispositivo**: Una pestaña local que lee de forma recursiva los archivos `.bin` y `.nfc` instalados en el Allmiibo y los muestra visualmente con sus portadas oficiales.
 *   **Instalación por Lotes (Series)**: Instala una serie completa filtrada (p. ej. *Zelda* o *Splatoon*) con un solo botón, sugiriendo de forma automática una carpeta organizada.
@@ -40,7 +40,7 @@ A modern, intuitive, and responsive web manager to administer Amiibo files on **
 
 ## 🚀 Key Features
 
-*   **Integrated Online Catalogue**: Browse over 900 Amiibos, filter by series, or search specific characters. Cover art is dynamically fetched using [AmiiboAPI](https://amiiboapi.com/).
+*   **Integrated Online Catalogue**: Browse over 900 Amiibos, filter by series, or search specific characters. Cover art is dynamically fetched using [AmiiboAPI](https://www.amiiboapi.org/).
 *   **Direct Flash (No Local Downloads)**: Install Amiibos straight from the online catalogue to your Allmiibo in the background (files are downloaded and sent on the fly).
 *   **Visual Local Gallery**: A dedicated tab that recursively scans the `.bin` and `.nfc` files installed on your Allmiibo and displays them in a grid with their official covers.
 *   **Batch Install (Series)**: Install an entire filtered series (e.g., *Zelda* or *Splatoon*) at once, automatically proposing an organized destination folder.

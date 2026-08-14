@@ -15,11 +15,12 @@
 </p>
 
 <p align="center">
-  <a href="#español"><img src="https://flagcdn.com/20x15/cl.png" width="20" height="15" alt="Chile" style="vertical-align: middle;" /> <strong>Español</strong></a> | <a href="#english"><img src="https://flagcdn.com/20x15/gb.png" width="20" height="15" alt="UK" style="vertical-align: middle;" /> <strong>English</strong></a> | <a href="#-aviso-legal--disclaimer">⚖️ <strong>Aviso Legal / Disclaimer</strong></a>
+  <a href="#espanol"><img src="https://flagcdn.com/20x15/cl.png" width="20" height="15" alt="Chile" style="vertical-align: middle;" /> <strong>Español</strong></a> | <a href="#english"><img src="https://flagcdn.com/20x15/gb.png" width="20" height="15" alt="UK" style="vertical-align: middle;" /> <strong>English</strong></a> | <a href="#aviso-legal">⚖️ <strong>Aviso Legal / Disclaimer</strong></a>
 </p>
 
 ---
 
+<a id="espanol"></a>
 # <img src="https://flagcdn.com/24x18/cl.png" width="24" height="18" alt="Chile" style="vertical-align: middle;" /> Español
 
 **Allmiibo Web Manager** es una aplicación web progresiva diseñada para administrar de forma inalámbrica los archivos, carpetas, claves criptográficas y firmware en dispositivos **Allmiibo** y **Pixl.js** desde cualquier navegador compatible, sin cables, sin drivers y sin necesidad de instalar software adicional en tu equipo.
@@ -62,6 +63,7 @@
 
 ---
 
+<a id="english"></a>
 # <img src="https://flagcdn.com/24x18/gb.png" width="24" height="18" alt="UK" style="vertical-align: middle;" /> English
 
 **Allmiibo Web Manager** is a modern, lightweight, progressive web app created to wirelessly manage Amiibo files, directories, encryption keys, and firmware on **Allmiibo** and **Pixl.js** devices directly from your web browser via **Web Bluetooth (Web BLE)**, without cables, drivers, or companion software.
@@ -104,6 +106,7 @@
 
 ---
 
+<a id="aviso-legal"></a>
 ### ⚖️ Aviso Legal / Disclaimer
 
 **Español:**  

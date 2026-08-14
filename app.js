@@ -1,5 +1,5 @@
 // === Configuration & Constants ===
-const APP_VERSION = "v1.0.1";
+const APP_VERSION = "v1.0.2";
 const NUS_SERVICE_UUID = "6e400001-b5a3-f393-e0a9-e50e24dcca9e";
 const NUS_CHAR_TX_UUID = "6e400002-b5a3-f393-e0a9-e50e24dcca9e";
 const NUS_CHAR_RX_UUID = "6e400003-b5a3-f393-e0a9-e50e24dcca9e";
@@ -530,7 +530,16 @@ const CATEGORY_SHORT = {
 };
 
 function getCleanCategoryFolder(cat) {
-    return CATEGORY_SHORT[cat] || CATEGORY_MAPPINGS[cat] || cat.replace(/[^a-zA-Z0-9]/g, '').substring(0, 8);
+    return CATEGORY_SHORT[cat] || cat.replace(/[^a-zA-Z0-9]/g, '').substring(0, 8);
+}
+
+function getDestinationFolder(category, subPath) {
+    const baseCat = getCleanCategoryFolder(category);
+    const sub = cleanSubPath(subPath);
+    if (sub) {
+        return `${baseCat}_${sub}`;
+    }
+    return baseCat;
 }
 
 function cleanSubPath(sub) {
@@ -1655,10 +1664,12 @@ function renderExplorerTable(entries) {
         
         tr.innerHTML = `
             <td></td>
-            <td colspan="3" class="file-row-name-container">
-                <span class="material-symbols-rounded file-icon">arrow_back</span>
-                <span>.. (Subir nivel)</span>
+            <td class="file-row-name-container">
+                <span class="material-symbols-rounded file-icon" style="color: var(--primary);">arrow_back</span>
+                <span style="font-weight: 600;">.. (Subir nivel)</span>
             </td>
+            <td style="color: var(--text-muted); font-size: 0.85rem;">--</td>
+            <td></td>
         `;
         el.explorerTableBody.appendChild(tr);
     }
@@ -1666,7 +1677,7 @@ function renderExplorerTable(entries) {
     if (entries.length === 0) {
         const trEmpty = document.createElement("tr");
         trEmpty.innerHTML = `
-            <td colspan="4">
+            <td colspan="4" style="text-align: center; padding: 32px 16px;">
                 <div class="table-empty-state">
                     <span class="material-symbols-rounded" style="font-size: 2.5rem; color: var(--text-muted); margin-bottom: 8px;">folder_open</span>
                     <p style="color: var(--text-muted); margin-bottom: 16px;">${t("table_empty_folder")}</p>
@@ -2725,93 +2736,16 @@ function openInstallFolderModal(amiibos) {
     _activeInstallList = amiibos;
     el.installCountText.textContent = amiibos.length;
     
-    // Suggest folder name
     let suggestion = "Amiibos";
     if (amiibos.length > 0) {
         const firstCat = amiibos[0].category;
-        const allSame = amiibos.every(item => item.category === firstCat);
-        if (allSame) {
-            suggestion = getCleanCategoryFolder(firstCat);
-        }
+        const firstSub = amiibos[0].amiibo?.subPath || "";
+        suggestion = getDestinationFolder(firstCat, firstSub);
     }
     
     el.installFolderInput.value = suggestion;
     el.installFolderError.style.display = "none";
     el.modalInstall.classList.add("active");
-}
-
-// Deprecated old standalone flashing method
-async function flashAmiiboFromCatalogue(amiibo, category) {
-    if (!state.isConnected) return;
-    
-    const githubRawUrl = baseDownloadUrl.endsWith('/') 
-        ? `${baseDownloadUrl}${encodeURIComponent(amiibo.path)}` 
-        : `${baseDownloadUrl}/${encodeURIComponent(amiibo.path)}`;
-    
-    // Work out local destination folder on Allmiibo
-    const shortCategory = getCleanCategoryFolder(category);
-    const destinationFolder = joinPaths("E:/amiibo", shortCategory);
-    
-    const cleanFilename = sanitizeName(amiibo.name) + ".bin";
-    const remotePath = joinPaths(destinationFolder, cleanFilename);
-    
-    showToast(`Iniciando transferencia de ${cleanFilename}...`);
-    logEvent(`Descargando de GitHub: ${githubRawUrl}`);
-    
-    try {
-        // 1. Fetch file from GitHub
-        const response = await fetch(githubRawUrl);
-        if (!response.ok) throw new Error("No se pudo descargar el archivo binario del servidor.");
-        const blob = await response.blob();
-        
-        // 2. Ensure folder on Allmiibo
-        logEvent(`Verificando carpeta destino en dispositivo: ${destinationFolder}`);
-        if (state.client instanceof DevMockClient) {
-            await state.client.createFolder(destinationFolder);
-        } else {
-            // Recreate directories if needed
-            await state.client.createFolder("E:/amiibo").catch(() => {});
-            await state.client.createFolder(destinationFolder).catch(() => {});
-        }
-        
-        // 3. Upload raw bytes to BLE
-        logEvent(`Subiendo binario directamente al Allmiibo en: ${remotePath}`);
-        
-        if (state.client instanceof DevMockClient) {
-            await state.client.uploadFile(remotePath, blob, () => {}, null);
-        } else {
-            const openRes = await state.client.openFile(remotePath, "w");
-            if (!openRes.ok) throw new Error(openRes.error);
-            const fileId = openRes.fileId;
-            
-            try {
-                const totalSize = blob.size;
-                let offset = 0;
-                const chunkSize = state.client.maxChunkSize;
-                
-                while (offset < totalSize) {
-                    const end = Math.min(offset + chunkSize, totalSize);
-                    const chunk = new Uint8Array(await blob.slice(offset, end).arrayBuffer());
-                    
-                    const writeRes = await state.client.writeFileChunk(fileId, chunk);
-                    if (!writeRes.ok) throw new Error(writeRes.error);
-                    
-                    offset = end;
-                }
-            } finally {
-                await state.client.closeFile(fileId).catch(() => {});
-            }
-        }
-        
-        showToast(`${cleanFilename} instalado correctamente en el Allmiibo!`);
-        updateStorageBar();
-        if (state.currentPath === destinationFolder || state.currentPath === "E:/" || state.currentPath === "E:/amiibo") {
-            refreshExplorer();
-        }
-    } catch (err) {
-        showToast(`Fallo en la instalación: ${err.message}`, "error");
-        logEvent(`Error al flashear desde catálogo: ${err.message}`);
-    }
 }
 
 // --- Modals Handlers ---
@@ -3647,7 +3581,7 @@ el.btnInstallConfirm.addEventListener("click", async () => {
     
     const queueItems = [];
     
-    // 1. Create base target folder
+    // 1. Create target folder (e.g. E:/amiibo/AC_Series_1 or E:/amiibo/Zelda_BotW)
     queueItems.push({
         kind: "folder",
         localPath: sanitizedFolder,
@@ -3655,43 +3589,13 @@ el.btnInstallConfirm.addEventListener("click", async () => {
         status: "pending"
     });
     
-    // 2. Collect unique subfolders from items, then create them
-    const uniqueSubFolders = new Set();
-    _activeInstallList.forEach(item => {
-        if (item.amiibo.subPath) {
-            const shortSub = cleanSubPath(item.amiibo.subPath);
-            const subParts = shortSub.split("/").filter(Boolean);
-            let current = "";
-            for (const part of subParts) {
-                current = current ? `${current}/${part}` : part;
-                uniqueSubFolders.add(current);
-            }
-        }
-    });
-    // Sort subfolders by depth so parents are created first
-    const sortedSubFolders = Array.from(uniqueSubFolders).sort((a, b) => a.split("/").length - b.split("/").length);
-    for (const sub of sortedSubFolders) {
-        queueItems.push({
-            kind: "folder",
-            localPath: sub,
-            remotePath: joinPaths(destinationFolder, sub),
-            status: "pending"
-        });
-    }
-    
-    // 3. Add each file download/flash item with strict 58-byte path limit & deduplication
+    // 2. Add each file download/flash item directly into the target folder (1 level under E:/amiibo/)
     const addedRemotePaths = new Set();
     _activeInstallList.forEach(item => {
         const cleanFilename = sanitizeName(item.amiibo.name) + ".bin";
-        let rawRemotePath;
-        if (item.amiibo.subPath) {
-            const shortSub = cleanSubPath(item.amiibo.subPath);
-            rawRemotePath = joinPaths(destinationFolder, shortSub, cleanFilename);
-        } else {
-            rawRemotePath = joinPaths(destinationFolder, cleanFilename);
-        }
-        
+        const rawRemotePath = joinPaths(destinationFolder, cleanFilename);
         const finalRemotePath = fitPathToHardwareLimit(rawRemotePath);
+        
         if (addedRemotePaths.has(finalRemotePath)) return;
         addedRemotePaths.add(finalRemotePath);
         
@@ -3714,18 +3618,16 @@ el.btnInstallConfirm.addEventListener("click", async () => {
     // Clear selection
     state.selectedCatalogue.clear();
     updateCatalogueSelectionUI();
-    
-    // Close modal
     el.modalInstall.classList.remove("active");
     
-    // Add to upload queue and start upload
-    state.uploadQueue = queueItems;
+    // Switch to local tab and append items to upload queue
+    document.querySelector('[data-tab="local-tab"]').click();
+    state.uploadQueue = state.uploadQueue.concat(queueItems);
     renderUploadQueue();
     
-    // Switch to Local tab
-    document.querySelector('[data-tab="local-tab"]').click();
+    showToast(`Se agregaron ${queueItems.length} elementos a la cola de subida.`);
     
-    // Trigger queue run
+    // Automatically trigger queue processing
     runQueueUpload();
 });
 

@@ -1,20 +1,25 @@
+html {
+    color-scheme: dark;
+    background-color: #090d16;
+}
+
 /* === Global Styles & Variables === */
 :root {
-    --bg-primary: #f8fafc;
-    --bg-card: #ffffff;
-    --border-color: #e2e8f0;
-    --text-primary: #0f172a;
-    --text-secondary: #475569;
-    --text-muted: #94a3b8;
+    --bg-primary: #0f172a;
+    --bg-card: #1e293b;
+    --border-color: #334155;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
     
     --primary: #10b981; /* Emerald */
-    --primary-hover: #059669;
-    --primary-light: #ecfdf5;
+    --primary-hover: #34d399;
+    --primary-light: #064e3b;
     
-    --warning: #f59e0b; /* Amber */
-    --danger: #ef4444; /* Rose */
-    --danger-hover: #dc2626;
-    --danger-light: #fef2f2;
+    --warning: #fbbf24; /* Amber */
+    --danger: #f87171; /* Red */
+    --danger-hover: #ef4444;
+    --danger-light: #450a0a;
     
     --sidebar-width: 320px;
     --transition-speed: 0.2s;
@@ -29,16 +34,17 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    background-color: var(--bg-primary);
+    background-color: #090d16;
     color: var(--text-primary);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 /* === Layout === */
 header {
-    background-color: #ffffff;
+    background-color: var(--bg-card);
     border-bottom: 1px solid var(--border-color);
     padding: 16px 24px;
     display: flex;
@@ -47,6 +53,9 @@ header {
     position: sticky;
     top: 0;
     z-index: 100;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
 }
 
 .brand {
@@ -88,7 +97,7 @@ header {
 }
 
 .tab-btn:hover {
-    background-color: #f1f5f9;
+    background-color: var(--bg-primary);
     color: var(--text-primary);
 }
 
@@ -101,12 +110,16 @@ header {
     display: flex;
     flex: 1;
     position: relative;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    background-color: var(--bg-primary);
 }
 
 /* === Sidebar (Device Panel) === */
 aside.device-sidebar {
     width: var(--sidebar-width);
-    background-color: #ffffff;
+    background-color: var(--bg-card);
     border-right: 1px solid var(--border-color);
     padding: 24px;
     display: flex;
@@ -124,7 +137,7 @@ aside.device-sidebar {
 }
 
 .connection-card {
-    background-color: #f8fafc;
+    background-color: var(--bg-primary);
     border: 1px solid var(--border-color);
     border-radius: 12px;
     padding: 16px;
@@ -189,19 +202,19 @@ aside.device-sidebar {
 }
 
 .btn-secondary {
-    background-color: #f1f5f9;
+    background-color: var(--bg-card);
     border-color: var(--border-color);
     color: var(--text-secondary);
 }
 
 .btn-secondary:hover {
-    background-color: #e2e8f0;
+    background-color: var(--border-color);
     color: var(--text-primary);
 }
 
 .btn-danger {
     background-color: var(--danger-light);
-    border-color: #fee2e2;
+    border-color: transparent;
     color: var(--danger);
 }
 
@@ -363,7 +376,7 @@ aside.device-sidebar {
     border-radius: 12px;
     padding: 40px;
     text-align: center;
-    background-color: white;
+    background-color: var(--bg-card);
     cursor: pointer;
     transition: all var(--transition-speed);
     display: flex;
@@ -390,7 +403,7 @@ aside.device-sidebar {
 
 /* File lists table */
 .table-container {
-    background-color: white;
+    background-color: var(--bg-card);
     border: 1px solid var(--border-color);
     border-radius: 12px;
     overflow: hidden;
@@ -408,14 +421,14 @@ table.file-table th, table.file-table td {
 }
 
 table.file-table th {
-    background-color: #f8fafc;
+    background-color: var(--bg-primary);
     font-weight: 600;
     font-size: 0.85rem;
     color: var(--text-secondary);
 }
 
 table.file-table tr:hover {
-    background-color: #f8fafc;
+    background-color: var(--bg-primary);
 }
 
 .file-row-name-container {
@@ -482,6 +495,8 @@ table.file-table tr:hover {
     border-radius: 8px;
     font-size: 0.9rem;
     outline: none;
+    background-color: var(--bg-card);
+    color: var(--text-primary);
 }
 
 .search-input:focus {
@@ -493,7 +508,8 @@ table.file-table tr:hover {
     padding: 10px 16px;
     border: 1px solid var(--border-color);
     border-radius: 8px;
-    background-color: white;
+    background-color: var(--bg-card);
+    color: var(--text-primary);
     font-size: 0.9rem;
     cursor: pointer;
 }
@@ -505,7 +521,7 @@ table.file-table tr:hover {
 }
 
 .amiibo-card {
-    background-color: white;
+    background-color: var(--bg-card);
     border: 1px solid var(--border-color);
     border-radius: 12px;
     padding: 16px;
@@ -593,10 +609,10 @@ table.file-table tr:hover {
 }
 
 .toast {
-    background-color: #ffffff;
+    background-color: var(--bg-card);
     border-left: 4px solid var(--primary);
     border-radius: 6px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     padding: 12px 20px;
     font-size: 0.85rem;
     font-weight: 600;
@@ -626,7 +642,7 @@ table.file-table tr:hover {
 .modal-overlay {
     position: fixed;
     inset: 0;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.6);
     display: none;
     align-items: center;
     justify-content: center;
@@ -638,7 +654,7 @@ table.file-table tr:hover {
 }
 
 .modal {
-    background-color: white;
+    background-color: var(--bg-card);
     border-radius: 12px;
     width: 100%;
     max-width: 400px;

@@ -713,32 +713,105 @@ function normalizeAmiiboMatchKey(str) {
         .trim();
 }
 
+function loadInstalledRegistry() {
+    try {
+        const raw = localStorage.getItem("allmiibo_registry_v2");
+        return raw ? JSON.parse(raw) : {};
+    } catch {
+        return {};
+    }
+}
+
+function saveInstalledRegistry(registry) {
+    try {
+        localStorage.setItem("allmiibo_registry_v2", JSON.stringify(registry));
+    } catch {}
+}
+
+function extractCoreTokens(str) {
+    if (!str) return [];
+    return str.toLowerCase()
+        .replace(/\.(bin|nfc)$/i, '')
+        .replace(/^\[[^\]]+\]\s*/, '')
+        .replace(/^(ac|zel|smash|splat|mario|mh|pkmn|fe|af|cr|bb|kirby)[\s_]*/i, '')
+        .replace(/[^a-z0-9]/g, ' ')
+        .split(/\s+/)
+        .filter(t => t.length > 1 && !/^\d+$/.test(t));
+}
+
+function correlateDeviceFileWithCatalogue(fullPath, fileName, folderName) {
+    const fileTokens = extractCoreTokens(fileName);
+    if (fileTokens.length === 0) return null;
+    
+    // Search across state.categories for matching catalogue item
+    for (const [catName, amiibos] of Object.entries(state.categories)) {
+        for (const amiibo of amiibos) {
+            const catTokens = extractCoreTokens(amiibo.name);
+            if (catTokens.length > 0 && catTokens.every(t => fileTokens.includes(t))) {
+                state.installedCatalogueMap.set(amiibo.path, fullPath);
+                state.installedRegistry[amiibo.name] = { remotePath: fullPath, originalName: amiibo.name, timestamp: Date.now() };
+                state.installedRegistry[amiibo.path] = { remotePath: fullPath, originalName: amiibo.name, timestamp: Date.now() };
+                return amiibo;
+            }
+        }
+    }
+    return null;
+}
+
 function isAmiiboInstalled(amiibo, targetRemotePath = "") {
     if (!state.isConnected || !amiibo) {
         return false;
     }
     
-    // 1. Direct path match check if targetRemotePath is provided
+    // 1. Direct catalogue map check
+    if (state.installedCatalogueMap && state.installedCatalogueMap.has(amiibo.path)) {
+        return true;
+    }
+    
+    // 2. Direct path match check if targetRemotePath is provided
     if (targetRemotePath && state.installedPathsSet && state.installedPathsSet.has(targetRemotePath.toLowerCase())) {
         return true;
     }
     
-    if (!state.installedAmiiboSet || state.installedAmiiboSet.size === 0) {
-        return false;
+    // 3. Persistent Registry check
+    if (state.installedRegistry && (state.installedRegistry[amiibo.name] || state.installedRegistry[amiibo.path])) {
+        return true;
     }
     
-    const clean = sanitizeName(amiibo.name);
-    const key1 = normalizeAmiiboMatchKey(amiibo.name);
-    const key2 = normalizeAmiiboMatchKey(clean);
-    const key3 = clean.toLowerCase();
-    const key4 = (clean + ".bin").toLowerCase();
-    const cleanNoLead = clean.replace(/^[\d_ -]+/, '').toLowerCase();
+    // 4. Normalized key set
+    if (state.installedAmiiboSet && state.installedAmiiboSet.size > 0) {
+        const clean = sanitizeName(amiibo.name);
+        const key1 = normalizeAmiiboMatchKey(amiibo.name);
+        const key2 = normalizeAmiiboMatchKey(clean);
+        const key3 = clean.toLowerCase();
+        const key4 = (clean + ".bin").toLowerCase();
+        const cleanNoLead = clean.replace(/^[\d_ -]+/, '').toLowerCase();
+        
+        if (state.installedAmiiboSet.has(key1) || 
+            state.installedAmiiboSet.has(key2) || 
+            state.installedAmiiboSet.has(key3) || 
+            state.installedAmiiboSet.has(key4) ||
+            (cleanNoLead && state.installedAmiiboSet.has(cleanNoLead))) {
+            return true;
+        }
+    }
     
-    return state.installedAmiiboSet.has(key1) || 
-           state.installedAmiiboSet.has(key2) || 
-           state.installedAmiiboSet.has(key3) || 
-           state.installedAmiiboSet.has(key4) ||
-           (cleanNoLead && state.installedAmiiboSet.has(cleanNoLead));
+    // 5. Core tokens check against installed paths
+    if (state.installedPathsSet && state.installedPathsSet.size > 0) {
+        const catTokens = extractCoreTokens(amiibo.name);
+        if (catTokens.length > 0) {
+            for (const path of state.installedPathsSet) {
+                const pathFile = path.split('/').pop().replace(/\.bin$/i, '');
+                const fileTokens = extractCoreTokens(pathFile);
+                if (fileTokens.length > 0 && catTokens.every(t => fileTokens.includes(t))) {
+                    state.installedCatalogueMap.set(amiibo.path, path);
+                    return true;
+                }
+            }
+        }
+    }
+    
+    return false;
 }
 
 let _isScanningInstalled = false;
@@ -747,6 +820,7 @@ async function scanInstalledAmiibos() {
         state.installedAmiiboSet.clear();
         state.installedPathsSet.clear();
         state.existingFoldersSet.clear();
+        state.installedCatalogueMap.clear();
         renderOnlineCatalogue();
         return;
     }
@@ -759,67 +833,53 @@ async function scanInstalledAmiibos() {
         const foundPaths = new Set();
         const foundFolders = new Set();
         
-        async function traverse(dirPath, depth = 0) {
-            if (depth > 3) return;
-            foundFolders.add(dirPath.toLowerCase().replace(/\/+$/, ''));
-            const res = await state.client.readFolder(dirPath);
-            if (!res || !res.ok || !res.data) return;
+        // Scan folder queue using BFS to guarantee exhaustive traversal
+        const folderQueue = ["E:/", "E:/amiibo"];
+        const visited = new Set();
+        
+        while (folderQueue.length > 0) {
+            const dirPath = folderQueue.shift();
+            const normDir = dirPath.toLowerCase().replace(/\/+$/, '');
+            if (visited.has(normDir)) continue;
+            visited.add(normDir);
+            foundFolders.add(normDir);
             
-            for (const item of res.data) {
-                const fullItemPath = joinPaths(dirPath, item.name);
-                if (item.type === "DIR") {
-                    foundFolders.add(fullItemPath.toLowerCase().replace(/\/+$/, ''));
-                    // Skip save directory from deep file scanning
-                    if (item.name.toLowerCase() === "save") continue;
-                    await traverse(fullItemPath, depth + 1);
-                } else if (item.name.toLowerCase().endsWith(".bin")) {
-                    const rawName = item.name.toLowerCase();
-                    const cleanItem = item.name.replace(/\.bin$/i, '');
-                    
-                    foundPaths.add(fullItemPath.toLowerCase());
-                    found.add(rawName);
-                    found.add(cleanItem.toLowerCase());
-                    
-                    const norm1 = normalizeAmiiboMatchKey(item.name);
-                    if (norm1) found.add(norm1);
-                    
-                    const norm2 = normalizeAmiiboMatchKey(cleanItem);
-                    if (norm2) found.add(norm2);
-                    
-                    const noLeadNum = cleanItem.replace(/^[\d_ -]+/, '');
-                    if (noLeadNum) {
-                        found.add(normalizeAmiiboMatchKey(noLeadNum));
-                        found.add(noLeadNum.toLowerCase());
-                    }
-                    
-                    const sanitized = sanitizeName(item.name).toLowerCase();
-                    if (sanitized) {
-                        found.add(sanitized);
-                        const sanitizedNoLead = sanitized.replace(/^[\d_ -]+/, '');
-                        if (sanitizedNoLead) found.add(sanitizedNoLead);
+            try {
+                const res = await state.client.readFolder(dirPath);
+                if (res && res.ok && res.data) {
+                    for (const item of res.data) {
+                        const fullItemPath = joinPaths(dirPath, item.name);
+                        const normItemPath = fullItemPath.toLowerCase().replace(/\/+$/, '');
+                        
+                        if (item.type === "DIR") {
+                            foundFolders.add(normItemPath);
+                            if (item.name.toLowerCase() !== "save" && !visited.has(normItemPath)) {
+                                folderQueue.push(fullItemPath);
+                            }
+                        } else if (item.name.toLowerCase().endsWith(".bin")) {
+                            foundPaths.add(fullItemPath.toLowerCase());
+                            found.add(item.name.toLowerCase());
+                            found.add(item.name.replace(/\.bin$/i, '').toLowerCase());
+                            
+                            const normKey = normalizeAmiiboMatchKey(item.name);
+                            if (normKey) found.add(normKey);
+                            
+                            // Correlate with catalogue items
+                            correlateDeviceFileWithCatalogue(fullItemPath, item.name, dirPath.split("/").pop());
+                        }
                     }
                 }
+            } catch (err) {
+                console.warn(`Error scanning folder ${dirPath}:`, err);
             }
         }
-        
-        await traverse("E:/");
-        
-        // Also ensure E:/amiibo subdirectories are traversed
-        try {
-            const amiiboRes = await state.client.readFolder("E:/amiibo");
-            if (amiiboRes && amiiboRes.ok && amiiboRes.data) {
-                for (const sub of amiiboRes.data) {
-                    if (sub.type === "DIR" && sub.name.toLowerCase() !== "save") {
-                        await traverse(joinPaths("E:/amiibo", sub.name), 1);
-                    }
-                }
-            }
-        } catch(e) {}
         
         state.installedAmiiboSet = found;
         state.installedPathsSet = foundPaths;
         state.existingFoldersSet = foundFolders;
-        logEvent(`Escaneo completado: ${foundPaths.size} archivos .bin y ${foundFolders.size} carpetas indexadas.`);
+        saveInstalledRegistry(state.installedRegistry);
+        
+        logEvent(`Escaneo completado: ${foundPaths.size} archivos .bin, ${foundFolders.size} carpetas, ${state.installedCatalogueMap.size} Amiibos del catálogo asociados.`);
         renderOnlineCatalogue();
     } catch (err) {
         console.warn("Scan installed amiibos error:", err);
@@ -1466,6 +1526,8 @@ const state = {
     installedAmiiboSet: new Set(), // Set of normalized names/keys currently installed on device
     installedPathsSet: new Set(), // Set of exact lowercase remote paths on device (e.g. "e:/amiibo/boxboy/qbby.bin")
     existingFoldersSet: new Set(), // Set of exact lowercase directory paths on device (e.g. "e:/amiibo/boxboy")
+    installedCatalogueMap: new Map(), // Map of catalogue item path -> device remote path
+    installedRegistry: loadInstalledRegistry(), // Persistent association registry
     abortUpload: false, // Flag to cancel running upload queue
     lang: localStorage.getItem("allmiibo_lang") || "es" // Language: "es" or "en"
 };

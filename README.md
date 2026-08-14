@@ -1,6 +1,6 @@
 # Allmiibo Web Manager & Vault (Gestor Web Allmiibo)
 
-🌐 **Sitio Web Oficial / Live Web App**: 👉 <a href="https://amiibo.aolabs.cl/" target="_blank" rel="noopener noreferrer"><strong>https://amiibo.aolabs.cl/</strong></a>  
+🌐 **Sitio Web Oficial / Live Web App**: 👉 <a href="https://allmiibo.aolabs.cl/" target="_blank" rel="noopener noreferrer"><strong>https://allmiibo.aolabs.cl/</strong></a>  
 🏢 **AO Labs Chile**: 👉 <a href="https://aolabs.cl/" target="_blank" rel="noopener noreferrer"><strong>https://aolabs.cl/</strong></a>  
 ☕ **Apoyar el proyecto / Support on Ko-fi**: 👉 <a href="https://ko-fi.com/aolabs" target="_blank" rel="noopener noreferrer"><img src="https://ko-fi.com/img/githubbutton_sm.svg" alt="Buy Me a Coffee at ko-fi.com" height="28" style="vertical-align: middle;"></a>
 
@@ -12,7 +12,7 @@
 
 Un gestor web moderno, intuitivo y responsivo para administrar archivos Amiibo en dispositivos **Allmiibo** / **Pixl.js** a través de **Web Bluetooth (Web BLE)**. Permite la transferencia inalámbrica de archivos, organización automática de carpetas, actualización de firmware por DFU y descarga automática de claves de cifrado directamente desde el navegador sin instalar aplicaciones adicionales ni usar cables.
 
-👉 **Enlace de acceso a la web**: <a href="https://amiibo.aolabs.cl/" target="_blank" rel="noopener noreferrer">https://amiibo.aolabs.cl/</a>  
+👉 **Enlace de acceso a la web**: <a href="https://allmiibo.aolabs.cl/" target="_blank" rel="noopener noreferrer">https://allmiibo.aolabs.cl/</a>  
 🐙 **Repositorio en GitHub**: <a href="https://github.com/AO-Labs-Chile/allmiibo-manager" target="_blank" rel="noopener noreferrer">https://github.com/AO-Labs-Chile/allmiibo-manager</a>
 
 > [!IMPORTANT]
@@ -36,7 +36,7 @@ Un gestor web moderno, intuitivo y responsivo para administrar archivos Amiibo e
 
 ## 🛠️ Guía de Uso
 
-1.  Abre la aplicación web en <a href="https://amiibo.aolabs.cl/" target="_blank" rel="noopener noreferrer">https://amiibo.aolabs.cl/</a>.
+1.  Abre la aplicación web en <a href="https://allmiibo.aolabs.cl/" target="_blank" rel="noopener noreferrer">https://allmiibo.aolabs.cl/</a>.
 2.  Haz clic en **Conectar Allmiibo** (asegúrate de tener el Bluetooth activado).
 3.  Selecciona tu Allmiibo en la ventana emergente de emparejamiento.
 4.  Si es tu primera vez:
@@ -58,7 +58,7 @@ Desarrollado con ♥ por **AO Labs Chile** (<a href="https://aolabs.cl/" target=
 
 A modern, intuitive, and responsive web manager designed to administer Amiibo files on **Allmiibo** / **Pixl.js** devices via **Web Bluetooth (Web BLE)**. It allows seamless wireless file transfers, automatic folder categorization, OTA DFU firmware updates, and automatic encryption key setup directly from your browser without cables or extra software.
 
-👉 **Direct Web App Link**: <a href="https://amiibo.aolabs.cl/" target="_blank" rel="noopener noreferrer">https://amiibo.aolabs.cl/</a>  
+👉 **Direct Web App Link**: <a href="https://allmiibo.aolabs.cl/" target="_blank" rel="noopener noreferrer">https://allmiibo.aolabs.cl/</a>  
 🐙 **GitHub Repository**: <a href="https://github.com/AO-Labs-Chile/allmiibo-manager" target="_blank" rel="noopener noreferrer">https://github.com/AO-Labs-Chile/allmiibo-manager</a>
 
 > [!IMPORTANT]
@@ -82,7 +82,7 @@ A modern, intuitive, and responsive web manager designed to administer Amiibo fi
 
 ## 🛠️ How to Use
 
-1.  Open the web application at <a href="https://amiibo.aolabs.cl/" target="_blank" rel="noopener noreferrer">https://amiibo.aolabs.cl/</a>.
+1.  Open the web application at <a href="https://allmiibo.aolabs.cl/" target="_blank" rel="noopener noreferrer">https://allmiibo.aolabs.cl/</a>.
 2.  Click **Conectar Allmiibo** (ensure Bluetooth is enabled on your device).
 3.  Select your Allmiibo device from the browser pairing popup.
 4.  If configuring for the first time:

@@ -34,30 +34,39 @@
         <div class="tabs-nav">
             <button class="tab-btn active" data-tab="local-tab">
                 <span class="material-symbols-rounded" style="vertical-align: middle; margin-right: 4px;">folder_open</span>
-                Explorador Local
+                <span data-i18n="tab_local">Explorador Local</span>
             </button>
             <button class="tab-btn" data-tab="online-tab">
                 <span class="material-symbols-rounded" style="vertical-align: middle; margin-right: 4px;">storefront</span>
-                Catálogo Online
+                <span data-i18n="tab_online">Catálogo Online</span>
             </button>
         </div>
 
         <div style="display: flex; gap: 8px; align-items: center;">
-            <a class="btn btn-secondary" href="https://ko-fi.com/aolabs" target="_blank" rel="noopener noreferrer" title="Apoyar el proyecto en Ko-fi" style="color: #ff5e5b; text-decoration: none;">
+            <!-- Language Selector -->
+            <div class="lang-picker-wrap" style="display: flex; align-items: center; gap: 4px; background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; padding: 4px 8px;">
+                <span class="material-symbols-rounded" style="font-size: 1.1rem; color: var(--text-muted);">language</span>
+                <select id="lang-select" style="background: transparent; color: var(--text-primary); border: none; font-size: 0.8rem; font-weight: 600; cursor: pointer; outline: none;">
+                    <option value="es">🇪🇸 Español</option>
+                    <option value="en">🇺🇸 English</option>
+                </select>
+            </div>
+
+            <a class="btn btn-secondary" href="https://ko-fi.com/aolabs" target="_blank" rel="noopener noreferrer" title="Apoyar el proyecto en Ko-fi" data-i18n-title="btn_donate_title" style="color: #ff5e5b; text-decoration: none;">
                 <span class="material-symbols-rounded" style="color: #ff5e5b; font-size: 1.1rem;">favorite</span>
-                Donar
+                <span data-i18n="btn_donate">Donar</span>
             </a>
-            <button class="btn btn-secondary" id="btn-help" title="Ayuda e Información">
+            <button class="btn btn-secondary" id="btn-help" title="Ayuda e Información" data-i18n-title="btn_help_title">
                 <span class="material-symbols-rounded">help</span>
-                Ayuda
+                <span data-i18n="btn_help">Ayuda</span>
             </button>
             <button class="btn btn-secondary" id="btn-connect-mock">
                 <span class="material-symbols-rounded">rocket_launch</span>
-                Simulador
+                <span data-i18n="btn_simulator">Simulador</span>
             </button>
             <button class="btn btn-primary" id="btn-connect-ble">
                 <span class="material-symbols-rounded">bluetooth</span>
-                Conectar Allmiibo
+                <span data-i18n="btn_connect">Conectar Allmiibo</span>
             </button>
         </div>
     </header>
@@ -65,35 +74,35 @@
     <div class="main-container">
         <!-- Sidebar: Device details and upload queue -->
         <aside class="device-sidebar">
-            <div class="sidebar-title">Dispositivo</div>
+            <div class="sidebar-title" data-i18n="sidebar_device">Dispositivo</div>
             
             <div class="connection-card">
                 <div class="status-indicator">
                     <div class="status-dot" id="status-dot"></div>
-                    <span id="status-text">Desconectado</span>
+                    <span id="status-text" data-i18n="status_disconnected">Desconectado</span>
                 </div>
                 <div id="device-info" style="font-size: 0.8rem; display: flex; flex-direction: column; gap: 6px; color: var(--text-secondary);" hidden>
                     <div style="font-size: 0.8rem; display: flex; align-items: center; justify-content: space-between; width: 100%;">
-                        <span>Versión: <strong id="info-version">-</strong></span>
+                        <span><span data-i18n="device_version">Versión:</span> <strong id="info-version">-</strong></span>
                         <span id="update-warning-badge" style="display: none; font-size: 0.7rem; background-color: var(--danger-light); color: var(--danger); padding: 2px 6px; border-radius: 4px; font-weight: 700; cursor: pointer;">¡NUEVA!</span>
                     </div>
                     <div style="font-size: 0.8rem; display: flex; align-items: center; justify-content: space-between; width: 100%;">
                         <span>MAC: <strong id="info-mac">-</strong></span>
                         <button class="btn btn-secondary" id="btn-dfu-help" style="padding: 2px 8px; font-size: 0.7rem; height: auto;">
                             <span class="material-symbols-rounded" style="font-size: 0.85rem;">system_update_alt</span>
-                            Actualizar
+                            <span data-i18n="btn_update_fw">Actualizar</span>
                         </button>
                     </div>
                 </div>
                 <button class="btn btn-danger" id="btn-disconnect" style="display: none;">
                     <span class="material-symbols-rounded">logout</span>
-                    Desconectar
+                    <span data-i18n="btn_disconnect">Desconectar</span>
                 </button>
             </div>
 
             <!-- Storage Info -->
             <div class="storage-info" id="storage-container" style="display: none;">
-                <div class="sidebar-title">Almacenamiento (LFS)</div>
+                <div class="sidebar-title" data-i18n="sidebar_storage">Almacenamiento (LFS)</div>
                 <div class="storage-bar-bg">
                     <div class="storage-bar-fill" id="storage-bar"></div>
                 </div>
@@ -105,20 +114,20 @@
                 <!-- Encryption Key Info (key_retail.bin) -->
                 <div class="key-info-container" id="key-info-container" style="border-top: 1px solid var(--border-color); padding-top: 12px; margin-top: 12px;">
                     <div class="sidebar-title" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                        <span>Clave de Cifrado</span>
+                        <span data-i18n="key_title">Clave de Cifrado</span>
                         <span id="key-status-badge" style="font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; font-weight: 700; text-transform: uppercase;">Buscando...</span>
                     </div>
-                    <div style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 8px; line-height: 1.3;">
-                        Se requiere el archivo <code style="font-family: var(--font-mono); font-weight: 600; background: #f1f5f9; padding: 1px 3px; border-radius: 3px;">key_retail.bin</code> (160 bytes) en la raíz para activar la base de datos interna.
+                    <div style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 8px; line-height: 1.3;" data-i18n="key_description">
+                        Se requiere el archivo <code style="font-family: var(--font-mono); font-weight: 600; background: var(--bg-card); padding: 1px 3px; border-radius: 3px;">key_retail.bin</code> (160 bytes) en la raíz para activar la base de datos interna.
                     </div>
                     <div style="display: flex; gap: 8px;">
                         <button class="btn btn-secondary" id="btn-upload-key" style="flex: 1; padding: 6px 6px; font-size: 0.7rem;">
                             <span class="material-symbols-rounded" style="font-size: 0.95rem;">vpn_key</span>
-                            Subir Llave
+                            <span data-i18n="btn_upload_key">Subir Llave</span>
                         </button>
                         <button class="btn btn-secondary" id="btn-auto-key" style="flex: 1; padding: 6px 6px; font-size: 0.7rem;">
                             <span class="material-symbols-rounded" style="font-size: 0.95rem;">cloud_download</span>
-                            Auto-llave
+                            <span data-i18n="btn_auto_key">Auto-llave</span>
                         </button>
                         <input type="file" id="input-key-file" accept=".bin" style="display: none;">
                     </div>
@@ -128,20 +137,20 @@
             <!-- Upload Queue -->
             <div class="queue-container">
                 <div class="sidebar-title" style="display: flex; justify-content: space-between; align-items: center;">
-                    <span>Cola de Subida</span>
+                    <span data-i18n="sidebar_queue">Cola de Subida</span>
                     <span id="queue-progress" style="font-size: 0.75rem; font-weight: 600; color: var(--primary);" hidden>0%</span>
                 </div>
                 <div class="queue-list" id="queue-list">
-                    <div class="queue-empty-msg" id="queue-empty-msg">No hay archivos en cola. Arrastra archivos/carpetas aquí.</div>
+                    <div class="queue-empty-msg" id="queue-empty-msg" data-i18n="queue_empty">No hay archivos en cola. Arrastra archivos/carpetas aquí.</div>
                 </div>
                 <div style="display: flex; gap: 8px; margin-top: 8px;">
                     <button class="btn btn-primary" id="btn-queue-start" style="flex: 1;" disabled>
-                        <span class="material-symbols-rounded">play_arrow</span> Iniciar
+                        <span class="material-symbols-rounded">play_arrow</span> <span data-i18n="btn_queue_start">Iniciar</span>
                     </button>
-                    <button class="btn btn-danger" id="btn-queue-cancel" style="flex: 1; display: none;" title="Cancelar y detener subida">
-                        <span class="material-symbols-rounded">stop_circle</span> Cancelar
+                    <button class="btn btn-danger" id="btn-queue-cancel" style="flex: 1; display: none;" title="Cancelar y detener subida" data-i18n-title="btn_queue_cancel_title">
+                        <span class="material-symbols-rounded">stop_circle</span> <span data-i18n="btn_queue_cancel">Cancelar</span>
                     </button>
-                    <button class="btn btn-secondary" id="btn-queue-clear" disabled title="Limpiar cola">
+                    <button class="btn btn-secondary" id="btn-queue-clear" disabled title="Limpiar cola" data-i18n-title="btn_queue_clear_title">
                         <span class="material-symbols-rounded">delete</span>
                     </button>
                 </div>
@@ -160,26 +169,26 @@
                     
                     <div class="explorer-actions" id="explorer-actions" style="display: none;">
                         <select class="category-filter" id="explorer-view-select" style="padding: 6px 12px; font-size: 0.85rem; height: 36px; cursor: pointer; border: 1px solid var(--border-color); border-radius: 8px; background-color: var(--bg-card); color: var(--primary); font-weight: 600;">
-                            <option value="folders">📁 Vista Carpetas</option>
-                            <option value="gallery">🎨 Galería de Amiibos</option>
+                            <option value="folders" data-i18n="view_folders">📁 Vista Carpetas</option>
+                            <option value="gallery" data-i18n="view_gallery">🎨 Galería de Amiibos</option>
                         </select>
                         <select class="category-filter" id="explorer-sort-select" style="padding: 6px 12px; font-size: 0.85rem; height: 36px; cursor: pointer; border: 1px solid var(--border-color); border-radius: 8px; background-color: var(--bg-card); color: var(--text-primary);">
-                            <option value="name-asc">Nombre (A → Z)</option>
-                            <option value="name-desc">Nombre (Z → A)</option>
-                            <option value="size-asc">Tamaño (Menor primero)</option>
-                            <option value="size-desc">Tamaño (Mayor primero)</option>
+                            <option value="name-asc" data-i18n="sort_name_asc">Nombre (A → Z)</option>
+                            <option value="name-desc" data-i18n="sort_name_desc">Nombre (Z → A)</option>
+                            <option value="size-asc" data-i18n="sort_size_asc">Tamaño (Menor primero)</option>
+                            <option value="size-desc" data-i18n="sort_size_desc">Tamaño (Mayor primero)</option>
                         </select>
-                        <button class="btn btn-secondary" id="btn-toggle-view" title="Cambiar vista">
+                        <button class="btn btn-secondary" id="btn-toggle-view" title="Cambiar vista" data-i18n-title="btn_toggle_view_title">
                             <span class="material-symbols-rounded" id="btn-toggle-view-icon">grid_view</span>
-                            <span id="toggle-view-text">Vista Cuadrícula</span>
+                            <span id="toggle-view-text" data-i18n="btn_toggle_grid">Vista Cuadrícula</span>
                         </button>
                         <button class="btn btn-secondary" id="btn-new-folder">
                             <span class="material-symbols-rounded">create_new_folder</span>
-                            Nueva Carpeta
+                            <span data-i18n="btn_new_folder">Nueva Carpeta</span>
                         </button>
-                        <button class="btn btn-danger" id="btn-format" title="Eliminar todos los Amiibos del dispositivo">
+                        <button class="btn btn-danger" id="btn-format" title="Eliminar todos los Amiibos del dispositivo" data-i18n-title="btn_format_title">
                             <span class="material-symbols-rounded">delete_sweep</span>
-                            Borrar Amiibos
+                            <span data-i18n="btn_format">Borrar Amiibos</span>
                         </button>
                     </div>
                 </div>
@@ -200,14 +209,14 @@
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>Nombre</th>
-                                <th>Tamaño</th>
-                                <th style="text-align: right;">Acciones</th>
+                                <th data-i18n="th_name">Nombre</th>
+                                <th data-i18n="th_size">Tamaño</th>
+                                <th style="text-align: right;" data-i18n="th_actions">Acciones</th>
                             </tr>
                         </thead>
                         <tbody id="explorer-table-body">
                             <tr>
-                                <td colspan="4" style="text-align: center; color: var(--text-muted); padding: 32px;">
+                                <td colspan="4" style="text-align: center; color: var(--text-muted); padding: 32px;" data-i18n="table_connect_hint">
                                     Conecta tu Allmiibo para explorar los archivos del dispositivo
                                 </td>
                             </tr>
@@ -224,19 +233,19 @@
                 <div id="upload-actions-bar" style="display: none; padding: 12px 0; display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
                     <button class="btn btn-primary" id="btn-upload-files">
                         <span class="material-symbols-rounded">upload_file</span>
-                        Subir Archivos
+                        <span data-i18n="btn_upload_files">Subir Archivos</span>
                     </button>
                     <button class="btn btn-primary" id="btn-upload-folder">
                         <span class="material-symbols-rounded">folder_zip</span>
-                        Subir Carpeta
+                        <span data-i18n="btn_upload_folder">Subir Carpeta</span>
                     </button>
                 </div>
 
                 <!-- Drag & Drop zone (below file list) -->
                 <div class="file-dropzone" id="file-dropzone" style="margin-top: 8px;">
                     <span class="material-symbols-rounded" style="font-size: 2rem; color: var(--text-muted);">cloud_upload</span>
-                    <div class="dropzone-title" style="font-size: 0.95rem;">Arrastra archivos o carpetas de Amiibos aquí</div>
-                    <div class="dropzone-sub">o haz clic para explorar en tu ordenador</div>
+                    <div class="dropzone-title" style="font-size: 0.95rem;" data-i18n="dropzone_title">Arrastra archivos o carpetas de Amiibos aquí</div>
+                    <div class="dropzone-sub" data-i18n="dropzone_sub">o haz clic para explorar en tu ordenador</div>
                 </div>
             </div>
 
@@ -245,40 +254,39 @@
                 <div class="catalogue-header" style="width: 100%; display: flex; flex-direction: column; gap: 12px;">
                     <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 16px; flex-wrap: wrap;">
                         <div class="search-bar" style="flex: 1; max-width: 400px;">
-                            <input type="text" class="search-input" id="search-amiibo" placeholder="Buscar Amiibo...">
+                            <input type="text" class="search-input" id="search-amiibo" placeholder="Buscar Amiibo..." data-i18n-placeholder="search_placeholder">
                         </div>
                         <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-
                             <select class="category-filter" id="filter-category">
-                                <option value="all">Todas las Series</option>
+                                <option value="all" data-i18n="cat_all">Todas las Series</option>
                             </select>
                         </div>
                     </div>
 
                     <div class="explorer-actions" id="catalogue-actions" style="width: 100%; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-color); padding-top: 12px; margin-top: 4px; flex-wrap: wrap; gap: 8px;">
                         <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-secondary);">
-                            Seleccionados: <span id="cat-selected-count" style="color: var(--primary); font-weight: 700;">0</span>
+                            <span data-i18n="cat_selected_label">Seleccionados:</span> <span id="cat-selected-count" style="color: var(--primary); font-weight: 700;">0</span>
                         </div>
                         <div style="display: flex; gap: 8px; flex-wrap: wrap;">
                             <button class="btn btn-secondary" id="btn-cat-select-all" style="padding: 6px 12px; font-size: 0.85rem;">
                                 <span class="material-symbols-rounded" style="font-size: 1.1rem;">select_all</span>
-                                Seleccionar Todos
+                                <span data-i18n="btn_select_all">Seleccionar Todos</span>
                             </button>
                             <button class="btn btn-secondary" id="btn-cat-deselect-all" style="padding: 6px 12px; font-size: 0.85rem;">
                                 <span class="material-symbols-rounded" style="font-size: 1.1rem;">deselect</span>
-                                Limpiar
+                                <span data-i18n="btn_clear_sel">Limpiar</span>
                             </button>
-                            <button class="btn btn-secondary" id="btn-cat-install-series" style="padding: 6px 12px; font-size: 0.85rem;" title="Instalar toda la serie seleccionada">
+                            <button class="btn btn-secondary" id="btn-cat-install-series" style="padding: 6px 12px; font-size: 0.85rem;" title="Instalar toda la serie seleccionada" data-i18n-title="btn_install_series_title">
                                 <span class="material-symbols-rounded" style="font-size: 1.1rem;">library_add</span>
-                                Instalar Serie
+                                <span data-i18n="btn_install_series">Instalar Serie</span>
                             </button>
-                            <button class="btn btn-secondary" id="btn-cat-sync" style="padding: 6px 12px; font-size: 0.85rem;" title="Sincronizar catálogo con GitHub">
+                            <button class="btn btn-secondary" id="btn-cat-sync" style="padding: 6px 12px; font-size: 0.85rem;" title="Sincronizar catálogo con Internet Archive" data-i18n-title="btn_sync_title">
                                 <span class="material-symbols-rounded" style="font-size: 1.1rem;">sync</span>
-                                Sincronizar
+                                <span data-i18n="btn_sync">Sincronizar</span>
                             </button>
                             <button class="btn btn-primary" id="btn-cat-install" disabled style="padding: 6px 16px; font-size: 0.85rem;">
                                 <span class="material-symbols-rounded" style="font-size: 1.1rem;">download</span>
-                                Instalar Seleccionados
+                                <span data-i18n="btn_install_sel">Instalar Seleccionados</span>
                             </button>
                         </div>
                     </div>
@@ -301,17 +309,17 @@
         <div class="modal" style="max-width: 420px; text-align: center;">
             <div class="modal-header" style="display: flex; align-items: center; gap: 8px; justify-content: center;">
                 <span class="material-symbols-rounded pulse" style="font-size: 1.5rem; color: var(--danger); animation: pulse 1s infinite;">delete_sweep</span>
-                Eliminando Amiibos...
+                <span data-i18n="modal_del_prog_title">Eliminando Amiibos...</span>
             </div>
             <div class="modal-body" style="display: flex; flex-direction: column; gap: 12px; align-items: center;">
                 <div style="width: 100%; height: 4px; background: var(--border-color); border-radius: 2px; overflow: hidden;">
                     <div style="width: 100%; height: 100%; background: var(--danger); border-radius: 2px; animation: pulse 1.5s infinite;"></div>
                 </div>
                 <div style="font-size: 0.85rem; color: var(--text-secondary);">
-                    Eliminando: <strong id="delete-progress-text">...</strong>
+                    <span data-i18n="modal_del_prog_deleting">Eliminando:</span> <strong id="delete-progress-text">...</strong>
                 </div>
                 <div id="delete-progress-counter" style="font-size: 0.8rem; color: var(--text-muted);">0 elementos eliminados...</div>
-                <div style="font-size: 0.75rem; color: var(--text-muted);">No cierres esta página ni desconectes el dispositivo.</div>
+                <div style="font-size: 0.75rem; color: var(--text-muted);" data-i18n="modal_del_prog_warning">No cierres esta página ni desconectes el dispositivo.</div>
             </div>
         </div>
     </div>
@@ -319,15 +327,15 @@
     <!-- Modal: Nueva Carpeta -->
     <div class="modal-overlay" id="modal-folder">
         <div class="modal">
-            <div class="modal-header">Crear Nueva Carpeta</div>
+            <div class="modal-header" data-i18n="modal_new_folder_title">Crear Nueva Carpeta</div>
             <div class="modal-body">
-                <label for="folder-name-input" style="font-size: 0.85rem; font-weight: 600; color: var(--text-secondary);">Nombre de la carpeta:</label>
-                <input type="text" class="modal-input" id="folder-name-input" placeholder="p. ej. Zelda">
+                <label for="folder-name-input" style="font-size: 0.85rem; font-weight: 600; color: var(--text-secondary);" data-i18n="modal_new_folder_label">Nombre de la carpeta:</label>
+                <input type="text" class="modal-input" id="folder-name-input" placeholder="p. ej. Zelda" data-i18n-placeholder="modal_new_folder_placeholder">
                 <div id="folder-name-error" style="color: var(--danger); font-size: 0.8rem; display: none;"></div>
             </div>
             <div class="modal-actions">
-                <button class="btn btn-secondary" id="btn-folder-cancel">Cancelar</button>
-                <button class="btn btn-primary" id="btn-folder-confirm">Crear</button>
+                <button class="btn btn-secondary" id="btn-folder-cancel" data-i18n="btn_cancel">Cancelar</button>
+                <button class="btn btn-primary" id="btn-folder-confirm" data-i18n="btn_create">Crear</button>
             </div>
         </div>
     </div>
@@ -335,15 +343,15 @@
     <!-- Modal: Renombrar -->
     <div class="modal-overlay" id="modal-rename">
         <div class="modal">
-            <div class="modal-header">Renombrar Elemento</div>
+            <div class="modal-header" data-i18n="modal_rename_title">Renombrar Elemento</div>
             <div class="modal-body">
-                <label for="rename-input" style="font-size: 0.85rem; font-weight: 600; color: var(--text-secondary);">Nuevo nombre:</label>
+                <label for="rename-input" style="font-size: 0.85rem; font-weight: 600; color: var(--text-secondary);" data-i18n="modal_rename_label">Nuevo nombre:</label>
                 <input type="text" class="modal-input" id="rename-input">
                 <div id="rename-error" style="color: var(--danger); font-size: 0.8rem; display: none;"></div>
             </div>
             <div class="modal-actions">
-                <button class="btn btn-secondary" id="btn-rename-cancel">Cancelar</button>
-                <button class="btn btn-primary" id="btn-rename-confirm">Renombrar</button>
+                <button class="btn btn-secondary" id="btn-rename-cancel" data-i18n="btn_cancel">Cancelar</button>
+                <button class="btn btn-primary" id="btn-rename-confirm" data-i18n="btn_rename">Renombrar</button>
             </div>
         </div>
     </div>
@@ -351,13 +359,13 @@
     <!-- Modal: Confirmar Eliminación -->
     <div class="modal-overlay" id="modal-delete">
         <div class="modal">
-            <div class="modal-header">¿Eliminar elemento?</div>
+            <div class="modal-header" data-i18n="modal_delete_title">¿Eliminar elemento?</div>
             <div class="modal-body">
                 <p id="delete-message" style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.4;"></p>
             </div>
             <div class="modal-actions">
-                <button class="btn btn-secondary" id="btn-delete-cancel">Cancelar</button>
-                <button class="btn btn-danger" id="btn-delete-confirm">Eliminar</button>
+                <button class="btn btn-secondary" id="btn-delete-cancel" data-i18n="btn_cancel">Cancelar</button>
+                <button class="btn btn-danger" id="btn-delete-confirm" data-i18n="btn_delete">Eliminar</button>
             </div>
         </div>
     </div>
@@ -367,10 +375,10 @@
         <div class="modal" style="max-width: 500px;">
             <div class="modal-header" style="color: var(--warning); display: flex; align-items: center; gap: 8px;">
                 <span class="material-symbols-rounded">warning</span>
-                Advertencia de Ruta Excedida
+                <span data-i18n="modal_warning_title">Advertencia de Ruta Excedida</span>
             </div>
             <div class="modal-body">
-                <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.4; margin-bottom: 12px;">
+                <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.4; margin-bottom: 12px;" data-i18n="modal_warning_body">
                     Los siguientes archivos o carpetas superan el límite de **63 bytes** de longitud de ruta o **47 bytes** de nombre de archivo y serán omitidos o recortados:
                 </p>
                 <ul id="warning-list" style="font-size: 0.8rem; font-family: var(--font-mono); color: var(--danger); background-color: var(--danger-light); padding: 12px; border-radius: 8px; max-height: 200px; overflow-y: auto; list-style-type: none; display: flex; flex-direction: column; gap: 6px;">
@@ -378,7 +386,7 @@
                 </ul>
             </div>
             <div class="modal-actions">
-                <button class="btn btn-primary" id="btn-warning-close">Entendido</button>
+                <button class="btn btn-primary" id="btn-warning-close" data-i18n="btn_understood">Entendido</button>
             </div>
         </div>
     </div>
@@ -386,18 +394,18 @@
     <!-- Modal: Instalar en Carpeta -->
     <div class="modal-overlay" id="modal-install">
         <div class="modal">
-            <div class="modal-header">Instalar Amiibos Seleccionados</div>
+            <div class="modal-header" data-i18n="modal_install_title">Instalar Amiibos Seleccionados</div>
             <div class="modal-body">
                 <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 8px;">
-                    Se instalarán <strong id="install-count-text">0</strong> Amiibos en la siguiente carpeta de tu Allmiibo:
+                    <span data-i18n="modal_install_text_1">Se instalarán</span> <strong id="install-count-text">0</strong> <span data-i18n="modal_install_text_2">Amiibos en la siguiente carpeta de tu Allmiibo:</span>
                 </p>
-                <label for="install-folder-input" style="font-size: 0.85rem; font-weight: 600; color: var(--text-secondary);">Carpeta de Destino:</label>
-                <input type="text" class="modal-input" id="install-folder-input" placeholder="p. ej. Smash">
+                <label for="install-folder-input" style="font-size: 0.85rem; font-weight: 600; color: var(--text-secondary);" data-i18n="modal_install_folder_label">Carpeta de Destino:</label>
+                <input type="text" class="modal-input" id="install-folder-input" placeholder="p. ej. Smash" data-i18n-placeholder="modal_install_folder_placeholder">
                 <div id="install-folder-error" style="color: var(--danger); font-size: 0.8rem; display: none;"></div>
             </div>
             <div class="modal-actions">
-                <button class="btn btn-secondary" id="btn-install-cancel">Cancelar</button>
-                <button class="btn btn-primary" id="btn-install-confirm">Confirmar e Instalar</button>
+                <button class="btn btn-secondary" id="btn-install-cancel" data-i18n="btn_cancel">Cancelar</button>
+                <button class="btn btn-primary" id="btn-install-confirm" data-i18n="btn_install_confirm">Confirmar e Instalar</button>
             </div>
         </div>
     </div>
@@ -405,40 +413,40 @@
     <!-- Modal: Ayuda y Opciones del Dispositivo -->
     <div class="modal-overlay" id="modal-help">
         <div class="modal" style="max-width: 600px; max-height: 85vh; display: flex; flex-direction: column;">
-            <div class="modal-header">Ayuda y Documentación Allmiibo</div>
+            <div class="modal-header" data-i18n="help_title">Ayuda y Documentación Allmiibo</div>
             <div class="modal-body" style="overflow-y: auto; flex: 1; padding-right: 8px;">
                 
                 <h3 style="font-size: 0.95rem; margin-top: 0; color: var(--primary); display: flex; align-items: center; gap: 6px;">
-                    <span class="material-symbols-rounded">settings</span> Opciones del Dispositivo
+                    <span class="material-symbols-rounded">settings</span> <span data-i18n="help_options_title">Opciones del Dispositivo</span>
                 </h3>
                 <ul style="font-size: 0.85rem; color: var(--text-secondary); padding-left: 20px; line-height: 1.5; margin-bottom: 16px; display: flex; flex-direction: column; gap: 8px;">
-                    <li><strong>Emulador de Amiibo:</strong> Permite seleccionar y emular un Amiibo individual guardado en el almacenamiento (archivo <code>.bin</code> o <code>.nfc</code>). El Allmiibo se comportará físicamente ante la consola como esa tarjeta.</li>
-                    <li><strong>Base de datos de Amiibo:</strong> Utiliza la base de datos interna y la clave <code>key_retail.bin</code> para generar y emular Amiibos al vuelo sin necesidad de tener el archivo <code>.bin</code> cargado individualmente.</li>
-                    <li><strong>AmiiboLink:</strong> Modo de enlace especial compatible con la app móvil AmiiboLink para seleccionar y descargar Amiibos de forma rápida mediante Bluetooth.</li>
-                    <li><strong>Emular etiqueta RFID:</strong> Emulación general de etiquetas NFC/RFID estándar para clonación o pruebas más allá de los Amiibos de Nintendo.</li>
-                    <li><strong>Bluetooth:</strong> Activa el Bluetooth para enlazar el dispositivo con este Gestor Web o con aplicaciones móviles para actualizar archivos y claves.</li>
+                    <li><strong data-i18n="help_opt1_title">Emulador de Amiibo:</strong> <span data-i18n="help_opt1_desc">Permite seleccionar y emular un Amiibo individual guardado en el almacenamiento (archivo .bin o .nfc). El Allmiibo se comportará físicamente ante la consola como esa tarjeta.</span></li>
+                    <li><strong data-i18n="help_opt2_title">Base de datos de Amiibo:</strong> <span data-i18n="help_opt2_desc">Utiliza la base de datos interna y la clave key_retail.bin para generar y emular Amiibos al vuelo sin necesidad de tener el archivo .bin cargado individualmente.</span></li>
+                    <li><strong data-i18n="help_opt3_title">AmiiboLink:</strong> <span data-i18n="help_opt3_desc">Modo de enlace especial compatible con la app móvil AmiiboLink para seleccionar y descargar Amiibos de forma rápida mediante Bluetooth.</span></li>
+                    <li><strong data-i18n="help_opt4_title">Emular etiqueta RFID:</strong> <span data-i18n="help_opt4_desc">Emulación general de etiquetas NFC/RFID estándar para clonación o pruebas más allá de los Amiibos de Nintendo.</span></li>
+                    <li><strong data-i18n="help_opt5_title">Bluetooth:</strong> <span data-i18n="help_opt5_desc">Activa el Bluetooth para enlazar el dispositivo con este Gestor Web o con aplicaciones móviles para actualizar archivos y claves.</span></li>
                 </ul>
 
                 <h3 style="font-size: 0.95rem; color: var(--primary); display: flex; align-items: center; gap: 6px; border-top: 1px solid var(--border-color); padding-top: 12px;">
-                    <span class="material-symbols-rounded">question_mark</span> Preguntas Frecuentes (FAQ)
+                    <span class="material-symbols-rounded">question_mark</span> <span data-i18n="help_faq_title">Preguntas Frecuentes (FAQ)</span>
                 </h3>
                 <div style="display: flex; flex-direction: column; gap: 12px; font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">
                     <div>
-                        <strong style="color: var(--text-main); display: block; margin-bottom: 2px;">¿Cómo consigo los últimos Amiibos (como Splatoon Raiders)?</strong>
-                        Puedes descargar los últimos archivos <code>.bin</code> desde el Google Drive de la comunidad haciendo clic en <a href="https://drive.google.com/drive/folders/1FmW3dp9XnarJD4NBJ4LHfuzsj54gg_tL" target="_blank" style="color: var(--primary); font-weight: 600; text-decoration: underline;">este enlace</a> y luego subirlos a tu Allmiibo usando el botón <strong>Subir Archivos</strong> en la pestaña del Explorador Local.
+                        <strong style="color: var(--text-main); display: block; margin-bottom: 2px;" data-i18n="help_q1_title">¿Cómo consigo los últimos Amiibos?</strong>
+                        <span data-i18n="help_q1_desc">Puedes explorar la pestaña Catálogo Online para instalar directamente cualquiera de los 1.070 Amiibos de la bóveda de Internet Archive a tu Allmiibo sin descargas manuales.</span>
                     </div>
                     <div>
-                        <strong style="color: var(--text-main); display: block; margin-bottom: 2px;">¿Por qué hay tantos Amiibos de Animal Crossing y algunos sin nombre?</strong>
-                        Animal Crossing cuenta con 400 cartas estándar, las series de Sanrio, Amiibo Festival y las 91 cartas especiales de **Happy Home Designer Items** (que aparecen abajo como <code>[HHD] Items - XX</code>). Estas últimas corresponden a muebles y diseños del juego y no a personajes/aldeanos concretos, por lo que no tienen nombres estándar.
+                        <strong style="color: var(--text-main); display: block; margin-bottom: 2px;" data-i18n="help_q2_title">¿Por qué hay tantos Amiibos de Animal Crossing y algunos sin nombre?</strong>
+                        <span data-i18n="help_q2_desc">Animal Crossing cuenta con 400 cartas estándar, las series de Sanrio, Amiibo Festival y las 91 cartas especiales de Happy Home Designer Items (muebles y diseños).</span>
                     </div>
                     <div>
-                        <strong style="color: var(--text-main); display: block; margin-bottom: 2px;">¿Cómo actualizo la clave key_retail.bin automáticamente?</strong>
-                        Haz clic en el botón <strong>Auto-llave</strong> en la barra lateral. Se descargarán las llaves necesarias de repositorios comunitarios públicos de GitHub y se fusionarán en el archivo de 160 bytes necesario en la raíz del Allmiibo para habilitar la encriptación.
+                        <strong style="color: var(--text-main); display: block; margin-bottom: 2px;" data-i18n="help_q3_title">¿Cómo actualizo la clave key_retail.bin automáticamente?</strong>
+                        <span data-i18n="help_q3_desc">Haz clic en el botón Auto-llave en la barra lateral. Se descargará el archivo oficial de 160 bytes directamente desde Internet Archive y se instalará en la raíz de tu Allmiibo.</span>
                     </div>
                 </div>
             </div>
             <div class="modal-actions" style="margin-top: 16px; border-top: 1px solid var(--border-color); padding-top: 12px;">
-                <button class="btn btn-primary" id="btn-help-close">Cerrar</button>
+                <button class="btn btn-primary" id="btn-help-close" data-i18n="btn_close">Cerrar</button>
             </div>
         </div>
     </div>
@@ -448,25 +456,25 @@
         <div class="modal" style="max-width: 480px;">
             <div class="modal-header" style="display: flex; align-items: center; gap: 8px;">
                 <span class="material-symbols-rounded" style="color: var(--primary);">cloud_download</span>
-                Auto-actualización de Llaves
+                <span data-i18n="modal_autokey_title">Auto-actualización de Llaves</span>
             </div>
             <div class="modal-body">
-                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4; margin-bottom: 12px;">
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4; margin-bottom: 12px;" data-i18n="modal_autokey_body">
                     Se descargará el archivo criptográfico oficial <code>key_retail.bin</code> (160 bytes) desde tu bóveda en Internet Archive y se instalará automáticamente en la raíz de tu Allmiibo.
                 </p>
                 <div style="margin-bottom: 12px;">
-                    <label for="input-key-url" style="font-size: 0.75rem; font-weight: 600; color: var(--text-secondary); display: block; margin-bottom: 4px;">URL key_retail.bin (Internet Archive):</label>
+                    <label for="input-key-url" style="font-size: 0.75rem; font-weight: 600; color: var(--text-secondary); display: block; margin-bottom: 4px;" data-i18n="modal_autokey_url_label">URL key_retail.bin (Internet Archive):</label>
                     <input type="text" class="modal-input" id="input-key-url" style="font-size: 0.75rem; padding: 6px;" value="https://archive.org/download/nintendo-amiibo-nfc-vault/%21Essential%20Files.zip/%21Essential%20Files%2Fkey_retail.bin">
                 </div>
                 <div id="auto-key-error" style="color: var(--danger); font-size: 0.8rem; display: none; margin-bottom: 12px;"></div>
                 <div id="auto-key-progress" style="color: var(--primary); font-size: 0.8rem; font-weight: 600; display: none; margin-bottom: 12px; align-items: center; gap: 8px;">
                     <span class="material-symbols-rounded pulse" style="font-size: 1rem; animation: pulse 1s infinite;">sync</span>
-                    Descargando e instalando llave en el dispositivo...
+                    <span data-i18n="modal_autokey_progress">Descargando e instalando llave en el dispositivo...</span>
                 </div>
             </div>
             <div class="modal-actions">
-                <button class="btn btn-secondary" id="btn-auto-key-cancel">Cancelar</button>
-                <button class="btn btn-primary" id="btn-auto-key-confirm">Descargar e Instalar</button>
+                <button class="btn btn-secondary" id="btn-auto-key-cancel" data-i18n="btn_cancel">Cancelar</button>
+                <button class="btn btn-primary" id="btn-auto-key-confirm" data-i18n="btn_download_install">Descargar e Instalar</button>
             </div>
         </div>
     </div>
@@ -476,62 +484,62 @@
         <div class="modal" style="max-width: 580px; max-height: 85vh; display: flex; flex-direction: column;">
             <div class="modal-header" style="display: flex; align-items: center; gap: 8px;">
                 <span class="material-symbols-rounded" style="color: var(--primary);">system_update_alt</span>
-                Actualización de Firmware (Modo DFU)
+                <span data-i18n="modal_dfu_title">Actualización de Firmware (Modo DFU)</span>
             </div>
             <div class="modal-body" style="overflow-y: auto; flex: 1; padding-right: 8px;">
-                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4; margin-bottom: 12px;">
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4; margin-bottom: 12px;" data-i18n="modal_dfu_intro">
                     El firmware se actualiza de forma inalámbrica a través del **Modo DFU (Device Firmware Update)**. Sigue estos sencillos pasos:
                 </p>
                 
-                <h4 style="font-size: 0.85rem; margin-bottom: 4px; color: var(--text-primary);">Paso 1: Entrar en Modo Actualización (en tu Allmiibo)</h4>
+                <h4 style="font-size: 0.85rem; margin-bottom: 4px; color: var(--text-primary);" data-i18n="dfu_step1_title">Paso 1: Entrar en Modo Actualización (en tu Allmiibo)</h4>
                 <div style="margin-bottom: 12px; display: flex; flex-direction: column; gap: 6px;">
                     <button class="btn btn-danger" id="btn-dfu-trigger" style="padding: 6px 12px; font-size: 0.75rem; width: fit-content;" disabled>
                         <span class="material-symbols-rounded" style="font-size: 1rem;">restart_alt</span>
-                        Reiniciar Allmiibo en modo DFU
+                        <span data-i18n="btn_dfu_reboot">Reiniciar Allmiibo en modo DFU</span>
                     </button>
-                    <span id="dfu-trigger-status" style="font-size: 0.75rem; color: var(--text-muted);">
+                    <span id="dfu-trigger-status" style="font-size: 0.75rem; color: var(--text-muted);" data-i18n="dfu_trigger_hint">
                         (Conéctate primero al Allmiibo para poder enviarle el comando de reinicio automático).
                     </span>
                 </div>
                 <ul style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 12px; padding-left: 20px; line-height: 1.4;">
-                    <li>Alternativamente, en el menú físico de tu Allmiibo, entra a <strong>Settings (Ajustes)</strong> y selecciona <strong>Firmware Update</strong>.</li>
-                    <li>La pantalla del dispositivo cambiará a <em>"DFU Update Waiting..."</em>.</li>
-                    <li><em>(Si el dispositivo no enciende o está colgado: mantén pulsado el botón izquierdo/BTN1 al insertar la pila hasta que en la pantalla ponga DFU)</em>.</li>
+                    <li data-i18n="dfu_step1_alt1">Alternativamente, en el menú físico de tu Allmiibo, entra a <strong>Settings (Ajustes)</strong> y selecciona <strong>Firmware Update</strong>.</li>
+                    <li data-i18n="dfu_step1_alt2">La pantalla del dispositivo cambiará a <em>"DFU Update Waiting..."</em>.</li>
+                    <li data-i18n="dfu_step1_alt3"><em>(Si el dispositivo no enciende o está colgado: mantén pulsado el botón izquierdo/BTN1 al insertar la pila hasta que en la pantalla ponga DFU)</em>.</li>
                 </ul>
 
-                <h4 style="font-size: 0.85rem; margin-bottom: 4px; color: var(--text-primary);">Paso 2: Descargar el Firmware oficial</h4>
-                <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 8px; line-height: 1.4;">
+                <h4 style="font-size: 0.85rem; margin-bottom: 4px; color: var(--text-primary);" data-i18n="dfu_step2_title">Paso 2: Descargar el Firmware oficial</h4>
+                <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 8px; line-height: 1.4;" data-i18n="dfu_step2_desc">
                     Ve al repositorio oficial de solosky en GitHub y descarga el archivo <code>.zip</code> adecuado según tu tipo de pantalla:
                 </p>
                 <a class="btn btn-secondary" href="https://github.com/solosky/pixl.js/releases" target="_blank" rel="noopener noreferrer" style="padding: 6px 12px; font-size: 0.8rem; margin-bottom: 12px; display: inline-flex; width: fit-content;">
                     <span class="material-symbols-rounded" style="font-size: 1rem;">open_in_new</span>
-                    Descargar de solosky/pixl.js
+                    <span data-i18n="btn_dfu_download_repo">Descargar de solosky/pixl.js</span>
                 </a>
                 <ul style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 12px; padding-left: 20px; line-height: 1.4;">
-                    <li>📟 Si tu Allmiibo tiene **Pantalla LCD** (fondo gris claro con texto negro), descarga el archivo: <br><code style="background: #f1f5f9; padding: 1px 4px; border-radius: 3px;">pixjs_ota_lcd_vX.X.X.zip</code></li>
-                    <li>📺 Si tu Allmiibo tiene **Pantalla OLED** (fondo negro con texto azul/amarillo/blanco), descarga el archivo: <br><code style="background: #f1f5f9; padding: 1px 4px; border-radius: 3px;">pixjs_ota_oled_vX.X.X.zip</code></li>
-                    <li style="color: var(--danger); font-weight: 600;">⚠️ ¡Advertencia!: Instalar la versión de pantalla incorrecta la dejará en negro (aunque el chip sigue vivo y puedes repetir el proceso de forma ciega para arreglarlo).</li>
+                    <li>📟 <span data-i18n="dfu_screen_lcd">Si tu Allmiibo tiene <strong>Pantalla LCD</strong> (fondo gris claro con texto negro), descarga el archivo:</span> <br><code style="background: var(--bg-card); padding: 1px 4px; border-radius: 3px;">pixjs_ota_lcd_vX.X.X.zip</code></li>
+                    <li>📺 <span data-i18n="dfu_screen_oled">Si tu Allmiibo tiene <strong>Pantalla OLED</strong> (fondo negro con texto azul/amarillo/blanco), descarga el archivo:</span> <br><code style="background: var(--bg-card); padding: 1px 4px; border-radius: 3px;">pixjs_ota_oled_vX.X.X.zip</code></li>
+                    <li style="color: var(--danger); font-weight: 600;" data-i18n="dfu_screen_warning">⚠️ ¡Advertencia!: Instalar la versión de pantalla incorrecta la dejará en negro (aunque el chip sigue vivo y puedes repetir el proceso de forma ciega para arreglarlo).</li>
                 </ul>
 
-                <h4 style="font-size: 0.85rem; margin-bottom: 4px; color: var(--text-primary);">Paso 3: Transferir el Firmware (Flashear)</h4>
-                <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 8px; line-height: 1.4;">
+                <h4 style="font-size: 0.85rem; margin-bottom: 4px; color: var(--text-primary);" data-i18n="dfu_step3_title">Paso 3: Transferir el Firmware (Flashear)</h4>
+                <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 8px; line-height: 1.4;" data-i18n="dfu_step3_desc">
                     Una vez que el Allmiibo esté en modo DFU y tengas el archivo <code>.zip</code> descargado en tu PC o móvil:
                 </p>
                 <div style="display: flex; gap: 8px; flex-direction: column;">
                     <a class="btn btn-primary" href="https://thegecko.github.io/web-bluetooth-dfu/" target="_blank" rel="noopener noreferrer" style="padding: 8px 12px; font-size: 0.8rem; width: fit-content;">
                         <span class="material-symbols-rounded" style="font-size: 1.1rem;">bolt</span>
-                        Abrir Instalador Web DFU (Navegador PC)
+                        <span data-i18n="btn_open_web_dfu">Abrir Instalador Web DFU (Navegador PC)</span>
                     </a>
-                    <p style="font-size: 0.75rem; color: var(--text-muted); line-height: 1.3;">
+                    <p style="font-size: 0.75rem; color: var(--text-muted); line-height: 1.3;" data-i18n="dfu_step3_instructions">
                         En esa página, pulsa <strong>Connect</strong>, selecciona tu dispositivo (saldrá como <em>pixl dfu</em> o <em>DfuTarg</em>), selecciona tu archivo <code>.zip</code> y pulsa <strong>Update</strong>.
                     </p>
-                    <p style="font-size: 0.75rem; color: var(--text-muted); line-height: 1.3; margin-top: 4px;">
-                        📱 Si estás usando un móvil, puedes usar la app **MTools BLE** (iOS) o **nRF Connect / nRF Device Firmware Update** (Android) para realizar la carga de forma más estable.
+                    <p style="font-size: 0.75rem; color: var(--text-muted); line-height: 1.3; margin-top: 4px;" data-i18n="dfu_mobile_hint">
+                        📱 Si estás usando un móvil, puedes usar la app <strong>MTools BLE</strong> (iOS) o <strong>nRF Connect / nRF Device Firmware Update</strong> (Android) para realizar la carga de forma más estable.
                     </p>
                 </div>
             </div>
             <div class="modal-actions" style="margin-top: 16px; border-top: 1px solid var(--border-color); padding-top: 12px;">
-                <button class="btn btn-primary" id="btn-dfu-close">Cerrar</button>
+                <button class="btn btn-primary" id="btn-dfu-close" data-i18n="btn_close">Cerrar</button>
             </div>
         </div>
     </div>

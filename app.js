@@ -55,6 +55,401 @@ const VFS_ERRORS = {
     [-99]: "Operación no soportada",
 };
 
+// === Internationalization (i18n) Dictionary ===
+const TRANSLATIONS = {
+    es: {
+        tab_local: "Explorador Local",
+        tab_online: "Catálogo Online",
+        btn_donate: "Donar",
+        btn_donate_title: "Apoyar el proyecto en Ko-fi",
+        btn_help: "Ayuda",
+        btn_help_title: "Ayuda e Información",
+        btn_simulator: "Simulador",
+        btn_connect: "Conectar Allmiibo",
+        btn_disconnect: "Desconectar",
+        sidebar_device: "Dispositivo",
+        status_disconnected: "Desconectado",
+        status_connected: "Conectado",
+        status_mock: "Conectado (Simulador)",
+        device_version: "Versión:",
+        btn_update_fw: "Actualizar",
+        badge_update_new: "¡NUEVA!",
+        badge_update_uptodate: "(Al día)",
+        sidebar_storage: "Almacenamiento (LFS)",
+        storage_used_label: "usado",
+        storage_free_label: "libre",
+        key_title: "Clave de Cifrado",
+        key_valid: "VÁLIDA",
+        key_missing: "FALTA",
+        key_searching: "Buscando...",
+        key_description: "Se requiere el archivo key_retail.bin (160 bytes) en la raíz para activar la base de datos interna.",
+        btn_upload_key: "Subir Llave",
+        btn_auto_key: "Auto-llave",
+        sidebar_queue: "Cola de Subida",
+        queue_empty: "No hay archivos en cola. Arrastra archivos/carpetas aquí.",
+        btn_queue_start: "Iniciar",
+        btn_queue_cancel: "Cancelar",
+        btn_queue_cancel_title: "Cancelar y detener subida",
+        btn_queue_clear_title: "Limpiar cola",
+        queue_status_pending: "Pendiente",
+        queue_status_uploading: "Subiendo...",
+        queue_status_done: "Completado",
+        queue_status_error: "Error",
+        queue_status_skipped: "Ignorado",
+        queue_finished: "Cola de transferencia finalizada.",
+        queue_cancelled: "Subida cancelada por el usuario.",
+        
+        view_folders: "📁 Vista Carpetas",
+        view_gallery: "🎨 Galería de Amiibos",
+        sort_name_asc: "Nombre (A → Z)",
+        sort_name_desc: "Nombre (Z → A)",
+        sort_size_asc: "Tamaño (Menor primero)",
+        sort_size_desc: "Tamaño (Mayor primero)",
+        btn_toggle_grid: "Vista Cuadrícula",
+        btn_toggle_list: "Vista Lista",
+        btn_toggle_view_title: "Cambiar vista",
+        btn_new_folder: "Nueva Carpeta",
+        btn_format: "Borrar Amiibos",
+        btn_format_title: "Eliminar todos los Amiibos del dispositivo",
+        th_name: "Nombre",
+        th_size: "Tamaño",
+        th_actions: "Acciones",
+        table_connect_hint: "Conecta tu Allmiibo para explorar los archivos del dispositivo",
+        table_empty_folder: "Esta carpeta está vacía.",
+        btn_upload_files: "Subir Archivos",
+        btn_upload_folder: "Subir Carpeta",
+        dropzone_title: "Arrastra archivos o carpetas de Amiibos aquí",
+        dropzone_sub: "o haz clic para explorar en tu ordenador",
+        folder_items_count: "elementos",
+        folder_item_singular: "elemento",
+        
+        search_placeholder: "Buscar Amiibo...",
+        cat_all: "Todas las Series",
+        cat_all_count: "Todas las Series ({count} Amiibos)",
+        cat_all_in: "⚡ Todo {cat} ({count})",
+        cat_selected_label: "Seleccionados:",
+        btn_select_all: "Seleccionar Todos",
+        btn_clear_sel: "Limpiar",
+        btn_install_series: "Instalar Serie",
+        btn_install_series_title: "Instalar toda la serie seleccionada",
+        btn_sync: "Sincronizar",
+        btn_sync_title: "Sincronizar catálogo con Internet Archive",
+        btn_syncing: "Sincronizando...",
+        btn_install_sel: "Instalar Seleccionados",
+        btn_install_single: "Instalar",
+        cat_no_results: "No se encontraron Amiibos con los filtros aplicados.",
+        
+        modal_del_prog_title: "Eliminando Amiibos...",
+        modal_del_prog_deleting: "Eliminando:",
+        modal_del_prog_count: "{count} elementos eliminados...",
+        modal_del_prog_warning: "No cierres esta página ni desconectes el dispositivo.",
+        
+        modal_new_folder_title: "Crear Nueva Carpeta",
+        modal_new_folder_label: "Nombre de la carpeta:",
+        modal_new_folder_placeholder: "p. ej. Zelda",
+        modal_rename_title: "Renombrar Elemento",
+        modal_rename_label: "Nuevo nombre:",
+        modal_delete_title: "¿Eliminar elemento?",
+        modal_delete_confirm_file: "¿Estás seguro de que deseas eliminar el archivo {name}?",
+        modal_delete_confirm_folder: "¿Estás seguro de que deseas eliminar la carpeta {name} y todo su contenido?",
+        modal_warning_title: "Advertencia de Ruta Excedida",
+        modal_warning_body: "Los siguientes archivos o carpetas superan el límite de **63 bytes** de longitud de ruta o **47 bytes** de nombre de archivo y serán omitidos o recortados:",
+        
+        modal_install_title: "Instalar Amiibos Seleccionados",
+        modal_install_text_1: "Se instalarán",
+        modal_install_text_2: "Amiibos en la siguiente carpeta de tu Allmiibo:",
+        modal_install_folder_label: "Carpeta de Destino:",
+        modal_install_folder_placeholder: "p. ej. Smash",
+        btn_install_confirm: "Confirmar e Instalar",
+        
+        btn_cancel: "Cancelar",
+        btn_create: "Crear",
+        btn_rename: "Renombrar",
+        btn_delete: "Eliminar",
+        btn_understood: "Entendido",
+        btn_close: "Cerrar",
+        btn_download_install: "Descargar e Instalar",
+        
+        modal_autokey_title: "Auto-actualización de Llaves",
+        modal_autokey_body: "Se descargará el archivo criptográfico oficial key_retail.bin (160 bytes) desde tu bóveda en Internet Archive y se instalará automáticamente en la raíz de tu Allmiibo.",
+        modal_autokey_url_label: "URL key_retail.bin (Internet Archive):",
+        modal_autokey_progress: "Descargando e instalando llave en el dispositivo...",
+        
+        modal_dfu_title: "Actualización de Firmware (Modo DFU)",
+        modal_dfu_intro: "El firmware se actualiza de forma inalámbrica a través del **Modo DFU (Device Firmware Update)**. Sigue estos sencillos pasos:",
+        dfu_step1_title: "Paso 1: Entrar en Modo Actualización (en tu Allmiibo)",
+        btn_dfu_reboot: "Reiniciar Allmiibo en modo DFU",
+        dfu_trigger_hint: "(Conéctate primero al Allmiibo para poder enviarle el comando de reinicio automático).",
+        dfu_step1_alt1: "Alternativamente, en el menú físico de tu Allmiibo, entra a Settings (Ajustes) y selecciona Firmware Update.",
+        dfu_step1_alt2: "La pantalla del dispositivo cambiará a 'DFU Update Waiting...'.",
+        dfu_step1_alt3: "(Si el dispositivo no enciende o está colgado: mantén pulsado el botón izquierdo/BTN1 al insertar la pila hasta que en la pantalla ponga DFU).",
+        dfu_step2_title: "Paso 2: Descargar el Firmware oficial",
+        dfu_step2_desc: "Ve al repositorio oficial de solosky en GitHub y descarga el archivo .zip adecuado según tu tipo de pantalla:",
+        btn_dfu_download_repo: "Descargar de solosky/pixl.js",
+        dfu_screen_lcd: "Si tu Allmiibo tiene Pantalla LCD (fondo gris claro con texto negro), descarga el archivo:",
+        dfu_screen_oled: "Si tu Allmiibo tiene Pantalla OLED (fondo negro con texto azul/amarillo/blanco), descarga el archivo:",
+        dfu_screen_warning: "⚠️ ¡Advertencia!: Instalar la versión de pantalla incorrecta la dejará en negro (aunque el chip sigue vivo y puedes repetir el proceso de forma ciega para arreglarlo).",
+        dfu_step3_title: "Paso 3: Transferir el Firmware (Flashear)",
+        dfu_step3_desc: "Una vez que el Allmiibo esté en modo DFU y tengas el archivo .zip descargado en tu PC o móvil:",
+        btn_open_web_dfu: "Abrir Instalador Web DFU (Navegador PC)",
+        dfu_step3_instructions: "En esa página, pulsa Connect, selecciona tu dispositivo (saldrá como pixl dfu o DfuTarg), selecciona tu archivo .zip y pulsa Update.",
+        dfu_mobile_hint: "📱 Si estás usando un móvil, puedes usar la app MTools BLE (iOS) o nRF Connect / nRF Device Firmware Update (Android) para realizar la carga de forma más estable.",
+        
+        help_title: "Ayuda y Documentación Allmiibo",
+        help_options_title: "Opciones del Dispositivo",
+        help_opt1_title: "Emulador de Amiibo:",
+        help_opt1_desc: "Permite seleccionar y emular un Amiibo individual guardado en el almacenamiento (archivo .bin o .nfc). El Allmiibo se comportará físicamente ante la consola como esa tarjeta.",
+        help_opt2_title: "Base de datos de Amiibo:",
+        help_opt2_desc: "Utiliza la base de datos interna y la clave key_retail.bin para generar y emular Amiibos al vuelo sin necesidad de tener el archivo .bin cargado individualmente.",
+        help_opt3_title: "AmiiboLink:",
+        help_opt3_desc: "Modo de enlace especial compatible con la app móvil AmiiboLink para seleccionar y descargar Amiibos de forma rápida mediante Bluetooth.",
+        help_opt4_title: "Emular etiqueta RFID:",
+        help_opt4_desc: "Emulación general de etiquetas NFC/RFID estándar para clonación o pruebas más allá de los Amiibos de Nintendo.",
+        help_opt5_title: "Bluetooth:",
+        help_opt5_desc: "Activa el Bluetooth para enlazar el dispositivo con este Gestor Web o con aplicaciones móviles para actualizar archivos y claves.",
+        help_faq_title: "Preguntas Frecuentes (FAQ)",
+        help_q1_title: "¿Cómo consigo los últimos Amiibos?",
+        help_q1_desc: "Puedes explorar la pestaña Catálogo Online para instalar directamente cualquiera de los 1.070 Amiibos de la bóveda de Internet Archive a tu Allmiibo sin descargas manuales.",
+        help_q2_title: "¿Por qué hay tantos Amiibos de Animal Crossing y algunos sin nombre?",
+        help_q2_desc: "Animal Crossing cuenta con 400 cartas estándar, las series de Sanrio, Amiibo Festival y las 91 cartas especiales de Happy Home Designer Items (muebles y diseños).",
+        help_q3_title: "¿Cómo actualizo la clave key_retail.bin automáticamente?",
+        help_q3_desc: "Haz clic en el botón Auto-llave en la barra lateral. Se descargará el archivo oficial de 160 bytes directamente desde Internet Archive y se instalará en la raíz de tu Allmiibo.",
+        
+        toast_sync_starting: "Sincronizando catálogo con Internet Archive...",
+        toast_sync_success: "¡Catálogo sincronizado! Se encontraron {count} Amiibos en Internet Archive.",
+        toast_sync_error: "Error de sincronización: {error}",
+        toast_select_series_first: "Por favor, selecciona una serie o subserie específica en el filtro para instalarla completa.",
+        toast_no_visible_series: "No hay Amiibos visibles en la serie seleccionada para instalar.",
+        toast_dfu_sending: "Enviando comando DFU...",
+        toast_dfu_success: "Allmiibo reiniciado en modo actualización (DFU).",
+        toast_autokey_success: "¡Clave key_retail.bin instalada con éxito en tu Allmiibo!",
+        toast_delete_success: "¡Carpeta /amiibo borrada correctamente! Tu clave key_retail.bin se ha conservado."
+    },
+    en: {
+        tab_local: "Local Explorer",
+        tab_online: "Online Vault",
+        btn_donate: "Donate",
+        btn_donate_title: "Support the project on Ko-fi",
+        btn_help: "Help",
+        btn_help_title: "Help & Documentation",
+        btn_simulator: "Simulator",
+        btn_connect: "Connect Allmiibo",
+        btn_disconnect: "Disconnect",
+        sidebar_device: "Device",
+        status_disconnected: "Disconnected",
+        status_connected: "Connected",
+        status_mock: "Connected (Simulator)",
+        device_version: "Version:",
+        btn_update_fw: "Update",
+        badge_update_new: "NEW!",
+        badge_update_uptodate: "(Up to date)",
+        sidebar_storage: "Storage (LFS)",
+        storage_used_label: "used",
+        storage_free_label: "free",
+        key_title: "Encryption Key",
+        key_valid: "VALID",
+        key_missing: "MISSING",
+        key_searching: "Checking...",
+        key_description: "The key_retail.bin file (160 bytes) is required in root to activate the internal database.",
+        btn_upload_key: "Upload Key",
+        btn_auto_key: "Auto-Key",
+        sidebar_queue: "Upload Queue",
+        queue_empty: "No files in queue. Drag & drop files or folders here.",
+        btn_queue_start: "Start",
+        btn_queue_cancel: "Cancel",
+        btn_queue_cancel_title: "Cancel and stop upload",
+        btn_queue_clear_title: "Clear queue",
+        queue_status_pending: "Pending",
+        queue_status_uploading: "Uploading...",
+        queue_status_done: "Done",
+        queue_status_error: "Error",
+        queue_status_skipped: "Skipped",
+        queue_finished: "Upload queue finished.",
+        queue_cancelled: "Upload cancelled by user.",
+        
+        view_folders: "📁 Folders View",
+        view_gallery: "🎨 Amiibo Gallery",
+        sort_name_asc: "Name (A → Z)",
+        sort_name_desc: "Name (Z → A)",
+        sort_size_asc: "Size (Smallest first)",
+        sort_size_desc: "Size (Largest first)",
+        btn_toggle_grid: "Grid View",
+        btn_toggle_list: "List View",
+        btn_toggle_view_title: "Toggle view",
+        btn_new_folder: "New Folder",
+        btn_format: "Delete Amiibos",
+        btn_format_title: "Delete all Amiibos from device",
+        th_name: "Name",
+        th_size: "Size",
+        th_actions: "Actions",
+        table_connect_hint: "Connect your Allmiibo to explore device storage",
+        table_empty_folder: "This folder is empty.",
+        btn_upload_files: "Upload Files",
+        btn_upload_folder: "Upload Folder",
+        dropzone_title: "Drag & drop Amiibo files or folders here",
+        dropzone_sub: "or click to browse from your computer",
+        folder_items_count: "items",
+        folder_item_singular: "item",
+        
+        search_placeholder: "Search Amiibo...",
+        cat_all: "All Series",
+        cat_all_count: "All Series ({count} Amiibos)",
+        cat_all_in: "⚡ All {cat} ({count})",
+        cat_selected_label: "Selected:",
+        btn_select_all: "Select All",
+        btn_clear_sel: "Clear",
+        btn_install_series: "Install Series",
+        btn_install_series_title: "Install entire selected series",
+        btn_sync: "Sync",
+        btn_sync_title: "Sync catalog with Internet Archive",
+        btn_syncing: "Syncing...",
+        btn_install_sel: "Install Selected",
+        btn_install_single: "Install",
+        cat_no_results: "No Amiibos found with the applied filters.",
+        
+        modal_del_prog_title: "Deleting Amiibos...",
+        modal_del_prog_deleting: "Deleting:",
+        modal_del_prog_count: "{count} items deleted...",
+        modal_del_prog_warning: "Do not close this tab or disconnect your device.",
+        
+        modal_new_folder_title: "Create New Folder",
+        modal_new_folder_label: "Folder name:",
+        modal_new_folder_placeholder: "e.g. Zelda",
+        modal_rename_title: "Rename Item",
+        modal_rename_label: "New name:",
+        modal_delete_title: "Delete item?",
+        modal_delete_confirm_file: "Are you sure you want to delete file {name}?",
+        modal_delete_confirm_folder: "Are you sure you want to delete folder {name} and all its contents?",
+        modal_warning_title: "Path Length Warning",
+        modal_warning_body: "The following files or folders exceed the hardware limit of **63 bytes** path length or **47 bytes** file name and will be skipped or truncated:",
+        
+        modal_install_title: "Install Selected Amiibos",
+        modal_install_text_1: "Will install",
+        modal_install_text_2: "Amiibos into the following folder on your Allmiibo:",
+        modal_install_folder_label: "Destination Folder:",
+        modal_install_folder_placeholder: "e.g. Smash",
+        btn_install_confirm: "Confirm & Install",
+        
+        btn_cancel: "Cancel",
+        btn_create: "Create",
+        btn_rename: "Rename",
+        btn_delete: "Delete",
+        btn_understood: "Understood",
+        btn_close: "Close",
+        btn_download_install: "Download & Install",
+        
+        modal_autokey_title: "Key Auto-Update",
+        modal_autokey_body: "The official key_retail.bin cryptographic file (160 bytes) will be downloaded from your Internet Archive vault and installed directly to the root of your Allmiibo.",
+        modal_autokey_url_label: "key_retail.bin URL (Internet Archive):",
+        modal_autokey_progress: "Downloading and installing key to device...",
+        
+        modal_dfu_title: "Firmware Update (DFU Mode)",
+        modal_dfu_intro: "Firmware is updated wirelessly via **Device Firmware Update (DFU) Mode**. Follow these simple steps:",
+        dfu_step1_title: "Step 1: Enter Update Mode (on your Allmiibo)",
+        btn_dfu_reboot: "Reboot Allmiibo in DFU mode",
+        dfu_trigger_hint: "(Connect to your Allmiibo first to send the automatic reboot command).",
+        dfu_step1_alt1: "Alternatively, in your Allmiibo physical menu, go to Settings and select Firmware Update.",
+        dfu_step1_alt2: "The device screen will change to 'DFU Update Waiting...'.",
+        dfu_step1_alt3: "(If device is frozen/unresponsive: hold the left button/BTN1 while inserting battery until screen says DFU).",
+        dfu_step2_title: "Step 2: Download Official Firmware",
+        dfu_step2_desc: "Go to the official solosky GitHub repository and download the appropriate .zip file for your screen type:",
+        btn_dfu_download_repo: "Download from solosky/pixl.js",
+        dfu_screen_lcd: "If your Allmiibo has an LCD Screen (light grey background with black text), download:",
+        dfu_screen_oled: "If your Allmiibo has an OLED Screen (black background with blue/yellow/white text), download:",
+        dfu_screen_warning: "⚠️ Warning!: Flashing the wrong screen version will result in a blank screen (the chip remains functional and can be reflashed blindly).",
+        dfu_step3_title: "Step 3: Flash Firmware",
+        dfu_step3_desc: "Once the Allmiibo is in DFU mode and you have the .zip file ready on your PC or mobile device:",
+        btn_open_web_dfu: "Open Web DFU Flasher (PC Browser)",
+        dfu_step3_instructions: "On that page, click Connect, choose your device (listed as pixl dfu or DfuTarg), select your .zip file, and click Update.",
+        dfu_mobile_hint: "📱 On mobile, you can use the MTools BLE app (iOS) or nRF Connect / nRF Device Firmware Update (Android) for a stable wireless flash.",
+        
+        help_title: "Allmiibo Help & Documentation",
+        help_options_title: "Device Options",
+        help_opt1_title: "Amiibo Emulator:",
+        help_opt1_desc: "Select and emulate an individual Amiibo saved in storage (.bin or .nfc file). The Allmiibo physically acts like that card to the console.",
+        help_opt2_title: "Amiibo Database:",
+        help_opt2_desc: "Uses the internal database and key_retail.bin to generate and emulate Amiibos on the fly without needing individual .bin files stored.",
+        help_opt3_title: "AmiiboLink:",
+        help_opt3_desc: "Special pairing mode compatible with the AmiiboLink mobile app to quickly browse and download Amiibos over Bluetooth.",
+        help_opt4_title: "Emulate RFID Tag:",
+        help_opt4_desc: "General RFID/NFC tag emulation for cloning or testing beyond Nintendo Amiibos.",
+        help_opt5_title: "Bluetooth:",
+        help_opt5_desc: "Enables Bluetooth to link the device with this Web Manager or mobile apps to transfer files and keys.",
+        help_faq_title: "Frequently Asked Questions (FAQ)",
+        help_q1_title: "How do I get the latest Amiibos?",
+        help_q1_desc: "Browse the Online Vault tab to directly install any of the 1,070 Amiibos from the Internet Archive vault to your Allmiibo without manual downloads.",
+        help_q2_title: "Why are there so many Animal Crossing Amiibos and some without names?",
+        help_q2_desc: "Animal Crossing features 400 standard cards, Sanrio series, Amiibo Festival, and 91 special Happy Home Designer Items (furniture and designs).",
+        help_q3_title: "How do I auto-update key_retail.bin?",
+        help_q3_desc: "Click the Auto-Key button in the sidebar. The official 160-byte decryption key will be downloaded from Internet Archive and installed to the root of your Allmiibo.",
+        
+        toast_sync_starting: "Syncing catalog with Internet Archive...",
+        toast_sync_success: "Catalog synced! Found {count} Amiibos in Internet Archive.",
+        toast_sync_error: "Sync error: {error}",
+        toast_select_series_first: "Please select a specific series or subseries in the filter to install it completely.",
+        toast_no_visible_series: "No visible Amiibos in the selected series to install.",
+        toast_dfu_sending: "Sending DFU command...",
+        toast_dfu_success: "Allmiibo rebooted in DFU update mode.",
+        toast_autokey_success: "key_retail.bin successfully installed on your Allmiibo!",
+        toast_delete_success: "/amiibo folder deleted successfully! Your key_retail.bin was preserved."
+    }
+};
+
+function t(key, params = {}) {
+    const lang = state.lang || "es";
+    let text = (TRANSLATIONS[lang] && TRANSLATIONS[lang][key]) || (TRANSLATIONS["es"] && TRANSLATIONS["es"][key]) || key;
+    for (const [k, v] of Object.entries(params)) {
+        text = text.replace(new RegExp(`\\{${k}\\}`, 'g'), v);
+    }
+    return text;
+}
+
+function setLanguage(lang) {
+    if (!TRANSLATIONS[lang]) lang = "es";
+    state.lang = lang;
+    localStorage.setItem("allmiibo_lang", lang);
+    document.documentElement.lang = lang;
+    
+    if (el.langSelect) {
+        el.langSelect.value = lang;
+    }
+    
+    // Update all static data-i18n elements
+    document.querySelectorAll("[data-i18n]").forEach(node => {
+        const key = node.getAttribute("data-i18n");
+        if (TRANSLATIONS[lang] && TRANSLATIONS[lang][key]) {
+            node.textContent = TRANSLATIONS[lang][key];
+        }
+    });
+    
+    // Update data-i18n-title
+    document.querySelectorAll("[data-i18n-title]").forEach(node => {
+        const key = node.getAttribute("data-i18n-title");
+        if (TRANSLATIONS[lang] && TRANSLATIONS[lang][key]) {
+            node.title = TRANSLATIONS[lang][key];
+        }
+    });
+    
+    // Update data-i18n-placeholder
+    document.querySelectorAll("[data-i18n-placeholder]").forEach(node => {
+        const key = node.getAttribute("data-i18n-placeholder");
+        if (TRANSLATIONS[lang] && TRANSLATIONS[lang][key]) {
+            node.placeholder = TRANSLATIONS[lang][key];
+        }
+    });
+    
+    // Re-populate dynamic UI
+    if (state.categories && Object.keys(state.categories).length > 0) {
+        populateCategoryDropdown();
+        renderOnlineCatalogue();
+    }
+    renderUploadQueue();
+    if (state.isConnected) {
+        updateStorageBar();
+        updateKeyStatus();
+    }
+}
+
 const textEncoder = new TextEncoder();
 const textDecoder = new TextDecoder();
 
@@ -765,11 +1160,13 @@ const state = {
     currentEntries: [], // Cached directory contents to allow instant sorting
     explorerTabMode: "folders", // "folders" or "gallery" view type
     scannedAmiibos: [], // Recursively scanned Amiibos for the gallery view
-    abortUpload: false // Flag to cancel running upload queue
+    abortUpload: false, // Flag to cancel running upload queue
+    lang: localStorage.getItem("allmiibo_lang") || "es" // Language: "es" or "en"
 };
 
 // UI Elements mapping
 const el = {
+    langSelect: document.getElementById("lang-select"),
     btnConnectBle: document.getElementById("btn-connect-ble"),
     btnConnectMock: document.getElementById("btn-connect-mock"),
     btnDisconnect: document.getElementById("btn-disconnect"),
@@ -918,7 +1315,7 @@ function setConnectionState(connected, isMock = false) {
         el.btnDisconnect.style.display = "inline-flex";
         
         el.statusDot.className = "status-dot connected";
-        el.statusText.textContent = isMock ? "Conectado (Simulador)" : "Conectado";
+        el.statusText.textContent = isMock ? t("status_mock") : t("status_connected");
         
         el.deviceInfo.hidden = false;
         el.storageContainer.style.display = "flex";
@@ -933,7 +1330,7 @@ function setConnectionState(connected, isMock = false) {
         el.btnDisconnect.style.display = "none";
         
         el.statusDot.className = "status-dot";
-        el.statusText.textContent = "Desconectado";
+        el.statusText.textContent = t("status_disconnected");
         
         el.deviceInfo.hidden = true;
         el.storageContainer.style.display = "none";
@@ -943,7 +1340,7 @@ function setConnectionState(connected, isMock = false) {
         el.explorerTableBody.innerHTML = `
             <tr>
                 <td colspan="4" style="text-align: center; color: var(--text-muted); padding: 32px;">
-                    Conecta tu Allmiibo para explorar los archivos del dispositivo
+                    ${t("table_connect_hint")}
                 </td>
             </tr>
         `;
@@ -973,8 +1370,8 @@ async function updateStorageBar() {
             const pct = (used / drive.totalBytes) * 100;
             
             el.storageBar.style.width = `${pct}%`;
-            el.storageUsed.textContent = `${(used / 1024).toFixed(0)} KB usado`;
-            el.storageFree.textContent = `${(drive.freeBytes / (1024*1024)).toFixed(2)} MB libre`;
+            el.storageUsed.textContent = `${(used / 1024).toFixed(0)} KB ${t("storage_used_label")}`;
+            el.storageFree.textContent = `${(drive.freeBytes / (1024*1024)).toFixed(2)} MB ${t("storage_free_label")}`;
         }
     } catch (err) {
         logEvent(`Error al obtener espacio de almacenamiento: ${err.message}`);
@@ -990,16 +1387,16 @@ async function checkEncryptionKeyStatus() {
             const keyFile = res.data.find(entry => entry.name.toLowerCase() === "key_retail.bin");
             if (keyFile) {
                 if (keyFile.size === 160) {
-                    el.keyStatusBadge.textContent = "Válida";
+                    el.keyStatusBadge.textContent = t("key_valid");
                     el.keyStatusBadge.style.backgroundColor = "var(--primary-light)";
                     el.keyStatusBadge.style.color = "var(--primary)";
                 } else {
-                    el.keyStatusBadge.textContent = "Inválida";
+                    el.keyStatusBadge.textContent = t("key_missing");
                     el.keyStatusBadge.style.backgroundColor = "#fef3c7";
                     el.keyStatusBadge.style.color = "var(--warning)";
                 }
             } else {
-                el.keyStatusBadge.textContent = "No instalada";
+                el.keyStatusBadge.textContent = t("key_missing");
                 el.keyStatusBadge.style.backgroundColor = "var(--danger-light)";
                 el.keyStatusBadge.style.color = "var(--danger)";
             }
@@ -1276,7 +1673,7 @@ function renderExplorerTable(entries) {
         
         const tdSize = document.createElement("td");
         if (e.type === "DIR") {
-            tdSize.textContent = e._childCount != null ? `${e._childCount} elementos` : "...";
+            tdSize.textContent = e._childCount != null ? `${e._childCount} ${e._childCount === 1 ? t('folder_item_singular') : t('folder_items_count')}` : "...";
             tdSize.style.color = "var(--text-muted)";
             tdSize.style.fontSize = "0.8rem";
         } else {
@@ -1651,7 +2048,7 @@ function planUpload(folders, files) {
 
 function renderUploadQueue() {
     if (state.uploadQueue.length === 0) {
-        el.queueList.innerHTML = `<div class="queue-empty-msg" id="queue-empty-msg">No hay archivos en cola. Arrastra archivos/carpetas aquí.</div>`;
+        el.queueList.innerHTML = `<div class="queue-empty-msg" id="queue-empty-msg">${t("queue_empty")}</div>`;
         el.btnQueueStart.disabled = true;
         el.btnQueueClear.disabled = true;
         el.queueProgress.hidden = true;
@@ -1675,10 +2072,7 @@ function renderUploadQueue() {
         
         const spanStatus = document.createElement("span");
         spanStatus.className = `queue-item-status ${item.status}`;
-        spanStatus.textContent = item.status === "error" ? "Error" : 
-                                 item.status === "uploading" ? "Subiendo..." : 
-                                 item.status === "skipped" ? "Ignorado" : 
-                                 item.status === "pending" ? "Pendiente" : "Completado";
+        spanStatus.textContent = t(`queue_status_${item.status}`);
         
         div.appendChild(spanName);
         div.appendChild(spanStatus);
@@ -1836,7 +2230,7 @@ function populateCategoryDropdown() {
     let totalCount = 0;
     Object.values(state.categories).forEach(arr => totalCount += arr.length);
     
-    el.filterCategory.innerHTML = `<option value="all">Todas las Series (${totalCount} Amiibos)</option>`;
+    el.filterCategory.innerHTML = `<option value="all">${t("cat_all_count", { count: totalCount })}</option>`;
     
     // Sort categories alphabetically
     const sortedCategories = Object.keys(state.categories).sort((a, b) => a.localeCompare(b));
@@ -1851,7 +2245,7 @@ function populateCategoryDropdown() {
             
             const allInCatOpt = document.createElement("option");
             allInCatOpt.value = cat;
-            allInCatOpt.textContent = `⚡ Todo ${cat} (${items.length})`;
+            allInCatOpt.textContent = t("cat_all_in", { cat: cat, count: items.length });
             optgroup.appendChild(allInCatOpt);
             
             const sortedSubpaths = Array.from(subpaths).sort((a, b) => a.localeCompare(b));
@@ -2225,7 +2619,7 @@ function renderOnlineCatalogue() {
             btnFlash.className = "btn btn-primary";
             btnFlash.style.width = "100%";
             btnFlash.style.marginTop = "8px";
-            btnFlash.innerHTML = `<span class="material-symbols-rounded" style="font-size: 1.1rem;">install_mobile</span> Instalar`;
+            btnFlash.innerHTML = `<span class="material-symbols-rounded" style="font-size: 1.1rem;">install_mobile</span> ${t("btn_install_single")}`;
             btnFlash.disabled = !state.isConnected;
             
             btnFlash.addEventListener("click", (evt) => {
@@ -2827,13 +3221,13 @@ el.btnFormat.addEventListener("click", async () => {
             deleteCount++;
             const shortName = currentPath.split("/").pop();
             statusText.textContent = shortName;
-            counterText.textContent = `${deleteCount} elementos eliminados...`;
+            counterText.textContent = t("modal_del_prog_count", { count: deleteCount });
         });
         await state.client.createFolder("E:/amiibo");
-        showToast(`Todos los Amiibos han sido eliminados (${deleteCount} elementos).`);
+        showToast(t("toast_delete_success"));
     } catch (err) {
         try { await state.client.createFolder("E:/amiibo"); } catch(e) {}
-        showToast(`Limpieza completada (${deleteCount} elementos eliminados).`);
+        showToast(t("toast_delete_success"));
     } finally {
         overlay.classList.remove("active");
         el.btnFormat.disabled = false;
@@ -2920,6 +3314,13 @@ el.btnQueueClear.addEventListener("click", () => {
     state.uploadQueue = [];
     renderUploadQueue();
 });
+
+// Language Selector Listener
+if (el.langSelect) {
+    el.langSelect.addEventListener("change", (e) => {
+        setLanguage(e.target.value);
+    });
+}
 
 el.btnQueueStart.addEventListener("click", () => {
     runQueueUpload();
@@ -3250,5 +3651,6 @@ el.btnInstallConfirm.addEventListener("click", async () => {
     runQueueUpload();
 });
 
-// Initialize database
+// Initialize Language and database
+setLanguage(state.lang);
 initOnlineCatalogue();

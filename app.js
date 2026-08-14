@@ -900,7 +900,8 @@ async function scanInstalledAmiibos() {
                         
                         if (item.type === "DIR") {
                             foundFolders.add(normItemPath);
-                            if (item.name.toLowerCase() !== "save" && !visited.has(normItemPath)) {
+                            const lowerName = item.name.toLowerCase();
+                            if (lowerName !== "save" && lowerName !== "data" && lowerName !== "fav" && lowerName !== "chameleon" && !visited.has(normItemPath)) {
                                 folderQueue.push(fullItemPath);
                             }
                         } else if (item.name.toLowerCase().endsWith(".bin")) {
@@ -1729,10 +1730,28 @@ function logEvent(msg) {
     console.log(`[Allmiibo] ${msg}`);
 }
 
+async function ensureSystemFoldersExist() {
+    if (!state.isConnected || !state.client) return;
+    const systemDirs = [
+        "E:/amiibo",
+        "E:/amiibo/data",
+        "E:/amiibo/fav",
+        "E:/amiibo/save"
+    ];
+    for (const dir of systemDirs) {
+        try {
+            await state.client.createFolder(dir);
+        } catch (e) {
+            // Already exists or VFS error - ignore safely
+        }
+    }
+}
+
 async function initDeviceAfterConnection(isMock) {
     try {
         await updateDeviceInfo();
         await updateStorageBar();
+        await ensureSystemFoldersExist(); // Guarantee E:/amiibo/data, E:/amiibo/fav, E:/save exist
         await refreshExplorer(); // Immediate file display in < 0.5s!
         scanInstalledAmiibos();  // Background scan with visual banner
     } catch (err) {
@@ -2140,6 +2159,8 @@ function renderExplorerTable(entries) {
             tdSize.textContent = e.size >= 1024 ? `${(e.size / 1024).toFixed(1)} KB` : `${e.size} B`;
         }
         
+        const isProtected = isSystemProtectedPath(joinPaths(state.currentPath, e.name));
+        
         const tdActions = document.createElement("td");
         const actionsContainer = document.createElement("div");
         actionsContainer.className = "file-actions";
@@ -2147,20 +2168,30 @@ function renderExplorerTable(entries) {
         const btnRename = document.createElement("button");
         btnRename.className = "action-icon-btn";
         btnRename.innerHTML = `<span class="material-symbols-rounded">edit</span>`;
-        btnRename.title = "Renombrar";
-        btnRename.addEventListener("click", (evt) => {
-            evt.stopPropagation();
-            openRenameModal(e.name);
-        });
+        btnRename.title = isProtected ? "Elemento del sistema (Protegido)" : "Renombrar";
+        if (isProtected) {
+            btnRename.style.opacity = "0.25";
+            btnRename.style.cursor = "not-allowed";
+        } else {
+            btnRename.addEventListener("click", (evt) => {
+                evt.stopPropagation();
+                openRenameModal(e.name);
+            });
+        }
         
         const btnDelete = document.createElement("button");
         btnDelete.className = "action-icon-btn delete";
         btnDelete.innerHTML = `<span class="material-symbols-rounded">delete</span>`;
-        btnDelete.title = "Eliminar";
-        btnDelete.addEventListener("click", (evt) => {
-            evt.stopPropagation();
-            openDeleteModal(e.name);
-        });
+        btnDelete.title = isProtected ? "Elemento del sistema (Protegido)" : "Eliminar";
+        if (isProtected) {
+            btnDelete.style.opacity = "0.25";
+            btnDelete.style.cursor = "not-allowed";
+        } else {
+            btnDelete.addEventListener("click", (evt) => {
+                evt.stopPropagation();
+                openDeleteModal(e.name);
+            });
+        }
         
         actionsContainer.appendChild(btnRename);
         actionsContainer.appendChild(btnDelete);
@@ -3683,6 +3714,11 @@ el.btnDeleteCancel.addEventListener("click", () => {
 
 el.btnDeleteConfirm.addEventListener("click", async () => {
     const path = joinPaths(state.currentPath, _activeDeleteName);
+    if (isSystemProtectedPath(path)) {
+        el.modalDelete.classList.remove("active");
+        showToast("Este elemento es parte de la estructura del sistema Allmiibo y no se puede eliminar.", "error");
+        return;
+    }
     try {
         const res = await state.client.removePath(path);
         if (res.ok) {
@@ -3701,18 +3737,28 @@ el.btnDeleteConfirm.addEventListener("click", async () => {
 // Check if a path or file is protected and must NEVER be deleted
 function isSystemProtectedPath(path) {
     if (!path) return false;
-    const norm = path.toLowerCase().replace(/\\/g, '/').trim();
+    const norm = path.toLowerCase().replace(/\\/g, '/').trim().replace(/\/+$/, '');
+    const parts = norm.split('/').filter(Boolean);
+    const name = parts[parts.length - 1] || "";
     
-    // 1. Never delete encryption key or hardware settings
-    if (norm === 'e:/key_retail.bin' || norm.endsWith('/key_retail.bin') || norm === 'key_retail.bin') return true;
-    if (norm === 'e:/setting.bin' || norm.endsWith('/setting.bin') || norm === 'setting.bin') return true;
-    if (norm === 'e:/settings.bin' || norm.endsWith('/settings.bin') || norm === 'settings.bin') return true;
+    // 1. Everything directly in root (e.g. E:/key_retail.bin, E:/chameleon, E:/amiibolink, E:/settings.bin, etc.) is protected from mass wipe
+    if (parts.length <= 1) return true; // 'e:' or 'e:/'
+    if (parts.length === 2 && parts[0] === 'e:' && parts[1] !== 'amiibo') {
+        // Any direct child of root other than 'amiibo' (e.g. key_retail.bin, settings.bin, chameleon, etc.)
+        return true;
+    }
     
-    // 2. Never delete 'save' folder or any save files inside it
-    if (norm === 'e:/save' || norm === 'e:/amiibo/save' || norm.includes('/save/') || norm.endsWith('/save')) return true;
+    // 2. The main 'E:/amiibo' root directory itself is protected
+    if (norm === 'e:/amiibo') return true;
     
-    // 3. Never delete chameleon / RFID card emulator dumps
-    if (norm === 'e:/chameleon' || norm.includes('/chameleon/') || norm.endsWith('/chameleon')) return true;
+    // 3. System subfolders inside E:/amiibo: data, fav, save
+    if (norm === 'e:/amiibo/data' || norm.startsWith('e:/amiibo/data/')) return true;
+    if (norm === 'e:/amiibo/fav' || norm.startsWith('e:/amiibo/fav/')) return true;
+    if (norm === 'e:/amiibo/save' || norm.startsWith('e:/amiibo/save/')) return true;
+    
+    // 4. Any direct file/folder named data, fav, save, key_retail, setting
+    if (name === 'key_retail.bin' || name === 'setting.bin' || name === 'settings.bin') return true;
+    if (name === 'data' || name === 'fav' || name === 'save' || name === 'chameleon') return true;
     
     return false;
 }
@@ -3731,8 +3777,8 @@ async function safeWipeAmiibos(dirPath, onProgress) {
         const entryPath = joinPaths(dirPath, entry.name);
         const normName = entry.name.toLowerCase();
         
-        // Skip protected system files & directories
-        if (normName === "key_retail.bin" || normName === "setting.bin" || normName === "settings.bin" || normName === "save" || normName === "chameleon") {
+        // Skip protected system files & directories (data, fav, save, key_retail, setting, etc.)
+        if (normName === "key_retail.bin" || normName === "setting.bin" || normName === "settings.bin" || normName === "save" || normName === "data" || normName === "fav" || normName === "chameleon" || isSystemProtectedPath(entryPath)) {
             logEvent(`Preservando elemento del sistema: ${entryPath}`);
             continue;
         }
@@ -3753,9 +3799,9 @@ async function safeWipeAmiibos(dirPath, onProgress) {
     }
 }
 
-// Borrar todos los Amiibos con progreso visual (preservando permanentemente 'save', 'setting.bin' y 'key_retail.bin')
+// Borrar todos los Amiibos con progreso visual (preservando permanentemente toda la raíz, y 'save', 'data', 'fav' dentro de 'amiibo')
 el.btnFormat.addEventListener("click", async () => {
-    if (!confirm("¿Estás seguro de que deseas eliminar TODOS los Amiibos del dispositivo? (La clave key_retail.bin, tu configuración setting.bin y tus partidas guardadas en 'save' NO se borrarán).")) return;
+    if (!confirm("¿Estás seguro de que deseas eliminar los Amiibos instalados? (Todo lo que esté en la raíz, y las carpetas del sistema 'save', 'data' y 'fav' dentro de 'amiibo' NO se borrarán).")) return;
     
     // Show progress overlay
     const overlay = document.getElementById("modal-delete-progress");
@@ -3767,7 +3813,7 @@ el.btnFormat.addEventListener("click", async () => {
     let deleteCount = 0;
     
     try {
-        // 1. Wipe strictly inside E:/amiibo (preserving E:/amiibo/save)
+        // 1. Wipe strictly inside E:/amiibo (preserving E:/amiibo/data, fav, save and never touching root)
         await safeWipeAmiibos("E:/amiibo", (currentPath) => {
             deleteCount++;
             const shortName = currentPath.split("/").pop();
@@ -3775,15 +3821,13 @@ el.btnFormat.addEventListener("click", async () => {
             counterText.textContent = t("modal_del_prog_count", { count: deleteCount });
         });
         
-        // 2. Guarantee essential system directories exist
-        await state.client.createFolder("E:/amiibo").catch(() => {});
-        await state.client.createFolder("E:/amiibo/save").catch(() => {});
+        // 2. Guarantee essential system directories exist inside E:/amiibo
+        await ensureSystemFoldersExist();
         
         showToast(t("toast_delete_success"));
     } catch (err) {
         try { 
-            await state.client.createFolder("E:/amiibo").catch(() => {});
-            await state.client.createFolder("E:/amiibo/save").catch(() => {});
+            await ensureSystemFoldersExist();
         } catch(e) {}
         showToast(t("toast_delete_success"));
     } finally {

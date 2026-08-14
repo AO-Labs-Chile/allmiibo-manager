@@ -3,6 +3,10 @@ const NUS_SERVICE_UUID = "6e400001-b5a3-f393-e0a9-e50e24dcca9e";
 const NUS_CHAR_TX_UUID = "6e400002-b5a3-f393-e0a9-e50e24dcca9e";
 const NUS_CHAR_RX_UUID = "6e400003-b5a3-f393-e0a9-e50e24dcca9e";
 
+// Servidor Base de descarga de Amiibos (GitHub original o tu Internet Archive público)
+// Para usar tu Internet Archive, cambia la URL por: "https://ia601004.us.archive.org/view_archive.php?archive=/35/items/nintendo-amiibo-nfc-vault/Amiibo%20Bin.zip" o su dirección de descarga directa.
+const BASE_DOWNLOAD_URL = "https://raw.githubusercontent.com/AmiiboDB/Amiibo/main/";
+
 const FRAME_HEADER_SIZE = 4;
 const COMMAND_TIMEOUT_MS = 10000;
 const FORMAT_TIMEOUT_MS = 45000;
@@ -2884,13 +2888,17 @@ el.btnInstallConfirm.addEventListener("click", async () => {
     _activeInstallList.forEach(item => {
         const cleanFilename = sanitizeName(item.amiibo.name) + ".bin";
         const remotePath = joinPaths(destinationFolder, cleanFilename);
-        const githubRawUrl = `https://raw.githubusercontent.com/AmiiboDB/Amiibo/main/${item.amiibo.path}`;
+        
+        // Use BASE_DOWNLOAD_URL which can be GitHub or Internet Archive
+        const downloadUrl = BASE_DOWNLOAD_URL.endsWith('/') 
+            ? `${BASE_DOWNLOAD_URL}${item.amiibo.path}` 
+            : `${BASE_DOWNLOAD_URL}/${item.amiibo.path}`;
         
         queueItems.push({
             kind: "file",
             localPath: `${item.amiibo.name}`,
             remotePath: remotePath,
-            githubUrl: githubRawUrl,
+            githubUrl: downloadUrl,
             status: "pending"
         });
     });

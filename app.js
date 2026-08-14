@@ -1,5 +1,5 @@
 // === Configuration & Constants ===
-const APP_VERSION = "v1.0.5";
+const APP_VERSION = "v1.0.6";
 const NUS_SERVICE_UUID = "6e400001-b5a3-f393-e0a9-e50e24dcca9e";
 const NUS_CHAR_TX_UUID = "6e400002-b5a3-f393-e0a9-e50e24dcca9e";
 const NUS_CHAR_RX_UUID = "6e400003-b5a3-f393-e0a9-e50e24dcca9e";
@@ -2195,27 +2195,43 @@ async function runQueueUpload() {
             } else {
                 let fileObj = item.file;
                 if (item.githubUrl) {
-                    logEvent(`Descargando binario desde: ${item.githubUrl}`);
-                    try {
-                        const response = await fetch(item.githubUrl);
-                        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-                        fileObj = await response.blob();
-                    } catch (fetchErr) {
-                        const cleanKey = (item.localPath || "").trim();
-                        const altKey = cleanKey.replace(/[’'´`]/g, "'");
-                        const directKey = cleanKey.replace(/[’'´`]/g, "’");
-                        const fallbackB64 = FALLBACK_BINS[cleanKey] || FALLBACK_BINS[altKey] || FALLBACK_BINS[directKey];
-                        
-                        if (fallbackB64) {
-                            logEvent(`Usando binario de respaldo para: ${item.localPath}`);
-                            const byteChars = atob(fallbackB64);
-                            const byteNums = new Array(byteChars.length);
-                            for (let i = 0; i < byteChars.length; i++) {
-                                byteNums[i] = byteChars.charCodeAt(i);
+                    const isAwakening = (item.localPath && item.localPath.toLowerCase().includes("awakening")) ||
+                                        (item.githubUrl && item.githubUrl.toLowerCase().includes("awakening")) ||
+                                        (item.remotePath && item.remotePath.toLowerCase().includes("awakening"));
+                    
+                    if (isAwakening) {
+                        logEvent(`Instalando binario directo para: ${item.localPath}`);
+                        const b64 = FALLBACK_BINS["Link (Link’s Awakening)"];
+                        const byteChars = atob(b64);
+                        const byteNums = new Uint8Array(byteChars.length);
+                        for (let i = 0; i < byteChars.length; i++) {
+                            byteNums[i] = byteChars.charCodeAt(i);
+                        }
+                        fileObj = new Blob([byteNums], { type: "application/octet-stream" });
+                    } else {
+                        logEvent(`Descargando binario desde: ${item.githubUrl}`);
+                        try {
+                            const response = await fetch(item.githubUrl);
+                            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                            fileObj = await response.blob();
+                        } catch (fetchErr) {
+                            let fallbackFound = false;
+                            for (const [key, b64] of Object.entries(FALLBACK_BINS)) {
+                                if (item.localPath && (item.localPath.includes(key) || key.includes(item.localPath))) {
+                                    const byteChars = atob(b64);
+                                    const byteNums = new Uint8Array(byteChars.length);
+                                    for (let i = 0; i < byteChars.length; i++) {
+                                        byteNums[i] = byteChars.charCodeAt(i);
+                                    }
+                                    fileObj = new Blob([byteNums], { type: "application/octet-stream" });
+                                    fallbackFound = true;
+                                    logEvent(`Usando binario de respaldo para: ${item.localPath}`);
+                                    break;
+                                }
                             }
-                            fileObj = new Blob([new Uint8Array(byteNums)], { type: "application/octet-stream" });
-                        } else {
-                            throw new Error(`HTTP ${fetchErr.message} al descargar de Archive`);
+                            if (!fallbackFound) {
+                                throw new Error(`HTTP ${fetchErr.message} al descargar de Archive`);
+                            }
                         }
                     }
                     item.file = fileObj;

@@ -1,5 +1,5 @@
 // === Configuration & Constants ===
-const APP_VERSION = "v1.0.6";
+const APP_VERSION = "v1.0.7";
 const NUS_SERVICE_UUID = "6e400001-b5a3-f393-e0a9-e50e24dcca9e";
 const NUS_CHAR_TX_UUID = "6e400002-b5a3-f393-e0a9-e50e24dcca9e";
 const NUS_CHAR_RX_UUID = "6e400003-b5a3-f393-e0a9-e50e24dcca9e";
@@ -2490,6 +2490,8 @@ function normalizeString(str) {
     return str.normalize("NFD")
               .replace(/[\u0300-\u036f]/g, "") // remove accents
               .toLowerCase()
+              .replace(/['’´`]/g, '')
+              .replace(/\b(\w+)s\b/g, '$1')     // normalize possessives and plurals (links -> link)
               .replace(/[^a-z0-9]/g, ' ')      // replace all non-alphanumeric characters with spaces
               .replace(/\s+/g, ' ')            // collapse multiple spaces
               .trim();
@@ -2508,7 +2510,7 @@ function findAmiiboInList(name, category) {
     const cleanedName = cleanAmiiboNameForSearch(name);
     const normSearch = normalizeString(cleanedName);
     const normCategory = normalizeString(category);
-    const searchTokens = normSearch.split(' ').filter(Boolean);
+    const searchTokens = Array.from(new Set(normSearch.split(' ').filter(Boolean)));
     
     let bestMatch = null;
     let highestScore = 0;
@@ -2519,17 +2521,17 @@ function findAmiiboInList(name, category) {
         const normSeries = normalizeString(item.amiiboSeries);
         const normGame = normalizeString(item.gameSeries);
         
-        const apiTokens = normApi.split(' ').filter(Boolean);
-        const charTokens = normChar.split(' ').filter(Boolean);
+        const apiTokens = Array.from(new Set(normApi.split(' ').filter(Boolean)));
+        const charTokens = Array.from(new Set(normChar.split(' ').filter(Boolean)));
         
         let score = 0;
         
-        // 1. Name Similarity
+        // 1. Exact match
         if (normSearch === normApi) {
-            score += 1000;
+            score += 1200;
         } else if (normSearch.includes(normApi) || normApi.includes(normSearch)) {
             const lenDiff = Math.abs(normSearch.length - normApi.length);
-            score += Math.max(0, 600 - lenDiff * 10);
+            score += Math.max(0, 500 - lenDiff * 10);
         }
         
         // 2. Character overlap
@@ -2546,7 +2548,7 @@ function findAmiiboInList(name, category) {
             score += 150;
         }
         
-        // 4. Token overlap ratio
+        // 4. Token overlap ratio with distinctive keywords
         let tokenMatches = 0;
         searchTokens.forEach(t => {
             if (apiTokens.includes(t) || charTokens.includes(t)) tokenMatches++;
@@ -2554,11 +2556,23 @@ function findAmiiboInList(name, category) {
         
         if (tokenMatches > 0) {
             const matchRatio = tokenMatches / searchTokens.length;
-            score += matchRatio * 400;
+            score += matchRatio * 600;
             if (tokenMatches === searchTokens.length) {
-                score += 400;
+                score += 500;
             }
         }
+        
+        // 5. Specificity bonus: If search has distinctive subseries term (e.g. awakening, archer, rider, mask)
+        const distinctiveKeywords = ['awakening', 'archer', 'rider', 'majora', 'ocarina', 'twilight', 'skyward', 'wind', 'sanrio', 'totk', 'botw', 'festival', 'welcome'];
+        searchTokens.forEach(t => {
+            if (distinctiveKeywords.includes(t)) {
+                if (apiTokens.includes(t)) {
+                    score += 800;
+                } else {
+                    score -= 400; // Penalize generic matches like base Smash Link
+                }
+            }
+        });
         
         if (score > highestScore) {
             highestScore = score;

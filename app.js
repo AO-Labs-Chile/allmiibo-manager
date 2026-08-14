@@ -410,22 +410,31 @@ function setLanguage(lang) {
     localStorage.setItem("allmiibo_lang", lang);
     document.documentElement.lang = lang;
     
-    if (el.langSelect) {
-        el.langSelect.value = lang;
+    // Update segmented buttons
+    const btnEs = document.getElementById("btn-lang-es");
+    const btnEn = document.getElementById("btn-lang-en");
+    if (btnEs && btnEn) {
+        if (lang === "es") {
+            btnEs.classList.add("active");
+            btnEn.classList.remove("active");
+        } else {
+            btnEn.classList.add("active");
+            btnEs.classList.remove("active");
+        }
     }
     
-    // Update all static data-i18n elements
+    // Update all static data-i18n elements (with innerHTML support for <strong>/<code> tags)
     document.querySelectorAll("[data-i18n]").forEach(node => {
         const key = node.getAttribute("data-i18n");
-        if (TRANSLATIONS[lang] && TRANSLATIONS[lang][key]) {
-            node.textContent = TRANSLATIONS[lang][key];
+        if (TRANSLATIONS[lang] && TRANSLATIONS[lang][key] !== undefined) {
+            node.innerHTML = TRANSLATIONS[lang][key];
         }
     });
     
     // Update data-i18n-title
     document.querySelectorAll("[data-i18n-title]").forEach(node => {
         const key = node.getAttribute("data-i18n-title");
-        if (TRANSLATIONS[lang] && TRANSLATIONS[lang][key]) {
+        if (TRANSLATIONS[lang] && TRANSLATIONS[lang][key] !== undefined) {
             node.title = TRANSLATIONS[lang][key];
         }
     });
@@ -433,10 +442,25 @@ function setLanguage(lang) {
     // Update data-i18n-placeholder
     document.querySelectorAll("[data-i18n-placeholder]").forEach(node => {
         const key = node.getAttribute("data-i18n-placeholder");
-        if (TRANSLATIONS[lang] && TRANSLATIONS[lang][key]) {
+        if (TRANSLATIONS[lang] && TRANSLATIONS[lang][key] !== undefined) {
             node.placeholder = TRANSLATIONS[lang][key];
         }
     });
+    
+    // Update explorer view select and sort select options
+    if (el.explorerViewSelect && el.explorerViewSelect.options && el.explorerViewSelect.options.length >= 2) {
+        el.explorerViewSelect.options[0].text = t("view_folders");
+        el.explorerViewSelect.options[1].text = t("view_gallery");
+    }
+    if (el.explorerSortSelect && el.explorerSortSelect.options && el.explorerSortSelect.options.length >= 4) {
+        el.explorerSortSelect.options[0].text = t("sort_name_asc");
+        el.explorerSortSelect.options[1].text = t("sort_name_desc");
+        el.explorerSortSelect.options[2].text = t("sort_size_asc");
+        el.explorerSortSelect.options[3].text = t("sort_size_desc");
+    }
+    if (el.toggleViewText) {
+        el.toggleViewText.textContent = state.explorerViewMode === "grid" ? t("btn_toggle_list") : t("btn_toggle_grid");
+    }
     
     // Re-populate dynamic UI
     if (state.categories && Object.keys(state.categories).length > 0) {
@@ -444,9 +468,23 @@ function setLanguage(lang) {
         renderOnlineCatalogue();
     }
     renderUploadQueue();
-    if (state.isConnected) {
+    
+    if (!state.isConnected) {
+        if (el.statusText) el.statusText.textContent = t("status_disconnected");
+        if (el.explorerTableBody) {
+            el.explorerTableBody.innerHTML = `
+                <tr>
+                    <td colspan="4" style="text-align: center; color: var(--text-muted); padding: 32px;">
+                        ${t("table_connect_hint")}
+                    </td>
+                </tr>
+            `;
+        }
+    } else {
+        if (el.statusText) el.statusText.textContent = state.isMock ? t("status_mock") : t("status_connected");
         updateStorageBar();
         updateKeyStatus();
+        refreshExplorer();
     }
 }
 
@@ -2538,8 +2576,8 @@ function renderOnlineCatalogue() {
             if (selectedSub && amiibo.subPath !== selectedSub) return;
             if (searchVal && !amiibo.name.toLowerCase().includes(searchVal)) return;
             
-            // Deduplicate based on path/unique key
-            const uniqueKey = amiibo.path || `${cat}_${amiibo.name}`;
+            // Deduplicate based on category and clean name
+            const uniqueKey = `${cat}_${amiibo.name.toLowerCase().trim()}`;
             if (rendered.has(uniqueKey)) return;
             rendered.add(uniqueKey);
             
@@ -3315,12 +3353,9 @@ el.btnQueueClear.addEventListener("click", () => {
     renderUploadQueue();
 });
 
-// Language Selector Listener
-if (el.langSelect) {
-    el.langSelect.addEventListener("change", (e) => {
-        setLanguage(e.target.value);
-    });
-}
+// Language Button Listeners (Segmented Control)
+document.getElementById("btn-lang-es")?.addEventListener("click", () => setLanguage("es"));
+document.getElementById("btn-lang-en")?.addEventListener("click", () => setLanguage("en"));
 
 el.btnQueueStart.addEventListener("click", () => {
     runQueueUpload();

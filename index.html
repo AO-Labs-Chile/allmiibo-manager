@@ -43,13 +43,10 @@
         </div>
 
         <div style="display: flex; gap: 8px; align-items: center;">
-            <!-- Language Selector -->
-            <div class="lang-picker-wrap" style="display: flex; align-items: center; gap: 4px; background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; padding: 4px 8px;">
-                <span class="material-symbols-rounded" style="font-size: 1.1rem; color: var(--text-muted);">language</span>
-                <select id="lang-select" style="background: transparent; color: var(--text-primary); border: none; font-size: 0.8rem; font-weight: 600; cursor: pointer; outline: none;">
-                    <option value="es">🇪🇸 Español</option>
-                    <option value="en">🇺🇸 English</option>
-                </select>
+            <!-- Language Selector Segmented Control -->
+            <div class="lang-segmented-control" id="lang-control">
+                <button type="button" class="lang-btn active" id="btn-lang-es" data-lang="es">🇪🇸 ES</button>
+                <button type="button" class="lang-btn" id="btn-lang-en" data-lang="en">🇺🇸 EN</button>
             </div>
 
             <a class="btn btn-secondary" href="https://ko-fi.com/aolabs" target="_blank" rel="noopener noreferrer" title="Apoyar el proyecto en Ko-fi" data-i18n-title="btn_donate_title" style="color: #ff5e5b; text-decoration: none;">

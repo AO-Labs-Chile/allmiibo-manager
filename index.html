@@ -44,12 +44,6 @@
             <div class="sidebar-nav-section">
                 <div class="sidebar-title" data-i18n="sidebar_navigation">Navegación</div>
                 
-                <!-- Main Connection Button (Prominent Call to Action) -->
-                <button class="btn btn-primary btn-connect-main" id="btn-connect-ble">
-                    <span class="material-symbols-rounded">bluetooth</span>
-                    <span data-i18n="btn_connect">Conectar Allmiibo</span>
-                </button>
-
                 <!-- Navigation Tabs & Help -->
                 <div class="sidebar-nav-buttons">
                     <button class="sidebar-nav-btn tab-btn active" data-tab="local-tab">
@@ -84,6 +78,12 @@
             <div class="sidebar-title" data-i18n="sidebar_device">Dispositivo</div>
             
             <div class="connection-card">
+                <!-- Main Connection Button inside Device Section -->
+                <button class="btn btn-primary btn-connect-main" id="btn-connect-ble">
+                    <span class="material-symbols-rounded">bluetooth</span>
+                    <span data-i18n="btn_connect">Conectar Allmiibo</span>
+                </button>
+
                 <div class="status-indicator">
                     <div class="status-dot" id="status-dot"></div>
                     <span id="status-text" data-i18n="status_disconnected">Desconectado</span>

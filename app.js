@@ -1752,6 +1752,85 @@ async function syncCatalogueFromGitHub() {
     }
 }
 
+async function syncCatalogueFromArchive() {
+    const originalText = el.btnCatSync.innerHTML;
+    el.btnCatSync.disabled = true;
+    el.btnCatSync.innerHTML = `<span class="material-symbols-rounded pulse" style="font-size: 1.1rem; animation: pulse 1s infinite;">sync</span> Sincronizando...`;
+    showToast("Sincronizando catálogo con Internet Archive...");
+    
+    try {
+        const categories = {};
+        // Escanear el listado de archivos dentro del zip expuesto por Archive.org
+        const res = await fetch("https://archive.org/download/nintendo-amiibo-nfc-vault/Amiibo%20Bin.zip/");
+        if (!res.ok) throw new Error("No se pudo conectar con el listado de Archive.org.");
+        const html = await res.text();
+        
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, "text/html");
+        const links = doc.querySelectorAll("a");
+        
+        let fileCount = 0;
+        for (const link of links) {
+            const href = link.getAttribute("href");
+            if (!href) continue;
+            
+            const decoded = decodeURIComponent(href);
+            // Evitar enlaces de retroceso, parámetros del servidor u otros archivos ajenos
+            if (decoded.includes("..") || decoded.includes("?") || decoded.startsWith("/")) continue;
+            
+            if (decoded.toLowerCase().endsWith(".bin") || decoded.toLowerCase().endsWith(".nfc")) {
+                const ext = decoded.toLowerCase().endsWith(".nfc") ? "nfc" : "bin";
+                const parts = decoded.split("/");
+                let categoryName = "Otros";
+                let filename = parts[parts.length - 1];
+                
+                if (parts.length === 3) {
+                    categoryName = parts[1];
+                } else if (parts.length === 2) {
+                    categoryName = parts[0];
+                }
+                
+                // Descartar carpetas de imágenes y archivos de sistema ocultos de macOS/Windows
+                if (categoryName.toLowerCase() === "images" || filename.startsWith("._") || filename.startsWith(".")) continue;
+                
+                if (!categories[categoryName]) {
+                    categories[categoryName] = [];
+                }
+                
+                const name = filename.substring(0, filename.lastIndexOf('.'));
+                categories[categoryName].push({
+                    name: name,
+                    path: decoded,
+                    ext: ext
+                });
+                fileCount++;
+            }
+        }
+        
+        if (fileCount === 0) {
+            throw new Error("No se encontraron Amiibos válidos (.bin o .nfc) dentro del ZIP en Archive.org.");
+        }
+        
+        // Ordenar alfabéticamente
+        for (const cat of Object.keys(categories)) {
+            categories[cat].sort((a, b) => a.name.localeCompare(b.name));
+        }
+        
+        state.categories = categories;
+        localStorage.setItem("cached_amiibo_db", JSON.stringify(categories));
+        
+        populateCategoryDropdown();
+        renderOnlineCatalogue();
+        showToast(`Catálogo sincronizado: se encontraron ${fileCount} Amiibos en tu Internet Archive.`);
+    } catch (err) {
+        logEvent(`Error al sincronizar desde Archive.org: ${err.message}`);
+        showToast(`Error de sincronización: ${err.message}`, "error");
+    } finally {
+        el.btnCatSync.disabled = false;
+        el.btnCatSync.innerHTML = originalText;
+    }
+}
+
 function normalizeString(str) {
     if (!str) return "";
     return str.normalize("NFD")
@@ -2788,8 +2867,14 @@ el.btnCatInstallSeries.addEventListener("click", () => {
     openInstallFolderModal(visibleAmiibos);
 });
 
-// Sync Online Catalogue with GitHub Live API
-el.btnCatSync.addEventListener("click", syncCatalogueFromGitHub);
+// Sync Online Catalogue based on chosen source
+el.btnCatSync.addEventListener("click", () => {
+    if (el.catalogueSourceSelect.value === "archive") {
+        syncCatalogueFromArchive();
+    } else {
+        syncCatalogueFromGitHub();
+    }
+});
 
 // Update Key listeners
 el.btnUploadKey.addEventListener("click", () => {

@@ -1,5 +1,5 @@
 // === Configuration & Constants ===
-const APP_VERSION = "v1.0.2";
+const APP_VERSION = "v1.0.3";
 const NUS_SERVICE_UUID = "6e400001-b5a3-f393-e0a9-e50e24dcca9e";
 const NUS_CHAR_TX_UUID = "6e400002-b5a3-f393-e0a9-e50e24dcca9e";
 const NUS_CHAR_RX_UUID = "6e400003-b5a3-f393-e0a9-e50e24dcca9e";
@@ -2740,7 +2740,12 @@ function openInstallFolderModal(amiibos) {
     if (amiibos.length > 0) {
         const firstCat = amiibos[0].category;
         const firstSub = amiibos[0].amiibo?.subPath || "";
-        suggestion = getDestinationFolder(firstCat, firstSub);
+        const allSameSub = amiibos.every(item => item.category === firstCat && (item.amiibo?.subPath || "") === firstSub);
+        if (allSameSub && firstSub) {
+            suggestion = getDestinationFolder(firstCat, firstSub);
+        } else {
+            suggestion = getCleanCategoryFolder(firstCat);
+        }
     }
     
     el.installFolderInput.value = suggestion;
@@ -3577,21 +3582,28 @@ el.btnInstallConfirm.addEventListener("click", async () => {
     }
     
     const sanitizedFolder = sanitizeName(folderName);
-    const destinationFolder = joinPaths("E:/amiibo", sanitizedFolder);
-    
-    const queueItems = [];
-    
-    // 1. Create target folder (e.g. E:/amiibo/AC_Series_1 or E:/amiibo/Zelda_BotW)
-    queueItems.push({
-        kind: "folder",
-        localPath: sanitizedFolder,
-        remotePath: destinationFolder,
-        status: "pending"
-    });
-    
-    // 2. Add each file download/flash item directly into the target folder (1 level under E:/amiibo/)
+    const uniqueFolders = new Set();
+    const fileItems = [];
     const addedRemotePaths = new Set();
+    
+    // Determine target folder for each item (dynamically grouping subseries)
     _activeInstallList.forEach(item => {
+        let targetFolder;
+        if (item.amiibo?.subPath) {
+            const sub = cleanSubPath(item.amiibo.subPath);
+            const baseCat = getCleanCategoryFolder(item.category);
+            if (folderName && folderName !== baseCat) {
+                targetFolder = `${sanitizedFolder}_${sub}`;
+            } else {
+                targetFolder = `${baseCat}_${sub}`;
+            }
+        } else {
+            targetFolder = sanitizedFolder;
+        }
+        
+        const destinationFolder = joinPaths("E:/amiibo", targetFolder);
+        uniqueFolders.add(destinationFolder);
+        
         const cleanFilename = sanitizeName(item.amiibo.name) + ".bin";
         const rawRemotePath = joinPaths(destinationFolder, cleanFilename);
         const finalRemotePath = fitPathToHardwareLimit(rawRemotePath);
@@ -3606,7 +3618,7 @@ el.btnInstallConfirm.addEventListener("click", async () => {
                 : `${baseDownloadUrl}/${item.amiibo.path}`;
         }
         
-        queueItems.push({
+        fileItems.push({
             kind: "file",
             localPath: `${item.amiibo.name}`,
             remotePath: finalRemotePath,
@@ -3614,6 +3626,21 @@ el.btnInstallConfirm.addEventListener("click", async () => {
             status: "pending"
         });
     });
+    
+    const queueItems = [];
+    
+    // 1. Create all unique subseries folders first
+    uniqueFolders.forEach(folderPath => {
+        queueItems.push({
+            kind: "folder",
+            localPath: folderPath.split("/").pop(),
+            remotePath: folderPath,
+            status: "pending"
+        });
+    });
+    
+    // 2. Add all file items
+    queueItems.push(...fileItems);
     
     // Clear selection
     state.selectedCatalogue.clear();

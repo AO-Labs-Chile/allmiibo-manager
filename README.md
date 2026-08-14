@@ -31,6 +31,7 @@
 
 * 📶 **Conexión Inalámbrica Web Bluetooth (Web BLE)**: Comunícate directamente con tu Allmiibo desde el navegador con alta velocidad de transferencia (MTU 250, paquetes de 242 bytes).
 * 🏪 **Bóveda y Catálogo Online Integrado (1.070+ Amiibos)**: Explora la biblioteca completa de figuras y tarjetas sincronizada en tiempo real desde la bóveda de Internet Archive y categorizada en más de 32 franquicias (Zelda, Animal Crossing Series 1-5, Sanrio, Super Smash Bros, Splatoon, Mario, Monster Hunter, etc.).
+* 🔍 **Detección de Instalados y Omisión de Duplicados**: El catálogo detecta en tiempo real qué figuras ya están en tu dispositivo con la insignia **✓ Instalado**, y al instalar series completas omite automáticamente los duplicados para ahorrar tiempo y almacenamiento.
 * 🎨 **Imágenes Oficiales Dinámicas**: Coincidencia inteligente de nombres que consulta e ilustra cada tarjeta con su portada oficial en alta definición desde <a href="https://www.amiiboapi.org/" target="_blank" rel="noopener noreferrer">AmiiboAPI</a>.
 * ⚡ **Flasheo Directo con 1 Clic**: Instala figuras individuales o series completas directamente desde la nube a tu Allmiibo sin descargar archivos `.bin` manualmente.
 * 📁 **Organización Inteligente de Carpetas**: Al instalar lotes o series grandes, el gestor estructura y desglosa automáticamente los archivos en subcarpetas optimizadas (ej. `Zelda_BotW`, `Zelda_TotK`, `AC_Series_1`), respetando estrictamente los límites de ruta del sistema de archivos LittleFS (máximo 58 bytes por ruta).
@@ -74,6 +75,7 @@
 
 * 📶 **Wireless Web Bluetooth (Web BLE) Connectivity**: High-speed wireless data transfer directly through the browser (MTU 250, 242-byte chunk streaming).
 * 🏪 **Integrated Cloud Vault (1,070+ Amiibos)**: Comprehensive cloud library synced in real-time with Internet Archive, categorized across 32 franchises (Zelda, Animal Crossing Series 1-5, Sanrio, Super Smash Bros, Splatoon, Mario, Monster Hunter, etc.).
+* 🔍 **Installed Detection & Smart Duplicate Skip**: The catalog automatically marks already present Amiibos with a **✓ Installed** badge, and batch installations automatically skip duplicates to save storage and transfer time.
 * 🎨 **Dynamic Official Artwork**: Intelligent name-matching engine that queries and displays official high-definition box art dynamically from <a href="https://www.amiiboapi.org/" target="_blank" rel="noopener noreferrer">AmiiboAPI</a>.
 * ⚡ **1-Click Direct Flashing**: Install single figures or full series directly from the cloud to your Allmiibo without manual `.bin` downloads.
 * 📁 **Smart Folder Categorization**: Batch installations automatically split into clean, short subfolders (`Zelda_BotW`, `Zelda_TotK`, `AC_Series_1`, etc.), strictly respecting LittleFS path length limits (max 58 bytes).

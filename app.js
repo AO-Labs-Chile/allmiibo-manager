@@ -697,11 +697,6 @@ function sanitizeName(name) {
     // 2. Remove tildes/accents, special curly quotes and convert parentheses and dashes to spaces
     clean = removeAccents(clean)
         .replace(/[’'´`]/g, '')
-        .replace(/[\(\)]/g, ' ')
-        .replace(/[-]/g, ' ')
-        .replace(/[^a-zA-Z0-9\s._]/g, '')
-        .trim();
-        
     // 3. Clean spaces to underscores
     clean = clean.replace(/\s+/g, '_').replace(/_+/g, '_');
     
@@ -718,10 +713,20 @@ function normalizeAmiiboMatchKey(str) {
         .trim();
 }
 
-function isAmiiboInstalled(amiibo) {
-    if (!state.isConnected || !state.installedAmiiboSet || state.installedAmiiboSet.size === 0 || !amiibo) {
+function isAmiiboInstalled(amiibo, targetRemotePath = "") {
+    if (!state.isConnected || !amiibo) {
         return false;
     }
+    
+    // 1. Direct path match check if targetRemotePath is provided
+    if (targetRemotePath && state.installedPathsSet && state.installedPathsSet.has(targetRemotePath.toLowerCase())) {
+        return true;
+    }
+    
+    if (!state.installedAmiiboSet || state.installedAmiiboSet.size === 0) {
+        return false;
+    }
+    
     const clean = sanitizeName(amiibo.name);
     const key1 = normalizeAmiiboMatchKey(amiibo.name);
     const key2 = normalizeAmiiboMatchKey(clean);
@@ -731,7 +736,7 @@ function isAmiiboInstalled(amiibo) {
     
     return state.installedAmiiboSet.has(key1) || 
            state.installedAmiiboSet.has(key2) || 
-           state.installedAmiiboSet.has(key3) ||
+           state.installedAmiiboSet.has(key3) || 
            state.installedAmiiboSet.has(key4) ||
            (cleanNoLead && state.installedAmiiboSet.has(cleanNoLead));
 }
@@ -740,6 +745,8 @@ let _isScanningInstalled = false;
 async function scanInstalledAmiibos() {
     if (!state.isConnected || !state.client) {
         state.installedAmiiboSet.clear();
+        state.installedPathsSet.clear();
+        state.existingFoldersSet.clear();
         renderOnlineCatalogue();
         return;
     }
@@ -747,22 +754,29 @@ async function scanInstalledAmiibos() {
     _isScanningInstalled = true;
     
     try {
-        logEvent("Escaneando archivos en el dispositivo...");
+        logEvent("Escaneando archivos y carpetas del dispositivo...");
         const found = new Set();
+        const foundPaths = new Set();
+        const foundFolders = new Set();
         
         async function traverse(dirPath, depth = 0) {
             if (depth > 3) return;
+            foundFolders.add(dirPath.toLowerCase().replace(/\/+$/, ''));
             const res = await state.client.readFolder(dirPath);
             if (!res || !res.ok || !res.data) return;
             
             for (const item of res.data) {
+                const fullItemPath = joinPaths(dirPath, item.name);
                 if (item.type === "DIR") {
-                    const subDirPath = joinPaths(dirPath, item.name);
-                    await traverse(subDirPath, depth + 1);
+                    foundFolders.add(fullItemPath.toLowerCase().replace(/\/+$/, ''));
+                    // Skip save directory from deep file scanning
+                    if (item.name.toLowerCase() === "save") continue;
+                    await traverse(fullItemPath, depth + 1);
                 } else if (item.name.toLowerCase().endsWith(".bin")) {
                     const rawName = item.name.toLowerCase();
                     const cleanItem = item.name.replace(/\.bin$/i, '');
                     
+                    foundPaths.add(fullItemPath.toLowerCase());
                     found.add(rawName);
                     found.add(cleanItem.toLowerCase());
                     
@@ -790,12 +804,12 @@ async function scanInstalledAmiibos() {
         
         await traverse("E:/");
         
-        // Also explicitly traverse E:/amiibo subdirectories if any
+        // Also ensure E:/amiibo subdirectories are traversed
         try {
             const amiiboRes = await state.client.readFolder("E:/amiibo");
             if (amiiboRes && amiiboRes.ok && amiiboRes.data) {
                 for (const sub of amiiboRes.data) {
-                    if (sub.type === "DIR") {
+                    if (sub.type === "DIR" && sub.name.toLowerCase() !== "save") {
                         await traverse(joinPaths("E:/amiibo", sub.name), 1);
                     }
                 }
@@ -803,7 +817,9 @@ async function scanInstalledAmiibos() {
         } catch(e) {}
         
         state.installedAmiiboSet = found;
-        logEvent(`Escaneo completado: ${found.size} claves de Amiibos indexadas.`);
+        state.installedPathsSet = foundPaths;
+        state.existingFoldersSet = foundFolders;
+        logEvent(`Escaneo completado: ${foundPaths.size} archivos .bin y ${foundFolders.size} carpetas indexadas.`);
         renderOnlineCatalogue();
     } catch (err) {
         console.warn("Scan installed amiibos error:", err);
@@ -1448,6 +1464,8 @@ const state = {
     explorerTabMode: "folders", // "folders" or "gallery" view type
     scannedAmiibos: [], // Recursively scanned Amiibos for the gallery view
     installedAmiiboSet: new Set(), // Set of normalized names/keys currently installed on device
+    installedPathsSet: new Set(), // Set of exact lowercase remote paths on device (e.g. "e:/amiibo/boxboy/qbby.bin")
+    existingFoldersSet: new Set(), // Set of exact lowercase directory paths on device (e.g. "e:/amiibo/boxboy")
     abortUpload: false, // Flag to cancel running upload queue
     lang: localStorage.getItem("allmiibo_lang") || "es" // Language: "es" or "en"
 };
@@ -1595,8 +1613,8 @@ async function initDeviceAfterConnection(isMock) {
     try {
         await updateDeviceInfo();
         await updateStorageBar();
-        await refreshExplorer();
         await scanInstalledAmiibos();
+        await refreshExplorer();
     } catch (err) {
         console.warn("Device init error:", err);
     }
@@ -3208,9 +3226,6 @@ function openInstallFolderModal(amiibos) {
     let alreadyInstalledCount = 0;
     
     amiibos.forEach(item => {
-        if (isAmiiboInstalled(item.amiibo)) {
-            alreadyInstalledCount++;
-        }
         let targetFolder;
         if (item.amiibo?.subPath) {
             const sub = cleanSubPath(item.amiibo.subPath);
@@ -3220,6 +3235,15 @@ function openInstallFolderModal(amiibos) {
             targetFolder = getCleanCategoryFolder(item.category);
         }
         _activeFolderBreakdown[targetFolder] = (_activeFolderBreakdown[targetFolder] || 0) + 1;
+        
+        const destinationFolder = joinPaths("E:/amiibo", targetFolder);
+        const cleanFilename = sanitizeName(item.amiibo.name) + ".bin";
+        const rawRemotePath = joinPaths(destinationFolder, cleanFilename);
+        const finalRemotePath = fitPathToHardwareLimit(rawRemotePath);
+        
+        if (isAmiiboInstalled(item.amiibo, finalRemotePath)) {
+            alreadyInstalledCount++;
+        }
     });
     
     const folderKeys = Object.keys(_activeFolderBreakdown);
@@ -3961,29 +3985,15 @@ el.btnInstallConfirm.addEventListener("click", async () => {
     
     // Check if skipping already installed amiibos
     const chkSkip = document.getElementById("chk-skip-installed");
-    let itemsToInstall = _activeInstallList;
-    let skippedCount = 0;
-    
-    if (chkSkip && chkSkip.checked) {
-        itemsToInstall = _activeInstallList.filter(item => {
-            const installed = isAmiiboInstalled(item.amiibo);
-            if (installed) skippedCount++;
-            return !installed;
-        });
-        
-        if (itemsToInstall.length === 0) {
-            el.modalInstall.classList.remove("active");
-            showToast(t("install_skip_all_installed_warn"), "error");
-            return;
-        }
-    }
+    const shouldSkip = chkSkip ? chkSkip.checked : false;
     
     const uniqueFolders = new Set();
     const fileItems = [];
     const addedRemotePaths = new Set();
+    let skippedCount = 0;
     
     // Determine target folder for each item (dynamically grouping subseries)
-    itemsToInstall.forEach(item => {
+    _activeInstallList.forEach(item => {
         let targetFolder;
         if (isMultiFolder) {
             if (item.amiibo?.subPath) {
@@ -3998,11 +4008,21 @@ el.btnInstallConfirm.addEventListener("click", async () => {
         }
         
         const destinationFolder = joinPaths("E:/amiibo", targetFolder);
-        uniqueFolders.add(destinationFolder);
-        
         const cleanFilename = sanitizeName(item.amiibo.name) + ".bin";
         const rawRemotePath = joinPaths(destinationFolder, cleanFilename);
         const finalRemotePath = fitPathToHardwareLimit(rawRemotePath);
+        
+        // Skip if already installed
+        if (shouldSkip && isAmiiboInstalled(item.amiibo, finalRemotePath)) {
+            skippedCount++;
+            return;
+        }
+        
+        // Only queue folder creation if folder DOES NOT already exist on device
+        const normDest = destinationFolder.toLowerCase().replace(/\/+$/, '');
+        if (!state.existingFoldersSet || !state.existingFoldersSet.has(normDest)) {
+            uniqueFolders.add(destinationFolder);
+        }
         
         if (addedRemotePaths.has(finalRemotePath)) return;
         addedRemotePaths.add(finalRemotePath);
@@ -4023,9 +4043,15 @@ el.btnInstallConfirm.addEventListener("click", async () => {
         });
     });
     
+    if (fileItems.length === 0) {
+        el.modalInstall.classList.remove("active");
+        showToast(t("install_skip_all_installed_warn"), "error");
+        return;
+    }
+    
     const queueItems = [];
     
-    // 1. Create all unique subseries folders first
+    // 1. Create all unique new subseries folders first
     uniqueFolders.forEach(folderPath => {
         queueItems.push({
             kind: "folder",
@@ -4048,7 +4074,11 @@ el.btnInstallConfirm.addEventListener("click", async () => {
     state.uploadQueue = state.uploadQueue.concat(queueItems);
     renderUploadQueue();
     
-    showToast(`Se agregaron ${queueItems.length} elementos a la cola de subida.`);
+    if (skippedCount > 0) {
+        showToast(t("toast_install_skipped", { added: fileItems.length, skipped: skippedCount }));
+    } else {
+        showToast(`Se agregaron ${queueItems.length} elementos a la cola de subida.`);
+    }
     
     // Automatically trigger queue processing
     runQueueUpload();

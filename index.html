@@ -136,11 +136,11 @@
                     </div>
                     
                     <div class="explorer-actions" id="explorer-actions" style="display: none;">
-                        <select class="category-filter" id="explorer-view-select" style="padding: 6px 12px; font-size: 0.85rem; height: 36px; cursor: pointer; border: 1px solid var(--border-color); border-radius: 8px; background-color: white; font-weight: 600; color: var(--primary);">
+                        <select class="category-filter" id="explorer-view-select" style="padding: 6px 12px; font-size: 0.85rem; height: 36px; cursor: pointer; border: 1px solid var(--border-color); border-radius: 8px; background-color: var(--bg-card); color: var(--primary); font-weight: 600;">
                             <option value="folders">📁 Vista Carpetas</option>
                             <option value="gallery">🎨 Galería de Amiibos</option>
                         </select>
-                        <select class="category-filter" id="explorer-sort-select" style="padding: 6px 12px; font-size: 0.85rem; height: 36px; cursor: pointer; border: 1px solid var(--border-color); border-radius: 8px; background-color: white;">
+                        <select class="category-filter" id="explorer-sort-select" style="padding: 6px 12px; font-size: 0.85rem; height: 36px; cursor: pointer; border: 1px solid var(--border-color); border-radius: 8px; background-color: var(--bg-card); color: var(--text-primary);">
                             <option value="name-asc">Nombre (A → Z)</option>
                             <option value="name-desc">Nombre (Z → A)</option>
                             <option value="size-asc">Tamaño (Menor primero)</option>
@@ -154,14 +154,6 @@
                             <span class="material-symbols-rounded">create_new_folder</span>
                             Nueva Carpeta
                         </button>
-                        <button class="btn btn-secondary" id="btn-upload-files">
-                            <span class="material-symbols-rounded">upload_file</span>
-                            Subir Archivos
-                        </button>
-                        <button class="btn btn-secondary" id="btn-upload-folder">
-                            <span class="material-symbols-rounded">folder_zip</span>
-                            Subir Carpeta
-                        </button>
                         <button class="btn btn-danger" id="btn-format" title="Eliminar todos los Amiibos del dispositivo">
                             <span class="material-symbols-rounded">delete_sweep</span>
                             Borrar Amiibos
@@ -173,21 +165,14 @@
                 <input type="file" id="input-files" multiple style="display: none;">
                 <input type="file" id="input-folder" webkitdirectory directory multiple style="display: none;">
 
-                <!-- Drag & Drop zone -->
-                <div class="file-dropzone" id="file-dropzone">
-                    <span class="material-symbols-rounded" style="font-size: 2.5rem; color: var(--text-muted);">cloud_upload</span>
-                    <div class="dropzone-title">Arrastra archivos o carpetas de Amiibos aquí</div>
-                    <div class="dropzone-sub">o haz clic para explorar en tu ordenador</div>
-                </div>
-
                 <!-- Local File Explorer Table -->
                 <div class="table-container" id="explorer-table-container">
                     <table class="file-table">
                         <colgroup>
                             <col style="width: 5%;">
-                            <col style="width: 55%;">
+                            <col style="width: 50%;">
+                            <col style="width: 20%;">
                             <col style="width: 25%;">
-                            <col style="width: 15%;">
                         </colgroup>
                         <thead>
                             <tr>
@@ -211,6 +196,25 @@
                 <div class="amiibo-grid" id="explorer-grid-container" style="display: none; padding-top: 16px;">
                     <!-- Visual card list will go here -->
                 </div>
+
+                <!-- Upload actions bar (below file list) -->
+                <div id="upload-actions-bar" style="display: none; padding: 12px 0; display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
+                    <button class="btn btn-primary" id="btn-upload-files">
+                        <span class="material-symbols-rounded">upload_file</span>
+                        Subir Archivos
+                    </button>
+                    <button class="btn btn-primary" id="btn-upload-folder">
+                        <span class="material-symbols-rounded">folder_zip</span>
+                        Subir Carpeta
+                    </button>
+                </div>
+
+                <!-- Drag & Drop zone (below file list) -->
+                <div class="file-dropzone" id="file-dropzone" style="margin-top: 8px;">
+                    <span class="material-symbols-rounded" style="font-size: 2rem; color: var(--text-muted);">cloud_upload</span>
+                    <div class="dropzone-title" style="font-size: 0.95rem;">Arrastra archivos o carpetas de Amiibos aquí</div>
+                    <div class="dropzone-sub">o haz clic para explorar en tu ordenador</div>
+                </div>
             </div>
 
             <!-- TAB 2: ONLINE CATALOGUE -->
@@ -221,10 +225,7 @@
                             <input type="text" class="search-input" id="search-amiibo" placeholder="Buscar Amiibo...">
                         </div>
                         <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                            <select class="category-filter" id="catalogue-source-select" style="font-weight: 600; color: var(--primary);">
-                                <option value="archive">🏛️ Internet Archive (Vault)</option>
-                                <option value="github">🐙 GitHub Mirror (AmiiboDB)</option>
-                            </select>
+
                             <select class="category-filter" id="filter-category">
                                 <option value="all">Todas las Series</option>
                             </select>
@@ -271,6 +272,26 @@
 
     <!-- Toast Notifications -->
     <div class="toast-container" id="toast-container"></div>
+
+    <!-- Modal: Progreso de eliminación -->
+    <div class="modal-overlay" id="modal-delete-progress">
+        <div class="modal" style="max-width: 420px; text-align: center;">
+            <div class="modal-header" style="display: flex; align-items: center; gap: 8px; justify-content: center;">
+                <span class="material-symbols-rounded pulse" style="font-size: 1.5rem; color: var(--danger); animation: pulse 1s infinite;">delete_sweep</span>
+                Eliminando Amiibos...
+            </div>
+            <div class="modal-body" style="display: flex; flex-direction: column; gap: 12px; align-items: center;">
+                <div style="width: 100%; height: 4px; background: var(--border-color); border-radius: 2px; overflow: hidden;">
+                    <div style="width: 100%; height: 100%; background: var(--danger); border-radius: 2px; animation: pulse 1.5s infinite;"></div>
+                </div>
+                <div style="font-size: 0.85rem; color: var(--text-secondary);">
+                    Eliminando: <strong id="delete-progress-text">...</strong>
+                </div>
+                <div id="delete-progress-counter" style="font-size: 0.8rem; color: var(--text-muted);">0 elementos eliminados...</div>
+                <div style="font-size: 0.75rem; color: var(--text-muted);">No cierres esta página ni desconectes el dispositivo.</div>
+            </div>
+        </div>
+    </div>
 
     <!-- Modal: Nueva Carpeta -->
     <div class="modal-overlay" id="modal-folder">

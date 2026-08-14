@@ -3,12 +3,9 @@ const NUS_SERVICE_UUID = "6e400001-b5a3-f393-e0a9-e50e24dcca9e";
 const NUS_CHAR_TX_UUID = "6e400002-b5a3-f393-e0a9-e50e24dcca9e";
 const NUS_CHAR_RX_UUID = "6e400003-b5a3-f393-e0a9-e50e24dcca9e";
 
-// Fuentes de descarga de Amiibos (Internet Archive o GitHub)
-const DOWNLOAD_SOURCES = {
-    archive: "https://archive.org/download/nintendo-amiibo-nfc-vault/Amiibo%20Bin.zip/",
-    github: "https://raw.githubusercontent.com/AmiiboDB/Amiibo/main/"
-};
-let baseDownloadUrl = DOWNLOAD_SOURCES.archive;
+// Fuente de descarga de Amiibos (Internet Archive)
+const BASE_DOWNLOAD_URL = "https://archive.org/download/nintendo-amiibo-nfc-vault/Amiibo%20Bin.zip/";
+let baseDownloadUrl = BASE_DOWNLOAD_URL;
 
 const FRAME_HEADER_SIZE = 4;
 const COMMAND_TIMEOUT_MS = 10000;
@@ -737,7 +734,6 @@ const el = {
     // Online Catalogue Elements
     filterCategory: document.getElementById("filter-category"),
     searchAmiibo: document.getElementById("search-amiibo"),
-    catalogueSourceSelect: document.getElementById("catalogue-source-select"),
     amiiboGrid: document.getElementById("amiibo-grid"),
     
     // Catalogue Selection & Installation
@@ -1034,11 +1030,34 @@ async function refreshExplorer() {
             if (state.currentPath === "E:/") {
                 checkEncryptionKeyStatus();
             }
+            // Asynchronously load child counts for directories
+            loadFolderChildCounts(res.data);
         } else {
             showToast(`Error al leer carpeta: ${res.error}`, "error");
         }
     } catch (err) {
         showToast(`Error de conexión: ${err.message}`, "error");
+    }
+}
+
+async function loadFolderChildCounts(entries) {
+    const dirs = entries.filter(e => e.type === "DIR");
+    for (const dir of dirs) {
+        try {
+            const childPath = joinPaths(state.currentPath, dir.name);
+            const childRes = await state.client.readFolder(childPath);
+            if (childRes.ok) {
+                dir._childCount = childRes.data.length;
+            } else {
+                dir._childCount = 0;
+            }
+        } catch {
+            dir._childCount = 0;
+        }
+    }
+    // Re-render to show updated counts (only if we're still on the same path)
+    if (state.currentEntries === entries) {
+        renderExplorer(entries);
     }
 }
 
@@ -1173,7 +1192,13 @@ function renderExplorerTable(entries) {
         }
         
         const tdSize = document.createElement("td");
-        tdSize.textContent = e.type === "DIR" ? "-" : `${e.size} B`;
+        if (e.type === "DIR") {
+            tdSize.textContent = e._childCount != null ? `${e._childCount} elementos` : "...";
+            tdSize.style.color = "var(--text-muted)";
+            tdSize.style.fontSize = "0.8rem";
+        } else {
+            tdSize.textContent = e.size >= 1024 ? `${(e.size / 1024).toFixed(1)} KB` : `${e.size} B`;
+        }
         
         const tdActions = document.createElement("td");
         tdActions.className = "file-actions";
@@ -1318,7 +1343,11 @@ function renderExplorerGrid(entries) {
         
         const subtitleEl = document.createElement("div");
         subtitleEl.className = "amiibo-card-series";
-        subtitleEl.textContent = e.type === "DIR" ? "Carpeta" : `Archivo (${e.size} B)`;
+        if (e.type === "DIR") {
+            subtitleEl.textContent = e._childCount != null ? `Carpeta (${e._childCount} elem.)` : "Carpeta";
+        } else {
+            subtitleEl.textContent = `Archivo (${e.size >= 1024 ? (e.size / 1024).toFixed(1) + ' KB' : e.size + ' B'})`;  
+        }
         
         info.appendChild(nameEl);
         info.appendChild(subtitleEl);
@@ -1726,50 +1755,6 @@ function populateCategoryDropdown() {
     });
 }
 
-async function syncCatalogueFromGitHub() {
-    const originalText = el.btnCatSync.innerHTML;
-    el.btnCatSync.disabled = true;
-    el.btnCatSync.innerHTML = `<span class="material-symbols-rounded pulse" style="font-size: 1.1rem; animation: pulse 1s infinite;">sync</span> Sincronizando...`;
-    showToast("Sincronizando catálogo con GitHub...");
-    
-    try {
-        const categories = {};
-        const binRes = await fetch('https://api.github.com/repos/AmiiboDB/Amiibo/contents/Amiibo%20Bin');
-        if (!binRes.ok) throw new Error("Error al acceder a la API de GitHub.");
-        const binJson = await binRes.json();
-        
-        for (const item of binJson) {
-            if (item.type === 'dir') {
-                const catName = item.name;
-                const catRes = await fetch(item.url);
-                if (catRes.ok) {
-                    const filesJson = await catRes.json();
-                    categories[catName] = filesJson
-                        .filter(f => f.name.toLowerCase().endsWith('.bin'))
-                        .map(f => ({
-                            name: f.name.replace(/\.bin$/i, ''),
-                            path: f.path,
-                            ext: 'bin'
-                        }));
-                }
-            }
-        }
-        
-        state.categories = categories;
-        localStorage.setItem("cached_amiibo_db", JSON.stringify(categories));
-        
-        populateCategoryDropdown();
-        renderOnlineCatalogue();
-        showToast("Catálogo sincronizado con GitHub con éxito.");
-    } catch (err) {
-        logEvent(`Error al sincronizar catálogo: ${err.message}`);
-        showToast(`Error al sincronizar: ${err.message}`, "error");
-    } finally {
-        el.btnCatSync.disabled = false;
-        el.btnCatSync.innerHTML = originalText;
-    }
-}
-
 async function syncCatalogueFromArchive() {
     const originalText = el.btnCatSync.innerHTML;
     el.btnCatSync.disabled = true;
@@ -1778,7 +1763,6 @@ async function syncCatalogueFromArchive() {
     
     try {
         const categories = {};
-        // Escanear el listado de archivos dentro del zip expuesto por Archive.org
         const res = await fetch("https://archive.org/download/nintendo-amiibo-nfc-vault/Amiibo%20Bin.zip/");
         if (!res.ok) throw new Error("No se pudo conectar con el listado de Archive.org.");
         const html = await res.text();
@@ -1793,23 +1777,33 @@ async function syncCatalogueFromArchive() {
             if (!href) continue;
             
             const decoded = decodeURIComponent(href);
-            // Evitar enlaces de retroceso, parámetros del servidor u otros archivos ajenos
             if (decoded.includes("..") || decoded.includes("?") || decoded.startsWith("/")) continue;
             
             if (decoded.toLowerCase().endsWith(".bin") || decoded.toLowerCase().endsWith(".nfc")) {
                 const ext = decoded.toLowerCase().endsWith(".nfc") ? "nfc" : "bin";
+                // Path format: "Amiibo Bin/CategoryFolder/SubFolder/.../file.bin"
                 const parts = decoded.split("/");
-                let categoryName = "Otros";
                 let filename = parts[parts.length - 1];
                 
-                if (parts.length === 3) {
+                // Skip hidden macOS files and image folders
+                if (filename.startsWith("._") || filename.startsWith(".")) continue;
+                
+                // Extract category (first folder after root), and subPath (everything between category and filename)
+                let categoryName = "Otros";
+                let subPath = "";
+                
+                if (parts.length >= 3) {
+                    // parts[0] = "Amiibo Bin" (root), parts[1] = category, parts[2..n-1] = subfolders, parts[n] = file
                     categoryName = parts[1];
+                    if (parts.length > 3) {
+                        // Build subpath from intermediate folders
+                        subPath = parts.slice(2, parts.length - 1).join("/");
+                    }
                 } else if (parts.length === 2) {
                     categoryName = parts[0];
                 }
                 
-                // Descartar carpetas de imágenes y archivos de sistema ocultos de macOS/Windows
-                if (categoryName.toLowerCase() === "images" || filename.startsWith("._") || filename.startsWith(".")) continue;
+                if (categoryName.toLowerCase() === "images") continue;
                 
                 if (!categories[categoryName]) {
                     categories[categoryName] = [];
@@ -1819,6 +1813,7 @@ async function syncCatalogueFromArchive() {
                 categories[categoryName].push({
                     name: name,
                     path: decoded,
+                    subPath: subPath, // preservar la subruta para organización en dispositivo
                     ext: ext
                 });
                 fileCount++;
@@ -1829,7 +1824,6 @@ async function syncCatalogueFromArchive() {
             throw new Error("No se encontraron Amiibos válidos (.bin o .nfc) dentro del ZIP en Archive.org.");
         }
         
-        // Ordenar alfabéticamente
         for (const cat of Object.keys(categories)) {
             categories[cat].sort((a, b) => a.name.localeCompare(b.name));
         }
@@ -2672,43 +2666,55 @@ el.btnDeleteConfirm.addEventListener("click", async () => {
     }
 });
 
-// Delete folder recursively
-async function deleteFolderRecursively(path) {
+// Delete folder recursively with progress callback
+async function deleteFolderRecursively(path, onProgress) {
     const res = await state.client.readFolder(path);
     if (res.ok) {
         for (const entry of res.data) {
             const entryPath = joinPaths(path, entry.name);
             if (entry.type === "DIR") {
-                await deleteFolderRecursively(entryPath);
+                await deleteFolderRecursively(entryPath, onProgress);
             } else {
+                if (onProgress) onProgress(entryPath);
                 await state.client.removePath(entryPath);
             }
         }
     }
+    if (onProgress) onProgress(path);
     return await state.client.removePath(path);
 }
 
-// Borrar todos los Amiibos
+// Borrar todos los Amiibos con progreso visual
 el.btnFormat.addEventListener("click", async () => {
-    if (confirm("¿Estás seguro de que deseas eliminar TODOS los Amiibos del dispositivo? (La clave key_retail.bin y tus partidas guardadas NO se borrarán).")) {
-        showToast("Eliminando Amiibos...");
-        try {
-            // Delete E:/amiibo folder recursively
-            const res = await deleteFolderRecursively("E:/amiibo");
-            // Recreate empty amiibo folder
-            await state.client.createFolder("E:/amiibo");
-            showToast("Todos los Amiibos han sido eliminados.");
-            state.currentPath = "E:/";
-            updateStorageBar();
-            refreshExplorer();
-        } catch (err) {
-            // Recreate empty amiibo folder just in case
-            try { await state.client.createFolder("E:/amiibo"); } catch(e) {}
-            showToast("Almacenamiento de Amiibos limpio.");
-            state.currentPath = "E:/";
-            updateStorageBar();
-            refreshExplorer();
-        }
+    if (!confirm("¿Estás seguro de que deseas eliminar TODOS los Amiibos del dispositivo? (La clave key_retail.bin y tus partidas guardadas NO se borrarán).")) return;
+    
+    // Show progress overlay
+    const overlay = document.getElementById("modal-delete-progress");
+    const statusText = document.getElementById("delete-progress-text");
+    const counterText = document.getElementById("delete-progress-counter");
+    overlay.classList.add("active");
+    
+    el.btnFormat.disabled = true;
+    let deleteCount = 0;
+    
+    try {
+        await deleteFolderRecursively("E:/amiibo", (currentPath) => {
+            deleteCount++;
+            const shortName = currentPath.split("/").pop();
+            statusText.textContent = shortName;
+            counterText.textContent = `${deleteCount} elementos eliminados...`;
+        });
+        await state.client.createFolder("E:/amiibo");
+        showToast(`Todos los Amiibos han sido eliminados (${deleteCount} elementos).`);
+    } catch (err) {
+        try { await state.client.createFolder("E:/amiibo"); } catch(e) {}
+        showToast(`Limpieza completada (${deleteCount} elementos eliminados).`);
+    } finally {
+        overlay.classList.remove("active");
+        el.btnFormat.disabled = false;
+        state.currentPath = "E:/";
+        updateStorageBar();
+        refreshExplorer();
     }
 });
 
@@ -2912,13 +2918,9 @@ el.btnCatInstallSeries.addEventListener("click", () => {
     openInstallFolderModal(visibleAmiibos);
 });
 
-// Sync Online Catalogue based on chosen source
+// Sync Online Catalogue from Internet Archive
 el.btnCatSync.addEventListener("click", () => {
-    if (el.catalogueSourceSelect.value === "archive") {
-        syncCatalogueFromArchive();
-    } else {
-        syncCatalogueFromGitHub();
-    }
+    syncCatalogueFromArchive();
 });
 
 // Update Key listeners
@@ -2960,10 +2962,7 @@ el.filterCategory.addEventListener("change", () => {
     state.selectedCatalogue.clear(); // Clear selections on filter change
     renderOnlineCatalogue();
 });
-el.catalogueSourceSelect.addEventListener("change", (e) => {
-    baseDownloadUrl = DOWNLOAD_SOURCES[e.target.value] || DOWNLOAD_SOURCES.archive;
-    showToast(`Servidor de descargas: ${e.target.options[e.target.selectedIndex].text}`);
-});
+
 
 // Select All visible
 el.btnCatSelectAll.addEventListener("click", () => {
@@ -3033,7 +3032,7 @@ el.btnInstallConfirm.addEventListener("click", async () => {
     
     const queueItems = [];
     
-    // 1. Create target folder first
+    // 1. Create base target folder
     queueItems.push({
         kind: "folder",
         localPath: sanitizedFolder,
@@ -3041,12 +3040,42 @@ el.btnInstallConfirm.addEventListener("click", async () => {
         status: "pending"
     });
     
-    // 2. Add each file download/flash item
+    // 2. Collect unique subfolders from items, then create them
+    const uniqueSubFolders = new Set();
+    _activeInstallList.forEach(item => {
+        if (item.amiibo.subPath) {
+            // Build each intermediate subfolder path
+            const subParts = item.amiibo.subPath.split("/").filter(Boolean);
+            let current = "";
+            for (const part of subParts) {
+                current = current ? `${current}/${part}` : part;
+                uniqueSubFolders.add(current);
+            }
+        }
+    });
+    // Sort subfolders by depth so parents are created first
+    const sortedSubFolders = Array.from(uniqueSubFolders).sort((a, b) => a.split("/").length - b.split("/").length);
+    for (const sub of sortedSubFolders) {
+        const cleanSub = sub.split("/").map(s => sanitizeName(s)).join("/");
+        queueItems.push({
+            kind: "folder",
+            localPath: cleanSub,
+            remotePath: joinPaths(destinationFolder, cleanSub),
+            status: "pending"
+        });
+    }
+    
+    // 3. Add each file download/flash item preserving subfolder structure
     _activeInstallList.forEach(item => {
         const cleanFilename = sanitizeName(item.amiibo.name) + ".bin";
-        const remotePath = joinPaths(destinationFolder, cleanFilename);
+        let remotePath;
+        if (item.amiibo.subPath) {
+            const cleanSub = item.amiibo.subPath.split("/").map(s => sanitizeName(s)).join("/");
+            remotePath = joinPaths(destinationFolder, cleanSub, cleanFilename);
+        } else {
+            remotePath = joinPaths(destinationFolder, cleanFilename);
+        }
         
-        // Use baseDownloadUrl which can be GitHub or Internet Archive
         const downloadUrl = baseDownloadUrl.endsWith('/') 
             ? `${baseDownloadUrl}${item.amiibo.path}` 
             : `${baseDownloadUrl}/${item.amiibo.path}`;

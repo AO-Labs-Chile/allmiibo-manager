@@ -668,19 +668,28 @@ function cleanSubPath(sub) {
 }
 
 function fitPathToHardwareLimit(remotePath) {
-    if (remotePath.length <= 58) return remotePath;
     const parts = remotePath.split('/');
     const file = parts.pop();
     const ext = file.includes('.') ? file.substring(file.lastIndexOf('.')) : '';
     const nameWithoutExt = file.substring(0, file.length - ext.length);
     const parentDir = parts.join('/');
-    const maxNameLen = Math.max(8, 58 - parentDir.length - 1 - ext.length);
-    const shortName = nameWithoutExt.substring(0, maxNameLen) + ext;
-    return `${parentDir}/${shortName}`;
+    
+    // Strict ASCII sanitization (1 char = 1 byte)
+    let cleanName = removeAccents(nameWithoutExt).replace(/[^a-zA-Z0-9_-]/g, '_').replace(/_+/g, '_').replace(/^_+|_+$/g, '');
+    let candidate = `${parentDir}/${cleanName}${ext}`;
+    
+    // Byte-accurate limit enforcement (max 58 bytes on LittleFS buffer)
+    while (utf8ByteLength(candidate) > 58 && cleanName.length > 3) {
+        cleanName = cleanName.substring(0, cleanName.length - 1).replace(/_+$/, '');
+        candidate = `${parentDir}/${cleanName}${ext}`;
+    }
+    return candidate;
 }
 
 function removeAccents(str) {
+    if (!str) return "";
     return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+        .replace(/[’'´`]/g, '')
         .replace(/ñ/g, "n").replace(/Ñ/g, "N");
 }
 

@@ -169,7 +169,7 @@
                     <span class="material-symbols-rounded" style="color: #ff5e5b; font-size: 1.05rem;">favorite</span>
                     <span data-i18n="btn_donate_footer">Apoyar / Donar</span>
                 </a>
-                <span class="sidebar-version-badge">Allmiibo Manager v1.4.1</span>
+                <span class="sidebar-version-badge">Allmiibo Manager v1.4.2</span>
                 <div class="sidebar-legal-link" style="text-align: center; margin-top: 2px;">
                     <a href="javascript:void(0)" class="btn-open-legal-trigger" style="font-size: 0.72rem; color: var(--text-muted); text-decoration: underline; text-underline-offset: 2px;" data-i18n="legal_footer_link">⚖️ Aviso Legal y Fuentes</a>
                 </div>
@@ -529,6 +529,39 @@
             <div class="modal-actions" style="display: flex; justify-content: flex-end; gap: 8px;">
                 <button class="btn btn-primary" id="btn-report-retry" style="display: none;" data-i18n="btn_retry_failed">🔄 Reintentar Fallidos</button>
                 <button class="btn btn-secondary" id="btn-report-close" data-i18n="btn_close">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Resumen de Eliminación -->
+    <div class="modal-overlay" id="modal-delete-report">
+        <div class="modal" style="max-width: 440px;">
+            <div class="modal-header">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <span class="material-symbols-rounded" style="color: #ef4444;">delete_sweep</span>
+                    <span data-i18n="del_report_title">Resumen de Eliminación</span>
+                </div>
+            </div>
+            <div class="modal-body" style="padding-top: 12px; display: flex; flex-direction: column; gap: 14px;">
+                <!-- Summary cards -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; text-align: center;">
+                    <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 8px; padding: 12px 8px;">
+                        <div id="del-report-amiibos-count" style="font-size: 1.4rem; font-weight: 800; color: #f87171;">0</div>
+                        <div style="font-size: 0.78rem; color: var(--text-muted);" data-i18n="del_report_amiibos">Amiibos Eliminados</div>
+                    </div>
+                    <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 8px; padding: 12px 8px;">
+                        <div id="del-report-folders-count" style="font-size: 1.4rem; font-weight: 800; color: #fbbf24;">0</div>
+                        <div style="font-size: 0.78rem; color: var(--text-muted);" data-i18n="del_report_folders">Carpetas Eliminadas</div>
+                    </div>
+                </div>
+
+                <div style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 8px; padding: 10px 12px; font-size: 0.8rem; color: #34d399; display: flex; align-items: center; gap: 8px;">
+                    <span class="material-symbols-rounded" style="font-size: 1.2rem; flex-shrink: 0;">verified_user</span>
+                    <span data-i18n="del_report_protected_msg">Estructura del sistema protegida: data, fav, save, key_retail.bin y archivos raíz preservados.</span>
+                </div>
+            </div>
+            <div class="modal-actions" style="display: flex; justify-content: flex-end;">
+                <button class="btn btn-primary" id="btn-del-report-close" data-i18n="btn_accept">Aceptar</button>
             </div>
         </div>
     </div>

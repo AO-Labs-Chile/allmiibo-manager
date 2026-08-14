@@ -1,5 +1,5 @@
 // === Configuration & Constants ===
-const APP_VERSION = "v1.4.1";
+const APP_VERSION = "v1.4.2";
 const NUS_SERVICE_UUID = "6e400001-b5a3-f393-e0a9-e50e24dcca9e";
 const NUS_CHAR_TX_UUID = "6e400002-b5a3-f393-e0a9-e50e24dcca9e";
 const NUS_CHAR_RX_UUID = "6e400003-b5a3-f393-e0a9-e50e24dcca9e";
@@ -203,6 +203,11 @@ const TRANSLATIONS = {
         modal_del_prog_deleting: "Eliminando:",
         modal_del_prog_count: "{count} elementos eliminados...",
         modal_del_prog_warning: "No cierres esta página ni desconectes el dispositivo.",
+        del_report_title: "Resumen de Eliminación",
+        del_report_amiibos: "Amiibos Eliminados",
+        del_report_folders: "Carpetas Eliminadas",
+        del_report_protected_msg: "Estructura del sistema protegida: data, fav, save, key_retail.bin y archivos raíz preservados.",
+        btn_accept: "Aceptar",
         
         modal_new_folder_title: "Crear Nueva Carpeta",
         modal_new_folder_label: "Nombre de la carpeta:",
@@ -422,7 +427,12 @@ const TRANSLATIONS = {
         modal_del_prog_title: "Deleting Amiibos...",
         modal_del_prog_deleting: "Deleting:",
         modal_del_prog_count: "{count} items deleted...",
-        modal_del_prog_warning: "Do not close this tab or disconnect your device.",
+        modal_del_prog_warning: "Do not close this page or disconnect your device.",
+        del_report_title: "Deletion Summary",
+        del_report_amiibos: "Amiibos Deleted",
+        del_report_folders: "Folders Deleted",
+        del_report_protected_msg: "System structure protected: data, fav, save, key_retail.bin and root files preserved.",
+        btn_accept: "Accept",
         
         modal_new_folder_title: "Create New Folder",
         modal_new_folder_label: "Folder name:",
@@ -3745,15 +3755,14 @@ function isSystemProtectedPath(path) {
     const parts = norm.split('/').filter(Boolean);
     const name = parts[parts.length - 1] || "";
     
-    // 1. Everything directly in root (e.g. E:/key_retail.bin, E:/chameleon, E:/amiibolink, E:/settings.bin, etc.) is protected from mass wipe
+    // 1. Root level: NEVER delete anything directly in root (key_retail.bin, settings.bin, chameleon, amiibolink, etc.)
     if (parts.length <= 1) return true; // 'e:' or 'e:/'
     if (parts.length === 2 && parts[0] === 'e:' && parts[1] !== 'amiibo') {
-        // Any direct child of root other than 'amiibo' (e.g. key_retail.bin, settings.bin, chameleon, etc.)
         return true;
     }
     
-    // 2. The main 'E:/amiibo' root directory itself is protected
-    if (norm === 'e:/amiibo') return true;
+    // 2. The main 'E:/amiibo' folder itself is not blocked so we can inspect inside it
+    if (norm === 'e:/amiibo') return false;
     
     // 3. System subfolders inside E:/amiibo: data, fav, save
     if (norm === 'e:/amiibo/data' || norm.startsWith('e:/amiibo/data/')) return true;
@@ -3768,8 +3777,9 @@ function isSystemProtectedPath(path) {
 }
 
 // Safely delete amiibo files and folders recursively while strictly preserving protected system folders
-async function safeWipeAmiibos(dirPath, onProgress) {
-    if (isSystemProtectedPath(dirPath)) {
+async function safeWipeAmiibos(dirPath, onProgress, stats) {
+    const normDir = dirPath.toLowerCase().replace(/\\/g, '/').trim().replace(/\/+$/, '');
+    if (normDir !== 'e:/amiibo' && isSystemProtectedPath(dirPath)) {
         logEvent(`Preservando carpeta protegida del sistema: ${dirPath}`);
         return;
     }
@@ -3789,16 +3799,22 @@ async function safeWipeAmiibos(dirPath, onProgress) {
         
         if (entry.type === "DIR") {
             // Traverse subdirectory
-            await safeWipeAmiibos(entryPath, onProgress);
+            await safeWipeAmiibos(entryPath, onProgress, stats);
             // Delete folder after its non-protected children are removed (never delete root or E:/amiibo)
             if (entryPath !== "E:/" && entryPath !== "E:/amiibo" && !isSystemProtectedPath(entryPath)) {
                 if (onProgress) onProgress(entryPath);
-                await state.client.removePath(entryPath).catch(() => {});
+                const delRes = await state.client.removePath(entryPath).catch(() => ({ ok: false }));
+                if (delRes && delRes.ok !== false && stats) {
+                    stats.deletedFolders++;
+                }
             }
         } else {
-            // File: delete amiibo file
+            // File: delete amiibo file (.bin or other files)
             if (onProgress) onProgress(entryPath);
-            await state.client.removePath(entryPath).catch(() => {});
+            const delRes = await state.client.removePath(entryPath).catch(() => ({ ok: false }));
+            if (delRes && delRes.ok !== false && stats) {
+                stats.deletedAmiibos++;
+            }
         }
     }
 }
@@ -3814,34 +3830,54 @@ el.btnFormat.addEventListener("click", async () => {
     overlay.classList.add("active");
     
     el.btnFormat.disabled = true;
-    let deleteCount = 0;
+    let progressCount = 0;
+    const stats = { deletedAmiibos: 0, deletedFolders: 0 };
     
     try {
         // 1. Wipe strictly inside E:/amiibo (preserving E:/amiibo/data, fav, save and never touching root)
         await safeWipeAmiibos("E:/amiibo", (currentPath) => {
-            deleteCount++;
+            progressCount++;
             const shortName = currentPath.split("/").pop();
             statusText.textContent = shortName;
-            counterText.textContent = t("modal_del_prog_count", { count: deleteCount });
-        });
+            counterText.textContent = t("modal_del_prog_count", { count: progressCount });
+        }, stats);
         
         // 2. Guarantee essential system directories exist inside E:/amiibo
         await ensureSystemFoldersExist();
         
-        showToast(t("toast_delete_success"));
+        // 3. Clear local storage registry for installed amiibos
+        state.installedAmiiboSet.clear();
+        state.installedPathsSet.clear();
+        state.installedCatalogueMap.clear();
+        localStorage.removeItem("allmiibo_registry_v2");
+        
     } catch (err) {
         try { 
             await ensureSystemFoldersExist();
         } catch(e) {}
-        showToast(t("toast_delete_success"));
     } finally {
         overlay.classList.remove("active");
         el.btnFormat.disabled = false;
         state.currentPath = "E:/";
         updateStorageBar();
         refreshExplorer();
-        scanInstalledAmiibos();
+        renderOnlineCatalogue();
+        
+        // 4. Show final delete summary report modal
+        showDeleteReportModal(stats.deletedAmiibos, stats.deletedFolders);
     }
+});
+
+function showDeleteReportModal(amiibosCount, foldersCount) {
+    const amiibosEl = document.getElementById("del-report-amiibos-count");
+    const foldersEl = document.getElementById("del-report-folders-count");
+    if (amiibosEl) amiibosEl.textContent = amiibosCount;
+    if (foldersEl) foldersEl.textContent = foldersCount;
+    document.getElementById("modal-delete-report")?.classList.add("active");
+}
+
+document.getElementById("btn-del-report-close")?.addEventListener("click", () => {
+    document.getElementById("modal-delete-report")?.classList.remove("active");
 });
 
 // Close Warnings modal

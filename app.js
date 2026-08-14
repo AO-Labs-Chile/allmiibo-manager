@@ -1,5 +1,5 @@
 // === Configuration & Constants ===
-const APP_VERSION = "v1.0.4";
+const APP_VERSION = "v1.0.5";
 const NUS_SERVICE_UUID = "6e400001-b5a3-f393-e0a9-e50e24dcca9e";
 const NUS_CHAR_TX_UUID = "6e400002-b5a3-f393-e0a9-e50e24dcca9e";
 const NUS_CHAR_RX_UUID = "6e400003-b5a3-f393-e0a9-e50e24dcca9e";
@@ -16,6 +16,12 @@ const FORMAT_TIMEOUT_MS = 45000;
 const MAX_FILE_NAME_BYTES = 47;
 const MAX_FILE_PATH_BYTES = 63;
 const MAX_FOLDER_PATH_BYTES = 55;
+
+// Embedded binary fallback for known Archive.org on-the-fly zip extraction issues
+const FALLBACK_BINS = {
+    "Link (Link’s Awakening)": "BN+E13J1TIDLSA/g8RD/7qUAAQCvMQs9F3D2rA6RZW7FXsE1MWzFebFYufPBPt9R8GxCyt11K/H+F4tfbXIoKYjURq5D/lKlvRur1X/svI5u3pw5AQMAAANzAgINEsYX3puCI7s/CH6ZXzeJg3WdnATpg2rU+YBqpau6WTKhuJnTz8/vvm5TzG8PU/JS/E9DMNheO2xE+ovAaCSjTNUqbZ7sLv+nGMIunPEHNJGVBEV+dMmQZZ8uLBK/E9sVFtt9IVuk4Ely5iqVYozNKjLv3/0Xkyytpbt8bCGD9BKlm5/Nx3EL9LZzV/EmG474iehxWh7V93AJOMzqPTEpJr7ufD67i+/pDSfJddc+JDZmtWGg1CWNtAiZGQMoasNXn2MMnWWtowap7F2YgZ8SdDA0adpCOQc1KAhdLOwnebk+QjlmqpKuMOJol4ENBKwhqUI5DhWUJUjcvQH04BNHpM0J+DTnafjzDULcu7IMcAfMzVI+gvo5KRMxhQbmJNgiVfk2MnjSZpmdsJU6AN6FP7yOwGkyArEJeuSHKo47iD28xqy8w10zUV3L5InAdN8SOWOhncsme+HQGMFZwbb3JAT4Cf8t5DPpzqjbKtwfUWeSSv/iO1W6qzRMOsqhMs5UuEd/maIfRPLHFIy3tDjFg1ci/5XU3ZrxzAOwhTR5xeRp+T45r0F23TJfGwEAD70AAAAEXwAAAAAAAAAAAAAA",
+    "Link (Link's Awakening)": "BN+E13J1TIDLSA/g8RD/7qUAAQCvMQs9F3D2rA6RZW7FXsE1MWzFebFYufPBPt9R8GxCyt11K/H+F4tfbXIoKYjURq5D/lKlvRur1X/svI5u3pw5AQMAAANzAgINEsYX3puCI7s/CH6ZXzeJg3WdnATpg2rU+YBqpau6WTKhuJnTz8/vvm5TzG8PU/JS/E9DMNheO2xE+ovAaCSjTNUqbZ7sLv+nGMIunPEHNJGVBEV+dMmQZZ8uLBK/E9sVFtt9IVuk4Ely5iqVYozNKjLv3/0Xkyytpbt8bCGD9BKlm5/Nx3EL9LZzV/EmG474iehxWh7V93AJOMzqPTEpJr7ufD67i+/pDSfJddc+JDZmtWGg1CWNtAiZGQMoasNXn2MMnWWtowap7F2YgZ8SdDA0adpCOQc1KAhdLOwnebk+QjlmqpKuMOJol4ENBKwhqUI5DhWUJUjcvQH04BNHpM0J+DTnafjzDULcu7IMcAfMzVI+gvo5KRMxhQbmJNgiVfk2MnjSZpmdsJU6AN6FP7yOwGkyArEJeuSHKo47iD28xqy8w10zUV3L5InAdN8SOWOhncsme+HQGMFZwbb3JAT4Cf8t5DPpzqjbKtwfUWeSSv/iO1W6qzRMOsqhMs5UuEd/maIfRPLHFIy3tDjFg1ci/5XU3ZrxzAOwhTR5xeRp+T45r0F23TJfGwEAD70AAAAEXwAAAAAAAAAAAAAA"
+};
 
 // Category Short-name Mappings (to avoid path length exceedance)
 const CATEGORY_MAPPINGS = {
@@ -2190,9 +2196,28 @@ async function runQueueUpload() {
                 let fileObj = item.file;
                 if (item.githubUrl) {
                     logEvent(`Descargando binario desde: ${item.githubUrl}`);
-                    const response = await fetch(item.githubUrl);
-                    if (!response.ok) throw new Error(`HTTP ${response.status} al descargar de Archive`);
-                    fileObj = await response.blob();
+                    try {
+                        const response = await fetch(item.githubUrl);
+                        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                        fileObj = await response.blob();
+                    } catch (fetchErr) {
+                        const cleanKey = (item.localPath || "").trim();
+                        const altKey = cleanKey.replace(/[’'´`]/g, "'");
+                        const directKey = cleanKey.replace(/[’'´`]/g, "’");
+                        const fallbackB64 = FALLBACK_BINS[cleanKey] || FALLBACK_BINS[altKey] || FALLBACK_BINS[directKey];
+                        
+                        if (fallbackB64) {
+                            logEvent(`Usando binario de respaldo para: ${item.localPath}`);
+                            const byteChars = atob(fallbackB64);
+                            const byteNums = new Array(byteChars.length);
+                            for (let i = 0; i < byteChars.length; i++) {
+                                byteNums[i] = byteChars.charCodeAt(i);
+                            }
+                            fileObj = new Blob([new Uint8Array(byteNums)], { type: "application/octet-stream" });
+                        } else {
+                            throw new Error(`HTTP ${fetchErr.message} al descargar de Archive`);
+                        }
+                    }
                     item.file = fileObj;
                 }
                 
@@ -3239,27 +3264,34 @@ el.btnDeleteConfirm.addEventListener("click", async () => {
     }
 });
 
-// Delete folder recursively with progress callback
-async function deleteFolderRecursively(path, onProgress) {
+// Delete folder recursively with progress callback, preserving 'save' folder
+async function deleteFolderRecursively(path, onProgress, preserveSave = false) {
     const res = await state.client.readFolder(path);
     if (res.ok) {
         for (const entry of res.data) {
+            // NEVER delete 'save' or 'Save' or 'SAVE' folder inside E:/amiibo
+            if (preserveSave && path === "E:/amiibo" && entry.name.toLowerCase() === "save") {
+                logEvent("Preservando carpeta de partidas guardadas: E:/amiibo/save");
+                continue;
+            }
             const entryPath = joinPaths(path, entry.name);
             if (entry.type === "DIR") {
-                await deleteFolderRecursively(entryPath, onProgress);
+                await deleteFolderRecursively(entryPath, onProgress, false);
             } else {
                 if (onProgress) onProgress(entryPath);
                 await state.client.removePath(entryPath);
             }
         }
     }
-    if (onProgress) onProgress(path);
-    return await state.client.removePath(path);
+    if (!preserveSave) {
+        if (onProgress) onProgress(path);
+        return await state.client.removePath(path);
+    }
 }
 
-// Borrar todos los Amiibos con progreso visual
+// Borrar todos los Amiibos con progreso visual (preservando partidas guardadas)
 el.btnFormat.addEventListener("click", async () => {
-    if (!confirm("¿Estás seguro de que deseas eliminar TODOS los Amiibos del dispositivo? (La clave key_retail.bin y tus partidas guardadas NO se borrarán).")) return;
+    if (!confirm("¿Estás seguro de que deseas eliminar TODOS los Amiibos del dispositivo? (La clave key_retail.bin y tus partidas guardadas en la carpeta 'save' NO se borrarán).")) return;
     
     // Show progress overlay
     const overlay = document.getElementById("modal-delete-progress");
@@ -3276,7 +3308,8 @@ el.btnFormat.addEventListener("click", async () => {
             const shortName = currentPath.split("/").pop();
             statusText.textContent = shortName;
             counterText.textContent = t("modal_del_prog_count", { count: deleteCount });
-        });
+        }, true); // preserveSave = true!
+        
         await state.client.createFolder("E:/amiibo");
         showToast(t("toast_delete_success"));
     } catch (err) {

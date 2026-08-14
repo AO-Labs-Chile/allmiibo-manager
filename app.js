@@ -1,5 +1,5 @@
 // === Configuration & Constants ===
-const APP_VERSION = "v1.4.4";
+const APP_VERSION = "v1.4.5";
 const NUS_SERVICE_UUID = "6e400001-b5a3-f393-e0a9-e50e24dcca9e";
 const NUS_CHAR_TX_UUID = "6e400002-b5a3-f393-e0a9-e50e24dcca9e";
 const NUS_CHAR_RX_UUID = "6e400003-b5a3-f393-e0a9-e50e24dcca9e";
@@ -779,10 +779,24 @@ function extractCoreTokens(str) {
     const norm = normalizeString(str)
         .replace(/^\[[^\]]+\]\s*/, '')
         .replace(/^(ac|zel|smash|splat|mario|mh|pkmn|fe|af|cr|bb|kirby)[\s_]*/i, '')
+        .replace(/\b(30th|anniversary|edition|series|amiibo|figures?|cards?)\b/gi, ' ')
         .replace(/\b(\w)\s+(\w)\s+(\w)\b/g, '$1$2$3')
         .replace(/\b(\w)\s+(\w)\b/g, '$1$2');
         
     return norm.split(/\s+/).filter(t => t.length >= 1 && !/^\d+$/.test(t));
+}
+
+function matchTokensFlexible(catTokens, fileTokens) {
+    if (catTokens.length === 0 || fileTokens.length === 0) return false;
+    
+    // Distinctive matching with prefix tolerance for hardware-truncated filenames
+    let matchCount = 0;
+    for (const ct of catTokens) {
+        const found = fileTokens.some(ft => ft === ct || ft.startsWith(ct) || ct.startsWith(ft));
+        if (found) matchCount++;
+    }
+    
+    return (matchCount / catTokens.length) >= 0.6 || (matchCount / fileTokens.length) >= 0.6;
 }
 
 function correlateDeviceFileWithCatalogue(fullPath, fileName, folderName) {
@@ -793,7 +807,7 @@ function correlateDeviceFileWithCatalogue(fullPath, fileName, folderName) {
     for (const [catName, amiibos] of Object.entries(state.categories)) {
         for (const amiibo of amiibos) {
             const catTokens = extractCoreTokens(amiibo.name);
-            if (catTokens.length > 0 && catTokens.every(t => fileTokens.includes(t))) {
+            if (matchTokensFlexible(catTokens, fileTokens)) {
                 state.installedCatalogueMap.set(amiibo.path, fullPath);
                 state.installedRegistry[amiibo.name] = { remotePath: fullPath, originalName: amiibo.name, timestamp: Date.now() };
                 state.installedRegistry[amiibo.path] = { remotePath: fullPath, originalName: amiibo.name, timestamp: Date.now() };
@@ -844,14 +858,14 @@ function isAmiiboInstalled(amiibo, targetRemotePath = "") {
         }
     }
     
-    // 4. Core tokens check against installed paths in current device scan
+    // 4. Flexible core tokens check against installed paths in current device scan
     if (state.installedPathsSet && state.installedPathsSet.size > 0) {
         const catTokens = extractCoreTokens(amiibo.name);
         if (catTokens.length > 0) {
             for (const path of state.installedPathsSet) {
                 const pathFile = path.split('/').pop().replace(/\.bin$/i, '');
                 const fileTokens = extractCoreTokens(pathFile);
-                if (fileTokens.length > 0 && catTokens.every(t => fileTokens.includes(t))) {
+                if (matchTokensFlexible(catTokens, fileTokens)) {
                     state.installedCatalogueMap.set(amiibo.path, path);
                     return true;
                 }

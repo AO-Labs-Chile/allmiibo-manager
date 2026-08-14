@@ -1,5 +1,5 @@
 // === Configuration & Constants ===
-const APP_VERSION = "v1.4.2";
+const APP_VERSION = "v1.4.3";
 const NUS_SERVICE_UUID = "6e400001-b5a3-f393-e0a9-e50e24dcca9e";
 const NUS_CHAR_TX_UUID = "6e400002-b5a3-f393-e0a9-e50e24dcca9e";
 const NUS_CHAR_RX_UUID = "6e400003-b5a3-f393-e0a9-e50e24dcca9e";
@@ -809,7 +809,14 @@ function isAmiiboInstalled(amiibo, targetRemotePath = "") {
         return false;
     }
     
-    // 1. Direct catalogue map check
+    // If current scan has no files or paths, nothing is installed!
+    if ((!state.installedPathsSet || state.installedPathsSet.size === 0) &&
+        (!state.installedAmiiboSet || state.installedAmiiboSet.size === 0) &&
+        (!state.installedCatalogueMap || state.installedCatalogueMap.size === 0)) {
+        return false;
+    }
+    
+    // 1. Direct catalogue map check (populated during current live scan)
     if (state.installedCatalogueMap && state.installedCatalogueMap.has(amiibo.path)) {
         return true;
     }
@@ -819,12 +826,7 @@ function isAmiiboInstalled(amiibo, targetRemotePath = "") {
         return true;
     }
     
-    // 3. Persistent Registry check
-    if (state.installedRegistry && (state.installedRegistry[amiibo.name] || state.installedRegistry[amiibo.path])) {
-        return true;
-    }
-    
-    // 4. Normalized key set
+    // 3. Normalized key set in current device scan
     if (state.installedAmiiboSet && state.installedAmiiboSet.size > 0) {
         const clean = sanitizeName(amiibo.name);
         const key1 = normalizeAmiiboMatchKey(amiibo.name);
@@ -842,7 +844,7 @@ function isAmiiboInstalled(amiibo, targetRemotePath = "") {
         }
     }
     
-    // 5. Core tokens check against installed paths
+    // 4. Core tokens check against installed paths in current device scan
     if (state.installedPathsSet && state.installedPathsSet.size > 0) {
         const catTokens = extractCoreTokens(amiibo.name);
         if (catTokens.length > 0) {
@@ -869,6 +871,7 @@ async function scanInstalledAmiibos() {
         state.installedPathsSet.clear();
         state.existingFoldersSet.clear();
         state.installedCatalogueMap.clear();
+        state.installedRegistry = {};
         const banner = document.getElementById("scanning-progress-banner");
         if (banner) banner.style.display = "none";
         renderOnlineCatalogue();
@@ -877,6 +880,13 @@ async function scanInstalledAmiibos() {
     if (_isScanningInstalled) return;
     _isScanningInstalled = true;
     _abortScan = false;
+    
+    // Reset state to ensure fresh scan
+    state.installedAmiiboSet.clear();
+    state.installedPathsSet.clear();
+    state.existingFoldersSet.clear();
+    state.installedCatalogueMap.clear();
+    state.installedRegistry = {};
     
     const banner = document.getElementById("scanning-progress-banner");
     const progressText = document.getElementById("scanning-progress-text");
@@ -1763,9 +1773,16 @@ async function ensureSystemFoldersExist() {
 
 async function initDeviceAfterConnection(isMock) {
     try {
+        // Reset cache sets on connection for 100% accurate live detection
+        state.installedAmiiboSet.clear();
+        state.installedPathsSet.clear();
+        state.existingFoldersSet.clear();
+        state.installedCatalogueMap.clear();
+        state.installedRegistry = {};
+        
         await updateDeviceInfo();
         await updateStorageBar();
-        await ensureSystemFoldersExist(); // Guarantee E:/amiibo/data, E:/amiibo/fav, E:/save exist
+        await ensureSystemFoldersExist(); // Guarantee E:/amiibo/data, E:/amiibo/fav, E:/amiibo/save exist
         await refreshExplorer(); // Immediate file display in < 0.5s!
         scanInstalledAmiibos();  // Background scan with visual banner
     } catch (err) {

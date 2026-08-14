@@ -3549,8 +3549,10 @@ function isSystemProtectedPath(path) {
     if (!path) return false;
     const norm = path.toLowerCase().replace(/\\/g, '/').trim();
     
-    // 1. Never delete encryption key
+    // 1. Never delete encryption key or hardware settings
     if (norm === 'e:/key_retail.bin' || norm.endsWith('/key_retail.bin') || norm === 'key_retail.bin') return true;
+    if (norm === 'e:/setting.bin' || norm.endsWith('/setting.bin') || norm === 'setting.bin') return true;
+    if (norm === 'e:/settings.bin' || norm.endsWith('/settings.bin') || norm === 'settings.bin') return true;
     
     // 2. Never delete 'save' folder or any save files inside it
     if (norm === 'e:/save' || norm === 'e:/amiibo/save' || norm.includes('/save/') || norm.endsWith('/save')) return true;
@@ -3576,7 +3578,7 @@ async function safeWipeAmiibos(dirPath, onProgress) {
         const normName = entry.name.toLowerCase();
         
         // Skip protected system files & directories
-        if (normName === "key_retail.bin" || normName === "save" || normName === "chameleon") {
+        if (normName === "key_retail.bin" || normName === "setting.bin" || normName === "settings.bin" || normName === "save" || normName === "chameleon") {
             logEvent(`Preservando elemento del sistema: ${entryPath}`);
             continue;
         }
@@ -3597,9 +3599,9 @@ async function safeWipeAmiibos(dirPath, onProgress) {
     }
 }
 
-// Borrar todos los Amiibos con progreso visual (preservando permanentemente 'save' y 'key_retail.bin')
+// Borrar todos los Amiibos con progreso visual (preservando permanentemente 'save', 'setting.bin' y 'key_retail.bin')
 el.btnFormat.addEventListener("click", async () => {
-    if (!confirm("¿Estás seguro de que deseas eliminar TODOS los Amiibos del dispositivo? (La clave key_retail.bin y tus partidas guardadas en la carpeta 'save' NO se borrarán).")) return;
+    if (!confirm("¿Estás seguro de que deseas eliminar TODOS los Amiibos del dispositivo? (La clave key_retail.bin, tu configuración setting.bin y tus partidas guardadas en 'save' NO se borrarán).")) return;
     
     // Show progress overlay
     const overlay = document.getElementById("modal-delete-progress");
@@ -3611,7 +3613,7 @@ el.btnFormat.addEventListener("click", async () => {
     let deleteCount = 0;
     
     try {
-        // 1. Wipe inside E:/amiibo (preserving E:/amiibo/save)
+        // 1. Wipe strictly inside E:/amiibo (preserving E:/amiibo/save)
         await safeWipeAmiibos("E:/amiibo", (currentPath) => {
             deleteCount++;
             const shortName = currentPath.split("/").pop();
@@ -3619,23 +3621,7 @@ el.btnFormat.addEventListener("click", async () => {
             counterText.textContent = t("modal_del_prog_count", { count: deleteCount });
         });
         
-        // 2. Also wipe any loose .bin/.nfc files left in root E:/ (preserving key_retail.bin, save, chameleon)
-        const rootRes = await state.client.readFolder("E:/");
-        if (rootRes && rootRes.ok && rootRes.data) {
-            for (const item of rootRes.data) {
-                if (item.type !== "DIR" && (item.name.toLowerCase().endsWith(".bin") || item.name.toLowerCase().endsWith(".nfc"))) {
-                    if (item.name.toLowerCase() !== "key_retail.bin") {
-                        deleteCount++;
-                        const fullItemPath = joinPaths("E:/", item.name);
-                        statusText.textContent = item.name;
-                        counterText.textContent = t("modal_del_prog_count", { count: deleteCount });
-                        await state.client.removePath(fullItemPath).catch(() => {});
-                    }
-                }
-            }
-        }
-        
-        // 3. Guarantee essential system directories exist
+        // 2. Guarantee essential system directories exist
         await state.client.createFolder("E:/amiibo").catch(() => {});
         await state.client.createFolder("E:/amiibo/save").catch(() => {});
         

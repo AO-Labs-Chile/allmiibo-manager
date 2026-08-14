@@ -1,0 +1,4809 @@
+{
+  "Animal Crossing Amiibo": [
+    {
+      "name": "[AC] AF1 - Stitches",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Amiibo Festival/[AC] AF1 - Stitches.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] AF2 - Rosie",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Amiibo Festival/[AC] AF2 - Rosie.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] AF3 - Goldie",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Amiibo Festival/[AC] AF3 - Goldie.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] XS1 - Rilla",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Sanrio Cards/[AC] XS1 - Rilla.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] XS2 - Marty",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Sanrio Cards/[AC] XS2 - Marty.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] XS3 - Etoile",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Sanrio Cards/[AC] XS3 - Etoile.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] XS4 - Chai",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Sanrio Cards/[AC] XS4 - Chai.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] XS5 - Chelsea",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Sanrio Cards/[AC] XS5 - Chelsea.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] XS6 - Toby",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Sanrio Cards/[AC] XS6 - Toby.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 001 - Isabelle",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 001 - Isabelle.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 002 - Tom Nook",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 002 - Tom Nook.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 003 - DJ KK",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 003 - DJ KK.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 004 - Sable",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 004 - Sable.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 005 - Kappn",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 005 - Kappn.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 006 - Resetti",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 006 - Resetti.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 007 - Joan",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 007 - Joan.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 008 - Timmy",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 008 - Timmy.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 009 - Digby",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 009 - Digby.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 010 - Pascal",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 010 - Pascal.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 011 - Harriet",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 011 - Harriet.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 012 - Redd",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 012 - Redd.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 013 - Saharah",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 013 - Saharah.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 014 - Luna",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 014 - Luna.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 015 - Tortimer",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 015 - Tortimer.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 016 - Lyle",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 016 - Lyle.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 017 - Lottie",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 017 - Lottie.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 018 - Bob",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 018 - Bob.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 019 - Fauna",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 019 - Fauna.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 020 - Curt",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 020 - Curt.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 021 - Portia",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 021 - Portia.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 022 - Leonardo",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 022 - Leonardo.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 023 - Cheri",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 023 - Cheri.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 024 - Kyle",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 024 - Kyle.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 025 - Al",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 025 - Al.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 026 - Renee",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 026 - Renee.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 027 - Lopez",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 027 - Lopez.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 028 - Jambette",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 028 - Jambette.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 029 - Rasher",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 029 - Rasher.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 030 - Tiffany",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 030 - Tiffany.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 031 - Sheldon",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 031 - Sheldon.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 032 - Bluebear",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 032 - Bluebear.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 033 - Bill",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 033 - Bill.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 034 - Kiki",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 034 - Kiki.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 035 - Deli",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 035 - Deli.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 036 - Alli",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 036 - Alli.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 037 - Kabuki",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 037 - Kabuki.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 038 - Patty",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 038 - Patty.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 039 - Jitters",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 039 - Jitters.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 040 - Gigi",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 040 - Gigi.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 041 - Quillson",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 041 - Quillson.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 042 - Marcie",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 042 - Marcie.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 043 - Puck",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 043 - Puck.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 044 - Shari",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 044 - Shari.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 045 - Octavian",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 045 - Octavian.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 046 - Winnie",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 046 - Winnie.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 047 - Knox",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 047 - Knox.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 048 - Sterling",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 048 - Sterling.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 049 - Bonbon",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 049 - Bonbon.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 050 - Punchy",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 050 - Punchy.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 051 - Opal",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 051 - Opal.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 052 - Poppy",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 052 - Poppy.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 053 - Limberg",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 053 - Limberg.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 054 - Deena",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 054 - Deena.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 055 - Snake",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 055 - Snake.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 056 - Bangle",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 056 - Bangle.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 057 - Phil",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 057 - Phil.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 058 - Monique",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 058 - Monique.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 059 - Nate",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 059 - Nate.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 060 - Samson",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 060 - Samson.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 061 - Tutu",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 061 - Tutu.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 062 - T-Bone",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 062 - T-Bone.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 063 - Mint",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 063 - Mint.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 064 - Pudge",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 064 - Pudge.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 065 - Midge",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 065 - Midge.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 066 - Gruff",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 066 - Gruff.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 067 - Flurry",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 067 - Flurry.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 068 - Clyde",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 068 - Clyde.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 069 - Bella",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 069 - Bella.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 070 - Biff",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 070 - Biff.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 071 - Yuka",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 071 - Yuka.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 072 - Lionel",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 072 - Lionel.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 073 - Flo",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 073 - Flo.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 074 - Cobb",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 074 - Cobb.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 075 - Amelia",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 075 - Amelia.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 076 - Jeramiah",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 076 - Jeramiah.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 077 - Cherry",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 077 - Cherry.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 078 - Roscoe",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 078 - Roscoe.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 079 - Truffles",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 079 - Truffles.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 080 - Eugene",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 080 - Eugene.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 081 - Eunice",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 081 - Eunice.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 082 - Goose",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 082 - Goose.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 083 - Annalisa",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 083 - Annalisa.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 084 - Benjamin",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 084 - Benjamin.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 085 - Pancetti",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 085 - Pancetti.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 086 - Chief",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 086 - Chief.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 087 - Bunnie",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 087 - Bunnie.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 088 - Clay",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 088 - Clay.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 089 - Diana",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 089 - Diana.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 090 - Axel",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 090 - Axel.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 091 - Muffy",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 091 - Muffy.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 092 - Henry",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 092 - Henry.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 093 - Bertha",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 093 - Bertha.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 094 - Cyrano",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 094 - Cyrano.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 095 - Peanut",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 095 - Peanut.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 096 - Cole",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 096 - Cole.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 097 - Willow",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 097 - Willow.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 098 - Roald",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 098 - Roald.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 099 - Molly",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 099 - Molly.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 100 - Walker",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 1/[AC] 100 - Walker.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 101 - K.K. Slider",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 101 - K.K. Slider.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 102 - Reese",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 102 - Reese.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 103 - Kicks",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 103 - Kicks.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 104 - Labelle",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 104 - Labelle.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 105 - Copper",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 105 - Copper.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 106 - Booker",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 106 - Booker.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 107 - Katie",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 107 - Katie.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 108 - Tommy",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 108 - Tommy.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 109 - Porter",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 109 - Porter.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 110 - Leila",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 110 - Leila.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 111 - Shrunk",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 111 - Shrunk.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 112 - Don Resetti",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 112 - Don Resetti.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 113 - Isabelle",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 113 - Isabelle.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 114 - Blanca",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 114 - Blanca.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 115 - Nat",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 115 - Nat.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 116 - Chip",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 116 - Chip.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 117 - Jack",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 117 - Jack.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 118 - Poncho",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 118 - Poncho.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 119 - Felicity",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 119 - Felicity.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 120 - Ozzie",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 120 - Ozzie.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 121 - Tia",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 121 - Tia.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 122 - Lucha",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 122 - Lucha.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 123 - Fuchsia",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 123 - Fuchsia.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 124 - Harry",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 124 - Harry.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 125 - Gwen",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 125 - Gwen.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 126 - Coach",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 126 - Coach.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 127 - Kitt",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 127 - Kitt.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 128 - Tom",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 128 - Tom.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 129 - Tipper",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 129 - Tipper.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 130 - Prince",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 130 - Prince.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 131 - Pate",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 131 - Pate.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 132 - Vladimir",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 132 - Vladimir.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 133 - Savannah",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 133 - Savannah.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 134 - Kidd",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 134 - Kidd.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 135 - Phoebe",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 135 - Phoebe.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 136 - Egbert",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 136 - Egbert.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 137 - Cookie",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 137 - Cookie.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 138 - Sly",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 138 - Sly.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 139 - Blaire",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 139 - Blaire.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 140 - Avery",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 140 - Avery.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 141 - Nana",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 141 - Nana.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 142 - Peck",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 142 - Peck.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 143 - Olivia",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 143 - Olivia.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 144 - Cesar",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 144 - Cesar.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 145 - Carmen",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 145 - Carmen.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 146 - Rodney",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 146 - Rodney.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 147 - Scoot",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 147 - Scoot.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 148 - Whitney",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 148 - Whitney.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 149 - Broccolo",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 149 - Broccolo.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 150 - Coco",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 150 - Coco.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 151 - Groucho",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 151 - Groucho.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 152 - Wendy",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 152 - Wendy.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 153 - Alfonso",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 153 - Alfonso.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 154 - Rhonda",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 154 - Rhonda.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 155 - Butch",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 155 - Butch.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 156 - Gabi",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 156 - Gabi.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 157 - Moose",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 157 - Moose.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 158 - Timbra",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 158 - Timbra.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 159 - Zell",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 159 - Zell.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 160 - Pekoe",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 160 - Pekoe.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 161 - Teddy",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 161 - Teddy.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 162 - Mathilda",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 162 - Mathilda.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 163 - Ed",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 163 - Ed.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 164 - Bianca",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 164 - Bianca.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 165 - Filbert",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 165 - Filbert.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 166 - Kitty",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 166 - Kitty.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 167 - Beau",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 167 - Beau.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 168 - Nan",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 168 - Nan.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 169 - Bud",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 169 - Bud.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 170 - Ruby",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 170 - Ruby.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 171 - Benedict",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 171 - Benedict.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 172 - Agnes",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 172 - Agnes.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 173 - Julian",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 173 - Julian.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 174 - Bettina",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 174 - Bettina.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 175 - Jay",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 175 - Jay.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 176 - Sprinkle",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 176 - Sprinkle.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 177 - Flip",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 177 - Flip.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 178 - Hugh",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 178 - Hugh.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 179 - Hopper",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 179 - Hopper.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 180 - Pecan",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 180 - Pecan.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 181 - Drake",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 181 - Drake.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 182 - Alice",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 182 - Alice.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 183 - Camofrog",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 183 - Camofrog.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 184 - Anicotti",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 184 - Anicotti.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 185 - Chops",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 185 - Chops.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 186 - Charlise",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 186 - Charlise.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 187 - Vic",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 187 - Vic.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 188 - Ankha",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 188 - Ankha.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 189 - Drift",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 189 - Drift.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 190 - Vesta",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 190 - Vesta.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 191 - Marcel",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 191 - Marcel.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 192 - Pango",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 192 - Pango.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 193 - Keaton",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 193 - Keaton.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 194 - Gladys",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 194 - Gladys.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 195 - Hamphrey",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 195 - Hamphrey.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 196 - Freya",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 196 - Freya.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 197 - Kid Cat",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 197 - Kid Cat.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 198 - Agent S",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 198 - Agent S.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 199 - Big Top",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 199 - Big Top.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 200 - Rocket",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 2/[AC] 200 - Rocket.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 201 - Rover",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 201 - Rover.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 202 - Blathers",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 202 - Blathers.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 203 - Tom Nook",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 203 - Tom Nook.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 204 - Pelly",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 204 - Pelly.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 205 - Phyllis",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 205 - Phyllis.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 206 - Pete",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 206 - Pete.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 207 - Mabel",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 207 - Mabel.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 208 - Leif",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 208 - Leif.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 209 - Wendell",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 209 - Wendell.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 210 - Cyrus",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 210 - Cyrus.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 211 - Grams",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 211 - Grams.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 212 - Timmy",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 212 - Timmy.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 213 - Digby",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 213 - Digby.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 214 - Don Resetti",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 214 - Don Resetti.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 215 - Isabelle",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 215 - Isabelle.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 216 - Franklin",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 216 - Franklin.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 217 - Jingle",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 217 - Jingle.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 218 - Lily",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 218 - Lily.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 219 - Anchovy",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 219 - Anchovy.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 220 - Tabby",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 220 - Tabby.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 221 - Kody",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 221 - Kody.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 222 - Miranda",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 222 - Miranda.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 223 - Del",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 223 - Del.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 224 - Paula",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 224 - Paula.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 225 - Ken",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 225 - Ken.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 226 - Mitzi",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 226 - Mitzi.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 227 - Rodeo",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 227 - Rodeo.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 228 - Bubbles",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 228 - Bubbles.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 229 - Cousteau",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 229 - Cousteau.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 230 - Velma",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 230 - Velma.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 231 - Elvis",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 231 - Elvis.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 232 - Canberra",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 232 - Canberra.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 233 - Colton",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 233 - Colton.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 234 - Marina",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 234 - Marina.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 235 - Spork-Crackle",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 235 - Spork-Crackle.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 236 - Freckles",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 236 - Freckles.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 237 - Bam",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 237 - Bam.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 238 - Friga",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 238 - Friga.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 239 - Ricky",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 239 - Ricky.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 240 - Deirdre",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 240 - Deirdre.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 241 - Hans",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 241 - Hans.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 242 - Chevre",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 242 - Chevre.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 243 - Drago",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 243 - Drago.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 244 - Tangy",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 244 - Tangy.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 245 - Mac",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 245 - Mac.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 246 - Eloise",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 246 - Eloise.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 247 - Wart Jr.",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 247 - Wart Jr..bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 248 - Hazel",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 248 - Hazel.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 249 - Beardo",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 249 - Beardo.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 250 - Ava",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 250 - Ava.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 251 - Chester",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 251 - Chester.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 252 - Merry",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 252 - Merry.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 253 - Genji",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 253 - Genji.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 254 - Greta",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 254 - Greta.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 255 - Wolfgang",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 255 - Wolfgang.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 256 - Diva",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 256 - Diva.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 257 - Klaus",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 257 - Klaus.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 258 - Daisy",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 258 - Daisy.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 259 - Stinky",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 259 - Stinky.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 260 - Tammi",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 260 - Tammi.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 261 - Tucker",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 261 - Tucker.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 262 - Blanche",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 262 - Blanche.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 263 - Gaston",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 263 - Gaston.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 264 - Marshal",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 264 - Marshal.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 265 - Gala",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 265 - Gala.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 266 - Joey",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 266 - Joey.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 267 - Pippy",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 267 - Pippy.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 268 - Buck",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 268 - Buck.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 269 - Bree",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 269 - Bree.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 270 - Rooney",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 270 - Rooney.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 271 - Curlos",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 271 - Curlos.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 272 - Skye",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 272 - Skye.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 273 - Moe",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 273 - Moe.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 274 - Flora",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 274 - Flora.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 275 - Hamlet",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 275 - Hamlet.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 276 - Astrid",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 276 - Astrid.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 277 - Monty",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 277 - Monty.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 278 - Dora",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 278 - Dora.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 279 - Biskit",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 279 - Biskit.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 280 - Victoria",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 280 - Victoria.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 281 - Lyman",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 281 - Lyman.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 282 - Violet",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 282 - Violet.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 283 - Frank",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 283 - Frank.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 284 - Chadder",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 284 - Chadder.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 285 - Merengue",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 285 - Merengue.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 286 - Cube",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 286 - Cube.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 287 - Claudia",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 287 - Claudia.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 288 - Curly",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 288 - Curly.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 289 - Boomer",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 289 - Boomer.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 290 - Caroline",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 290 - Caroline.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 291 - Sparro",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 291 - Sparro.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 292 - Baabara",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 292 - Baabara.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 293 - Rolf",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 293 - Rolf.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 294 - Maple",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 294 - Maple.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 295 - Antonio",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 295 - Antonio.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 296 - Soleil",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 296 - Soleil.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 297 - Apollo",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 297 - Apollo.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 298 - Derwin",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 298 - Derwin.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 299 - Francine",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 299 - Francine.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 300 - Chrissy",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 3/[AC] 300 - Chrissy.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 301 - Isabelle",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 301 - Isabelle.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 302 - Brewster",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 302 - Brewster.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 303 - Katrina",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 303 - Katrina.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 304 - Phineas",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 304 - Phineas.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 305 - Celeste",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 305 - Celeste.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 306 - Tommy",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 306 - Tommy.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 307 - Gracie",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 307 - Gracie.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 308 - Leilani",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 308 - Leilani.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 309 - Resetti",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 309 - Resetti.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 310 - Timmy",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 310 - Timmy.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 311 - Lottie",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 311 - Lottie.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 312 - Shrunk",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 312 - Shrunk.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 313 - Pave",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 313 - Pave.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 314 - Gulliver",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 314 - Gulliver.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 315 - Redd",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 315 - Redd.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 316 - Zipper",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 316 - Zipper.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 317 - Goldie",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 317 - Goldie.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 318 - Stitches",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 318 - Stitches.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 319 - Pinky",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 319 - Pinky.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 320 - Mott",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 320 - Mott.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 321 - Mallary",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 321 - Mallary.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 322 - Rocco",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 322 - Rocco.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 323 - Katt",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 323 - Katt.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 324 - Graham",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 324 - Graham.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 325 - Peaches",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 325 - Peaches.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 326 - Dizzy",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 326 - Dizzy.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 327 - Penelope",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 327 - Penelope.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 328 - Boone",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 328 - Boone.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 329 - Broffina",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 329 - Broffina.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 330 - Croque",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 330 - Croque.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 331 - Pashmina",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 331 - Pashmina.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 332 - Shep",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 332 - Shep.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 333 - Lolly",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 333 - Lolly.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 334 - Erik",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 334 - Erik.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 335 - Dotty",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 335 - Dotty.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 336 - Pierce",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 336 - Pierce.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 337 - Queenie",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 337 - Queenie.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 338 - Fang",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 338 - Fang.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 339 - Fritta",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 339 - Fritta.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 340 - Tex",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 340 - Tex.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 341 - Melba",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 341 - Melba.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 342 - Bones",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 342 - Bones.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 343 - Anabelle",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 343 - Anabelle.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 344 - Rudy",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 344 - Rudy.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 345 - Naomi",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 345 - Naomi.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 346 - Peewee",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 346 - Peewee.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 347 - Tammy",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 347 - Tammy.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 348 - Olaf",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 348 - Olaf.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 349 - Lucy",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 349 - Lucy.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 350 - Elmer",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 350 - Elmer.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 351 - Puddles",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 351 - Puddles.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 352 - Rory",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 352 - Rory.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 353 - Elise",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 353 - Elise.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 354 - Walt",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 354 - Walt.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 355 - Mira",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 355 - Mira.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 356 - Pietro",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 356 - Pietro.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 357 - Aurora",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 357 - Aurora.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 358 - Papi",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 358 - Papi.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 359 - Apple",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 359 - Apple.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 360 - Rod",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 360 - Rod.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 361 - Purrl",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 361 - Purrl.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 362 - Static",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 362 - Static.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 363 - Celia",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 363 - Celia.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 364 - Zucker",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 364 - Zucker.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 365 - Peggy",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 365 - Peggy.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 366 - Ribbot",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 366 - Ribbot.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 367 - Annalise",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 367 - Annalise.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 368 - Chow",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 368 - Chow.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 369 - Sylvia",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 369 - Sylvia.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 370 - Jacques",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 370 - Jacques.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 371 - Sally",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 371 - Sally.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 372 - Doc",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 372 - Doc.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 373 - Pompom",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 373 - Pompom.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 374 - Tank",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 374 - Tank.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 375 - Becky",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 375 - Becky.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 376 - Rizzo",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 376 - Rizzo.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 377 - Sydney",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 377 - Sydney.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 378 - Barold",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 378 - Barold.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 379 - Nibbles",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 379 - Nibbles.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 380 - Kevin",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 380 - Kevin.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 381 - Gloria",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 381 - Gloria.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 382 - Lobo",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 382 - Lobo.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 383 - Hippeux",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 383 - Hippeux.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 384 - Margie",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 384 - Margie.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 385 - Lucky",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 385 - Lucky.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 386 - Rosie",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 386 - Rosie.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 387 - Rowan",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 387 - Rowan.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 388 - Maelle",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 388 - Maelle.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 389 - Bruce",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 389 - Bruce.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 390 - O_Hare",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 390 - O_Hare.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 391 - Gayle",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 391 - Gayle.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 392 - Cranston",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 392 - Cranston.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 393 - Frobert",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 393 - Frobert.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 394 - Grizzly",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 394 - Grizzly.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 395 - Cally",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 395 - Cally.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 396 - Simon",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 396 - Simon.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 397 - Iggly",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 397 - Iggly.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 398 - Angus",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 398 - Angus.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 399 - Twiggy",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 399 - Twiggy.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] 400 - Robin",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 4/[AC] 400 - Robin.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "401 - Tom Nook",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/401 - Tom Nook.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "402 - Timmy and Tommy",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/402 - Timmy and Tommy.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "403 - Isabelle",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/403 - Isabelle.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "404 - Orville",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/404 - Orville.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "405 - Wilbur",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/405 - Wilbur.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "406 - Blathers",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/406 - Blathers.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "407 - Celeste",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/407 - Celeste.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "408 - Mabel",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/408 - Mabel.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "409 - Sable",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/409 - Sable.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "410 - Label",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/410 - Label.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "411 - K.K. Slider",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/411 - K.K. Slider.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "412 - C.J. ",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/412 - C.J. .bin",
+      "ext": "bin"
+    },
+    {
+      "name": "413 - Flick",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/413 - Flick.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "414 - Daisy Mae",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/414 - Daisy Mae.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "415 - Kicks",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/415 - Kicks.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "416 - Saharah",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/416 - Saharah.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "417 - Harvey",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/417 - Harvey.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "418 - Gulliver",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/418 - Gulliver.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "419 - Wisp",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/419 - Wisp.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "420 - Lottie",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/420 - Lottie.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "421 - Niko",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/421 - Niko.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "422 - Wardell",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/422 - Wardell.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "423 - Tom Nook (Coat)",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/423 - Tom Nook (Coat).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "424 - Isabelle (Sweater)",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/424 - Isabelle (Sweater).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "425 - Sherb",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/425 - Sherb.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "426 - Megan",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/426 - Megan.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "427 - Dom",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/427 - Dom.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "428 - Audie ",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/428 - Audie .bin",
+      "ext": "bin"
+    },
+    {
+      "name": "429 - Cyd",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/429 - Cyd.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "430 - Judy ",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/430 - Judy .bin",
+      "ext": "bin"
+    },
+    {
+      "name": "431 - Raymond",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/431 - Raymond.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "432 - Reneigh",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/432 - Reneigh.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "433 - Sasha",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/433 - Sasha.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "434 - Ione",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/434 - Ione.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "435 - Tiansheng",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/435 - Tiansheng.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "436 - Shino",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/436 - Shino.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "437 - Marlo",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/437 - Marlo.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "438 - Petri",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/438 - Petri.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "439 - Cephalobot",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/439 - Cephalobot.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "440 - Quinn",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/440 - Quinn.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "441 - Chabwick",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/441 - Chabwick.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "442 - Zoe",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/442 - Zoe.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "443 - Ace",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/443 - Ace.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "444 - Rio",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/444 - Rio.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "445 - Frett",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/445 - Frett.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "446 - Azalea",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/446 - Azalea.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "447 - Roswell",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/447 - Roswell.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "448 - Faith",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Series 5/448 - Faith.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] CP1 - Isabelle",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Special Edition/[AC] CP1 - Isabelle.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] CP2 - K.K Slider",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Special Edition/[AC] CP2 - K.K Slider.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W01 - Vivian",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W01 - Vivian.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W02 - Hopkins",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W02 - Hopkins.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W03 - June",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W03 - June.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W04 - Piper",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W04 - Piper.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W05 - Paolo",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W05 - Paolo.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W06 - Hornsby",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W06 - Hornsby.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W07 - Stella",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W07 - Stella.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W08 - Tybalt",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W08 - Tybalt.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W09 - Huck",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W09 - Huck.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W10 - Sylvana",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W10 - Sylvana.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W11 - Boris",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W11 - Boris.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W12 - Wade",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W12 - Wade.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W13 - Carrie",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W13 - Carrie.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W14 - Ketchup",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W14 - Ketchup.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W15 - Rex",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W15 - Rex.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W16 - Stu",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W16 - Stu.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W17 - Ursala",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W17 - Ursala.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W18 - Jacob",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W18 - Jacob.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W19 - Maddie",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W19 - Maddie.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W20 - Billy",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W20 - Billy.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W21 - Boyd",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W21 - Boyd.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W22 - Bitty",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W22 - Bitty.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W23 - Maggie",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W23 - Maggie.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W24 - Murphy",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W24 - Murphy.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W25 - Plucky",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W25 - Plucky.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W26 - Sandy",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W26 - Sandy.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W27 - Claude",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W27 - Claude.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W28 - Raddle",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W28 - Raddle.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W29 - Julia",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W29 - Julia.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W30 - Louie",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W30 - Louie.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W31 - Bea",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W31 - Bea.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W32 - Admiral",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W32 - Admiral.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W33 - Ellie",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W33 - Ellie.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W34 - Boots",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W34 - Boots.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W35 - Weber",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W35 - Weber.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W36 - Candi",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W36 - Candi.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W37 - Leopold",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W37 - Leopold.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W38 - Spike",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W38 - Spike.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W39 - Cashmere",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W39 - Cashmere.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W40 - Tad",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W40 - Tad.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W41 - Norma",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W41 - Norma.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W42 - Gonzo",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W42 - Gonzo.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W43 - Sprocket",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W43 - Sprocket.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W44 - Snooty",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W44 - Snooty.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W45 - Olive",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W45 - Olive.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W46 - Dobie",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W46 - Dobie.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W47 - Buzz",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W47 - Buzz.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W48 - Cleo",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W48 - Cleo.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W49 - Ike",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W49 - Ike.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[AC] W50 - Tasha",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Cards/!Welcome Amiibo/[AC] W50 - Tasha.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Blathers",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Figures/Blathers.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Celeste",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Figures/Celeste.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Cyrrus",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Figures/Cyrrus.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Digby",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Figures/Digby.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Isabelle",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Figures/Isabelle.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "K.K. Slider",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Figures/K.K. Slider.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Kapp_n",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Figures/Kapp_n.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Kicks",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Figures/Kicks.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Lottie",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Figures/Lottie.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Mabel",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Figures/Mabel.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Reese",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Figures/Reese.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Resetti",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Figures/Resetti.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Rover",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Figures/Rover.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Summertime Isabelle",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Figures/Summertime Isabelle.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Timmy _ Tommy",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Figures/Timmy _ Tommy.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Tom Nook",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Amiibo Figures/Tom Nook.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 01",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 01.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 02",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 02.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 03",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 03.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 04",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 04.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 05",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 05.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 06",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 06.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 07",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 07.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 08",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 08.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 09",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 09.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 10",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 10.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 11",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 11.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 12",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 12.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 13",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 13.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 14",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 14.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 15",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 15.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 16",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 16.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 17",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 17.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 18",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 18.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 19",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 19.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 20",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 20.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 21",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 21.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 22",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 22.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 23",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 23.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 24",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 24.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 25",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 25.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 26",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 26.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 27",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 27.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 28",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 28.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 29",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 29.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 30",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 30.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 31",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 31.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 32",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 32.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 33",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 33.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 34",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 34.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 35",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 35.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 36",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 36.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 37",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 37.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 38",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 38.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 39",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 39.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 40",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 40.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 41",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 41.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 42",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 42.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 43",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 43.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 44",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 44.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 45",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 45.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 46",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 46.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 47",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 47.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 48",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 48.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 49",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 49.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 50",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 50.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 51",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 51.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 52",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 52.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 53",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 53.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 54",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 54.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 55",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 55.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 56",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 56.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 57",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 57.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 58",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 58.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 59",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 59.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 60",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 60.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 61",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 61.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 62",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 62.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 63",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 63.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 64",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 64.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 65",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 65.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 66",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 66.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 67",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 67.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 68",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 68.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 69",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 69.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 70",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 70.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 71",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 71.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 72",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 72.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 73",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 73.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 74",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 74.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 75",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 75.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 76",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 76.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 77",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 77.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 78",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 78.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 79",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 79.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 80",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 80.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 81",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 81.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 82",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 82.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 83",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 83.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 84",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 84.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 85",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 85.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 86",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 86.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 87",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 87.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 88",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 88.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 89",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 89.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 90",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 90.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[HHD] Items - 91",
+      "path": "Amiibo Bin/Animal Crossing Amiibo/Happy Home Designer Items/[HHD] Items - 91.bin",
+      "ext": "bin"
+    }
+  ],
+  "BoxBoy! Amiibo": [
+    {
+      "name": "Qbby",
+      "path": "Amiibo Bin/BoxBoy! Amiibo/Qbby.bin",
+      "ext": "bin"
+    }
+  ],
+  "Chibi-Robo! Amiibo": [
+    {
+      "name": "Chibi Robo",
+      "path": "Amiibo Bin/Chibi-Robo! Amiibo/Chibi Robo.bin",
+      "ext": "bin"
+    }
+  ],
+  "Dark Souls Amiibo": [
+    {
+      "name": "Solaire of Astora",
+      "path": "Amiibo Bin/Dark Souls Amiibo/Solaire of Astora.bin",
+      "ext": "bin"
+    }
+  ],
+  "Detective Pikachu Amiibo": [
+    {
+      "name": "Detective Pikachu",
+      "path": "Amiibo Bin/Detective Pikachu Amiibo/Detective Pikachu.bin",
+      "ext": "bin"
+    }
+  ],
+  "Diablo Amiibo": [
+    {
+      "name": "Loot Goblin",
+      "path": "Amiibo Bin/Diablo Amiibo/Loot Goblin.bin",
+      "ext": "bin"
+    }
+  ],
+  "Fire Emblem Amiibo": [
+    {
+      "name": "Alm",
+      "path": "Amiibo Bin/Fire Emblem Amiibo/Alm.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Celica",
+      "path": "Amiibo Bin/Fire Emblem Amiibo/Celica.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Chrom",
+      "path": "Amiibo Bin/Fire Emblem Amiibo/Chrom.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Tiki",
+      "path": "Amiibo Bin/Fire Emblem Amiibo/Tiki.bin",
+      "ext": "bin"
+    }
+  ],
+  "Kellogs Amiibo": [
+    {
+      "name": "Delicious Amiibo",
+      "path": "Amiibo Bin/Kellogs Amiibo/Delicious Amiibo.bin",
+      "ext": "bin"
+    }
+  ],
+  "Kirby Amiibo": [
+    {
+      "name": "King Dedede",
+      "path": "Amiibo Bin/Kirby Amiibo/King Dedede.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Kirby",
+      "path": "Amiibo Bin/Kirby Amiibo/Kirby.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Meta Knight",
+      "path": "Amiibo Bin/Kirby Amiibo/Meta Knight.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Waddle Dee",
+      "path": "Amiibo Bin/Kirby Amiibo/Waddle Dee.bin",
+      "ext": "bin"
+    }
+  ],
+  "Mario Sports Superstars Amiibo": [
+    {
+      "name": "Baby Luigi",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Baseball/Baby Luigi.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Baby Mario",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Baseball/Baby Mario.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Birdo",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Baseball/Birdo.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Boo",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Baseball/Boo.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Bowser Jr",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Baseball/Bowser Jr.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Bowser",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Baseball/Bowser.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Daisy",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Baseball/Daisy.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Diddy Kong",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Baseball/Diddy Kong.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Donkey Kong",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Baseball/Donkey Kong.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Luigi",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Baseball/Luigi.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Mario",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Baseball/Mario.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Metal Mario",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Baseball/Metal Mario.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Peach",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Baseball/Peach.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Pink Gold Peach",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Baseball/Pink Gold Peach.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Rosalina",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Baseball/Rosalina.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Waluigi",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Baseball/Waluigi.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Wario",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Baseball/Wario.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Yoshi",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Baseball/Yoshi.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Baby Luigi",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Golf/Baby Luigi.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Baby Mario",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Golf/Baby Mario.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Birdo",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Golf/Birdo.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Boo",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Golf/Boo.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Bowser Jr",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Golf/Bowser Jr.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Bowser",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Golf/Bowser.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Daisy",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Golf/Daisy.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Diddy Kong",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Golf/Diddy Kong.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Donkey Kong",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Golf/Donkey Kong.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Luigi",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Golf/Luigi.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Mario",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Golf/Mario.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Metal Mario",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Golf/Metal Mario.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Peach",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Golf/Peach.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Pink Gold Peach",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Golf/Pink Gold Peach.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Rosalina",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Golf/Rosalina.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Waluigi",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Golf/Waluigi.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Wario",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Golf/Wario.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Yoshi",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Golf/Yoshi.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Baby Luigi",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Horse Racing/Baby Luigi.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Baby Mario",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Horse Racing/Baby Mario.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Birdo",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Horse Racing/Birdo.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Boo",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Horse Racing/Boo.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Bowser Jr",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Horse Racing/Bowser Jr.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Bowser",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Horse Racing/Bowser.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Daisy",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Horse Racing/Daisy.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Diddy Kong",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Horse Racing/Diddy Kong.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Donkey Kong",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Horse Racing/Donkey Kong.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Luigi",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Horse Racing/Luigi.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Mario",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Horse Racing/Mario.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Metal Mario",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Horse Racing/Metal Mario.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Peach",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Horse Racing/Peach.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Pink Gold Peach",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Horse Racing/Pink Gold Peach.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Rosalina",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Horse Racing/Rosalina.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Waluigi",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Horse Racing/Waluigi.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Wario",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Horse Racing/Wario.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Yoshi",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Horse Racing/Yoshi.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Baby Luigi",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Soccer/Baby Luigi.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Baby Mario",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Soccer/Baby Mario.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Birdo",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Soccer/Birdo.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Boo",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Soccer/Boo.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Bowser Jr",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Soccer/Bowser Jr.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Bowser",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Soccer/Bowser.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Daisy",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Soccer/Daisy.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Diddy Kong",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Soccer/Diddy Kong.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Donkey Kong",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Soccer/Donkey Kong.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Luigi",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Soccer/Luigi.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Mario",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Soccer/Mario.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Metal Mario",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Soccer/Metal Mario.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Peach",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Soccer/Peach.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Pink Gold Peach",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Soccer/Pink Gold Peach.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Rosalina",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Soccer/Rosalina.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Waluigi",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Soccer/Waluigi.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Wario",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Soccer/Wario.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Yoshi",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Soccer/Yoshi.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Baby Luigi",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Tennis/Baby Luigi.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Baby Mario",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Tennis/Baby Mario.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Birdo",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Tennis/Birdo.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Boo",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Tennis/Boo.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Bowser Jr",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Tennis/Bowser Jr.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Bowser",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Tennis/Bowser.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Daisy",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Tennis/Daisy.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Diddy Kong",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Tennis/Diddy Kong.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Donkey Kong",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Tennis/Donkey Kong.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Luigi",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Tennis/Luigi.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Mario",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Tennis/Mario.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Metal Mario",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Tennis/Metal Mario.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Peach",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Tennis/Peach.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Pink Gold Peach",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Tennis/Pink Gold Peach.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Rosalina",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Tennis/Rosalina.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Waluigi",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Tennis/Waluigi.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Wario",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Tennis/Wario.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Yoshi",
+      "path": "Amiibo Bin/Mario Sports Superstars Amiibo/Tennis/Yoshi.bin",
+      "ext": "bin"
+    }
+  ],
+  "Mega Man Amiibo": [
+    {
+      "name": "Mega Man",
+      "path": "Amiibo Bin/Mega Man Amiibo/Mega Man.bin",
+      "ext": "bin"
+    }
+  ],
+  "Metroid Amiibo": [
+    {
+      "name": "[DREAD] Samus",
+      "path": "Amiibo Bin/Metroid Amiibo/Metroid Dread/[DREAD] Samus.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[DREAD]E.M.M.I ",
+      "path": "Amiibo Bin/Metroid Amiibo/Metroid Dread/[DREAD]E.M.M.I .bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Metroid",
+      "path": "Amiibo Bin/Metroid Amiibo/Metroid_ Samus Returns/Metroid.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Samus Aran",
+      "path": "Amiibo Bin/Metroid Amiibo/Metroid_ Samus Returns/Samus Aran.bin",
+      "ext": "bin"
+    }
+  ],
+  "Monster Hunter Amiibo": [
+    {
+      "name": "Malzeno",
+      "path": "Amiibo Bin/Monster Hunter Amiibo/MHR_ Sunbreak/Malzeno.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Palamute _Canyne Malzeno X_",
+      "path": "Amiibo Bin/Monster Hunter Amiibo/MHR_ Sunbreak/Palamute _Canyne Malzeno X_.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Palico _Felyne Malzeno X_",
+      "path": "Amiibo Bin/Monster Hunter Amiibo/MHR_ Sunbreak/Palico _Felyne Malzeno X_.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Magnamalo",
+      "path": "Amiibo Bin/Monster Hunter Amiibo/MH_ Rise/Magnamalo.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Palamute",
+      "path": "Amiibo Bin/Monster Hunter Amiibo/MH_ Rise/Palamute.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Palico",
+      "path": "Amiibo Bin/Monster Hunter Amiibo/MH_ Rise/Palico.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Ena",
+      "path": "Amiibo Bin/Monster Hunter Amiibo/MH_ Stories 2/Ena.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Razewing Ratha",
+      "path": "Amiibo Bin/Monster Hunter Amiibo/MH_ Stories 2/Razewing Ratha.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Tsukino",
+      "path": "Amiibo Bin/Monster Hunter Amiibo/MH_ Stories 2/Tsukino.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Barioth and Ayuria",
+      "path": "Amiibo Bin/Monster Hunter Amiibo/MH_ Stories/Barioth and Ayuria.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Nabiru",
+      "path": "Amiibo Bin/Monster Hunter Amiibo/MH_ Stories/Nabiru.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "One-Eyed Rathalos and Rider (Female)",
+      "path": "Amiibo Bin/Monster Hunter Amiibo/MH_ Stories/One-Eyed Rathalos and Rider (Female).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "One-Eyed Rathalos and Rider (Male)",
+      "path": "Amiibo Bin/Monster Hunter Amiibo/MH_ Stories/One-Eyed Rathalos and Rider (Male).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Qurupeco and Dan",
+      "path": "Amiibo Bin/Monster Hunter Amiibo/MH_ Stories/Qurupeco and Dan.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Rathian and Cheval",
+      "path": "Amiibo Bin/Monster Hunter Amiibo/MH_ Stories/Rathian and Cheval.bin",
+      "ext": "bin"
+    }
+  ],
+  "Pikmin Amiibo": [
+    {
+      "name": "Pikmin",
+      "path": "Amiibo Bin/Pikmin Amiibo/Pikmin.bin",
+      "ext": "bin"
+    }
+  ],
+  "Pokkén Tournament Amiibo": [
+    {
+      "name": "Shadow Mewtwo",
+      "path": "Amiibo Bin/Pokkén Tournament Amiibo/Shadow Mewtwo.bin",
+      "ext": "bin"
+    }
+  ],
+  "Power Pros Amiibo": [
+    {
+      "name": "1 - Pawapuro",
+      "path": "Amiibo Bin/Power Pros Amiibo/1 - Pawapuro.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "2 - Ikari",
+      "path": "Amiibo Bin/Power Pros Amiibo/2 - Ikari.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "3 - Yabe",
+      "path": "Amiibo Bin/Power Pros Amiibo/3 - Yabe.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "4 - Hayakawa",
+      "path": "Amiibo Bin/Power Pros Amiibo/4 - Hayakawa.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "5 - Ganda",
+      "path": "Amiibo Bin/Power Pros Amiibo/5 - Ganda.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "6 - Daijobu",
+      "path": "Amiibo Bin/Power Pros Amiibo/6 - Daijobu.bin",
+      "ext": "bin"
+    }
+  ],
+  "PowerUpBands": [
+    {
+      "name": "Daisy",
+      "path": "Amiibo Bin/PowerUpBands/Daisy.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Gold Mario",
+      "path": "Amiibo Bin/PowerUpBands/Gold Mario.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Luigi",
+      "path": "Amiibo Bin/PowerUpBands/Luigi.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Mario",
+      "path": "Amiibo Bin/PowerUpBands/Mario.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Peach",
+      "path": "Amiibo Bin/PowerUpBands/Peach.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Toad",
+      "path": "Amiibo Bin/PowerUpBands/Toad.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Yoshi",
+      "path": "Amiibo Bin/PowerUpBands/Yoshi.bin",
+      "ext": "bin"
+    }
+  ],
+  "Shovel Knight Amiibo": [
+    {
+      "name": "King Knight",
+      "path": "Amiibo Bin/Shovel Knight Amiibo/King Knight.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Plague Knight",
+      "path": "Amiibo Bin/Shovel Knight Amiibo/Plague Knight.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Shovel Knight (Gold)",
+      "path": "Amiibo Bin/Shovel Knight Amiibo/Shovel Knight (Gold).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Shovel Knight",
+      "path": "Amiibo Bin/Shovel Knight Amiibo/Shovel Knight.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Specter Knight",
+      "path": "Amiibo Bin/Shovel Knight Amiibo/Specter Knight.bin",
+      "ext": "bin"
+    }
+  ],
+  "Skylanders Amiibo": [
+    {
+      "name": "Dark Hammer Slam Bowser",
+      "path": "Amiibo Bin/Skylanders Amiibo/Dark Hammer Slam Bowser.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Dark Turbo Charge Donkey Kong",
+      "path": "Amiibo Bin/Skylanders Amiibo/Dark Turbo Charge Donkey Kong.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Hammer Slam Bowser",
+      "path": "Amiibo Bin/Skylanders Amiibo/Hammer Slam Bowser.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Turbo Charge Donkey Kong",
+      "path": "Amiibo Bin/Skylanders Amiibo/Turbo Charge Donkey Kong.bin",
+      "ext": "bin"
+    }
+  ],
+  "Splatoon Amiibo": [
+    {
+      "name": "Big Man",
+      "path": "Amiibo Bin/Splatoon Amiibo/Big Man.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Callie (Alterna)",
+      "path": "Amiibo Bin/Splatoon Amiibo/Callie (Alterna).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Callie",
+      "path": "Amiibo Bin/Splatoon Amiibo/Callie.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Frye",
+      "path": "Amiibo Bin/Splatoon Amiibo/Frye.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Inkling (Yellow)",
+      "path": "Amiibo Bin/Splatoon Amiibo/Inkling (Yellow).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Inkling Boy (Neon Green)",
+      "path": "Amiibo Bin/Splatoon Amiibo/Inkling Boy (Neon Green).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Inkling Boy (Purple)",
+      "path": "Amiibo Bin/Splatoon Amiibo/Inkling Boy (Purple).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Inkling Boy",
+      "path": "Amiibo Bin/Splatoon Amiibo/Inkling Boy.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Inkling Girl (Lime Green)",
+      "path": "Amiibo Bin/Splatoon Amiibo/Inkling Girl (Lime Green).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Inkling Girl (Neon Pink)",
+      "path": "Amiibo Bin/Splatoon Amiibo/Inkling Girl (Neon Pink).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Inkling Girl",
+      "path": "Amiibo Bin/Splatoon Amiibo/Inkling Girl.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Inkling Squid (Neon Purple)",
+      "path": "Amiibo Bin/Splatoon Amiibo/Inkling Squid (Neon Purple).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Inkling Squid (Orange)",
+      "path": "Amiibo Bin/Splatoon Amiibo/Inkling Squid (Orange).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Inkling Squid",
+      "path": "Amiibo Bin/Splatoon Amiibo/Inkling Squid.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Marie (Alterna)",
+      "path": "Amiibo Bin/Splatoon Amiibo/Marie (Alterna).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Marie",
+      "path": "Amiibo Bin/Splatoon Amiibo/Marie.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Marina (Side Order)",
+      "path": "Amiibo Bin/Splatoon Amiibo/Marina (Side Order).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Marina",
+      "path": "Amiibo Bin/Splatoon Amiibo/Marina.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Octoling (Blue)",
+      "path": "Amiibo Bin/Splatoon Amiibo/Octoling (Blue).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Octoling Boy",
+      "path": "Amiibo Bin/Splatoon Amiibo/Octoling Boy.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Octoling Girl",
+      "path": "Amiibo Bin/Splatoon Amiibo/Octoling Girl.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Octoling Octopus",
+      "path": "Amiibo Bin/Splatoon Amiibo/Octoling Octopus.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Pearl (Side Order)",
+      "path": "Amiibo Bin/Splatoon Amiibo/Pearl (Side Order).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Pearl",
+      "path": "Amiibo Bin/Splatoon Amiibo/Pearl.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Shiver",
+      "path": "Amiibo Bin/Splatoon Amiibo/Shiver.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Smallfry",
+      "path": "Amiibo Bin/Splatoon Amiibo/Smallfry.bin",
+      "ext": "bin"
+    }
+  ],
+  "Super Mario Amiibo": [
+    {
+      "name": "Boo",
+      "path": "Amiibo Bin/Super Mario Amiibo/Boo.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Bowser (Wedding)",
+      "path": "Amiibo Bin/Super Mario Amiibo/Bowser (Wedding).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Bowser",
+      "path": "Amiibo Bin/Super Mario Amiibo/Bowser.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Cat Mario",
+      "path": "Amiibo Bin/Super Mario Amiibo/Cat Mario.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Cat Peach",
+      "path": "Amiibo Bin/Super Mario Amiibo/Cat Peach.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Daisy",
+      "path": "Amiibo Bin/Super Mario Amiibo/Daisy.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Diddy Kong",
+      "path": "Amiibo Bin/Super Mario Amiibo/Diddy Kong.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Donkey Kong",
+      "path": "Amiibo Bin/Super Mario Amiibo/Donkey Kong.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Goomba",
+      "path": "Amiibo Bin/Super Mario Amiibo/Goomba.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Koopa Troopa",
+      "path": "Amiibo Bin/Super Mario Amiibo/Koopa Troopa.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Luigi",
+      "path": "Amiibo Bin/Super Mario Amiibo/Luigi.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Mario (Gold Edition)",
+      "path": "Amiibo Bin/Super Mario Amiibo/Mario (Gold Edition).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Mario (Silver Edition)",
+      "path": "Amiibo Bin/Super Mario Amiibo/Mario (Silver Edition).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Mario (Wedding)",
+      "path": "Amiibo Bin/Super Mario Amiibo/Mario (Wedding).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Mario Classic Colors (Anniversary)",
+      "path": "Amiibo Bin/Super Mario Amiibo/Mario Classic Colors (Anniversary).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Mario Modern Colors (Anniversary)",
+      "path": "Amiibo Bin/Super Mario Amiibo/Mario Modern Colors (Anniversary).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Mario",
+      "path": "Amiibo Bin/Super Mario Amiibo/Mario.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Peach (Wedding)",
+      "path": "Amiibo Bin/Super Mario Amiibo/Peach (Wedding).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Peach",
+      "path": "Amiibo Bin/Super Mario Amiibo/Peach.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Rosalina",
+      "path": "Amiibo Bin/Super Mario Amiibo/Rosalina.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Toad",
+      "path": "Amiibo Bin/Super Mario Amiibo/Toad.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Waluigi",
+      "path": "Amiibo Bin/Super Mario Amiibo/Waluigi.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Wario",
+      "path": "Amiibo Bin/Super Mario Amiibo/Wario.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Yoshi",
+      "path": "Amiibo Bin/Super Mario Amiibo/Yoshi.bin",
+      "ext": "bin"
+    }
+  ],
+  "Super Smash Bros Amiibo": [
+    {
+      "name": "Mythra",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/!UNOFFICIAL FIGHTER PASS 2 AMIIBO/Mythra.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Pyra",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/!UNOFFICIAL FIGHTER PASS 2 AMIIBO/Pyra.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Alex",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Alex.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Banjo _ Kazooie",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Banjo _ Kazooie.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Bayonetta (Player 1)",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Bayonetta (Player 1).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Bayonetta (Player 2)",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Bayonetta (Player 2).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Bowser Jr",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Bowser Jr.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Bowser",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Bowser.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Byleth",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Byleth.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Captain Falcon",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Captain Falcon.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Charizard",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Charizard.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Chrom",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Chrom.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Cloud (Player 1)",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Cloud (Player 1).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Cloud (Player 2)",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Cloud (Player 2).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Corrin (Player 1)",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Corrin (Player 1).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Corrin (Player 2)",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Corrin (Player 2).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Daisy",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Daisy.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Dark Pit",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Dark Pit.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Dark Samus",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Dark Samus.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Diddy Kong",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Diddy Kong.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Donkey Kong",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Donkey Kong.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Dr. Mario",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Dr. Mario.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Duck Hunt",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Duck Hunt.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Falco",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Falco.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Fox",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Fox.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Ganondorf",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Ganondorf.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Greninja",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Greninja.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Hero",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Hero.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Ice Climbers",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Ice Climbers.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Ike",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Ike.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Incineroar",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Incineroar.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Inkling Girl",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Inkling Girl.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Isabelle",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Isabelle.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Ivysaur",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Ivysaur.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Jigglypuff",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Jigglypuff.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Joker",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Joker.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Kazuya",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Kazuya.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Ken",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Ken.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "King Dedede",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/King Dedede.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "King K. Rool",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/King K. Rool.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Kirby",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Kirby.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Link",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Link.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Little Mac",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Little Mac.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Lucario",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Lucario.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Lucas",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Lucas.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Lucina",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Lucina.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Luigi",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Luigi.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Mario",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Mario.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Marth",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Marth.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Mega Man (Golden)",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Mega Man (Golden).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Mega Man",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Mega Man.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Meta Knight",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Meta Knight.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Mewtwo",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Mewtwo.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Mii Fighter",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Mii Fighter.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Mii Gunner",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Mii Gunner.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Mii Swordsman",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Mii Swordsman.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Min Min",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Min Min.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Mr. Game _ Watch",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Mr. Game _ Watch.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Mythra",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Mythra.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Ness",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Ness.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Olimar",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Olimar.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Pac-Man",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Pac-Man.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Palutena",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Palutena.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Peach",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Peach.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Pichu",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Pichu.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Pikachu",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Pikachu.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Piranha Plant",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Piranha Plant.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Pit",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Pit.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Pokemon Trainer",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Pokemon Trainer.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Pyra",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Pyra.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "R.O.B. (Famicom)",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/R.O.B. (Famicom).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "R.O.B. (NES)",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/R.O.B. (NES).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Richter",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Richter.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Ridley",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Ridley.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Robin",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Robin.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Rosalina _ Luma",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Rosalina _ Luma.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Roy",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Roy.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Ryu",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Ryu.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Samus",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Samus.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Sephiroth",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Sephiroth.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Sheik",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Sheik.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Shulk",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Shulk.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Simon",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Simon.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Snake",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Snake.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Sonic",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Sonic.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Sora",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Sora.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Squirtle",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Squirtle.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Steve",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Steve.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Terry",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Terry.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Toon Link",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Toon Link.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Villager",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Villager.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Wario",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Wario.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Wii Fit Trainer",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Wii Fit Trainer.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Wolf",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Wolf.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Yoshi",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Yoshi.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Young Link",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Young Link.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Zelda",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Zelda.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Zero Suit Samus",
+      "path": "Amiibo Bin/Super Smash Bros Amiibo/Zero Suit Samus.bin",
+      "ext": "bin"
+    }
+  ],
+  "The Legend of Zelda Amiibo": [
+    {
+      "name": "8-Bit Link",
+      "path": "Amiibo Bin/The Legend of Zelda Amiibo/Anniversary/8-Bit Link.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Link (Majora_s Mask)",
+      "path": "Amiibo Bin/The Legend of Zelda Amiibo/Anniversary/Link (Majora_s Mask).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Link (Ocarina Of Time)",
+      "path": "Amiibo Bin/The Legend of Zelda Amiibo/Anniversary/Link (Ocarina Of Time).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Link (Skyward Sword)",
+      "path": "Amiibo Bin/The Legend of Zelda Amiibo/Anniversary/Link (Skyward Sword).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Link (Twilight Princess)",
+      "path": "Amiibo Bin/The Legend of Zelda Amiibo/Anniversary/Link (Twilight Princess).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Link (Wind Waker)",
+      "path": "Amiibo Bin/The Legend of Zelda Amiibo/Anniversary/Link (Wind Waker).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Zelda (Wind Waker)",
+      "path": "Amiibo Bin/The Legend of Zelda Amiibo/Anniversary/Zelda (Wind Waker).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Bokoblin",
+      "path": "Amiibo Bin/The Legend of Zelda Amiibo/Breath of the Wild/Bokoblin.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Daruk",
+      "path": "Amiibo Bin/The Legend of Zelda Amiibo/Breath of the Wild/Daruk.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Guardian",
+      "path": "Amiibo Bin/The Legend of Zelda Amiibo/Breath of the Wild/Guardian.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Link (Archer)",
+      "path": "Amiibo Bin/The Legend of Zelda Amiibo/Breath of the Wild/Link (Archer).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Link (Rider)",
+      "path": "Amiibo Bin/The Legend of Zelda Amiibo/Breath of the Wild/Link (Rider).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Mipha",
+      "path": "Amiibo Bin/The Legend of Zelda Amiibo/Breath of the Wild/Mipha.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Revali",
+      "path": "Amiibo Bin/The Legend of Zelda Amiibo/Breath of the Wild/Revali.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Urbosa",
+      "path": "Amiibo Bin/The Legend of Zelda Amiibo/Breath of the Wild/Urbosa.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Zelda",
+      "path": "Amiibo Bin/The Legend of Zelda Amiibo/Breath of the Wild/Zelda.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Link (Link’s Awakening)",
+      "path": "Amiibo Bin/The Legend of Zelda Amiibo/Link’s Awakening/Link (Link’s Awakening).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Zelda _ Loftwing Amiibo",
+      "path": "Amiibo Bin/The Legend of Zelda Amiibo/Skyward Sword HD/Zelda _ Loftwing Amiibo.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Ganondorf (TotK)",
+      "path": "Amiibo Bin/The Legend of Zelda Amiibo/Tears of the Kingdom/Ganondorf (TotK).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Gerudo_King",
+      "path": "Amiibo Bin/The Legend of Zelda Amiibo/Tears of the Kingdom/Gerudo_King.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Link (TotK)",
+      "path": "Amiibo Bin/The Legend of Zelda Amiibo/Tears of the Kingdom/Link (TotK).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Princess_Zelda",
+      "path": "Amiibo Bin/The Legend of Zelda Amiibo/Tears of the Kingdom/Princess_Zelda.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Zelda (TotK)",
+      "path": "Amiibo Bin/The Legend of Zelda Amiibo/Tears of the Kingdom/Zelda (TotK).bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Wolf Link",
+      "path": "Amiibo Bin/The Legend of Zelda Amiibo/Twilight Princess/Wolf Link.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "[MOD _ MAX LEVEL] Wolf Link",
+      "path": "Amiibo Bin/The Legend of Zelda Amiibo/Twilight Princess/[MOD _ MAX LEVEL] Wolf Link.bin",
+      "ext": "bin"
+    }
+  ],
+  "Xenoblade Chronicles": [
+    {
+      "name": "Mio",
+      "path": "Amiibo Bin/Xenoblade Chronicles/Mio.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Noah",
+      "path": "Amiibo Bin/Xenoblade Chronicles/Noah.bin",
+      "ext": "bin"
+    }
+  ],
+  "Yoshi’s Wooly World Amiibo": [
+    {
+      "name": "Green Yarn Yoshi",
+      "path": "Amiibo Bin/Yoshi’s Wooly World Amiibo/Green Yarn Yoshi.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Light-Blue Yarn Yoshi",
+      "path": "Amiibo Bin/Yoshi’s Wooly World Amiibo/Light-Blue Yarn Yoshi.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Mega Yarn Yoshi",
+      "path": "Amiibo Bin/Yoshi’s Wooly World Amiibo/Mega Yarn Yoshi.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Pink Yarn Yoshi",
+      "path": "Amiibo Bin/Yoshi’s Wooly World Amiibo/Pink Yarn Yoshi.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Poochy",
+      "path": "Amiibo Bin/Yoshi’s Wooly World Amiibo/Poochy.bin",
+      "ext": "bin"
+    }
+  ],
+  "Yu-Gi-Oh! Amiibo": [
+    {
+      "name": "Asana Mutsuba",
+      "path": "Amiibo Bin/Yu-Gi-Oh! Amiibo/Asana Mutsuba.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Gakuto Sōgetsu",
+      "path": "Amiibo Bin/Yu-Gi-Oh! Amiibo/Gakuto Sōgetsu.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Nail Saionji",
+      "path": "Amiibo Bin/Yu-Gi-Oh! Amiibo/Nail Saionji.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Roa Kirishima",
+      "path": "Amiibo Bin/Yu-Gi-Oh! Amiibo/Roa Kirishima.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Romin Kirishima",
+      "path": "Amiibo Bin/Yu-Gi-Oh! Amiibo/Romin Kirishima.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Tatsuhisa “Luke” Kamijō",
+      "path": "Amiibo Bin/Yu-Gi-Oh! Amiibo/Tatsuhisa “Luke” Kamijō.bin",
+      "ext": "bin"
+    },
+    {
+      "name": "Yuga Ohdo",
+      "path": "Amiibo Bin/Yu-Gi-Oh! Amiibo/Yuga Ohdo.bin",
+      "ext": "bin"
+    }
+  ]
+}

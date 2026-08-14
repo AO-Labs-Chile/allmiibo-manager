@@ -694,8 +694,9 @@ function removeAccents(str) {
 }
 
 function sanitizeName(name) {
-    // 1. Remove bracket prefixes like [AC], [Zel] but KEEP the number (e.g. [AC] 001 - Isabelle -> 001_Isabelle)
-    let clean = name.replace(/^\[[^\]]+\]\s*/, '');
+    if (!name) return "";
+    // 1. Remove .bin/.nfc extension and bracket prefixes like [AC], [Zel] but KEEP the number
+    let clean = name.replace(/\.(bin|nfc)$/i, '').replace(/^\[[^\]]+\]\s*/, '');
     
     // 2. Remove tildes/accents, special curly quotes and convert parentheses and dashes to spaces
     clean = removeAccents(clean)
@@ -728,13 +729,15 @@ function isAmiiboInstalled(amiibo) {
     const clean = sanitizeName(amiibo.name);
     const key1 = normalizeAmiiboMatchKey(amiibo.name);
     const key2 = normalizeAmiiboMatchKey(clean);
-    const key3 = (clean + ".bin").toLowerCase();
-    const key4 = clean.toLowerCase();
+    const key3 = clean.toLowerCase();
+    const key4 = (clean + ".bin").toLowerCase();
+    const cleanNoLead = clean.replace(/^[\d_ -]+/, '').toLowerCase();
     
     return state.installedAmiiboSet.has(key1) || 
            state.installedAmiiboSet.has(key2) || 
            state.installedAmiiboSet.has(key3) ||
-           state.installedAmiiboSet.has(key4);
+           state.installedAmiiboSet.has(key4) ||
+           (cleanNoLead && state.installedAmiiboSet.has(cleanNoLead));
 }
 
 let _isScanningInstalled = false;
@@ -748,10 +751,11 @@ async function scanInstalledAmiibos() {
     _isScanningInstalled = true;
     
     try {
+        logEvent("Escaneando archivos en el dispositivo...");
         const found = new Set();
         
         async function traverse(dirPath, depth = 0) {
-            if (depth > 2) return;
+            if (depth > 3) return;
             const res = await state.client.readFolder(dirPath);
             if (!res || !res.ok || !res.data) return;
             
@@ -760,8 +764,10 @@ async function scanInstalledAmiibos() {
                     const subDirPath = joinPaths(dirPath, item.name);
                     await traverse(subDirPath, depth + 1);
                 } else if (item.name.toLowerCase().endsWith(".bin") || item.name.toLowerCase().endsWith(".nfc")) {
+                    const rawName = item.name.toLowerCase();
                     const cleanItem = item.name.replace(/\.(bin|nfc)$/i, '');
-                    found.add(item.name.toLowerCase());
+                    
+                    found.add(rawName);
                     found.add(cleanItem.toLowerCase());
                     
                     const norm1 = normalizeAmiiboMatchKey(item.name);
@@ -775,12 +781,33 @@ async function scanInstalledAmiibos() {
                         found.add(normalizeAmiiboMatchKey(noLeadNum));
                         found.add(noLeadNum.toLowerCase());
                     }
+                    
+                    const sanitized = sanitizeName(item.name).toLowerCase();
+                    if (sanitized) {
+                        found.add(sanitized);
+                        const sanitizedNoLead = sanitized.replace(/^[\d_ -]+/, '');
+                        if (sanitizedNoLead) found.add(sanitizedNoLead);
+                    }
                 }
             }
         }
         
         await traverse("E:/");
+        
+        // Also explicitly traverse E:/amiibo subdirectories if any
+        try {
+            const amiiboRes = await state.client.readFolder("E:/amiibo");
+            if (amiiboRes && amiiboRes.ok && amiiboRes.data) {
+                for (const sub of amiiboRes.data) {
+                    if (sub.type === "DIR") {
+                        await traverse(joinPaths("E:/amiibo", sub.name), 1);
+                    }
+                }
+            }
+        } catch(e) {}
+        
         state.installedAmiiboSet = found;
+        logEvent(`Escaneo completado: ${found.size} claves de Amiibos indexadas.`);
         renderOnlineCatalogue();
     } catch (err) {
         console.warn("Scan installed amiibos error:", err);
@@ -1569,6 +1596,17 @@ function logEvent(msg) {
     console.log(`[Allmiibo] ${msg}`);
 }
 
+async function initDeviceAfterConnection(isMock) {
+    try {
+        await updateDeviceInfo();
+        await updateStorageBar();
+        await refreshExplorer();
+        await scanInstalledAmiibos();
+    } catch (err) {
+        console.warn("Device init error:", err);
+    }
+}
+
 // --- Connection UI Updates ---
 function setConnectionState(connected, isMock = false) {
     state.isConnected = connected;
@@ -1586,10 +1624,7 @@ function setConnectionState(connected, isMock = false) {
         el.storageContainer.style.display = "flex";
         el.explorerActions.style.display = "flex";
         
-        updateDeviceInfo();
-        updateStorageBar();
-        refreshExplorer();
-        scanInstalledAmiibos();
+        initDeviceAfterConnection(isMock);
     } else {
         el.btnConnectBle.style.display = "inline-flex";
         el.btnConnectMock.style.display = "inline-flex";
@@ -3581,6 +3616,13 @@ document.querySelectorAll(".tab-btn").forEach(btn => {
         btn.classList.add("active");
         const tabId = btn.getAttribute("data-tab");
         document.getElementById(tabId).classList.add("active");
+        
+        if (tabId === "catalog-tab" && state.isConnected) {
+            renderOnlineCatalogue();
+            if (state.installedAmiiboSet.size === 0) {
+                scanInstalledAmiibos();
+            }
+        }
     });
 });
 
@@ -3885,7 +3927,7 @@ el.btnQueueCancel.addEventListener("click", () => {
     showToast("Deteniendo subida...");
 });
 
-// Toggle Local Explorer View mode
+// Toggle Local Explorer View mode (List vs Grid)
 el.btnToggleView.addEventListener("click", () => {
     state.explorerViewMode = state.explorerViewMode === "list" ? "grid" : "list";
     el.btnToggleViewIcon.textContent = state.explorerViewMode === "list" ? "grid_view" : "list";
@@ -3896,28 +3938,7 @@ el.btnToggleView.addEventListener("click", () => {
 // Explorer Sort Selection changed
 el.explorerSortSelect.addEventListener("change", () => {
     state.explorerSort = el.explorerSortSelect.value;
-    if (state.explorerTabMode === "gallery") {
-        renderGalleryMode();
-    } else {
-        renderExplorer(state.currentEntries); // instant local sort and re-render without refetching BLE!
-    }
-});
-
-// Explorer View Selector (Folders vs Gallery Mode)
-el.explorerViewSelect.addEventListener("change", () => {
-    state.explorerTabMode = el.explorerViewSelect.value;
-    if (state.explorerTabMode === "gallery") {
-        el.btnToggleView.style.display = "none";
-        el.btnNewFolder.style.display = "none";
-        el.btnUploadFiles.style.display = "none";
-        el.btnUploadFolder.style.display = "none";
-    } else {
-        el.btnToggleView.style.display = "inline-flex";
-        el.btnNewFolder.style.display = "inline-flex";
-        el.btnUploadFiles.style.display = "inline-flex";
-        el.btnUploadFolder.style.display = "inline-flex";
-    }
-    refreshExplorer();
+    renderExplorer(state.currentEntries); // instant local sort and re-render without refetching BLE!
 });
 
 // Help Modal Events

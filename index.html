@@ -444,8 +444,17 @@
                 </p>
                 
                 <h4 style="font-size: 0.85rem; margin-bottom: 4px; color: var(--text-primary);">Paso 1: Entrar en Modo Actualización (en tu Allmiibo)</h4>
+                <div style="margin-bottom: 12px; display: flex; flex-direction: column; gap: 6px;">
+                    <button class="btn btn-danger" id="btn-dfu-trigger" style="padding: 6px 12px; font-size: 0.75rem; width: fit-content;" disabled>
+                        <span class="material-symbols-rounded" style="font-size: 1rem;">restart_alt</span>
+                        Reiniciar Allmiibo en modo DFU
+                    </button>
+                    <span id="dfu-trigger-status" style="font-size: 0.75rem; color: var(--text-muted);">
+                        (Conéctate primero al Allmiibo para poder enviarle el comando de reinicio automático).
+                    </span>
+                </div>
                 <ul style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 12px; padding-left: 20px; line-height: 1.4;">
-                    <li>En el menú de tu Allmiibo, entra a <strong>Settings (Ajustes)</strong> y selecciona <strong>Firmware Update</strong>.</li>
+                    <li>Alternativamente, en el menú físico de tu Allmiibo, entra a <strong>Settings (Ajustes)</strong> y selecciona <strong>Firmware Update</strong>.</li>
                     <li>La pantalla del dispositivo cambiará a <em>"DFU Update Waiting..."</em>.</li>
                     <li><em>(Si el dispositivo no enciende o está colgado: mantén pulsado el botón izquierdo/BTN1 al insertar la pila hasta que en la pantalla ponga DFU)</em>.</li>
                 </ul>

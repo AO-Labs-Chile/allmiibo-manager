@@ -472,6 +472,16 @@ class PixlBLEClient {
         if (r.status !== 0) return { ok: false, error: this._vfsError(r.status) };
         return { ok: true };
     }
+
+    async enterDfu() {
+        try {
+            await this._sendCommand(0x02);
+            return { ok: true };
+        } catch (err) {
+            // Dado que el chip se reinicia al instante, es normal que lance un error de desconexión.
+            return { ok: true };
+        }
+    }
 }
 
 // ==========================================
@@ -663,6 +673,12 @@ class DevMockClient {
         this.fs[parent] = this.fs[parent].filter(e => e.name !== name);
         this.fs[parent].push({ name, type: "FILE", size: total });
     }
+
+    async enterDfu() {
+        this.log("Comando DFU enviado. Reiniciando simulador...");
+        this.disconnect();
+        return { ok: true };
+    }
 }
 
 // ==========================================
@@ -794,6 +810,8 @@ const el = {
     btnDfuHelp: document.getElementById("btn-dfu-help"),
     modalDfuUpdate: document.getElementById("modal-dfu-update"),
     btnDfuClose: document.getElementById("btn-dfu-close"),
+    btnDfuTrigger: document.getElementById("btn-dfu-trigger"),
+    dfuTriggerStatus: document.getElementById("dfu-trigger-status"),
     
     toastContainer: document.getElementById("toast-container")
 };
@@ -2831,7 +2849,20 @@ el.btnAutoKeyCancel.addEventListener("click", () => {
 el.btnAutoKeyConfirm.addEventListener("click", downloadKeysFromGitHub);
 
 // DFU Update Modal Events
+function updateDfuTriggerStatus() {
+    if (state.isConnected) {
+        el.btnDfuTrigger.disabled = false;
+        el.dfuTriggerStatus.textContent = "(Dispositivo conectado. Haz clic arriba para enviarle el comando de reinicio a DFU automáticamente).";
+        el.dfuTriggerStatus.style.color = "var(--primary-hover)";
+    } else {
+        el.btnDfuTrigger.disabled = true;
+        el.dfuTriggerStatus.textContent = "(Conéctate primero al Allmiibo para poder enviarle el comando de reinicio automático).";
+        el.dfuTriggerStatus.style.color = "var(--text-muted)";
+    }
+}
+
 el.btnDfuHelp.addEventListener("click", () => {
+    updateDfuTriggerStatus();
     el.modalDfuUpdate.classList.add("active");
 });
 el.btnDfuClose.addEventListener("click", () => {
@@ -2839,7 +2870,21 @@ el.btnDfuClose.addEventListener("click", () => {
 });
 el.updateWarningBadge.addEventListener("click", (e) => {
     e.preventDefault();
+    updateDfuTriggerStatus();
     el.modalDfuUpdate.classList.add("active");
+});
+el.btnDfuTrigger.addEventListener("click", async () => {
+    if (!state.isConnected) return;
+    if (confirm("¿Estás seguro de que deseas reiniciar tu Allmiibo en modo DFU? Se desconectará de esta página.")) {
+        showToast("Enviando comando DFU...");
+        try {
+            await state.client.enterDfu();
+            showToast("Allmiibo reiniciado en modo actualización (DFU).");
+            el.modalDfuUpdate.classList.remove("active");
+        } catch (err) {
+            showToast(`Error al reiniciar: ${err.message}`, "error");
+        }
+    }
 });
 
 // Install entire filtered series

@@ -161,36 +161,65 @@ header {
     align-items: center;
     gap: 12px;
     text-align: center;
+    width: 100%;
 }
 
 .aolabs-credit {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
+    width: 100%;
 }
 
 .aolabs-text {
-    font-size: 0.72rem;
+    font-size: 0.75rem;
     font-weight: 500;
     color: var(--text-secondary);
-    letter-spacing: 0.5px;
-    opacity: 0.85;
+    letter-spacing: 0.4px;
+}
+
+.aolabs-link {
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.aolabs-link:hover {
+    transform: scale(1.05);
 }
 
 .aolabs-logo {
-    height: 30px;
+    height: 44px;
     width: auto;
-    max-width: 130px;
+    max-width: 175px;
     object-fit: contain;
     display: block;
-    transition: transform 0.2s ease, opacity 0.2s ease;
-    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
 }
 
-.aolabs-logo:hover {
-    transform: scale(1.05);
-    opacity: 0.95;
+.sidebar-donate-btn {
+    width: 100%;
+    max-width: 200px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 6px 14px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #ff5e5b;
+    border-color: rgba(255, 94, 91, 0.3);
+    background-color: rgba(255, 94, 91, 0.05);
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.sidebar-donate-btn:hover {
+    background-color: rgba(255, 94, 91, 0.15);
+    border-color: #ff5e5b;
+    color: #ff5e5b;
+    transform: translateY(-1px);
 }
 
 .sidebar-version-badge {

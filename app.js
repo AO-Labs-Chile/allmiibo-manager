@@ -1,5 +1,5 @@
 // === Configuration & Constants ===
-const APP_VERSION = "v1.4.5";
+const APP_VERSION = "v1.4.6";
 const NUS_SERVICE_UUID = "6e400001-b5a3-f393-e0a9-e50e24dcca9e";
 const NUS_CHAR_TX_UUID = "6e400002-b5a3-f393-e0a9-e50e24dcca9e";
 const NUS_CHAR_RX_UUID = "6e400003-b5a3-f393-e0a9-e50e24dcca9e";
@@ -172,7 +172,7 @@ const TRANSLATIONS = {
         btn_install_sel: "Instalar Seleccionados",
         btn_install_single: "Instalar",
         btn_reinstall: "Reinstalar",
-        amiibo_installed_badge: "✓ Instalado",
+        amiibo_installed_badge: "Instalado",
         install_skip_installed_label: "Omitir {count} Amiibos ya instalados (Recomendado)",
         install_skip_all_installed_warn: "Todos los Amiibos seleccionados ya están instalados en el dispositivo.",
         toast_install_skipped: "{added} añadidos a la cola ({skipped} omitidos por estar ya instalados).",
@@ -397,7 +397,7 @@ const TRANSLATIONS = {
         btn_install_sel: "Install Selected",
         btn_install_single: "Install",
         btn_reinstall: "Reinstall",
-        amiibo_installed_badge: "✓ Installed",
+        amiibo_installed_badge: "Installed",
         install_skip_installed_label: "Skip {count} already installed Amiibos (Recommended)",
         install_skip_all_installed_warn: "All selected Amiibos are already installed on the device.",
         toast_install_skipped: "{added} added to queue ({skipped} skipped as already installed).",

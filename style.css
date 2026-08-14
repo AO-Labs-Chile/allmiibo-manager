@@ -327,6 +327,7 @@ aside.device-sidebar {
     align-items: center;
     justify-content: space-between;
     gap: 16px;
+    flex-wrap: wrap;
 }
 
 .breadcrumb {
@@ -353,6 +354,7 @@ aside.device-sidebar {
 .explorer-actions {
     display: flex;
     gap: 8px;
+    flex-wrap: wrap;
 }
 
 /* Drag & drop dropzone */

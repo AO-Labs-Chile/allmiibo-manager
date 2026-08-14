@@ -2,7 +2,9 @@
 
 🌐 **Sitio Web en Vivo / Live Web App**: 👉 <a href="https://setorox.github.io/allmiibo-manager/" target="_blank" rel="noopener noreferrer"><strong>https://setorox.github.io/allmiibo-manager/</strong></a>
 
-[**Español**](#español) | [**English**](#english)
+☕ **Apoyar el proyecto / Support on Ko-fi**: 👉 <a href="https://ko-fi.com/aolabs" target="_blank" rel="noopener noreferrer"><img src="https://ko-fi.com/img/githubbutton_sm.svg" alt="Buy Me a Coffee at ko-fi.com" height="28" style="vertical-align: middle;"></a>
+
+[**Español**](#español) | [**English**](#english) | [**Donar / Donate**](#-apoyar-el-proyecto--support-the-project)
 
 ---
 
@@ -46,6 +48,14 @@ Un gestor web moderno, intuitivo y responsivo para administrar archivos Amiibo e
 
 ---
 
+## ☕ Apoyar el Proyecto
+
+Si este proyecto te ha sido de ayuda y deseas apoyar su desarrollo, mejoras continuas y mantenimiento, ¡puedes invitarme a un café!:
+
+👉 <a href="https://ko-fi.com/aolabs" target="_blank" rel="noopener noreferrer"><strong>https://ko-fi.com/aolabs</strong></a>
+
+---
+
 # English
 
 A modern, intuitive, and responsive web manager designed to administer Amiibo files on **Allmiibo** / **Pixl.js** devices via **Web Bluetooth (Web BLE)**. It allows seamless wireless file transfers, hierarchical folder organization, OTA DFU firmware updates, and automatic encryption key setup directly from your browser without installing any extra software.
@@ -83,3 +93,11 @@ A modern, intuitive, and responsive web manager designed to administer Amiibo fi
     *   Click **Auto-llave** on the sidebar to install `key_retail.bin`.
     *   Navigate to the **Catálogo Online** tab, filter your desired series, and click **Instalar Serie** or **Instalar Selección**.
 5.  Ready to tap and scan on your Nintendo Switch, Wii U, or 3DS!
+
+---
+
+## ☕ Support the Project
+
+If you find this project useful and want to support its ongoing development, improvements, and maintenance, feel free to buy me a coffee:
+
+👉 <a href="https://ko-fi.com/aolabs" target="_blank" rel="noopener noreferrer"><strong>https://ko-fi.com/aolabs</strong></a>

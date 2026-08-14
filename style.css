@@ -286,7 +286,8 @@ aside.device-sidebar {
 
 .queue-item {
     font-size: 0.8rem;
-    background-color: #f8fafc;
+    background-color: var(--bg-card);
+    color: var(--text-primary);
     border: 1px solid var(--border-color);
     border-radius: 6px;
     padding: 8px 12px;
@@ -301,6 +302,8 @@ aside.device-sidebar {
     overflow: hidden;
     text-overflow: ellipsis;
     font-weight: 500;
+    color: var(--text-primary);
+    flex: 1;
 }
 
 .queue-item-status {

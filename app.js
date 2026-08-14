@@ -1710,62 +1710,83 @@ async function runQueueUpload() {
 
 async function initOnlineCatalogue() {
     try {
-        const response = await fetch("amiibo_db.json");
-        const localDb = await response.json();
-        
-        const cachedDb = localStorage.getItem("cached_amiibo_db");
+        let loaded = false;
+        const cachedDb = localStorage.getItem("cached_amiibo_db_v2");
         if (cachedDb) {
-            const parsedCache = JSON.parse(cachedDb);
-            // Mezclar elementos del archivo local con la caché para agregar novedades automáticamente
-            for (const [category, items] of Object.entries(localDb)) {
-                if (!parsedCache[category]) {
-                    parsedCache[category] = [];
+            try {
+                const parsedCache = JSON.parse(cachedDb);
+                let count = 0;
+                Object.values(parsedCache).forEach(arr => count += arr.length);
+                if (count >= 500) {
+                    state.categories = parsedCache;
+                    populateCategoryDropdown();
+                    renderOnlineCatalogue();
+                    loaded = true;
                 }
-                const cacheCategoryItems = parsedCache[category];
-                items.forEach(localItem => {
-                    if (!cacheCategoryItems.some(cacheItem => cacheItem.path === localItem.path)) {
-                        cacheCategoryItems.push(localItem);
-                    }
-                });
-                cacheCategoryItems.sort((a, b) => a.name.localeCompare(b.name));
-            }
-            state.categories = parsedCache;
-            localStorage.setItem("cached_amiibo_db", JSON.stringify(parsedCache));
-        } else {
-            state.categories = localDb;
+            } catch(e) {}
         }
         
-        populateCategoryDropdown();
-
         // Fetch full AmiiboAPI list once for fast matching
-        logEvent("Cargando base de datos AmiiboAPI...");
         try {
             const apiRes = await fetch("https://www.amiiboapi.org/api/amiibo/");
             if (apiRes.ok) {
                 const apiJson = await apiRes.json();
                 if (apiJson && apiJson.amiibo) {
                     state.amiiboApiList = apiJson.amiibo;
-                    logEvent(`Base de datos de AmiiboAPI cargada: ${state.amiiboApiList.length} elementos.`);
                 }
             }
         } catch (apiErr) {
-            logEvent(`No se pudo cargar la base de datos completa de AmiiboAPI: ${apiErr.message}`);
+            console.warn("AmiiboAPI offline:", apiErr.message);
         }
         
-        renderOnlineCatalogue();
+        // If not loaded or outdated, sync automatically from Archive
+        if (!loaded) {
+            await syncCatalogueFromArchive();
+        }
     } catch (err) {
-        logEvent(`Error al inicializar base de datos local: ${err.message}`);
-        showToast("Error al cargar la base de datos de Amiibos.", "error");
+        logEvent(`Error al inicializar base de datos: ${err.message}`);
     }
 }
 
 function populateCategoryDropdown() {
-    el.filterCategory.innerHTML = `<option value="all">Todas las Series</option>`;
-    Object.keys(state.categories).forEach(cat => {
-        const opt = document.createElement("option");
-        opt.value = cat;
-        opt.textContent = cat;
-        el.filterCategory.appendChild(opt);
+    let totalCount = 0;
+    Object.values(state.categories).forEach(arr => totalCount += arr.length);
+    
+    el.filterCategory.innerHTML = `<option value="all">Todas las Series (${totalCount} Amiibos)</option>`;
+    
+    // Sort categories alphabetically
+    const sortedCategories = Object.keys(state.categories).sort((a, b) => a.localeCompare(b));
+    
+    sortedCategories.forEach(cat => {
+        const items = state.categories[cat];
+        const subpaths = new Set(items.map(a => a.subPath).filter(Boolean));
+        
+        if (subpaths.size > 0) {
+            const optgroup = document.createElement("optgroup");
+            optgroup.label = `📁 ${cat} (${items.length})`;
+            
+            const allInCatOpt = document.createElement("option");
+            allInCatOpt.value = cat;
+            allInCatOpt.textContent = `⚡ Todo ${cat} (${items.length})`;
+            optgroup.appendChild(allInCatOpt);
+            
+            const sortedSubpaths = Array.from(subpaths).sort((a, b) => a.localeCompare(b));
+            sortedSubpaths.forEach(sub => {
+                const subCount = items.filter(a => a.subPath === sub).length;
+                const cleanSubName = sub.replace(/^Amiibo Cards\/!?/i, '').replace(/^!?/, '');
+                const opt = document.createElement("option");
+                opt.value = `${cat}::${sub}`;
+                opt.textContent = `└─ ${cleanSubName} (${subCount})`;
+                optgroup.appendChild(opt);
+            });
+            
+            el.filterCategory.appendChild(optgroup);
+        } else {
+            const opt = document.createElement("option");
+            opt.value = cat;
+            opt.textContent = `${cat} (${items.length})`;
+            el.filterCategory.appendChild(opt);
+        }
     });
 }
 
@@ -1781,57 +1802,61 @@ async function syncCatalogueFromArchive() {
         if (!res.ok) throw new Error("No se pudo conectar con el listado de Archive.org.");
         const html = await res.text();
         
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, "text/html");
-        const links = doc.querySelectorAll("a");
-        
+        const re = /href=["']([^"']+)["']/gi;
+        let m;
         let fileCount = 0;
-        for (const link of links) {
-            const href = link.getAttribute("href");
+        
+        while ((m = re.exec(html)) !== null) {
+            const href = m[1];
             if (!href) continue;
+            if (!href.toLowerCase().includes(".bin") && !href.toLowerCase().includes(".nfc")) continue;
             
-            const decoded = decodeURIComponent(href);
-            if (decoded.includes("..") || decoded.includes("?") || decoded.startsWith("/")) continue;
+            let decoded = decodeURIComponent(href);
+            const zipPrefix = "Amiibo Bin.zip/";
+            const idx = decoded.indexOf(zipPrefix);
+            let relPath = idx !== -1 ? decoded.substring(idx + zipPrefix.length) : decoded;
             
-            if (decoded.toLowerCase().endsWith(".bin") || decoded.toLowerCase().endsWith(".nfc")) {
-                const ext = decoded.toLowerCase().endsWith(".nfc") ? "nfc" : "bin";
-                // Path format: "Amiibo Bin/CategoryFolder/SubFolder/.../file.bin"
-                const parts = decoded.split("/");
-                let filename = parts[parts.length - 1];
-                
-                // Skip hidden macOS files and image folders
-                if (filename.startsWith("._") || filename.startsWith(".")) continue;
-                
-                // Extract category (first folder after root), and subPath (everything between category and filename)
-                let categoryName = "Otros";
-                let subPath = "";
-                
-                if (parts.length >= 3) {
-                    // parts[0] = "Amiibo Bin" (root), parts[1] = category, parts[2..n-1] = subfolders, parts[n] = file
-                    categoryName = parts[1];
-                    if (parts.length > 3) {
-                        // Build subpath from intermediate folders
-                        subPath = parts.slice(2, parts.length - 1).join("/");
-                    }
-                } else if (parts.length === 2) {
-                    categoryName = parts[0];
-                }
-                
-                if (categoryName.toLowerCase() === "images") continue;
-                
-                if (!categories[categoryName]) {
-                    categories[categoryName] = [];
-                }
-                
-                const name = filename.substring(0, filename.lastIndexOf('.'));
-                categories[categoryName].push({
-                    name: name,
-                    path: decoded,
-                    subPath: subPath, // preservar la subruta para organización en dispositivo
-                    ext: ext
-                });
-                fileCount++;
+            if (relPath.startsWith("Amiibo Bin/")) {
+                relPath = relPath.substring("Amiibo Bin/".length);
             }
+            
+            const ext = relPath.toLowerCase().endsWith(".nfc") ? "nfc" : "bin";
+            const parts = relPath.split("/").filter(Boolean);
+            const filename = parts[parts.length - 1];
+            
+            // Skip hidden files
+            if (filename.startsWith("._") || filename.startsWith(".")) continue;
+            
+            let categoryName = "Otros";
+            let subPath = "";
+            
+            if (parts.length >= 2) {
+                categoryName = parts[0];
+                if (parts.length > 2) {
+                    subPath = parts.slice(1, parts.length - 1).join("/");
+                }
+            }
+            
+            if (categoryName.toLowerCase() === "images") continue;
+            
+            if (!categories[categoryName]) {
+                categories[categoryName] = [];
+            }
+            
+            const name = filename.substring(0, filename.lastIndexOf('.'));
+            
+            const downloadUrl = decoded.startsWith("//") 
+                ? "https:" + decoded 
+                : (decoded.startsWith("http") ? decoded : "https://archive.org/download/nintendo-amiibo-nfc-vault/Amiibo%20Bin.zip/" + encodeURIComponent(decoded));
+            
+            categories[categoryName].push({
+                name: name,
+                path: downloadUrl,
+                rawRelativePath: relPath,
+                subPath: subPath,
+                ext: ext
+            });
+            fileCount++;
         }
         
         if (fileCount === 0) {
@@ -1843,11 +1868,11 @@ async function syncCatalogueFromArchive() {
         }
         
         state.categories = categories;
-        localStorage.setItem("cached_amiibo_db", JSON.stringify(categories));
+        localStorage.setItem("cached_amiibo_db_v2", JSON.stringify(categories));
         
         populateCategoryDropdown();
         renderOnlineCatalogue();
-        showToast(`Catálogo sincronizado: se encontraron ${fileCount} Amiibos en tu Internet Archive.`);
+        showToast(`¡Catálogo sincronizado! Se encontraron ${fileCount} Amiibos en Internet Archive.`);
     } catch (err) {
         logEvent(`Error al sincronizar desde Archive.org: ${err.message}`);
         showToast(`Error de sincronización: ${err.message}`, "error");
@@ -2017,17 +2042,26 @@ function renderOnlineCatalogue() {
     const searchVal = el.searchAmiibo.value.toLowerCase();
     const filterVal = el.filterCategory.value;
     
+    let selectedCat = filterVal;
+    let selectedSub = null;
+    if (filterVal !== "all" && filterVal.includes("::")) {
+        const parts = filterVal.split("::");
+        selectedCat = parts[0];
+        selectedSub = parts[1];
+    }
+    
     const rendered = new Set();
     
     Object.keys(state.categories).forEach(cat => {
-        if (filterVal !== "all" && filterVal !== cat) return;
+        if (filterVal !== "all" && selectedCat !== cat) return;
         
         const list = state.categories[cat];
         list.forEach(amiibo => {
+            if (selectedSub && amiibo.subPath !== selectedSub) return;
             if (searchVal && !amiibo.name.toLowerCase().includes(searchVal)) return;
             
-            // Deduplicate based on name with parentheses (so variants are unique keys!)
-            const uniqueKey = `${cat}_${amiibo.name}`;
+            // Deduplicate based on path/unique key
+            const uniqueKey = amiibo.path || `${cat}_${amiibo.name}`;
             if (rendered.has(uniqueKey)) return;
             rendered.add(uniqueKey);
             
@@ -2086,13 +2120,19 @@ function renderOnlineCatalogue() {
             
             const nameEl = document.createElement("div");
             nameEl.className = "amiibo-card-name";
-            // Show full variant name (e.g. Callie (Alterna))
             nameEl.textContent = amiibo.name;
             nameEl.title = amiibo.name;
             
             const seriesEl = document.createElement("div");
             seriesEl.className = "amiibo-card-series";
-            seriesEl.textContent = CATEGORY_MAPPINGS[cat] || cat;
+            
+            // Build informative series & subfolder label
+            let displaySeries = CATEGORY_MAPPINGS[cat] || cat.replace(/ Amiibo$/i, '');
+            if (amiibo.subPath) {
+                const cleanSub = amiibo.subPath.replace(/^Amiibo Cards\/!?/i, '').replace(/^!?/, '');
+                displaySeries = `${displaySeries} • ${cleanSub}`;
+            }
+            seriesEl.textContent = displaySeries;
             
             info.appendChild(nameEl);
             info.appendChild(seriesEl);
@@ -2900,19 +2940,28 @@ el.btnCatInstallSeries.addEventListener("click", () => {
     const filterVal = el.filterCategory.value;
     
     if (filterVal === "all") {
-        showToast("Por favor, selecciona una serie específica en el filtro para instalarla completa.", "error");
+        showToast("Por favor, selecciona una serie o subserie específica en el filtro para instalarla completa.", "error");
         return;
     }
     
+    let selectedCat = filterVal;
+    let selectedSub = null;
+    if (filterVal.includes("::")) {
+        const parts = filterVal.split("::");
+        selectedCat = parts[0];
+        selectedSub = parts[1];
+    }
+    
     const visibleAmiibos = [];
-    const list = state.categories[filterVal] || [];
+    const list = state.categories[selectedCat] || [];
     list.forEach(amiibo => {
+        if (selectedSub && amiibo.subPath !== selectedSub) return;
         if (searchVal && !amiibo.name.toLowerCase().includes(searchVal)) return;
-        visibleAmiibos.push({ amiibo, category: filterVal });
+        visibleAmiibos.push({ amiibo, category: selectedCat });
     });
     
     if (visibleAmiibos.length === 0) {
-        showToast("No hay Amiibos visibles en la serie actual para instalar.", "error");
+        showToast("No hay Amiibos visibles en la serie seleccionada para instalar.", "error");
         return;
     }
     

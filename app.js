@@ -2160,7 +2160,17 @@ async function runQueueUpload() {
                     item.file = fileObj;
                 }
                 
-                logEvent(`Subiendo archivo: ${item.remotePath} (${fileObj.size} bytes)`);
+                // Automatically ensure parent directories exist
+                const pathParts = item.remotePath.split("/").slice(0, -1);
+                let buildPath = "";
+                for (const part of pathParts) {
+                    buildPath = buildPath ? `${buildPath}/${part}` : part;
+                    if (buildPath && buildPath !== "E:" && buildPath !== "E:/") {
+                        try {
+                            await state.client.createFolder(buildPath);
+                        } catch (e) {}
+                    }
+                }
                 
                 if (state.client instanceof DevMockClient) {
                     await state.client.uploadFile(item.remotePath, fileObj, (progress, total) => {

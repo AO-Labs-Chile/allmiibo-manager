@@ -56,12 +56,14 @@
                     <span id="status-text">Desconectado</span>
                 </div>
                 <div id="device-info" style="font-size: 0.8rem; display: flex; flex-direction: column; gap: 4px; color: var(--text-secondary);" hidden>
-                    <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 4px;">
-                        <strong>Versión:</strong> 
-                        <span id="info-version">-</span> 
-                        <a id="update-warning-badge" href="https://github.com/solosky/pixl.js/releases" target="_blank" style="display: none; font-size: 0.65rem; background-color: var(--danger-light); color: var(--danger); padding: 2px 6px; border-radius: 4px; font-weight: 700; text-decoration: none;">¡NUEVA v0.0.0!</a>
+                    <div style="font-size: 0.8rem; display: flex; align-items: center; justify-content: space-between; width: 100%;">
+                        <span>Versión: <strong id="info-version">-</strong></span>
+                        <a id="update-warning-badge" href="#" style="display: none; font-size: 0.65rem; background-color: var(--danger-light); color: var(--danger); padding: 2px 6px; border-radius: 4px; font-weight: 700; text-decoration: none;">¡NUEVA v0.0.0!</a>
+                        <button class="btn btn-secondary" id="btn-dfu-help" style="padding: 2px 6px; font-size: 0.7rem; height: auto;">Actualizar</button>
                     </div>
-                    <div><strong>Dirección MAC:</strong> <span id="info-mac">-</span></div>
+                    <div style="font-size: 0.8rem;">
+                        Dirección MAC: <strong id="info-mac">-</strong>
+                    </div>
                 </div>
                 <button class="btn btn-danger" id="btn-disconnect" style="display: none;">
                     <span class="material-symbols-rounded">logout</span>
@@ -160,9 +162,9 @@
                             <span class="material-symbols-rounded">folder_zip</span>
                             Subir Carpeta
                         </button>
-                        <button class="btn btn-danger" id="btn-format" title="Formatear almacenamiento">
-                            <span class="material-symbols-rounded">mop</span>
-                            Formatear
+                        <button class="btn btn-danger" id="btn-format" title="Eliminar todos los Amiibos del dispositivo">
+                            <span class="material-symbols-rounded">delete_sweep</span>
+                            Borrar Amiibos
                         </button>
                     </div>
                 </div>

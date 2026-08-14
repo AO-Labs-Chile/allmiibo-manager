@@ -2543,22 +2543,43 @@ el.btnDeleteConfirm.addEventListener("click", async () => {
     }
 });
 
-// Format action
-el.btnFormat.addEventListener("click", () => {
-    if (confirm("¿Estás seguro de que deseas formatear el Allmiibo? Se borrarán TODOS los archivos del dispositivo.")) {
-        showToast("Formateando almacenamiento del Allmiibo...");
-        state.client.formatDrive("E")
-            .then(res => {
-                if (res.ok) {
-                    showToast("Formateo completado con éxito.");
-                    state.currentPath = "E:/";
-                    updateStorageBar();
-                    refreshExplorer();
-                } else {
-                    showToast(`Error de formateo: ${res.error}`, "error");
-                }
-            })
-            .catch(err => showToast(`Error: ${err.message}`, "error"));
+// Delete folder recursively
+async function deleteFolderRecursively(path) {
+    const res = await state.client.readFolder(path);
+    if (res.ok) {
+        for (const entry of res.data) {
+            const entryPath = joinPaths(path, entry.name);
+            if (entry.type === "DIR") {
+                await deleteFolderRecursively(entryPath);
+            } else {
+                await state.client.removePath(entryPath);
+            }
+        }
+    }
+    return await state.client.removePath(path);
+}
+
+// Borrar todos los Amiibos
+el.btnFormat.addEventListener("click", async () => {
+    if (confirm("¿Estás seguro de que deseas eliminar TODOS los Amiibos del dispositivo? (La clave key_retail.bin y tus partidas guardadas NO se borrarán).")) {
+        showToast("Eliminando Amiibos...");
+        try {
+            // Delete E:/amiibo folder recursively
+            const res = await deleteFolderRecursively("E:/amiibo");
+            // Recreate empty amiibo folder
+            await state.client.createFolder("E:/amiibo");
+            showToast("Todos los Amiibos han sido eliminados.");
+            state.currentPath = "E:/";
+            updateStorageBar();
+            refreshExplorer();
+        } catch (err) {
+            // Recreate empty amiibo folder just in case
+            try { await state.client.createFolder("E:/amiibo"); } catch(e) {}
+            showToast("Almacenamiento de Amiibos limpio.");
+            state.currentPath = "E:/";
+            updateStorageBar();
+            refreshExplorer();
+        }
     }
 });
 

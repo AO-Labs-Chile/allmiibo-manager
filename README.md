@@ -1,99 +1,123 @@
 # Allmiibo Web Manager & Vault (Gestor Web Allmiibo)
 
-🌐 **Sitio Web Oficial / Live Web App**: 👉 <a href="https://allmiibo.aolabs.cl/" target="_blank" rel="noopener noreferrer"><strong>https://allmiibo.aolabs.cl/</strong></a>  
-🏢 **AO Labs Chile**: 👉 <a href="https://aolabs.cl/" target="_blank" rel="noopener noreferrer"><strong>https://aolabs.cl/</strong></a>  
-☕ **Apoyar el proyecto / Support on Ko-fi**: 👉 <a href="https://ko-fi.com/aolabs" target="_blank" rel="noopener noreferrer"><img src="https://ko-fi.com/img/githubbutton_sm.svg" alt="Buy Me a Coffee at ko-fi.com" height="28" style="vertical-align: middle;"></a>
+<p align="center">
+  <img src="images/allmiibo.webp" alt="Allmiibo / Pixl.js Manager" width="320" style="border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.5);" />
+</p>
 
-[**Español**](#español) | [**English**](#english) | [**Donar / Donate**](#-apoyar-el-proyecto--support-the-project)
+<p align="center">
+  <strong>Gestor web moderno, intuitivo y de código abierto para dispositivos Allmiibo / Pixl.js mediante Web Bluetooth (Web BLE).</strong><br>
+  <em>A modern, intuitive, and open-source web manager for Allmiibo / Pixl.js devices via Web Bluetooth (Web BLE).</em>
+</p>
+
+<p align="center">
+  🌐 <strong>Web Oficial / Live App</strong>: <a href="https://allmiibo.aolabs.cl/" target="_blank" rel="noopener noreferrer"><strong>https://allmiibo.aolabs.cl/</strong></a><br>
+  🏢 <strong>AO Labs Chile</strong>: <a href="https://aolabs.cl/" target="_blank" rel="noopener noreferrer"><strong>https://aolabs.cl/</strong></a> | ☕ <strong>Apoyar el proyecto / Support on Ko-fi</strong>: <a href="https://ko-fi.com/aolabs" target="_blank" rel="noopener noreferrer"><strong>https://ko-fi.com/aolabs</strong></a>
+</p>
+
+<p align="center">
+  <a href="#español">🇪🇸 <strong>Español</strong></a> | <a href="#english">🇬🇧 <strong>English</strong></a> | <a href="#-aviso-legal--disclaimer">⚖️ <strong>Aviso Legal / Disclaimer</strong></a>
+</p>
 
 ---
 
 # Español
 
-Un gestor web moderno, intuitivo y responsivo para administrar archivos Amiibo en dispositivos **Allmiibo** / **Pixl.js** a través de **Web Bluetooth (Web BLE)**. Permite la transferencia inalámbrica de archivos, organización automática de carpetas, actualización de firmware por DFU y descarga automática de claves de cifrado directamente desde el navegador sin instalar aplicaciones adicionales ni usar cables.
-
-👉 **Enlace de acceso a la web**: <a href="https://allmiibo.aolabs.cl/" target="_blank" rel="noopener noreferrer">https://allmiibo.aolabs.cl/</a>  
-🐙 **Repositorio en GitHub**: <a href="https://github.com/AO-Labs-Chile/allmiibo-manager" target="_blank" rel="noopener noreferrer">https://github.com/AO-Labs-Chile/allmiibo-manager</a>
-
-> [!IMPORTANT]
-> **Compatibilidad**: Web Bluetooth funciona de forma nativa en navegadores basados en Chromium (Google Chrome, Microsoft Edge, Opera o Brave). Para dispositivos móviles iOS (iPhone/iPad), debes abrir la web dentro de la app gratuita **Bluefy (Web BLE Browser)** disponible en la App Store. En Android, asegúrate de activar el Bluetooth y la Ubicación (GPS).
+**Allmiibo Web Manager** es una aplicación web progresiva diseñada para administrar de forma inalámbrica los archivos, carpetas, claves criptográficas y firmware en dispositivos **Allmiibo** y **Pixl.js** desde cualquier navegador compatible, sin cables, sin drivers y sin necesidad de instalar software adicional en tu equipo.
 
 ---
 
-## 🚀 Características Principales
+### 🚀 Características Principales
 
-*   **Catálogo Online Integrado (Internet Archive Vault)**: Explora cientos de Amiibos organizados por franquicias y subseries (ej. *Animal Crossing: Series 1 a 5, Sanrio, Amiibo Festival*, *The Legend of Zelda*, *Splatoon*, *Super Smash Bros*, etc.) con sus imágenes oficiales.
-*   **Flasheo Inalámbrico Directo**: Instala Amiibos directamente desde el catálogo online a la memoria de tu Allmiibo en segundo plano con un solo clic.
-*   **Organización Automática de Carpetas**: Al instalar series completas o grupos de tarjetas, el sistema desglosa de forma inteligente las subseries en carpetas compatibles con el hardware (ej. `Zelda_BotW`, `Zelda_TotK`, `AC_Series_1`), evitando exceder los límites de longitud de ruta de LittleFS.
-*   **Borrado Seguro de Amiibos**: Opción que elimina únicamente los Amiibos del dispositivo protegiendo de forma permanente la clave `key_retail.bin` y tus partidas guardadas (`E:/amiibo/save`).
-*   **Auto-instalación de Claves (`key_retail.bin`)**: Descarga con un solo clic el archivo criptográfico oficial de 160 bytes directamente desde la bóveda de Internet Archive y lo instala en la raíz de tu Allmiibo, habilitando la base de datos interna.
-*   **Reinicio Inalámbrico a Modo DFU**: Envía la orden directa por Bluetooth para reiniciar el Allmiibo en modo *Device Firmware Update (DFU)* de forma automática para actualizar el firmware oficial de solosky.
-*   **Explorador Local y Galería Visual**: Modo de exploración con conteo de elementos y galería visual que muestra las figuras instaladas con sus portadas oficiales dinámicas de <a href="https://www.amiiboapi.org/" target="_blank" rel="noopener noreferrer">AmiiboAPI</a>.
-*   **Diseño Moderno y Responsivo con Menú Móvil**: Interfaz optimizada con modo oscuro Slate, logotipo de alta resolución y menú desplegable responsivo (3 líneas) para pantallas móviles.
-*   **Simulador Virtual Integrado**: Permite probar todas las funciones de la interfaz en un entorno virtual sin necesidad de conectar un dispositivo físico.
-
----
-
-## 🛠️ Guía de Uso
-
-1.  Abre la aplicación web en <a href="https://allmiibo.aolabs.cl/" target="_blank" rel="noopener noreferrer">https://allmiibo.aolabs.cl/</a>.
-2.  Haz clic en **Conectar Allmiibo** (asegúrate de tener el Bluetooth activado).
-3.  Selecciona tu Allmiibo en la ventana emergente de emparejamiento.
-4.  Si es tu primera vez:
-    *   Haz clic en **Auto-llave** en la barra lateral para instalar la clave `key_retail.bin`.
-    *   Pasa a la pestaña **Catálogo Online**, selecciona tus series favoritas y pulsa **Instalar Serie** o **Instalar Selección**.
-5.  ¡Listo para usar en tu consola Nintendo Switch, Wii U o 3DS!
+* 📶 **Conexión Inalámbrica Web Bluetooth (Web BLE)**: Comunícate directamente con tu Allmiibo desde el navegador con alta velocidad de transferencia (MTU 250, paquetes de 242 bytes).
+* 🏪 **Bóveda y Catálogo Online Integrado (1.070+ Amiibos)**: Explora la biblioteca completa de figuras y tarjetas sincronizada en tiempo real desde la bóveda de Internet Archive y categorizada en más de 32 franquicias (Zelda, Animal Crossing Series 1-5, Sanrio, Super Smash Bros, Splatoon, Mario, Monster Hunter, etc.).
+* 🎨 **Imágenes Oficiales Dinámicas**: Coincidencia inteligente de nombres que consulta e ilustra cada tarjeta con su portada oficial en alta definición desde <a href="https://www.amiiboapi.org/" target="_blank" rel="noopener noreferrer">AmiiboAPI</a>.
+* ⚡ **Flasheo Directo con 1 Clic**: Instala figuras individuales o series completas directamente desde la nube a tu Allmiibo sin descargar archivos `.bin` manualmente.
+* 📁 **Organización Inteligente de Carpetas**: Al instalar lotes o series grandes, el gestor estructura y desglosa automáticamente los archivos en subcarpetas optimizadas (ej. `Zelda_BotW`, `Zelda_TotK`, `AC_Series_1`), respetando estrictamente los límites de ruta del sistema de archivos LittleFS (máximo 58 bytes por ruta).
+* 🔑 **Auto-instalación de Claves (`key_retail.bin`)**: Descarga con un solo clic la clave criptográfica oficial de 160 bytes directamente desde Internet Archive y la instala en la raíz de tu dispositivo para habilitar la base de datos interna.
+* 🧹 **Borrado Seguro de Amiibos**: Opción para limpiar todos los archivos `.bin`/`.nfc` liberando almacenamiento mientras preserva de forma permanente tu clave `key_retail.bin` y tus partidas guardadas (`E:/amiibo/save`).
+* 🔄 **Reinicio Remoto a Modo DFU**: Envía un comando Bluetooth para reiniciar el Allmiibo en modo *Device Firmware Update (DFU)* y enlaza con el instalador Web DFU oficial para actualizar el firmware del dispositivo.
+* 🚀 **Simulador Virtual Integrado**: Permite probar toda la interfaz, navegar por el catálogo y simular subidas de archivos en memoria sin tener el hardware físico a mano.
+* 🌐 **Bilingüe Instantáneo**: Selector de idioma fluido con banderas de Chile (🇨🇱 Español) y Reino Unido (🇬🇧 English).
+* 📱 **Diseño 100% Responsivo**: Adaptado para ordenadores, tablets y teléfonos móviles.
 
 ---
 
-## ☕ Apoyar el Proyecto
+### 📱 Compatibilidad de Navegadores
 
-Desarrollado con ♥ por **AO Labs Chile** (<a href="https://aolabs.cl/" target="_blank" rel="noopener noreferrer">https://aolabs.cl/</a>). Si este proyecto te ha sido de ayuda y deseas apoyar su desarrollo, mejoras continuas y mantenimiento, ¡puedes invitarnos a un café!:
+| Sistema Operativo | Navegadores Compatibles | Instrucciones / Notas |
+| :--- | :--- | :--- |
+| **Windows / macOS / Linux / ChromeOS** | Google Chrome, Microsoft Edge, Opera, Brave | Compatible de forma nativa. Solo asegúrate de tener el Bluetooth encendido en tu PC. |
+| **Android** | Google Chrome, Microsoft Edge | Requiere activar **Bluetooth** y **Ubicación (GPS)** en los ajustes del teléfono. |
+| **iOS (iPhone / iPad)** | App **Bluefy (Web BLE Browser)** | Apple no soporta Web Bluetooth en Safari ni Chrome. Abre <a href="https://allmiibo.aolabs.cl/">https://allmiibo.aolabs.cl/</a> dentro de la app gratuita **Bluefy** de la App Store. |
 
-👉 <a href="https://ko-fi.com/aolabs" target="_blank" rel="noopener noreferrer"><strong>https://ko-fi.com/aolabs</strong></a>
+---
+
+### 📖 Tutorial de Uso Rápido
+
+1. **Activar Bluetooth en tu Allmiibo**: En el menú de tu Allmiibo, deslízate hasta la opción `BT transmission` (Transferencia Bluetooth) y ponla en `ON`.
+2. **Conectar desde la web**: Pulsa el botón azul **"Conectar Allmiibo"** en el panel lateral y selecciona tu dispositivo en la ventana emergente.
+3. **Instalar Clave (Auto-llave)**: Si tu dispositivo es nuevo, haz clic en **"Auto-llave"** en la barra lateral para configurar `key_retail.bin` con un solo clic.
+4. **Subir Amiibos desde el Catálogo**: Entra a la pestaña **"Catálogo Amiibos"**, busca tus figuras o cartas favoritas y pulsa **"Instalar"** o **"Instalar Serie"**.
+5. **Escanear en tu Consola**: En tu Allmiibo entra al menú `Amiibo emulator`, elige el archivo que acabas de subir y acércalo al lector NFC de tu **Nintendo Switch 1 y 2, Wii U o 3DS**.
 
 ---
 
 # English
 
-A modern, intuitive, and responsive web manager designed to administer Amiibo files on **Allmiibo** / **Pixl.js** devices via **Web Bluetooth (Web BLE)**. It allows seamless wireless file transfers, automatic folder categorization, OTA DFU firmware updates, and automatic encryption key setup directly from your browser without cables or extra software.
-
-👉 **Direct Web App Link**: <a href="https://allmiibo.aolabs.cl/" target="_blank" rel="noopener noreferrer">https://allmiibo.aolabs.cl/</a>  
-🐙 **GitHub Repository**: <a href="https://github.com/AO-Labs-Chile/allmiibo-manager" target="_blank" rel="noopener noreferrer">https://github.com/AO-Labs-Chile/allmiibo-manager</a>
-
-> [!IMPORTANT]
-> **Compatibility**: Web Bluetooth works natively in Chromium-based browsers (Google Chrome, Microsoft Edge, Opera, or Brave). On iOS devices (iPhone/iPad), you must open the web app inside the free **Bluefy (Web BLE Browser)** app from the App Store. On Android, please ensure both Bluetooth and Location (GPS) are enabled.
+**Allmiibo Web Manager** is a modern, lightweight, progressive web app created to wirelessly manage Amiibo files, directories, encryption keys, and firmware on **Allmiibo** and **Pixl.js** devices directly from your web browser via **Web Bluetooth (Web BLE)**, without cables, drivers, or companion software.
 
 ---
 
-## 🚀 Key Features
+### 🚀 Key Features
 
-*   **Integrated Online Vault (Internet Archive)**: Browse hundreds of Amiibos organized by franchise and subseries (e.g., *Animal Crossing: Series 1-5, Sanrio, Amiibo Festival*, *The Legend of Zelda*, *Splatoon*, *Super Smash Bros*, etc.) with official artwork.
-*   **Direct Wireless Flashing**: Install Amiibos straight from the online catalog to your Allmiibo in the background with 1-click.
-*   **Smart Folder Categorization**: When installing full series, the system automatically creates hardware-compliant root subfolders (`Zelda_BotW`, `Zelda_TotK`, `AC_Series_1`, etc.) respecting LittleFS path limits.
-*   **Safe Device Wipe**: Dedicated erase button that cleans Amiibos while permanently preserving `key_retail.bin` and your save files (`E:/amiibo/save`).
-*   **One-Click Key Auto-Updater (`key_retail.bin`)**: Downloads the official 160-byte decryption key directly from the Internet Archive vault and installs it to the root of your Allmiibo.
-*   **Wireless DFU Reboot (Firmware Updater)**: Send a direct Bluetooth command to reboot the Allmiibo into *Device Firmware Update (DFU)* mode automatically.
-*   **Local Explorer & Visual Gallery**: Browse installed Amiibos in list or visual grid mode with official artwork retrieved dynamically via <a href="https://www.amiiboapi.org/" target="_blank" rel="noopener noreferrer">AmiiboAPI</a>.
-*   **Modern Responsive Design with Mobile Menu**: Sleek Slate dark theme, high-resolution branding, and a responsive 3-line hamburger menu drawer for mobile devices.
-*   **Built-in Virtual Simulator**: Test all UI operations in an in-memory virtual environment without hardware.
-
----
-
-## 🛠️ How to Use
-
-1.  Open the web application at <a href="https://allmiibo.aolabs.cl/" target="_blank" rel="noopener noreferrer">https://allmiibo.aolabs.cl/</a>.
-2.  Click **Conectar Allmiibo** (ensure Bluetooth is enabled on your device).
-3.  Select your Allmiibo device from the browser pairing popup.
-4.  If configuring for the first time:
-    *   Click **Auto-llave** on the sidebar to install `key_retail.bin`.
-    *   Navigate to the **Catálogo Online** tab, filter your desired series, and click **Instalar Serie** or **Instalar Selección**.
-5.  Ready to tap and scan on your Nintendo Switch, Wii U, or 3DS!
+* 📶 **Wireless Web Bluetooth (Web BLE) Connectivity**: High-speed wireless data transfer directly through the browser (MTU 250, 242-byte chunk streaming).
+* 🏪 **Integrated Cloud Vault (1,070+ Amiibos)**: Comprehensive cloud library synced in real-time with Internet Archive, categorized across 32 franchises (Zelda, Animal Crossing Series 1-5, Sanrio, Super Smash Bros, Splatoon, Mario, Monster Hunter, etc.).
+* 🎨 **Dynamic Official Artwork**: Intelligent name-matching engine that queries and displays official high-definition box art dynamically from <a href="https://www.amiiboapi.org/" target="_blank" rel="noopener noreferrer">AmiiboAPI</a>.
+* ⚡ **1-Click Direct Flashing**: Install single figures or full series directly from the cloud to your Allmiibo without manual `.bin` downloads.
+* 📁 **Smart Folder Categorization**: Batch installations automatically split into clean, short subfolders (`Zelda_BotW`, `Zelda_TotK`, `AC_Series_1`, etc.), strictly respecting LittleFS path length limits (max 58 bytes).
+* 🔑 **1-Click Auto-Key Setup (`key_retail.bin`)**: Downloads the official 160-byte decryption key directly from Internet Archive and flashes it to your Allmiibo's root directory.
+* 🧹 **Safe Device Wipe**: Dedicated wipe tool that deletes `.bin`/`.nfc` files while preserving `key_retail.bin` and user save files (`E:/amiibo/save`).
+* 🔄 **Wireless DFU Reboot (OTA Firmware Updates)**: Send a direct Bluetooth reboot command to enter *Device Firmware Update (DFU)* mode with direct link to the Web DFU flasher.
+* 🚀 **Built-in Virtual Simulator**: Test the entire UI, explore the catalog, and simulate file transfers in-memory without physical hardware.
+* 🌐 **Instant Bilingual Support**: Toggle smoothly between Spanish (🇨🇱) and English (🇬🇧).
+* 📱 **100% Mobile & Desktop Responsive**: Tailored layout for smartphones, tablets, and wide desktop displays.
 
 ---
 
-## ☕ Support the Project
+### 📱 Browser Compatibility
 
-Developed with ♥ by **AO Labs Chile** (<a href="https://aolabs.cl/" target="_blank" rel="noopener noreferrer">https://aolabs.cl/</a>). If you find this project useful and want to support its ongoing development, feel free to buy us a coffee:
+| Operating System | Supported Browsers | Notes / Instructions |
+| :--- | :--- | :--- |
+| **Windows / macOS / Linux / ChromeOS** | Google Chrome, Microsoft Edge, Opera, Brave | Natively supported. Ensure Bluetooth is enabled on your PC. |
+| **Android** | Google Chrome, Microsoft Edge | Requires both **Bluetooth** and **Location (GPS)** enabled in Android settings. |
+| **iOS (iPhone / iPad)** | **Bluefy (Web BLE Browser)** app | Apple does not support Web Bluetooth in Safari or Chrome. Open <a href="https://allmiibo.aolabs.cl/">https://allmiibo.aolabs.cl/</a> inside the free **Bluefy** app from the App Store. |
 
-👉 <a href="https://ko-fi.com/aolabs" target="_blank" rel="noopener noreferrer"><strong>https://ko-fi.com/aolabs</strong></a>
+---
+
+### 📖 Quick Start Guide
+
+1. **Enable Bluetooth on Allmiibo**: On your Allmiibo screen, scroll to `BT transmission` and turn it `ON`.
+2. **Connect via Web**: Click the blue **"Connect Allmiibo"** button on the left sidebar and select your device in the browser pairing window.
+3. **Install Encryption Key (Auto-Key)**: If setting up for the first time, click **"Auto-llave"** on the sidebar to install `key_retail.bin` with 1-click.
+4. **Flash Amiibos from Catalogue**: Open the **"Catálogo Amiibos"** tab, pick your favorite figures or cards, and click **"Install"** or **"Install Series"**.
+5. **Scan on your Console**: On your Allmiibo open `Amiibo emulator`, choose the file, and tap it on the NFC touchpoint of your **Nintendo Switch 1 & 2, Wii U, or 3DS**.
+
+---
+
+### ⚖️ Aviso Legal / Disclaimer
+
+**Español:**  
+Allmiibo Web Manager es un software libre y de código abierto desarrollado exclusivamente con fines educativos, de interoperabilidad de hardware y gestión personal de copias de seguridad. **Este sitio web y sus desarrolladores NO alojan, almacenan, distribuyen ni comercializan ningún archivo binario propietario (.bin), claves criptográficas ni imágenes con derechos de autor en sus propios servidores.** Cualquier descarga se realiza bajo demanda y a solicitud directa del usuario desde repositorios públicos de terceros (AmiiboAPI y Archive.org). Nintendo®, Amiibo®, Nintendo Switch®, Nintendo Switch 2®, Wii U®, 3DS® y todos los nombres, personajes, marcas y logotipos asociados son marcas registradas de Nintendo Co., Ltd. Este proyecto es una herramienta comunitaria independiente y no está respaldado ni afiliado con Nintendo.
+
+**English:**  
+Allmiibo Web Manager is a free, open-source community tool developed solely for educational, hardware interoperability, and personal backup management purposes under Fair Use. **This website and its developers DO NOT host, store, mirror, distribute, or sell any proprietary binary files (.bin), encryption keys, or copyrighted artwork on their own servers.** All metadata, files, and artwork are retrieved on-demand from public third-party sources (AmiiboAPI and Archive.org). Nintendo®, Amiibo®, Nintendo Switch®, Nintendo Switch 2®, Wii U®, 3DS®, and all related character names, marks, and logos are registered trademarks of Nintendo Co., Ltd. This project is not affiliated with or endorsed by Nintendo.
+
+---
+
+### ☕ Apoyar el Proyecto / Support the Project
+
+Desarrollado con ♥ por **AO Labs Chile** (<a href="https://aolabs.cl/" target="_blank" rel="noopener noreferrer">https://aolabs.cl/</a>).  
+Si este proyecto te ha sido de utilidad y deseas apoyar su mantenimiento y desarrollo continuo, ¡puedes invitarnos a un café!:
+
+👉 **Ko-fi**: <a href="https://ko-fi.com/aolabs" target="_blank" rel="noopener noreferrer"><strong>https://ko-fi.com/aolabs</strong></a>
+

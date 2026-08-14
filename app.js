@@ -3605,12 +3605,14 @@ el.btnHelp.addEventListener("click", () => {
 el.btnHelpClose.addEventListener("click", () => {
     el.modalHelp.classList.remove("active");
 });
-document.getElementById("btn-open-legal")?.addEventListener("click", () => {
-    el.modalHelp.classList.add("active");
-    const legalSec = document.getElementById("help-legal-section");
-    if (legalSec) {
-        setTimeout(() => legalSec.scrollIntoView({ behavior: "smooth", block: "start" }), 100);
-    }
+document.querySelectorAll("#btn-open-legal, .btn-open-legal-trigger").forEach(btn => {
+    btn.addEventListener("click", () => {
+        el.modalHelp.classList.add("active");
+        const legalSec = document.getElementById("help-legal-section");
+        if (legalSec) {
+            setTimeout(() => legalSec.scrollIntoView({ behavior: "smooth", block: "start" }), 100);
+        }
+    });
 });
 
 // Auto Key Modal Events

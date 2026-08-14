@@ -63,11 +63,11 @@
                 <!-- Language Selector Control in Sidebar -->
                 <div class="lang-segmented-control sidebar-lang-control" id="lang-control">
                     <button type="button" class="lang-btn active" id="btn-lang-es" data-lang="es" title="Español">
-                        <svg width="15" height="11" viewBox="0 0 640 480" style="border-radius: 2px; vertical-align: middle; pointer-events: none;"><path fill="#c60b1e" d="M0 0h640v480H0z"/><path fill="#ffc400" d="M0 120h640v240H0z"/></svg>
+                        <svg width="15" height="11" viewBox="0 0 640 480" style="border-radius: 2px; vertical-align: middle; pointer-events: none;"><path fill="#0039a6" d="M0 0h213.3v240H0z"/><path fill="#fff" d="M213.3 0H640v240H213.3z"/><path fill="#d52b1e" d="M0 240h640v240H0z"/><path fill="#fff" d="m106.7 54 18.5 56.9h59.9l-48.5 35.2 18.5 56.9-48.4-35.2-48.5 35.2 18.5-56.9-48.5-35.2h59.9z"/></svg>
                         <span>Español</span>
                     </button>
                     <button type="button" class="lang-btn" id="btn-lang-en" data-lang="en" title="English">
-                        <svg width="15" height="11" viewBox="0 0 640 480" style="border-radius: 2px; vertical-align: middle; pointer-events: none;"><g fill="#bd3d44"><path d="M0 0h640v37H0zm0 74h640v37H0zm0 74h640v37H0zm0 74h640v37H0zm0 74h640v37H0zm0 74h640v37H0zm0 74h640v37H0z"/><path fill="#fff" d="M0 37h640v37H0zm0 74h640v37H0zm0 74h640v37H0zm0 74h640v37H0zm0 74h640v37H0zm0 74h640v37H0z"/></g><path fill="#192f5d" d="M0 0h280v258H0z"/></svg>
+                        <svg width="15" height="11" viewBox="0 0 640 480" style="border-radius: 2px; vertical-align: middle; pointer-events: none;"><path fill="#012169" d="M0 0h640v480H0z"/><path fill="#fff" d="m75 0 245 184L565 0h75v60L435 240l205 180v60h-75L320 296 75 480H0v-60l205-180L0 60V0h75z"/><path fill="#c8102e" d="m424 288 216 160v32L381 288h43zm-208-96L0 32V0l259 192h-43zm165 0 259-192v32L424 192h-43zM0 448l216-160h43L0 480v-32z"/><path fill="#fff" d="M240 0h160v480H240zM0 160h640v160H0z"/><path fill="#c8102e" d="M267 0h106v480H267zM0 187h640v106H0z"/></svg>
                         <span>English</span>
                     </button>
                 </div>
@@ -163,6 +163,17 @@
                 </div>
             </div>
 
+            <!-- Sidebar Bottom: Donate, Version & Legal Disclaimer -->
+            <div class="sidebar-footer" style="margin-top: auto; padding-top: 14px; display: flex; flex-direction: column; align-items: center; gap: 8px; width: 100%;">
+                <a class="btn btn-secondary sidebar-donate-btn" href="https://ko-fi.com/aolabs" target="_blank" rel="noopener noreferrer" title="Apoyar el proyecto en Ko-fi">
+                    <span class="material-symbols-rounded" style="color: #ff5e5b; font-size: 1.05rem;">favorite</span>
+                    <span data-i18n="btn_donate_footer">Apoyar / Donar</span>
+                </a>
+                <span class="sidebar-version-badge">Allmiibo Manager v1.2.0</span>
+                <div class="sidebar-legal-link" style="text-align: center; margin-top: 2px;">
+                    <a href="javascript:void(0)" class="btn-open-legal-trigger" style="font-size: 0.72rem; color: var(--text-muted); text-decoration: underline; text-underline-offset: 2px;" data-i18n="legal_footer_link">⚖️ Aviso Legal y Fuentes</a>
+                </div>
+            </div>
         </aside>
 
         <!-- Main content panels -->
@@ -311,31 +322,12 @@
 
     <!-- Global Central Footer -->
     <footer class="app-global-footer">
-        <div class="footer-container">
-            <!-- Left spacer for desktop symmetry -->
-            <div class="footer-left"></div>
-
-            <!-- Central Section: AO Labs Chile & Legal Disclaimer -->
-            <div class="footer-center">
-                <div class="aolabs-credit">
-                    <span class="aolabs-text">Desarrollado con <span style="color: #ff5e5b;">♥</span> por</span>
-                    <a href="https://aolabs.cl/" target="_blank" rel="noopener noreferrer" class="aolabs-link" title="Visitar AO Labs Chile (aolabs.cl)">
-                        <img src="images/logo_aolabs.png" alt="AO Labs Chile" class="aolabs-logo" />
-                        <span class="aolabs-subtext">AO Labs Chile</span>
-                    </a>
-                </div>
-                <div class="footer-legal-link">
-                    <a href="javascript:void(0)" id="btn-open-legal" data-i18n="legal_footer_link">⚖️ Aviso Legal y Fuentes</a>
-                </div>
-            </div>
-
-            <!-- Right Section: Donate & Version Badge -->
-            <div class="footer-right">
-                <a class="btn btn-secondary sidebar-donate-btn" href="https://ko-fi.com/aolabs" target="_blank" rel="noopener noreferrer" title="Apoyar el proyecto en Ko-fi">
-                    <span class="material-symbols-rounded" style="color: #ff5e5b; font-size: 1.05rem;">favorite</span>
-                    <span data-i18n="btn_donate_footer">Apoyar / Donar</span>
+        <div class="footer-center" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; width: 100%; text-align: center;">
+            <div class="aolabs-credit">
+                <span class="aolabs-text">Desarrollado con <span style="color: #ff5e5b;">♥</span> por</span>
+                <a href="https://aolabs.cl/" target="_blank" rel="noopener noreferrer" class="aolabs-link" title="Visitar AO Labs Chile (aolabs.cl)">
+                    <img src="images/logo_aolabs.png" alt="AO Labs Chile" class="aolabs-logo" />
                 </a>
-                <span class="sidebar-version-badge">Allmiibo Manager v1.2.0</span>
             </div>
         </div>
     </footer>

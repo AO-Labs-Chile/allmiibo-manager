@@ -1,5 +1,5 @@
 // === Configuration & Constants ===
-const APP_VERSION = "v1.4.3";
+const APP_VERSION = "v1.4.4";
 const NUS_SERVICE_UUID = "6e400001-b5a3-f393-e0a9-e50e24dcca9e";
 const NUS_CHAR_TX_UUID = "6e400002-b5a3-f393-e0a9-e50e24dcca9e";
 const NUS_CHAR_RX_UUID = "6e400003-b5a3-f393-e0a9-e50e24dcca9e";
@@ -776,13 +776,13 @@ function saveInstalledRegistry(registry) {
 
 function extractCoreTokens(str) {
     if (!str) return [];
-    return str.toLowerCase()
-        .replace(/\.(bin|nfc)$/i, '')
+    const norm = normalizeString(str)
         .replace(/^\[[^\]]+\]\s*/, '')
         .replace(/^(ac|zel|smash|splat|mario|mh|pkmn|fe|af|cr|bb|kirby)[\s_]*/i, '')
-        .replace(/[^a-z0-9]/g, ' ')
-        .split(/\s+/)
-        .filter(t => t.length > 1 && !/^\d+$/.test(t));
+        .replace(/\b(\w)\s+(\w)\s+(\w)\b/g, '$1$2$3')
+        .replace(/\b(\w)\s+(\w)\b/g, '$1$2');
+        
+    return norm.split(/\s+/).filter(t => t.length >= 1 && !/^\d+$/.test(t));
 }
 
 function correlateDeviceFileWithCatalogue(fullPath, fileName, folderName) {
@@ -3286,7 +3286,11 @@ function renderOnlineCatalogue() {
             if (selectedSub && amiibo.subPath !== selectedSub) return;
             if (searchVal && !amiibo.name.toLowerCase().includes(searchVal)) return;
             
-            const isInstalled = isAmiiboInstalled(amiibo);
+            const targetFolder = getDestinationFolder(cat, amiibo.subPath);
+            const cleanFilename = sanitizeName(amiibo.name) + ".bin";
+            const expectedRemotePath = fitPathToHardwareLimit(joinPaths("E:/amiibo", targetFolder, cleanFilename));
+            const isInstalled = isAmiiboInstalled(amiibo, expectedRemotePath);
+            
             if (statusVal === "not_installed" && isInstalled) return;
             if (statusVal === "installed" && !isInstalled) return;
             
@@ -4155,21 +4159,39 @@ el.filterCategory.addEventListener("change", () => {
 });
 
 
-// Select All visible
+// Select All visible items matching active filters
 el.btnCatSelectAll.addEventListener("click", () => {
     const searchVal = el.searchAmiibo.value.toLowerCase();
     const filterVal = el.filterCategory.value;
+    const statusVal = document.getElementById("filter-installed-status")?.value || "all";
+    
+    let selectedCat = filterVal;
+    let selectedSub = null;
+    if (filterVal !== "all" && filterVal.includes("::")) {
+        const parts = filterVal.split("::");
+        selectedCat = parts[0];
+        selectedSub = parts[1];
+    }
+    
     const rendered = new Set();
     
     Object.keys(state.categories).forEach(cat => {
-        if (filterVal !== "all" && filterVal !== cat) return;
+        if (filterVal !== "all" && selectedCat !== cat) return;
         
         const list = state.categories[cat];
         list.forEach(amiibo => {
+            if (selectedSub && amiibo.subPath !== selectedSub) return;
             if (searchVal && !amiibo.name.toLowerCase().includes(searchVal)) return;
             
-            const cleanName = cleanAmiiboNameForSearch(amiibo.name);
-            const uniqueKey = `${cat}_${cleanName}`;
+            const targetFolder = getDestinationFolder(cat, amiibo.subPath);
+            const cleanFilename = sanitizeName(amiibo.name) + ".bin";
+            const expectedRemotePath = fitPathToHardwareLimit(joinPaths("E:/amiibo", targetFolder, cleanFilename));
+            const isInstalled = isAmiiboInstalled(amiibo, expectedRemotePath);
+            
+            if (statusVal === "not_installed" && isInstalled) return;
+            if (statusVal === "installed" && !isInstalled) return;
+            
+            const uniqueKey = `${cat}_${amiibo.name.toLowerCase().trim()}`;
             if (rendered.has(uniqueKey)) return;
             rendered.add(uniqueKey);
             

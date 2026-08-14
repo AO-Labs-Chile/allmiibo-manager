@@ -29,51 +29,62 @@
 
     <!-- Header / Topbar -->
     <header>
-        <div class="brand">
-            <img src="images/logo_white.png" alt="Allmiibo Manager" class="brand-logo" />
+        <div class="header-main">
+            <div class="brand">
+                <img src="images/logo_white.png" alt="Allmiibo Manager" class="brand-logo" />
+            </div>
+
+            <!-- Mobile Hamburger Menu Button (3 lines) -->
+            <button class="mobile-menu-btn" id="btn-mobile-menu" aria-label="Menu" title="Menu">
+                <span class="material-symbols-rounded">menu</span>
+            </button>
         </div>
         
-        <!-- Navigation Tabs -->
-        <div class="tabs-nav">
-            <button class="tab-btn active" data-tab="local-tab">
-                <span class="material-symbols-rounded" style="vertical-align: middle; margin-right: 4px;">folder_open</span>
-                <span data-i18n="tab_local">Explorador Local</span>
-            </button>
-            <button class="tab-btn" data-tab="online-tab">
-                <span class="material-symbols-rounded" style="vertical-align: middle; margin-right: 4px;">storefront</span>
-                <span data-i18n="tab_online">Catálogo Online</span>
-            </button>
-        </div>
-
-        <div style="display: flex; gap: 8px; align-items: center;">
-            <!-- Language Selector Segmented Control -->
-            <div class="lang-segmented-control" id="lang-control">
-                <button type="button" class="lang-btn active" id="btn-lang-es" data-lang="es" title="Español">
-                    <svg width="15" height="11" viewBox="0 0 640 480" style="border-radius: 2px; vertical-align: middle; pointer-events: none;"><path fill="#c60b1e" d="M0 0h640v480H0z"/><path fill="#ffc400" d="M0 120h640v240H0z"/></svg>
-                    <span>ES</span>
+        <!-- Navigation & Actions (Desktop row, Mobile collapsible drawer) -->
+        <div class="header-nav-actions" id="header-nav-actions">
+            <!-- Navigation Tabs -->
+            <div class="tabs-nav">
+                <button class="tab-btn active" data-tab="local-tab">
+                    <span class="material-symbols-rounded" style="vertical-align: middle; margin-right: 4px;">folder_open</span>
+                    <span data-i18n="tab_local">Explorador Local</span>
                 </button>
-                <button type="button" class="lang-btn" id="btn-lang-en" data-lang="en" title="English">
-                    <svg width="15" height="11" viewBox="0 0 640 480" style="border-radius: 2px; vertical-align: middle; pointer-events: none;"><g fill="#bd3d44"><path d="M0 0h640v37H0zm0 74h640v37H0zm0 74h640v37H0zm0 74h640v37H0zm0 74h640v37H0zm0 74h640v37H0zm0 74h640v37H0z"/><path fill="#fff" d="M0 37h640v37H0zm0 74h640v37H0zm0 74h640v37H0zm0 74h640v37H0zm0 74h640v37H0zm0 74h640v37H0z"/></g><path fill="#192f5d" d="M0 0h280v258H0z"/></svg>
-                    <span>EN</span>
+                <button class="tab-btn" data-tab="online-tab">
+                    <span class="material-symbols-rounded" style="vertical-align: middle; margin-right: 4px;">storefront</span>
+                    <span data-i18n="tab_online">Catálogo Online</span>
                 </button>
             </div>
 
-            <a class="btn btn-secondary" href="https://ko-fi.com/aolabs" target="_blank" rel="noopener noreferrer" title="Apoyar el proyecto en Ko-fi" data-i18n-title="btn_donate_title" style="color: #ff5e5b; text-decoration: none;">
-                <span class="material-symbols-rounded" style="color: #ff5e5b; font-size: 1.1rem;">favorite</span>
-                <span data-i18n="btn_donate">Donar</span>
-            </a>
-            <button class="btn btn-secondary" id="btn-help" title="Ayuda e Información" data-i18n-title="btn_help_title">
-                <span class="material-symbols-rounded">help</span>
-                <span data-i18n="btn_help">Ayuda</span>
-            </button>
-            <button class="btn btn-secondary" id="btn-connect-mock">
-                <span class="material-symbols-rounded">rocket_launch</span>
-                <span data-i18n="btn_simulator">Simulador</span>
-            </button>
-            <button class="btn btn-primary" id="btn-connect-ble">
-                <span class="material-symbols-rounded">bluetooth</span>
-                <span data-i18n="btn_connect">Conectar Allmiibo</span>
-            </button>
+            <!-- Action Controls -->
+            <div class="header-actions">
+                <!-- Language Selector Segmented Control -->
+                <div class="lang-segmented-control" id="lang-control">
+                    <button type="button" class="lang-btn active" id="btn-lang-es" data-lang="es" title="Español">
+                        <svg width="15" height="11" viewBox="0 0 640 480" style="border-radius: 2px; vertical-align: middle; pointer-events: none;"><path fill="#c60b1e" d="M0 0h640v480H0z"/><path fill="#ffc400" d="M0 120h640v240H0z"/></svg>
+                        <span>ES</span>
+                    </button>
+                    <button type="button" class="lang-btn" id="btn-lang-en" data-lang="en" title="English">
+                        <svg width="15" height="11" viewBox="0 0 640 480" style="border-radius: 2px; vertical-align: middle; pointer-events: none;"><g fill="#bd3d44"><path d="M0 0h640v37H0zm0 74h640v37H0zm0 74h640v37H0zm0 74h640v37H0zm0 74h640v37H0zm0 74h640v37H0zm0 74h640v37H0z"/><path fill="#fff" d="M0 37h640v37H0zm0 74h640v37H0zm0 74h640v37H0zm0 74h640v37H0zm0 74h640v37H0zm0 74h640v37H0z"/></g><path fill="#192f5d" d="M0 0h280v258H0z"/></svg>
+                        <span>EN</span>
+                    </button>
+                </div>
+
+                <a class="btn btn-secondary" href="https://ko-fi.com/aolabs" target="_blank" rel="noopener noreferrer" title="Apoyar el proyecto en Ko-fi" data-i18n-title="btn_donate_title" style="color: #ff5e5b; text-decoration: none;">
+                    <span class="material-symbols-rounded" style="color: #ff5e5b; font-size: 1.1rem;">favorite</span>
+                    <span data-i18n="btn_donate">Donar</span>
+                </a>
+                <button class="btn btn-secondary" id="btn-help" title="Ayuda e Información" data-i18n-title="btn_help_title">
+                    <span class="material-symbols-rounded">help</span>
+                    <span data-i18n="btn_help">Ayuda</span>
+                </button>
+                <button class="btn btn-secondary" id="btn-connect-mock">
+                    <span class="material-symbols-rounded">rocket_launch</span>
+                    <span data-i18n="btn_simulator">Simulador</span>
+                </button>
+                <button class="btn btn-primary" id="btn-connect-ble">
+                    <span class="material-symbols-rounded">bluetooth</span>
+                    <span data-i18n="btn_connect">Conectar Allmiibo</span>
+                </button>
+            </div>
         </div>
     </header>
 
@@ -164,7 +175,7 @@
 
             <!-- App Version Footer -->
             <div class="sidebar-footer">
-                <span class="sidebar-version-badge">Allmiibo Manager v1.1.0</span>
+                <span class="sidebar-version-badge">Allmiibo Manager v1.1.2</span>
             </div>
         </aside>
 

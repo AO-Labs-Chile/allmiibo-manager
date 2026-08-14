@@ -46,7 +46,7 @@ body {
 header {
     background-color: var(--bg-card);
     border-bottom: 1px solid var(--border-color);
-    padding: 16px 24px;
+    padding: 12px 24px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -56,6 +56,63 @@ header {
     width: 100%;
     max-width: 1600px;
     margin: 0 auto;
+    gap: 20px;
+}
+
+.header-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+}
+
+.brand-logo {
+    height: 58px;
+    width: auto;
+    max-width: 220px;
+    object-fit: contain;
+    display: block;
+    user-select: none;
+    transition: transform 0.2s ease;
+}
+
+.brand-logo:hover {
+    transform: scale(1.02);
+}
+
+.header-nav-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+    gap: 16px;
+}
+
+.header-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: #0f172a;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    border-radius: 8px;
+    padding: 8px 10px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+}
+
+.mobile-menu-btn:hover {
+    background-color: rgba(255, 255, 255, 0.08);
 }
 
 /* === Language Segmented Control === */
@@ -94,25 +151,6 @@ header {
     background-color: var(--primary);
     color: #ffffff;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-}
-
-.brand {
-    display: flex;
-    align-items: center;
-}
-
-.brand-logo {
-    height: 48px;
-    width: auto;
-    max-width: 175px;
-    object-fit: contain;
-    display: block;
-    user-select: none;
-    transition: transform 0.2s ease;
-}
-
-.brand-logo:hover {
-    transform: scale(1.03);
 }
 
 .sidebar-footer {
@@ -766,6 +804,71 @@ table.file-table tr:hover {
 }
 
 /* === Responsive BREAKPOINTS === */
+@media (max-width: 1080px) {
+    header {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 10px 16px;
+        gap: 0;
+    }
+    
+    .header-main {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .brand-logo {
+        height: 50px;
+        max-width: 190px;
+    }
+
+    .mobile-menu-btn {
+        display: inline-flex;
+    }
+
+    .header-nav-actions {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        gap: 12px;
+        padding-top: 14px;
+        border-top: 1px solid var(--border-color);
+        margin-top: 10px;
+    }
+
+    .header-nav-actions.active {
+        display: flex;
+    }
+
+    .tabs-nav {
+        width: 100%;
+        display: flex;
+    }
+
+    .tabs-nav .tab-btn {
+        flex: 1;
+        justify-content: center;
+    }
+
+    .header-actions {
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+    }
+    
+    .header-actions .btn {
+        flex: 1 1 calc(50% - 8px);
+        justify-content: center;
+    }
+    
+    .header-actions #btn-connect-ble {
+        flex: 1 1 100%;
+    }
+}
+
 @media (max-width: 992px) {
     .main-container {
         flex-direction: column;
@@ -779,15 +882,6 @@ table.file-table tr:hover {
 }
 
 @media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        gap: 12px;
-        padding: 12px;
-    }
-    .tabs-nav {
-        width: 100%;
-        justify-content: center;
-    }
     .amiibo-grid {
         grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     }

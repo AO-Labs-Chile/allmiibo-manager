@@ -1,5 +1,5 @@
 // === Configuration & Constants ===
-const APP_VERSION = "v1.1.0";
+const APP_VERSION = "v1.1.2";
 const NUS_SERVICE_UUID = "6e400001-b5a3-f393-e0a9-e50e24dcca9e";
 const NUS_CHAR_TX_UUID = "6e400002-b5a3-f393-e0a9-e50e24dcca9e";
 const NUS_CHAR_RX_UUID = "6e400003-b5a3-f393-e0a9-e50e24dcca9e";
@@ -640,6 +640,29 @@ function joinPaths(parent, child) {
     return p + c;
 }
 
+function getBleUnsupportedMessage() {
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    const isAndroid = /Android/i.test(navigator.userAgent);
+    
+    if (state.currentLang === "es") {
+        if (isIOS) {
+            return "📱 En iPhone/iPad, Apple no soporta Web Bluetooth en Safari ni Chrome. Para conectar tu Allmiibo, abre esta web en la app gratuita Bluefy (Web BLE Browser) de la App Store.";
+        } else if (isAndroid) {
+            return "📱 En Android, utiliza Google Chrome o Microsoft Edge y asegúrate de tener activados tanto el Bluetooth como la Ubicación (GPS).";
+        } else {
+            return "💻 Web Bluetooth no está disponible en este navegador. Por favor, utiliza Google Chrome, Microsoft Edge, Opera o Brave.";
+        }
+    } else {
+        if (isIOS) {
+            return "📱 On iPhone/iPad, Apple does not support Web Bluetooth in Safari or Chrome. To connect your Allmiibo, open this website in the free Bluefy app (Web BLE Browser) from the App Store.";
+        } else if (isAndroid) {
+            return "📱 On Android, please use Google Chrome or Microsoft Edge and make sure both Bluetooth and Location (GPS) are enabled.";
+        } else {
+            return "💻 Web Bluetooth is not supported in this browser. Please use Google Chrome, Microsoft Edge, Opera, or Brave.";
+        }
+    }
+}
+
 // ==========================================
 // === Pixl BLE Client (Real Device) ======
 // ==========================================
@@ -668,7 +691,7 @@ class PixlBLEClient {
 
     async connect() {
         if (!navigator.bluetooth) {
-            throw new Error("Web Bluetooth no está disponible en este navegador. Utiliza Chrome/Edge.");
+            throw new Error(getBleUnsupportedMessage());
         }
         
         this.log("Buscando dispositivo Allmiibo...");
@@ -3168,6 +3191,12 @@ function renderGalleryMode() {
 
 // Connect Bluetooth
 el.btnConnectBle.addEventListener("click", async () => {
+    if (!navigator.bluetooth) {
+        const msg = getBleUnsupportedMessage();
+        showToast(msg, "error");
+        logEvent(`[Compatibilidad] ${msg}`);
+        return;
+    }
     try {
         state.client = new PixlBLEClient(logEvent);
         state.client.onDisconnect = () => {
@@ -3213,6 +3242,29 @@ document.querySelectorAll(".tab-btn").forEach(btn => {
         document.getElementById(tabId).classList.add("active");
     });
 });
+
+// Mobile Hamburger Menu Toggle
+const btnMobileMenu = document.getElementById("btn-mobile-menu");
+const headerNavActions = document.getElementById("header-nav-actions");
+if (btnMobileMenu && headerNavActions) {
+    btnMobileMenu.addEventListener("click", () => {
+        headerNavActions.classList.toggle("active");
+        const icon = btnMobileMenu.querySelector(".material-symbols-rounded");
+        if (icon) {
+            icon.textContent = headerNavActions.classList.contains("active") ? "close" : "menu";
+        }
+    });
+
+    document.querySelectorAll(".tab-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            if (window.innerWidth <= 1080) {
+                headerNavActions.classList.remove("active");
+                const icon = btnMobileMenu.querySelector(".material-symbols-rounded");
+                if (icon) icon.textContent = "menu";
+            }
+        });
+    });
+}
 
 // Breadcrumb click navigation
 el.explorerBreadcrumb.addEventListener("click", (evt) => {

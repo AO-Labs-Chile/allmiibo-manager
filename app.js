@@ -1,5 +1,5 @@
 // === Configuration & Constants ===
-const APP_VERSION = "v1.0.0";
+const APP_VERSION = "v1.0.1";
 const NUS_SERVICE_UUID = "6e400001-b5a3-f393-e0a9-e50e24dcca9e";
 const NUS_CHAR_TX_UUID = "6e400002-b5a3-f393-e0a9-e50e24dcca9e";
 const NUS_CHAR_RX_UUID = "6e400003-b5a3-f393-e0a9-e50e24dcca9e";
@@ -535,22 +535,29 @@ function getCleanCategoryFolder(cat) {
 
 function cleanSubPath(sub) {
     if (!sub) return "";
-    return sub
-        .replace(/Amiibo Cards\/!Series (\d+)/i, 'Cards/S$1')
-        .replace(/Amiibo Cards\/!Sanrio Cards/i, 'Cards/Sanrio')
-        .replace(/Amiibo Cards\/!Amiibo Festival/i, 'Cards/Festival')
-        .replace(/Amiibo Cards\/!Welcome Amiibo/i, 'Cards/Welcome')
-        .replace(/Amiibo Cards\/!Special Edition/i, 'Cards/Special')
+    let clean = sub
+        .replace(/Amiibo Cards\/!Series (\d+)/i, 'Series_$1')
+        .replace(/Amiibo Cards\/!Sanrio Cards/i, 'Sanrio')
+        .replace(/Amiibo Cards\/!Amiibo Festival/i, 'Festival')
+        .replace(/Amiibo Cards\/!Welcome Amiibo/i, 'Welcome')
+        .replace(/Amiibo Cards\/!Special Edition/i, 'Special')
         .replace(/Amiibo Figures/i, 'Figures')
         .replace(/Happy Home Designer Items/i, 'HHD')
         .replace(/Breath of the Wild/i, 'BotW')
         .replace(/Tears of the Kingdom/i, 'TotK')
         .replace(/Twilight Princess/i, 'TP')
         .replace(/Skyward Sword HD/i, 'Skyward')
-        .replace(/Link’s Awakening/i, 'Awakening')
+        .replace(/Link[’'´`]?s Awakening/i, 'Awakening')
         .replace(/Kirby Air Riders Amiibo/i, 'AirRiders')
-        .replace(/[^a-zA-Z0-9_\/]/g, '_')
-        .replace(/_+/g, '_');
+        .replace(/Anniversary_?/i, 'Anniversary');
+        
+    // Flatten any slashes or special chars with single underscore to guarantee single-level folder
+    clean = clean.replace(/[\/\\:]+/g, '_')
+                 .replace(/[^a-zA-Z0-9_-]/g, '')
+                 .replace(/^_+|_+$/g, '')
+                 .substring(0, 16);
+                 
+    return clean;
 }
 
 function fitPathToHardwareLimit(remotePath) {
@@ -571,14 +578,15 @@ function removeAccents(str) {
 }
 
 function sanitizeName(name) {
-    // 1. Remove bracket prefixes like [AC] 001 -, [Zel] 001 -
-    let clean = name.replace(/^\[[^\]]+\]\s*\d*\s*-\s*/, '');
+    // 1. Remove bracket prefixes like [AC], [Zel] but KEEP the number (e.g. [AC] 001 - Isabelle -> 001_Isabelle)
+    let clean = name.replace(/^\[[^\]]+\]\s*/, '');
     
-    // 2. Remove tildes/accents, special curly quotes and convert parentheses to spaces
+    // 2. Remove tildes/accents, special curly quotes and convert parentheses and dashes to spaces
     clean = removeAccents(clean)
         .replace(/[’'´`]/g, '')
         .replace(/[\(\)]/g, ' ')
-        .replace(/[^a-zA-Z0-9\s._-]/g, '')
+        .replace(/[-]/g, ' ')
+        .replace(/[^a-zA-Z0-9\s._]/g, '')
         .trim();
         
     // 3. Clean spaces to underscores

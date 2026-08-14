@@ -573,16 +573,15 @@ function sanitizeName(name) {
     // 1. Remove bracket prefixes like [AC] 001 -, [Zel] 001 -
     let clean = name.replace(/^\[[^\]]+\]\s*\d*\s*-\s*/, '');
     
-    // 2. Remove tildes/accents
-    clean = removeAccents(clean);
-    
-    // 3. Remove parentheses content and other symbols
-    clean = clean.replace(/\([^)]+\)/g, '')
-                 .replace(/[^a-zA-Z0-9\s._-]/g, '')
-                 .trim();
-                 
-    // 4. Clean spaces to underscores
-    clean = clean.replace(/\s+/g, '_');
+    // 2. Remove tildes/accents, special curly quotes and convert parentheses to spaces
+    clean = removeAccents(clean)
+        .replace(/[’'´`]/g, '')
+        .replace(/[\(\)]/g, ' ')
+        .replace(/[^a-zA-Z0-9\s._-]/g, '')
+        .trim();
+        
+    // 3. Clean spaces to underscores
+    clean = clean.replace(/\s+/g, '_').replace(/_+/g, '_');
     
     return clean;
 }
@@ -3478,10 +3477,16 @@ el.btnCatInstallSeries.addEventListener("click", () => {
     }
     
     const visibleAmiibos = [];
+    const seenNames = new Set();
     const list = state.categories[selectedCat] || [];
     list.forEach(amiibo => {
         if (selectedSub && amiibo.subPath !== selectedSub) return;
         if (searchVal && !amiibo.name.toLowerCase().includes(searchVal)) return;
+        
+        const key = `${selectedCat}_${amiibo.name.toLowerCase().trim()}`;
+        if (seenNames.has(key)) return;
+        seenNames.add(key);
+        
         visibleAmiibos.push({ amiibo, category: selectedCat });
     });
     
@@ -3639,7 +3644,8 @@ el.btnInstallConfirm.addEventListener("click", async () => {
         });
     }
     
-    // 3. Add each file download/flash item with strict 58-byte path limit
+    // 3. Add each file download/flash item with strict 58-byte path limit & deduplication
+    const addedRemotePaths = new Set();
     _activeInstallList.forEach(item => {
         const cleanFilename = sanitizeName(item.amiibo.name) + ".bin";
         let rawRemotePath;
@@ -3651,6 +3657,8 @@ el.btnInstallConfirm.addEventListener("click", async () => {
         }
         
         const finalRemotePath = fitPathToHardwareLimit(rawRemotePath);
+        if (addedRemotePaths.has(finalRemotePath)) return;
+        addedRemotePaths.add(finalRemotePath);
         
         let downloadUrl = item.amiibo.path;
         if (!downloadUrl.startsWith("http")) {

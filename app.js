@@ -249,7 +249,7 @@ const TRANSLATIONS = {
         help_sim_desc: "Puedes iniciar el simulador virtual para probar la interfaz, explorar el catálogo y probar las funciones ahora mismo.",
         help_options_title: "Menú y Opciones del Dispositivo",
         help_opt1_title: "Emulador de Amiibo:",
-        help_opt1_desc: "Permite seleccionar y emular un Amiibo individual guardado en el almacenamiento (archivo .bin o .nfc). El Allmiibo se comportará físicamente ante la consola como esa tarjeta.",
+        help_opt1_desc: "Permite seleccionar y emular un Amiibo individual guardado en el almacenamiento (archivo .bin). El Allmiibo se comportará físicamente ante la consola como esa tarjeta.",
         help_opt2_title: "Base de datos de Amiibo:",
         help_opt2_desc: "Utiliza la base de datos interna y la clave key_retail.bin para generar y emular Amiibos al vuelo sin necesidad de tener el archivo .bin cargado individualmente.",
         help_opt3_title: "AmiiboLink:",
@@ -458,7 +458,7 @@ const TRANSLATIONS = {
         help_sim_desc: "You can launch the virtual simulator to test the interface, browse the catalog, and try all features right now.",
         help_options_title: "Device Menu & Options",
         help_opt1_title: "Amiibo Emulator:",
-        help_opt1_desc: "Select and emulate an individual Amiibo saved in storage (.bin or .nfc file). The Allmiibo physically acts like that card to the console.",
+        help_opt1_desc: "Select and emulate an individual Amiibo saved in storage (.bin file). The Allmiibo physically acts like that card to the console.",
         help_opt2_title: "Amiibo Database:",
         help_opt2_desc: "Uses the internal database and key_retail.bin to generate and emulate Amiibos on the fly without needing individual .bin files stored.",
         help_opt3_title: "AmiiboLink:",
@@ -695,8 +695,8 @@ function removeAccents(str) {
 
 function sanitizeName(name) {
     if (!name) return "";
-    // 1. Remove .bin/.nfc extension and bracket prefixes like [AC], [Zel] but KEEP the number
-    let clean = name.replace(/\.(bin|nfc)$/i, '').replace(/^\[[^\]]+\]\s*/, '');
+    // 1. Remove .bin extension and bracket prefixes like [AC], [Zel] but KEEP the number
+    let clean = name.replace(/\.bin$/i, '').replace(/^\[[^\]]+\]\s*/, '');
     
     // 2. Remove tildes/accents, special curly quotes and convert parentheses and dashes to spaces
     clean = removeAccents(clean)
@@ -763,9 +763,9 @@ async function scanInstalledAmiibos() {
                 if (item.type === "DIR") {
                     const subDirPath = joinPaths(dirPath, item.name);
                     await traverse(subDirPath, depth + 1);
-                } else if (item.name.toLowerCase().endsWith(".bin") || item.name.toLowerCase().endsWith(".nfc")) {
+                } else if (item.name.toLowerCase().endsWith(".bin")) {
                     const rawName = item.name.toLowerCase();
-                    const cleanItem = item.name.replace(/\.(bin|nfc)$/i, '');
+                    const cleanItem = item.name.replace(/\.bin$/i, '');
                     
                     found.add(rawName);
                     found.add(cleanItem.toLowerCase());
@@ -2221,7 +2221,12 @@ async function handleFilesSelected(fileList) {
         files: []
     };
     
+    let ignoredCount = 0;
     for (const f of fileList) {
+        if (!f.name.toLowerCase().endsWith(".bin")) {
+            ignoredCount++;
+            continue;
+        }
         const relPath = f.webkitRelativePath || f.name;
         collected.files.push({
             relativePath: relPath,
@@ -2231,6 +2236,11 @@ async function handleFilesSelected(fileList) {
             collectFoldersFromPath(relPath, collected.folders);
         }
     }
+    
+    if (ignoredCount > 0) {
+        showToast(`Se ignoraron ${ignoredCount} archivo(s) no compatibles (solo se admiten archivos .bin).`, "error");
+    }
+    if (collected.files.length === 0) return;
     
     planUpload(collected.folders, collected.files);
 }
@@ -2274,8 +2284,10 @@ async function collectFromDataTransfer(dataTransfer) {
             );
         } else {
             const f = await fileFromEntry(entry);
-            files.push({ relativePath: prefix || f.name, file: f });
-            if (prefix) collectFoldersFromPath(prefix, folders);
+            if (f.name.toLowerCase().endsWith(".bin")) {
+                files.push({ relativePath: prefix || f.name, file: f });
+                if (prefix) collectFoldersFromPath(prefix, folders);
+            }
         }
     }
 

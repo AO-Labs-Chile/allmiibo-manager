@@ -3,9 +3,12 @@ const NUS_SERVICE_UUID = "6e400001-b5a3-f393-e0a9-e50e24dcca9e";
 const NUS_CHAR_TX_UUID = "6e400002-b5a3-f393-e0a9-e50e24dcca9e";
 const NUS_CHAR_RX_UUID = "6e400003-b5a3-f393-e0a9-e50e24dcca9e";
 
-// Servidor Base de descarga de Amiibos (GitHub original o tu Internet Archive público)
-// Para usar tu Internet Archive, cambia la URL por: "https://ia601004.us.archive.org/view_archive.php?archive=/35/items/nintendo-amiibo-nfc-vault/Amiibo%20Bin.zip" o su dirección de descarga directa.
-const BASE_DOWNLOAD_URL = "https://raw.githubusercontent.com/AmiiboDB/Amiibo/main/";
+// Fuentes de descarga de Amiibos (Internet Archive o GitHub)
+const DOWNLOAD_SOURCES = {
+    archive: "https://archive.org/download/nintendo-amiibo-nfc-vault/Amiibo%20Bin.zip/",
+    github: "https://raw.githubusercontent.com/AmiiboDB/Amiibo/main/"
+};
+let baseDownloadUrl = DOWNLOAD_SOURCES.archive;
 
 const FRAME_HEADER_SIZE = 4;
 const COMMAND_TIMEOUT_MS = 10000;
@@ -718,6 +721,7 @@ const el = {
     // Online Catalogue Elements
     filterCategory: document.getElementById("filter-category"),
     searchAmiibo: document.getElementById("search-amiibo"),
+    catalogueSourceSelect: document.getElementById("catalogue-source-select"),
     amiiboGrid: document.getElementById("amiibo-grid"),
     
     // Catalogue Selection & Installation
@@ -2028,7 +2032,9 @@ function openInstallFolderModal(amiibos) {
 async function flashAmiiboFromCatalogue(amiibo, category) {
     if (!state.isConnected) return;
     
-    const githubRawUrl = `https://raw.githubusercontent.com/AmiiboDB/Amiibo/main/${encodeURIComponent(amiibo.path)}`;
+    const githubRawUrl = baseDownloadUrl.endsWith('/') 
+        ? `${baseDownloadUrl}${encodeURIComponent(amiibo.path)}` 
+        : `${baseDownloadUrl}/${encodeURIComponent(amiibo.path)}`;
     
     // Work out local destination folder on Allmiibo
     const shortCategory = getCleanCategoryFolder(category);
@@ -2807,6 +2813,10 @@ el.filterCategory.addEventListener("change", () => {
     state.selectedCatalogue.clear(); // Clear selections on filter change
     renderOnlineCatalogue();
 });
+el.catalogueSourceSelect.addEventListener("change", (e) => {
+    baseDownloadUrl = DOWNLOAD_SOURCES[e.target.value] || DOWNLOAD_SOURCES.archive;
+    showToast(`Servidor de descargas: ${e.target.options[e.target.selectedIndex].text}`);
+});
 
 // Select All visible
 el.btnCatSelectAll.addEventListener("click", () => {
@@ -2889,10 +2899,10 @@ el.btnInstallConfirm.addEventListener("click", async () => {
         const cleanFilename = sanitizeName(item.amiibo.name) + ".bin";
         const remotePath = joinPaths(destinationFolder, cleanFilename);
         
-        // Use BASE_DOWNLOAD_URL which can be GitHub or Internet Archive
-        const downloadUrl = BASE_DOWNLOAD_URL.endsWith('/') 
-            ? `${BASE_DOWNLOAD_URL}${item.amiibo.path}` 
-            : `${BASE_DOWNLOAD_URL}/${item.amiibo.path}`;
+        // Use baseDownloadUrl which can be GitHub or Internet Archive
+        const downloadUrl = baseDownloadUrl.endsWith('/') 
+            ? `${baseDownloadUrl}${item.amiibo.path}` 
+            : `${baseDownloadUrl}/${item.amiibo.path}`;
         
         queueItems.push({
             kind: "file",

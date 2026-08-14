@@ -220,9 +220,15 @@
                         <div class="search-bar" style="flex: 1; max-width: 400px;">
                             <input type="text" class="search-input" id="search-amiibo" placeholder="Buscar Amiibo...">
                         </div>
-                        <select class="category-filter" id="filter-category">
-                            <option value="all">Todas las Series</option>
-                        </select>
+                        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                            <select class="category-filter" id="catalogue-source-select" style="font-weight: 600; color: var(--primary);">
+                                <option value="archive">🏛️ Internet Archive (Vault)</option>
+                                <option value="github">🐙 GitHub Mirror (AmiiboDB)</option>
+                            </select>
+                            <select class="category-filter" id="filter-category">
+                                <option value="all">Todas las Series</option>
+                            </select>
+                        </div>
                     </div>
 
                     <div class="explorer-actions" id="catalogue-actions" style="width: 100%; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-color); padding-top: 12px; margin-top: 4px; flex-wrap: wrap; gap: 8px;">

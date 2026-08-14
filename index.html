@@ -169,7 +169,7 @@
                     <span class="material-symbols-rounded" style="color: #ff5e5b; font-size: 1.05rem;">favorite</span>
                     <span data-i18n="btn_donate_footer">Apoyar / Donar</span>
                 </a>
-                <span class="sidebar-version-badge">Allmiibo Manager v1.4.0</span>
+                <span class="sidebar-version-badge">Allmiibo Manager v1.4.1</span>
                 <div class="sidebar-legal-link" style="text-align: center; margin-top: 2px;">
                     <a href="javascript:void(0)" class="btn-open-legal-trigger" style="font-size: 0.72rem; color: var(--text-muted); text-decoration: underline; text-underline-offset: 2px;" data-i18n="legal_footer_link">⚖️ Aviso Legal y Fuentes</a>
                 </div>
@@ -285,18 +285,24 @@
             <div class="tab-content" id="online-tab">
                 <div class="catalogue-header" style="width: 100%; display: flex; flex-direction: column; gap: 12px;">
                     <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 16px; flex-wrap: wrap;">
-                        <div class="search-bar" style="flex: 1; max-width: 360px;">
+                        <div class="search-bar" style="flex: 1; min-width: 260px; max-width: 380px;">
                             <input type="text" class="search-input" id="search-amiibo" placeholder="Buscar Amiibo..." data-i18n-placeholder="search_placeholder">
                         </div>
-                        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                            <select class="category-filter" id="filter-category">
-                                <option value="all" data-i18n="cat_all">Todas las Series</option>
-                            </select>
-                            <select class="category-filter" id="filter-installed-status" style="border: 1px solid var(--border-color); border-radius: 8px; font-size: 0.85rem; padding: 6px 12px; font-weight: 600; color: var(--primary); background-color: var(--bg-card); cursor: pointer;">
-                                <option value="all" data-i18n="filter_status_all">Todos los Amiibos</option>
-                                <option value="not_installed" data-i18n="filter_status_not_installed">⭐ Solo No Instalados</option>
-                                <option value="installed" data-i18n="filter_status_installed">✓ Solo Instalados</option>
-                            </select>
+                        <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+                            <div style="display: flex; align-items: center; gap: 6px;">
+                                <label for="filter-category" style="font-size: 0.8rem; font-weight: 600; color: var(--text-secondary);" data-i18n="filter_series_label">Serie:</label>
+                                <select class="category-filter" id="filter-category" style="height: 38px; padding: 0 12px; font-size: 0.85rem; border: 1px solid var(--border-color); border-radius: 8px; background-color: var(--bg-card); color: var(--text-primary); cursor: pointer;">
+                                    <option value="all" data-i18n="cat_all">Todas las Series</option>
+                                </select>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 6px;">
+                                <label for="filter-installed-status" style="font-size: 0.8rem; font-weight: 600; color: var(--text-secondary);" data-i18n="filter_status_label">Estado:</label>
+                                <select class="category-filter" id="filter-installed-status" style="height: 38px; padding: 0 12px; font-size: 0.85rem; border: 1px solid var(--border-color); border-radius: 8px; font-weight: 500; color: var(--text-primary); background-color: var(--bg-card); cursor: pointer;">
+                                    <option value="all" selected data-i18n="filter_status_all">Todos</option>
+                                    <option value="not_installed" data-i18n="filter_status_not_installed">No Instalados</option>
+                                    <option value="installed" data-i18n="filter_status_installed">Ya Instalados</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
 

@@ -1,5 +1,5 @@
 // === Configuration & Constants ===
-const APP_VERSION = "v1.4.0";
+const APP_VERSION = "v1.4.1";
 const NUS_SERVICE_UUID = "6e400001-b5a3-f393-e0a9-e50e24dcca9e";
 const NUS_CHAR_TX_UUID = "6e400002-b5a3-f393-e0a9-e50e24dcca9e";
 const NUS_CHAR_RX_UUID = "6e400003-b5a3-f393-e0a9-e50e24dcca9e";
@@ -187,9 +187,11 @@ const TRANSLATIONS = {
         report_reason_network: "Error de red o servidor de Archive ocupado",
         report_reason_path: "Ruta excede el límite del Allmiibo (>58 bytes)",
         cat_no_results: "No se encontraron Amiibos con los filtros aplicados.",
-        filter_status_all: "Todos los Amiibos",
-        filter_status_not_installed: "⭐ Solo No Instalados",
-        filter_status_installed: "✓ Solo Instalados",
+        filter_series_label: "Serie:",
+        filter_status_label: "Estado:",
+        filter_status_all: "Todos",
+        filter_status_not_installed: "No Instalados",
+        filter_status_installed: "Ya Instalados",
         btn_skip_scan: "Omitir",
         btn_scan_installed: "Escanear Instalados",
         btn_scan_installed_title: "Volver a escanear figuras instaladas en el dispositivo",
@@ -405,9 +407,11 @@ const TRANSLATIONS = {
         report_reason_network: "Network error or Archive server busy",
         report_reason_path: "Path exceeds Allmiibo limit (>58 bytes)",
         cat_no_results: "No Amiibos found with the applied filters.",
-        filter_status_all: "All Amiibos",
-        filter_status_not_installed: "⭐ Not Installed Only",
-        filter_status_installed: "✓ Installed Only",
+        filter_series_label: "Series:",
+        filter_status_label: "Status:",
+        filter_status_all: "All",
+        filter_status_not_installed: "Not Installed",
+        filter_status_installed: "Already Installed",
         btn_skip_scan: "Skip",
         btn_scan_installed: "Scan Installed",
         btn_scan_installed_title: "Rescan installed figures on device",

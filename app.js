@@ -3544,32 +3544,60 @@ el.btnDeleteConfirm.addEventListener("click", async () => {
     }
 });
 
-// Delete folder recursively with progress callback, preserving 'save' folder
-async function deleteFolderRecursively(path, onProgress, preserveSave = false) {
-    const res = await state.client.readFolder(path);
-    if (res.ok) {
-        for (const entry of res.data) {
-            // NEVER delete 'save' or 'Save' or 'SAVE' folder inside E:/amiibo
-            if (preserveSave && path === "E:/amiibo" && entry.name.toLowerCase() === "save") {
-                logEvent("Preservando carpeta de partidas guardadas: E:/amiibo/save");
-                continue;
-            }
-            const entryPath = joinPaths(path, entry.name);
-            if (entry.type === "DIR") {
-                await deleteFolderRecursively(entryPath, onProgress, false);
-            } else {
-                if (onProgress) onProgress(entryPath);
-                await state.client.removePath(entryPath);
-            }
-        }
+// Check if a path or file is protected and must NEVER be deleted
+function isSystemProtectedPath(path) {
+    if (!path) return false;
+    const norm = path.toLowerCase().replace(/\\/g, '/').trim();
+    
+    // 1. Never delete encryption key
+    if (norm === 'e:/key_retail.bin' || norm.endsWith('/key_retail.bin') || norm === 'key_retail.bin') return true;
+    
+    // 2. Never delete 'save' folder or any save files inside it
+    if (norm === 'e:/save' || norm === 'e:/amiibo/save' || norm.includes('/save/') || norm.endsWith('/save')) return true;
+    
+    // 3. Never delete chameleon / RFID card emulator dumps
+    if (norm === 'e:/chameleon' || norm.includes('/chameleon/') || norm.endsWith('/chameleon')) return true;
+    
+    return false;
+}
+
+// Safely delete amiibo files and folders recursively while strictly preserving protected system folders
+async function safeWipeAmiibos(dirPath, onProgress) {
+    if (isSystemProtectedPath(dirPath)) {
+        logEvent(`Preservando carpeta protegida del sistema: ${dirPath}`);
+        return;
     }
-    if (!preserveSave) {
-        if (onProgress) onProgress(path);
-        return await state.client.removePath(path);
+    
+    const res = await state.client.readFolder(dirPath);
+    if (!res || !res.ok || !res.data) return;
+    
+    for (const entry of res.data) {
+        const entryPath = joinPaths(dirPath, entry.name);
+        const normName = entry.name.toLowerCase();
+        
+        // Skip protected system files & directories
+        if (normName === "key_retail.bin" || normName === "save" || normName === "chameleon") {
+            logEvent(`Preservando elemento del sistema: ${entryPath}`);
+            continue;
+        }
+        
+        if (entry.type === "DIR") {
+            // Traverse subdirectory
+            await safeWipeAmiibos(entryPath, onProgress);
+            // Delete folder after its non-protected children are removed (never delete root or E:/amiibo)
+            if (entryPath !== "E:/" && entryPath !== "E:/amiibo" && !isSystemProtectedPath(entryPath)) {
+                if (onProgress) onProgress(entryPath);
+                await state.client.removePath(entryPath).catch(() => {});
+            }
+        } else {
+            // File: delete amiibo file
+            if (onProgress) onProgress(entryPath);
+            await state.client.removePath(entryPath).catch(() => {});
+        }
     }
 }
 
-// Borrar todos los Amiibos con progreso visual (preservando partidas guardadas)
+// Borrar todos los Amiibos con progreso visual (preservando permanentemente 'save' y 'key_retail.bin')
 el.btnFormat.addEventListener("click", async () => {
     if (!confirm("¿Estás seguro de que deseas eliminar TODOS los Amiibos del dispositivo? (La clave key_retail.bin y tus partidas guardadas en la carpeta 'save' NO se borrarán).")) return;
     
@@ -3583,17 +3611,40 @@ el.btnFormat.addEventListener("click", async () => {
     let deleteCount = 0;
     
     try {
-        await deleteFolderRecursively("E:/amiibo", (currentPath) => {
+        // 1. Wipe inside E:/amiibo (preserving E:/amiibo/save)
+        await safeWipeAmiibos("E:/amiibo", (currentPath) => {
             deleteCount++;
             const shortName = currentPath.split("/").pop();
             statusText.textContent = shortName;
             counterText.textContent = t("modal_del_prog_count", { count: deleteCount });
-        }, true); // preserveSave = true!
+        });
         
-        await state.client.createFolder("E:/amiibo");
+        // 2. Also wipe any loose .bin/.nfc files left in root E:/ (preserving key_retail.bin, save, chameleon)
+        const rootRes = await state.client.readFolder("E:/");
+        if (rootRes && rootRes.ok && rootRes.data) {
+            for (const item of rootRes.data) {
+                if (item.type !== "DIR" && (item.name.toLowerCase().endsWith(".bin") || item.name.toLowerCase().endsWith(".nfc"))) {
+                    if (item.name.toLowerCase() !== "key_retail.bin") {
+                        deleteCount++;
+                        const fullItemPath = joinPaths("E:/", item.name);
+                        statusText.textContent = item.name;
+                        counterText.textContent = t("modal_del_prog_count", { count: deleteCount });
+                        await state.client.removePath(fullItemPath).catch(() => {});
+                    }
+                }
+            }
+        }
+        
+        // 3. Guarantee essential system directories exist
+        await state.client.createFolder("E:/amiibo").catch(() => {});
+        await state.client.createFolder("E:/amiibo/save").catch(() => {});
+        
         showToast(t("toast_delete_success"));
     } catch (err) {
-        try { await state.client.createFolder("E:/amiibo"); } catch(e) {}
+        try { 
+            await state.client.createFolder("E:/amiibo").catch(() => {});
+            await state.client.createFolder("E:/amiibo/save").catch(() => {});
+        } catch(e) {}
         showToast(t("toast_delete_success"));
     } finally {
         overlay.classList.remove("active");
@@ -3601,6 +3652,7 @@ el.btnFormat.addEventListener("click", async () => {
         state.currentPath = "E:/";
         updateStorageBar();
         refreshExplorer();
+        scanInstalledAmiibos();
     }
 });
 

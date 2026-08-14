@@ -722,6 +722,7 @@ const el = {
     btnCatDeselectAll: document.getElementById("btn-cat-deselect-all"),
     btnCatInstall: document.getElementById("btn-cat-install"),
     btnCatInstallSeries: document.getElementById("btn-cat-install-series"),
+    btnCatSync: document.getElementById("btn-cat-sync"),
     
     // Modals
     modalFolder: document.getElementById("modal-folder"),
@@ -1635,17 +1636,15 @@ async function runQueueUpload() {
 
 async function initOnlineCatalogue() {
     try {
-        const response = await fetch("amiibo_db.json");
-        state.categories = await response.json();
+        const cachedDb = localStorage.getItem("cached_amiibo_db");
+        if (cachedDb) {
+            state.categories = JSON.parse(cachedDb);
+        } else {
+            const response = await fetch("amiibo_db.json");
+            state.categories = await response.json();
+        }
         
-        // Populate category dropdown
-        el.filterCategory.innerHTML = `<option value="all">Todas las Series</option>`;
-        Object.keys(state.categories).forEach(cat => {
-            const opt = document.createElement("option");
-            opt.value = cat;
-            opt.textContent = cat;
-            el.filterCategory.appendChild(opt);
-        });
+        populateCategoryDropdown();
 
         // Fetch full AmiiboAPI list once for fast matching
         logEvent("Cargando base de datos AmiiboAPI...");
@@ -1666,6 +1665,60 @@ async function initOnlineCatalogue() {
     } catch (err) {
         logEvent(`Error al inicializar base de datos local: ${err.message}`);
         showToast("Error al cargar la base de datos de Amiibos.", "error");
+    }
+}
+
+function populateCategoryDropdown() {
+    el.filterCategory.innerHTML = `<option value="all">Todas las Series</option>`;
+    Object.keys(state.categories).forEach(cat => {
+        const opt = document.createElement("option");
+        opt.value = cat;
+        opt.textContent = cat;
+        el.filterCategory.appendChild(opt);
+    });
+}
+
+async function syncCatalogueFromGitHub() {
+    const originalText = el.btnCatSync.innerHTML;
+    el.btnCatSync.disabled = true;
+    el.btnCatSync.innerHTML = `<span class="material-symbols-rounded pulse" style="font-size: 1.1rem; animation: pulse 1s infinite;">sync</span> Sincronizando...`;
+    showToast("Sincronizando catálogo con GitHub...");
+    
+    try {
+        const categories = {};
+        const binRes = await fetch('https://api.github.com/repos/AmiiboDB/Amiibo/contents/Amiibo%20Bin');
+        if (!binRes.ok) throw new Error("Error al acceder a la API de GitHub.");
+        const binJson = await binRes.json();
+        
+        for (const item of binJson) {
+            if (item.type === 'dir') {
+                const catName = item.name;
+                const catRes = await fetch(item.url);
+                if (catRes.ok) {
+                    const filesJson = await catRes.json();
+                    categories[catName] = filesJson
+                        .filter(f => f.name.toLowerCase().endsWith('.bin'))
+                        .map(f => ({
+                            name: f.name.replace(/\.bin$/i, ''),
+                            path: f.path,
+                            ext: 'bin'
+                        }));
+                }
+            }
+        }
+        
+        state.categories = categories;
+        localStorage.setItem("cached_amiibo_db", JSON.stringify(categories));
+        
+        populateCategoryDropdown();
+        renderOnlineCatalogue();
+        showToast("Catálogo sincronizado con GitHub con éxito.");
+    } catch (err) {
+        logEvent(`Error al sincronizar catálogo: ${err.message}`);
+        showToast(`Error al sincronizar: ${err.message}`, "error");
+    } finally {
+        el.btnCatSync.disabled = false;
+        el.btnCatSync.innerHTML = originalText;
     }
 }
 
@@ -2669,6 +2722,9 @@ el.btnCatInstallSeries.addEventListener("click", () => {
     
     openInstallFolderModal(visibleAmiibos);
 });
+
+// Sync Online Catalogue with GitHub Live API
+el.btnCatSync.addEventListener("click", syncCatalogueFromGitHub);
 
 // Update Key listeners
 el.btnUploadKey.addEventListener("click", () => {
